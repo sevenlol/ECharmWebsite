@@ -8,7 +8,7 @@
     ];
 
     function blogListController() {
-        // body...
+        console.log('content.blog.list');
     }
 
 })();

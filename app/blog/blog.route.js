@@ -12,22 +12,22 @@
 
         /* State Objects */
 
-        var contentState = {
-            name : 'content',
+        var blogState = {
+            name : 'blog',
+            url : '^/blog',
             abstract : true,
-            template : '<h1>Content List</h1><div ui-view></div>'
+            template : '<h1>Content Bar</h1><h1>Category List</h1><div ui-view></div>'
         };
 
-        var blogState = {
-            name : 'content.blog',
-            url : '^/blog',
-            parent : contentState,
-            abstract : true,
-            template : '<h1>Category List</h1><div ui-view></div>'
+        var blogHomeState = {
+            name : 'blog.home',
+            url : '/home',
+            parent : blogState,
+            template : '<h1>Home</h1>'
         };
 
         var blogListState = {
-            name : 'content.blog.list',
+            name : 'blog.list',
             parent : blogState,
             url : '/:category',
             template : '<h1>Article List</h1>',
@@ -39,7 +39,7 @@
         };
 
         var blogDetailState = {
-            name : 'content.blog.detail',
+            name : 'blog.detail',
             parent : blogState,
             url : '/:category/:articleId',
             abstract : true,
@@ -50,18 +50,18 @@
                 ratingList : resolveRatingList,
                 avgRating : resolveAvgRating
             },
-            templateUrl : '<h1>Article Content</h1><div ui-view></div>',
+            template : '<h1>Article Content</h1><div ui-view></div>',
             controller : 'blogDetailController'
         };
 
         var blogDetailReadState = {
-            name : 'content.blog.detail.read',
+            name : 'blog.detail.read',
             parent : blogDetailState,
             template : '<button>Leave a comment!</button>'
         };
 
         var blogDetailCommentState = {
-            name : 'content.blog.detail.comment',
+            name : 'blog.detail.comment',
             parent : blogDetailState,
             template : '<button>Submit!</button>',
             controller : 'blogDetailCommentController'
@@ -71,8 +71,8 @@
         /* Blog System Routing */
 
         $stateProvider
-            .state(contentState)
             .state(blogState)
+            .state(blogHomeState)
             .state(blogListState)
             .state(blogDetailState)
             .state(blogDetailReadState)
@@ -82,11 +82,11 @@
         /* resolve functions */
 
         function resolveArticleList() {
-            // body...
+            return null;
         }
 
         function resolveDoctorList() {
-            // body...
+            return null;
         }
 
         function resolveArticle() {
@@ -101,14 +101,14 @@
             // body...
         }
 
-        function resolveAvgRating() {
+        function resolveRatingList() {
             // body...
         }
 
-        function resolveArticle() {
+        function resolveAvgRating() {
             // body...
         }
 
     }
 
-});
+})();

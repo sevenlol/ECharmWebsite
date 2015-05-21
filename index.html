@@ -3,7 +3,7 @@
 <head>
 </head>
 <body>
-    <button ui-sref="content.blog.list">Test</button>
+    <button ui-sref="askdoctor.detail.read({ category : 'Category_1', articleId : '123' })">Test</button>
 
     <div ui-view></div>
 
@@ -21,7 +21,13 @@
     <script src="app/blog/blog-detail.controller.js"></script>
     <script src="app/blog/blog-detail-comment.controller.js"></script>
 
-    <script src="app/account/account.module.js"></script>
     <script src="app/askdoctor/askdoctor.module.js"></script>
+    <script src="app/askdoctor/askdoctor.route.js"></script>
+    <script src="app/askdoctor/askdoctor-list.controller.js"></script>
+    <script src="app/askdoctor/askdoctor-detail.controller.js"></script>
+    <script src="app/askdoctor/askdoctor-detail-comment.controller.js"></script>
+
+    <script src="app/account/account.module.js"></script>
+
 </body>
 </html>

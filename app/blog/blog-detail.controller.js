@@ -8,7 +8,7 @@
     ];
 
     function blogDetailController() {
-        // body...
+        console.log('content.blog.detail');
     }
 
 })();
