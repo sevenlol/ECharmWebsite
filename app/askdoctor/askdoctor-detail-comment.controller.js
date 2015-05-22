@@ -5,10 +5,19 @@
            .controller('askdoctorDetailCommentController', askdoctorDetailCommentController);
 
     askdoctorDetailCommentController.$inject = [
+        'question'
     ];
 
-    function askdoctorDetailCommentController() {
-        // body...
+    function askdoctorDetailCommentController(question) {
+        var vm = this;
+
+        vm.commentThisQuestion = commentThisQuestion;
+
+        /* public functions */
+
+        function commentThisQuestion() {
+            // body...
+        }
     }
 
 })();

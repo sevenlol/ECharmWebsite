@@ -34,7 +34,8 @@
                 doctorList : resolveDoctorList,
                 userList : resolveUserList
             },
-            controller : 'askdoctorListController'
+            controller : 'askdoctorListController',
+            controllerAs : 'vm'
         };
 
         var askdoctorDetailState = {
@@ -44,13 +45,15 @@
             abstract : true,
             resolve : {
                 question : resolveQuestion,
+                user : resolveUser,
                 doctor : resolveDoctor,
                 commentList : resolveCommentList,
                 ratingList : resolveRatingList,
                 avgRating : resolveAvgRating
             },
             template : '<h1>Q & A Content</h1><div ui-view></div>',
-            controller : 'askdoctorDetailController'
+            controller : 'askdoctorDetailController',
+            controllerAs : 'vm'
         };
 
         var askdoctorDetailReadState = {
@@ -63,7 +66,8 @@
             name : 'askdoctor.detail.comment',
             parent : askdoctorDetailState,
             template : '<button>Submit!</button>',
-            controller : 'askdoctorDetailCommentController'
+            controller : 'askdoctorDetailCommentController',
+            controllerAs : 'vm'
         };
 
         /* Askdoctor System Routing */
@@ -78,11 +82,11 @@
 
         /* resolve functions */
 
-        function resolveQuestionList() {
+        function resolveQuestionList($stateParams) {
             // body...
         }
 
-        function resolveDoctorList() {
+        function resolveDoctorList($stateParams) {
             // body...
         }
 
@@ -90,23 +94,27 @@
             // body...
         }
 
-        function resolveQuestion() {
+        function resolveQuestion($stateParams) {
             // body...
         }
 
-        function resolveDoctor() {
+        function resolveDoctor(question) {
             // body...
         }
 
-        function resolveCommentList() {
+        function resolveUser(question) {
             // body...
         }
 
-        function resolveRatingList() {
+        function resolveCommentList(question) {
             // body...
         }
 
-        function resolveAvgRating() {
+        function resolveRatingList(question) {
+            // body...
+        }
+
+        function resolveAvgRating(ratingList) {
             // body...
         }
     }
