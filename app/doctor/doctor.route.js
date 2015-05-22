@@ -13,18 +13,17 @@
         /* State Objects */
 
         // Doctor Information
-        var accountDoctorState = {
+        var doctorState = {
             name : 'account.doctor',
             url : '/doctor',
-            parent : accountState,
             abstract : true,
             template : '<div ui-view></div>'
         };
 
-        var accountDoctorListState = {
+        var doctorListState = {
             name : 'account.doctor.list',
             url : '/:category',
-            parent : accountDoctorState,
+            parent : doctorState,
             resolve : {
                 doctorList : resolveDoctorList
             },
@@ -32,10 +31,10 @@
             controller : 'doctorListController'
         };
 
-        var accountDoctorDetailState = {
+        var doctorDetailState = {
             name : 'account.doctor.detail',
             url : '/:category/:doctorId',
-            parent : accountDoctorState,
+            parent : doctorState,
             resolve : {
                 doctor : resolveDoctor,
                 articleList : resolveDoctorArticleList,
@@ -49,9 +48,9 @@
         /* Doctor Information Routing*/
 
         $stateProvider
-            .state(accountDoctorState)
-            .state(accountDoctorListState)
-            .state(accountDoctorDetailState);
+            .state(doctorState)
+            .state(doctorListState)
+            .state(doctorDetailState);
 
 
         /* resolve functions */

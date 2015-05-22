@@ -4,6 +4,7 @@
     angular.module('app',[
         'app.blog',
         'app.askdoctor',
-        'app.account'
+        'app.account',
+        'app.doctor'
     ]);
 })();
