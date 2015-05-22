@@ -28,7 +28,8 @@
                 doctorList : resolveDoctorList
             },
             template : '<h1>Doctor List!</h1>',
-            controller : 'doctorListController'
+            controller : 'doctorListController',
+            controllerAs : 'vm'
         };
 
         var doctorDetailState = {
@@ -41,7 +42,8 @@
                 answerList : resolveDoctorAnswerList
             },
             template : '<h1>Doctor Detail!</h1>',
-            controller : 'doctorDetailController'
+            controller : 'doctorDetailController',
+            controllerAs : 'vm'
         };
 
 
@@ -55,19 +57,19 @@
 
         /* resolve functions */
 
-        function resolveDoctorList() {
+        function resolveDoctorList($stateParams) {
             // body...
         }
 
-        function resolveDoctor() {
+        function resolveDoctor($stateParams) {
             // body...
         }
 
-        function resolveDoctorArticleList() {
+        function resolveDoctorArticleList(doctor) {
             // body...
         }
 
-        function resolveDoctorAnswerList() {
+        function resolveDoctorAnswerList(doctor) {
             // body...
         }
     }
