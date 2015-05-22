@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html ng-app="app">
 <head>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
 <body>
-    <button ui-sref="askdoctor.detail.read({ category : 'Category_1', articleId : '123' })">Test</button>
+    <button class="btn btn-info" ui-sref="askdoctor.detail.read({ category : 'Category_1', articleId : '123' })">Test</button>
 
-    <button ui-sref="account.me.user.detail">Test2</button>
+    <button class="btn btn-danger" ui-sref="account.me.user.detail">Test2</button>
 
     <div ui-view></div>
 
