@@ -35,7 +35,8 @@
                 articleList : resolveArticleList,
                 doctorList : resolveDoctorList
             },
-            controller : 'blogListController'
+            controller : 'blogListController',
+            controllerAs : 'vm'
         };
 
         var blogDetailState = {
@@ -51,7 +52,8 @@
                 avgRating : resolveAvgRating
             },
             template : '<h1>Article Content</h1><div ui-view></div>',
-            controller : 'blogDetailController'
+            controller : 'blogDetailController',
+            controllerAs : 'vm'
         };
 
         var blogDetailReadState = {
@@ -64,7 +66,8 @@
             name : 'blog.detail.comment',
             parent : blogDetailState,
             template : '<button>Submit!</button>',
-            controller : 'blogDetailCommentController'
+            controller : 'blogDetailCommentController',
+            controllerAs : 'vm'
         };
 
 
@@ -81,31 +84,31 @@
 
         /* resolve functions */
 
-        function resolveArticleList() {
+        function resolveArticleList($stateParams) {
             return null;
         }
 
-        function resolveDoctorList() {
+        function resolveDoctorList($stateParams) {
             return null;
         }
 
-        function resolveArticle() {
+        function resolveArticle($stateParams) {
             // body...
         }
 
-        function resolveAuthor() {
+        function resolveAuthor(article) {
             // body...
         }
 
-        function resolveCommentList() {
+        function resolveCommentList(article) {
             // body...
         }
 
-        function resolveRatingList() {
+        function resolveRatingList(article) {
             // body...
         }
 
-        function resolveAvgRating() {
+        function resolveAvgRating(ratingList) {
             // body...
         }
 
