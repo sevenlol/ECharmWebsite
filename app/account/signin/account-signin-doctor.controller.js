@@ -8,7 +8,16 @@
     ];
 
     function accountSignInDoctorController() {
+        var vm = this;
 
+        // state variable: credentials
+        vm.signIn = signIn;
+
+        /* public functions */
+
+        function signIn() {
+            // body...
+        }
     }
 
 })();

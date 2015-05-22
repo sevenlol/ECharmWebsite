@@ -5,10 +5,13 @@
            .controller('accountMeDoctorArticleController', accountMeDoctorArticleController);
 
     accountMeDoctorArticleController.$inject = [
+        'articleList'
     ];
 
-    function accountMeDoctorArticleController() {
+    function accountMeDoctorArticleController(articleList) {
+        var vm = this;
 
+        vm.articleList = articleList;
     }
 
 })();

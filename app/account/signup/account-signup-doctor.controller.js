@@ -8,7 +8,15 @@
     ];
 
     function accountSignUpDoctorController() {
+        var vm = this;
 
+        // state variable: doctorInfo
+        vm.signUp = signUp;
+
+        /* public functions */
+        function signUp() {
+            // body...
+        }
     }
 
 })();

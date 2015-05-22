@@ -5,10 +5,11 @@
            .controller('accountMeController', accountMeController);
 
     accountMeController.$inject = [
+        'myAccount'
     ];
 
-    function accountMeController() {
-
+    function accountMeController(myAccount) {
+        var vm = this;
     }
 
 })();

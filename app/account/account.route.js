@@ -28,7 +28,8 @@
                 myAccount : resolveMyAccount
             },
             template : '<div ui-view></div>',
-            controller : 'accountMeController'
+            controller : 'accountMeController',
+            controllerAs : 'vm'
         };
 
         var accountMeUserState = {
@@ -48,7 +49,8 @@
             url : '/detail',
             parent : accountMeUserState,
             template : '<h1>Detail</h1>',
-            controller : 'accountMeUserDetailController'
+            controller : 'accountMeUserDetailController',
+            controllerAs : 'vm'
         };
 
         var accountMeUserEditState = {
@@ -56,7 +58,8 @@
             url : '/edit',
             parent : accountMeUserState,
             template : '<h1>edit</h1>',
-            controller : 'accountMeUserEditController'
+            controller : 'accountMeUserEditController',
+            controllerAs : 'vm'
         };
 
         var accountMeUserQuestionState = {
@@ -64,7 +67,8 @@
             url : '/question',
             parent : accountMeUserState,
             template : '<h1>question</h1>',
-            controller : 'accountMeUserQuestionController'
+            controller : 'accountMeUserQuestionController',
+            controllerAs : 'vm'
         };
 
         var accountMeUserFavoriteState = {
@@ -72,7 +76,8 @@
             url : '/favorite',
             parent : accountMeUserState,
             template : '<h1>favorite</h1>',
-            controller : 'accountMeUserFavoriteController'
+            controller : 'accountMeUserFavoriteController',
+            controllerAs : 'vm'
         };
 
         var accountMeDoctorState = {
@@ -93,7 +98,8 @@
             url : '/detail',
             parent : accountMeDoctorState,
             template : '<h1>Detail</h1>',
-            controller : 'accountMeDoctorDetailController'
+            controller : 'accountMeDoctorDetailController',
+            controllerAs : 'vm'
         };
 
         var accountMeDoctorEditState = {
@@ -101,7 +107,8 @@
             url : '/edit',
             parent : accountMeDoctorState,
             template : '<h1>edit</h1>',
-            controller : 'accountMeDoctorEditController'
+            controller : 'accountMeDoctorEditController',
+            controllerAs : 'vm'
         };
 
         var accountMeDoctorAnswerState = {
@@ -109,7 +116,8 @@
             url : '/answer',
             parent : accountMeDoctorState,
             template : '<h1>answer</h1>',
-            controller : 'accountMeDoctorAnswerController'
+            controller : 'accountMeDoctorAnswerController',
+            controllerAs : 'vm'
         };
 
         var accountMeDoctorArticleState = {
@@ -117,7 +125,8 @@
             url : '/article',
             parent : accountMeDoctorState,
             template : '<h1>article</h1>',
-            controller : 'accountMeDoctorArticleController'
+            controller : 'accountMeDoctorArticleController',
+            controllerAs : 'vm'
         };
 
         // Sign Up
@@ -134,7 +143,8 @@
             url : '/user',
             parent : accountSignUpState,
             template : '<h1>User Sign Up Form!</h1>',
-            controller : 'accountSignUpUserController'
+            controller : 'accountSignUpUserController',
+            controllerAs : 'vm'
         };
 
         var accountSignUpDoctorState = {
@@ -142,7 +152,8 @@
             url : '/doctor',
             parent : accountSignUpState,
             template : '<h1>Doctor Sign Up Form!</h1>',
-            controller : 'accountSignUpDoctorController'
+            controller : 'accountSignUpDoctorController',
+            controllerAs : 'vm'
         };
 
         // Sign In
@@ -159,7 +170,8 @@
             url : '/user',
             parent : accountSignInState,
             template : '<h1>User Sign In Form!</h1>',
-            controller : 'accountSignInUserController'
+            controller : 'accountSignInUserController',
+            controllerAs : 'vm'
         };
 
         var accountSignInDoctorState = {
@@ -167,7 +179,8 @@
             url : '/doctor',
             parent : accountSignInState,
             template : '<h1>Doctor Sign In Form!</h1>',
-            controller : 'accountSignInDoctorController'
+            controller : 'accountSignInDoctorController',
+            controllerAs : 'vm'
         };
 
         /* Account System Routing */
@@ -205,23 +218,23 @@
             // body...
         }
 
-        function resolveMeUser() {
+        function resolveMeUser(myAccount) {
             // body...
         }
 
-        function resolveMeUserQuestionList() {
+        function resolveMeUserQuestionList(myAccount) {
             // body...
         }
 
-        function resolveMeDoctor() {
+        function resolveMeDoctor(myAccount) {
             // body...
         }
 
-        function resolveMeDoctorAnswerList() {
+        function resolveMeDoctorAnswerList(myAccount) {
             // body...
         }
 
-        function resolveMeDoctorArticleList() {
+        function resolveMeDoctorArticleList(myAccount) {
             // body...
         }
 

@@ -5,10 +5,13 @@
            .controller('accountMeUserQuestionController', accountMeUserQuestionController);
 
     accountMeUserQuestionController.$inject = [
+        'questionList'
     ];
 
-    function accountMeUserQuestionController() {
+    function accountMeUserQuestionController(questionList) {
+        var vm = this;
 
+        vm.questionList = questionList;
     }
 
 })();

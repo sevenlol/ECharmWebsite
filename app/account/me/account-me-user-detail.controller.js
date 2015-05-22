@@ -5,10 +5,14 @@
            .controller('accountMeUserDetailController', accountMeUserDetailController);
 
     accountMeUserDetailController.$inject = [
+        'user'
     ];
 
-    function accountMeUserDetailController() {
+    function accountMeUserDetailController(user) {
+        var vm = this;
 
+        // TODO fix this
+        vm.userInfo = null;
     }
 
 })();

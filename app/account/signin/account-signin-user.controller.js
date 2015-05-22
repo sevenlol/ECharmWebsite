@@ -8,7 +8,21 @@
     ];
 
     function accountSignInUserController() {
+        var vm = this;
 
+        // state variable: credentials
+        vm.signIn = signIn;
+        vm.fbSignIn = fbSignIn;
+
+        /* public functions */
+
+        function signIn() {
+            // body...
+        }
+
+        function fbSignIn() {
+            // body...
+        }
     }
 
 })();

@@ -5,10 +5,14 @@
            .controller('accountMeUserFavoriteController', accountMeUserFavoriteController);
 
     accountMeUserFavoriteController.$inject = [
+        'user'
     ];
 
-    function accountMeUserFavoriteController() {
+    function accountMeUserFavoriteController(user) {
+        var vm = this;
 
+        // TODO fix this
+        vm.articleList = null;
     }
 
 })();

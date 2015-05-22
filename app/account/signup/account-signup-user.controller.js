@@ -8,7 +8,15 @@
     ];
 
     function accountSignUpUserController() {
+        var vm = this;
 
+        // state variable: userInfo
+        vm.signUp = signUp;
+
+        /* public functions */
+        function signUp() {
+            // body...
+        }
     }
 
 })();
