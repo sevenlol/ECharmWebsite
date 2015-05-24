@@ -5,23 +5,51 @@
            .controller('accountSignInUserController', accountSignInUserController);
 
     accountSignInUserController.$inject = [
+        'authService',
+        '$rootScope'
     ];
 
-    function accountSignInUserController() {
+    function accountSignInUserController(authService, $rootScope) {
         var vm = this;
 
         // state variable: credentials
+        vm.credentials = {};
+
         vm.signIn = signIn;
         vm.fbSignIn = fbSignIn;
 
         /* public functions */
 
         function signIn() {
-            // body...
+            if (!vm.credentials.username || !vm.credentials.password)
+                return;
+
+            var signInSuccessCallback = (function($rootScope) {
+                return function(data) {
+                    if (!angular.isObject(data.principal.account) ||
+                        !data.principal.account) {
+                        $rootScope.authenticated = false;
+                        $rootScope.account = null;
+                        return;
+                    }
+
+                    $rootScope.authenticated = true;
+                    $rootScope.account = data.principal.account;
+                }
+            })($rootScope);
+
+            var signInFailCallback = (function($rootScope) {
+                return function(error) {
+                    $rootScope.authenticated = false;
+                    $rootScope.account = null;
+                }
+            })($rootScope);
+
+            authService.signIn(vm.credentials, signInSuccessCallback, signInFailCallback);
         }
 
         function fbSignIn() {
-            // body...
+            authService.fbSignIn(null);
         }
     }
 

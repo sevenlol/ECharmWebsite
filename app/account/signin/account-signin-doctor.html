@@ -1,1 +1,13 @@
 <h1>Doctor Sign In Form!</h1>
+<form ng-submit="vm.signIn()">
+  <button class="btn btn-primary" ng-click="vm.fbSignIn()">Facebook Sign In!</button>
+  <div class="form-group">
+    <label for="usernameInput">Username</label>
+    <input type="text" class="form-control" id="usernameInput" ng-model="vm.credentials.username">
+  </div>
+  <div class="form-group">
+    <label for="passwordInput">Password</label>
+    <input type="password" class="form-control" id="passwordInput" ng-model="vm.credentials.password">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
