@@ -4,6 +4,8 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
 <body>
+    <button class="btn btn-primary" ui-sref="home">Home</button>
+
     <button class="btn btn-info" ui-sref="account.signup.user">User Sign Up</button>
     <button class="btn btn-danger" ui-sref="account.signup.doctor">Doctor Sign Up</button>
 
@@ -13,10 +15,7 @@
     <button class="btn btn-success" ui-sref="account.me.user.detail">My Account (User)</button>
     <button class="btn btn-primary" ui-sref="account.me.doctor.detail">My Account (Doctor)</button>
 
-    <div ui-view>
-        <button class="btn btn-info" ui-sref="blog.home">Blog</button>
-        <button class="btn btn-danger" ui-sref="askdoctor.home">Ask Doctor</button>
-    </div>
+    <div ui-view></div>
 
     <!-- js files -->
 
@@ -25,6 +24,7 @@
 
 
     <script src="app/app.module.js"></script>
+    <script src="app/app.config.js"></script>
 
     <script src="app/blog/blog.module.js"></script>
     <script src="app/blog/blog.route.js"></script>

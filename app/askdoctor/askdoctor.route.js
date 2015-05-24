@@ -14,21 +14,23 @@
 
         var askdoctorState = {
             name : 'askdoctor',
+            url : '^/askdoctor',
             abstract : true,
-            template : '<h1>Content Bar</h1><h1>Category List</h1><div ui-view></div>'
+            templateUrl : 'app/askdoctor/askdoctor.html'
         };
 
         var askdoctorHomeState = {
             name : 'askdoctor.home',
+            url : '/home',
             parent : askdoctorState,
-            template : '<h1>Home</h1>'
+            templateUrl : 'app/askdoctor/askdoctor-home.html'
         };
 
         var askdoctorListState = {
             name : 'askdoctor.list',
             parent : askdoctorState,
             url : '/:category',
-            template : '<h1>Question List</h1>',
+            templateUrl : 'app/askdoctor/askdoctor-list.html',
             resolve : {
                 questionList : resolveQuestionList,
                 doctorList : resolveDoctorList,
@@ -51,7 +53,7 @@
                 ratingList : resolveRatingList,
                 avgRating : resolveAvgRating
             },
-            template : '<h1>Q & A Content</h1><div ui-view></div>',
+            templateUrl : 'app/askdoctor/askdoctor-detail.html',
             controller : 'askdoctorDetailController',
             controllerAs : 'vm'
         };
@@ -59,13 +61,13 @@
         var askdoctorDetailReadState = {
             name : 'askdoctor.detail.read',
             parent : askdoctorDetailState,
-            template : '<button>Leave a comment!</button>'
+            templateUrl : 'app/askdoctor/askdoctor-detail-read.html'
         };
 
         var askdoctorDetailCommentState = {
             name : 'askdoctor.detail.comment',
             parent : askdoctorDetailState,
-            template : '<button>Submit!</button>',
+            templateUrl : 'app/askdoctor/askdoctor-detail-comment.html',
             controller : 'askdoctorDetailCommentController',
             controllerAs : 'vm'
         };

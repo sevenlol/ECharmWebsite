@@ -14,14 +14,14 @@
 
         // Doctor Information
         var doctorState = {
-            name : 'account.doctor',
-            url : '/doctor',
+            name : 'doctor',
+            url : '^/doctor',
             abstract : true,
             template : '<div ui-view></div>'
         };
 
         var doctorListState = {
-            name : 'account.doctor.list',
+            name : 'doctor.list',
             url : '/:category',
             parent : doctorState,
             resolve : {
@@ -33,7 +33,7 @@
         };
 
         var doctorDetailState = {
-            name : 'account.doctor.detail',
+            name : 'doctor.detail',
             url : '/:category/:doctorId',
             parent : doctorState,
             resolve : {
