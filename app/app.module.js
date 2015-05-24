@@ -5,6 +5,8 @@
         'app.blog',
         'app.askdoctor',
         'app.account',
-        'app.doctor'
+        'app.doctor',
+        'app.auth',
+        'data.account'
     ]);
 })();

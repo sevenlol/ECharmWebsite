@@ -6,10 +6,11 @@
 
 	appConfig.$inject = [
 	    '$stateProvider',
-	    '$urlRouterProvider'
+	    '$urlRouterProvider',
+	    '$httpProvider'
 	];
 
-	function appConfig($stateProvider, $urlRouterProvider) {
+	function appConfig($stateProvider, $urlRouterProvider, $httpProvider) {
 	    $urlRouterProvider.otherwise("/home");
 
 	    $stateProvider
@@ -18,6 +19,7 @@
 	        templateUrl : 'app/layout/home.html'
 	    });
 
+	    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 	}
 
 })();
