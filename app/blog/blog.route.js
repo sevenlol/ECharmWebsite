@@ -16,21 +16,21 @@
             name : 'blog',
             url : '^/blog',
             abstract : true,
-            template : '<h1>Content Bar</h1><h1>Category List</h1><div ui-view></div>'
+            templateUrl : 'app/blog/blog.html'
         };
 
         var blogHomeState = {
             name : 'blog.home',
             url : '/home',
             parent : blogState,
-            template : '<h1>Home</h1>'
+            templateUrl : 'app/blog/blog-home.html'
         };
 
         var blogListState = {
             name : 'blog.list',
             parent : blogState,
             url : '/:category',
-            template : '<h1>Article List</h1>',
+            templateUrl : 'app/blog/blog-list.html',
             resolve : {
                 articleList : resolveArticleList,
                 doctorList : resolveDoctorList
@@ -51,7 +51,7 @@
                 ratingList : resolveRatingList,
                 avgRating : resolveAvgRating
             },
-            template : '<h1>Article Content</h1><div ui-view></div>',
+            templateUrl : 'app/blog/blog-detail.html',
             controller : 'blogDetailController',
             controllerAs : 'vm'
         };
@@ -59,13 +59,13 @@
         var blogDetailReadState = {
             name : 'blog.detail.read',
             parent : blogDetailState,
-            template : '<button>Leave a comment!</button>'
+            templateUrl : 'app/blog/blog-detail-read.html'
         };
 
         var blogDetailCommentState = {
             name : 'blog.detail.comment',
             parent : blogDetailState,
-            template : '<button>Submit!</button>',
+            templateUrl : 'app/blog/blog-detail-comment.html',
             controller : 'blogDetailCommentController',
             controllerAs : 'vm'
         };
