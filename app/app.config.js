@@ -17,6 +17,7 @@
 	        url: "/home",
 	        templateUrl : 'app/layout/home.html'
 	    });
+
 	}
 
 })();

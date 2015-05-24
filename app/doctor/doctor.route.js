@@ -17,7 +17,7 @@
             name : 'doctor',
             url : '^/doctor',
             abstract : true,
-            template : '<div ui-view></div>'
+            templateUrl : 'app/doctor/doctor.html'
         };
 
         var doctorListState = {
@@ -27,7 +27,7 @@
             resolve : {
                 doctorList : resolveDoctorList
             },
-            template : '<h1>Doctor List!</h1>',
+            templateUrl : 'app/doctor/doctor-list.html',
             controller : 'doctorListController',
             controllerAs : 'vm'
         };
@@ -41,7 +41,7 @@
                 articleList : resolveDoctorArticleList,
                 answerList : resolveDoctorAnswerList
             },
-            template : '<h1>Doctor Detail!</h1>',
+            templateUrl : 'app/doctor/doctor-detail.html',
             controller : 'doctorDetailController',
             controllerAs : 'vm'
         };
