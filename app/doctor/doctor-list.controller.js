@@ -5,14 +5,12 @@
            .controller('doctorListController', doctorListController);
 
     doctorListController.$inject = [
-        'doctorList',
-        '$rootScope'
+        'doctorList'
     ];
 
-    function doctorListController(doctorList, $rootScope) {
+    function doctorListController(doctorList) {
         var vm = this;
         vm.doctorList = doctorList;
-        console.log($rootScope.authenticated);
     }
 
 })();
