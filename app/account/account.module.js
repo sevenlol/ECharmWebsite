@@ -3,6 +3,7 @@
 
     angular.module('app.account', [
         'ui.router',
-        'app.auth'
+        'app.auth',
+        'data.account'
     ]);
 })();

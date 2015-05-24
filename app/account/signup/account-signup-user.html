@@ -1,1 +1,20 @@
 <h1>User Sign Up Form!</h1>
+<form ng-submit="vm.signUp()">
+  <div class="form-group">
+    <label for="usernameInput">Username</label>
+    <input type="text" class="form-control" id="usernameInput" ng-model="vm.credentials.username">
+  </div>
+  <div class="form-group">
+    <label for="passwordInput">Password</label>
+    <input type="password" class="form-control" id="passwordInput" ng-model="vm.credentials.password">
+  </div>
+  <div class="form-group">
+    <label for="confirmPasswordInput">Confirm Password</label>
+    <input type="password" class="form-control" id="confirmPasswordInput" ng-model="vm.credentials.confirmPassword">
+  </div>
+  <div class="form-group">
+    <label for="emailInput">Email</label>
+    <input type="email" class="form-control" id="emailInput" ng-model="vm.credentials.email">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
