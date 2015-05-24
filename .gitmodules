@@ -1,0 +1,3 @@
+[submodule "app/services"]
+	path = app/services
+	url = https://github.com/sevenlol/ECharmSharedServices.git
