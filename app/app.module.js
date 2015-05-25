@@ -6,6 +6,7 @@
         'app.askdoctor',
         'app.account',
         'app.doctor',
+        'app.layout',
         'app.auth',
         'data.account'
     ]);

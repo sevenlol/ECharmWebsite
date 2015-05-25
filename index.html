@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
 <body>
-    <div>
+    <div ng-controller="headerController as vm">
         <button class="btn btn-primary" ui-sref="home">Home</button>
 
         <button ng-show="!authenticated" class="btn btn-info" ui-sref="account.signup.user">User Sign Up</button>
@@ -13,7 +13,7 @@
         <button ng-show="!authenticated" class="btn btn-info" ui-sref="account.signin.user">User Sign In</button>
         <button ng-show="!authenticated" class="btn btn-danger" ui-sref="account.signin.doctor">Doctor Sign In</button>
 
-        <button ng-show="authenticated" class="btn btn-default">Sign Out</button>
+        <button ng-show="authenticated" class="btn btn-default" ng-click="vm.logout()">Sign Out</button>
 
         <button ng-show="authenticated" class="btn btn-success" ui-sref="account.me.user.detail">My Account (User)</button>
         <button ng-show="authenticated" class="btn btn-primary" ui-sref="account.me.doctor.detail">My Account (Doctor)</button>
@@ -65,6 +65,9 @@
     <script src="app/doctor/doctor.route.js"></script>
     <script src="app/doctor/doctor-list.controller.js"></script>
     <script src="app/doctor/doctor-detail.controller.js"></script>
+
+    <script src="app/layout/layout.module.js"></script>
+    <script src="app/layout/header.controller.js"></script>
 
     <!-- Shared Services -->
 
