@@ -17,11 +17,12 @@
         /* public functions */
 
         function signOut() {
-            if(!rootScope.authenticated)
+            if(!$rootScope.authenticated)
                 return;
 
             var signOutSuccessCallback = (function($rootScope) {
                 return function(data) {
+                    // just in case
                     console.log('Logout succeeded!');
                     $rootScope.authenticated = false;
                     $rootScope.account = null;
@@ -30,11 +31,20 @@
 
             var signOutFailCallback = (function($rootScope) {
                 return function(err) {
-                    console.log('Logout failed!');
+
+                    // Spring returns 404 when logout succeeded
+                    if (err.status === 404) {
+                        console.log('Logout succeeded!');
+                        $rootScope.authenticated = false;
+                        $rootScope.account = null;
+                        return;
+                    }
+
+                    console.log('Logout failed!' + JSON.stringify(err, null, 2));
                 };
             })($rootScope);
 
-            authService.signOut();
+            authService.signOut(signOutSuccessCallback, signOutFailCallback);
         }
     }
 
