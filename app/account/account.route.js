@@ -231,13 +231,14 @@
                 return res.data;
             };
 
-            return authService.checkAuthStatus(null, null)
-                              .then(callback)
-                              .catch(callback);
+            return authService
+                    .checkAuthStatus(null, null)
+                    .then(callback)
+                    .catch(callback);
         }
 
         function resolveMeUser(myAccount) {
-            // body...
+            return myAccount;
         }
 
         function resolveMeUserQuestionList(myAccount) {
@@ -245,7 +246,7 @@
         }
 
         function resolveMeDoctor(myAccount) {
-            // body...
+            return myAccount;
         }
 
         function resolveMeDoctorAnswerList(myAccount) {

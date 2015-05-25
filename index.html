@@ -15,8 +15,7 @@
 
         <button ng-show="authenticated" class="btn btn-default" ng-click="vm.signOut()">Sign Out</button>
 
-        <button ng-show="authenticated" class="btn btn-success" ui-sref="account.me.user.detail">My Account (User)</button>
-        <button ng-show="authenticated" class="btn btn-primary" ui-sref="account.me.doctor.detail">My Account (Doctor)</button>
+        <button ng-show="authenticated" class="btn btn-success" ui-sref="account.me" ui-sref-opts="{reload:true}">My Account</button>
     </div>
 
     <div ui-view></div>
