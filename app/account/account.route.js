@@ -214,8 +214,26 @@
 
         /* resolve functions */
 
-        function resolveMyAccount() {
-            // body...
+        resolveMyAccount.$inject = [
+            'authService'
+        ];
+
+        function resolveMyAccount(authService) {
+            if (!authService || !authService.checkAuthStatus)
+                return null;
+
+            // TODO figure promise out ...
+            var callback = function(res) {
+                // not authenticated
+                if (res.status !== 200)
+                    return null;
+
+                return res.data;
+            };
+
+            return authService.checkAuthStatus(null, null)
+                              .then(callback)
+                              .catch(callback);
         }
 
         function resolveMeUser(myAccount) {
