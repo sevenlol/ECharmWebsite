@@ -24,23 +24,23 @@
                 return;
 
             var signInSuccessCallback = (function($rootScope) {
-                return function(data) {
-                    if (!angular.isObject(data.principal.account) ||
-                        !data.principal.account) {
+                return function(account) {
+                    if (!angular.isObject(account) ||
+                        !account) {
                         $rootScope.authenticated = false;
                         $rootScope.account = null;
                         return;
                     }
 
                     // Check user type
-                    if (data.principal.account.user_type !== 'DOCTOR') {
+                    if (account.user_type !== 'DOCTOR') {
                         $rootScope.authenticated = false;
                         $rootScope.account = null;
                         return;
                     }
 
                     $rootScope.authenticated = true;
-                    $rootScope.account = data.principal.account;
+                    $rootScope.account = account;
                 }
             })($rootScope);
 
