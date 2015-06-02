@@ -11,8 +11,7 @@
     function accountMeUserDetailController(user) {
         var vm = this;
 
-        // TODO fix this
-        vm.userInfo = null;
+        vm.userInfo = user;
     }
 
 })();

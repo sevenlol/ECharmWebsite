@@ -29,6 +29,7 @@
                         !account) {
                         $rootScope.authenticated = false;
                         $rootScope.account = null;
+                        $rootScope.credentials = null;
                         return;
                     }
 
@@ -36,11 +37,13 @@
                     if (account.user_type !== 'DOCTOR') {
                         $rootScope.authenticated = false;
                         $rootScope.account = null;
+                        $rootScope.credentials = null;
                         return;
                     }
 
                     $rootScope.authenticated = true;
                     $rootScope.account = account;
+                    $rootScope.credentials = vm.credentials;
                 }
             })($rootScope);
 
@@ -48,6 +51,7 @@
                 return function(error) {
                     $rootScope.authenticated = false;
                     $rootScope.account = null;
+                    $rootScope.credentials = null;
                 }
             })($rootScope);
 

@@ -2,12 +2,17 @@
 	'use strict';
 
 	angular.module('app')
-	       .config(appConfig);
+	       .config(appConfig)
+	       .run(appRun);
 
 	appConfig.$inject = [
 	    '$stateProvider',
 	    '$urlRouterProvider',
 	    '$httpProvider'
+	];
+
+	appRun.$inject = [
+		'$rootScope'
 	];
 
 	function appConfig($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -20,6 +25,10 @@
 	    });
 
 	    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+	}
+
+	function appRun($rootScope) {
+		$rootScope.authenticated = false;
 	}
 
 })();

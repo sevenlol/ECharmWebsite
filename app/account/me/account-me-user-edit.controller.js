@@ -5,20 +5,33 @@
            .controller('accountMeUserEditController', accountMeUserEditController);
 
     accountMeUserEditController.$inject = [
-        'user'
+        'user',
+        'memberUserService'
     ];
 
-    function accountMeUserEditController(user) {
+    function accountMeUserEditController(user, memberUserService) {
         var vm = this;
 
-        // TODO fix this
-        vm.userInfo = null;
+        vm.userInfo = user;
         vm.updateMyInfo = updateMyInfo;
 
         /* public functions */
 
         function updateMyInfo() {
-            // body...
+            if (!vm.userInfo)
+                return;
+
+            var userAccount = {
+                user_info : {}
+            };
+
+            var info = vm.userInfo.user_info;
+
+            if (info.name) {
+                userAccount.user_info.name = info.name;
+                memberUserService.updateMeUser(userAccount);
+            }
+
         }
     }
 
