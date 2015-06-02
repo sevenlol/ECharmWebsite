@@ -4,6 +4,7 @@
     angular.module('app.account', [
         'ui.router',
         'app.auth',
-        'data.account'
+        'data.account',
+        'data.member'
     ]);
 })();
