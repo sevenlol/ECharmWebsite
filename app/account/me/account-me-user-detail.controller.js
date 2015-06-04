@@ -11,7 +11,7 @@
     function accountMeUserDetailController(user) {
         var vm = this;
 
-        vm.userInfo = user;
+        vm.user = user;
     }
 
 })();
