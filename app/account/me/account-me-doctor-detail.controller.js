@@ -11,8 +11,7 @@
     function accountMeDoctorDetailController(doctor) {
         var vm = this;
 
-        // TODO fix this
-        vm.doctorInfo = null;
+        vm.doctor = doctor;
     }
 
 })();

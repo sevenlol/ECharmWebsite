@@ -5,20 +5,81 @@
            .controller('accountMeDoctorEditController', accountMeDoctorEditController);
 
     accountMeDoctorEditController.$inject = [
-        'doctor'
+        'doctor',
+        'memberDoctorService',
+        '$rootScope',
+        '$state',
+        'Logger'
     ];
 
-    function accountMeDoctorEditController(doctor) {
+    function accountMeDoctorEditController(doctor, memberDoctorService, $rootScope, $state, Logger) {
+        // Logger object
+        var logger = Logger.getInstance('app - account - me - doctor - edit');
         var vm = this;
 
-        // TODO fix this
-        vm.doctorInfo = null;
+        vm.doctor= doctor;
         vm.updateMyInfo = updateMyInfo;
+
+        if (!vm.doctor) {
+            // TODO error handle
+            logger.error('Controller', 'Cannot get my account information!');
+        }
+        logger.log('Controller', 'Get my account information successfully!');
 
         /* public functions */
 
         function updateMyInfo() {
-            // body...
+            if (!vm.doctor) {
+                // TODO error handle
+                logger.error('updateMyInfo', 'vm.doctor should not be null');
+                return;
+            }
+
+            var doctorAccount = {};
+            var info = vm.doctor.user_info;
+
+            var successCallback = (function($rootScope, $state, logger) {
+                return function(account) {
+                    logger.log('updateMyInfo', 'Update my account information successfully!');
+                    $rootScope.authenticated = true;
+                    $state.go('account.me.doctor.detail');
+                };
+            })($rootScope, $state, logger);
+
+            var failCallback = (function($state, logger) {
+                return function(error) {
+                    // Update failed, reload detail to get the right info
+                    logger.error('updateMyInfo', 'Update my account information failed!');
+                    logger.error('updateMyInfo', 'Error Message: {0}', [ error.message ]);
+                    logger.debug('updateMyInfo', 'Error: {0}', [ JSON.stringify(error, null, 2) ]);
+                    $state.go('account.me.doctor.detail', { reload : true });
+                };
+            })($state, logger);
+
+            // all fields null
+            // FIXME Note gender is disabled because of server mapping bug
+            delete info.gender;
+            if (!info.name /*&& !info.gender*/ && !info.phone_number && !info.address &&
+                !info.current_hospital && !info.college && !info.title && !info.specialty &&
+                !info.available_time && !info.facebook_account && !info.blog_url) {
+                logger.error('updateMyInfo', 'All fields missing! Please enter something!');
+                return;
+            }
+
+            // copy
+            doctorAccount.user_info = angular.copy(info);
+
+            logger.log('updateMyInfo', 'Input validation done! Updating my account information!');
+            try {
+                var promise = memberDoctorService.updateMeDoctor(doctorAccount);
+                promise
+                    .then(successCallback)
+                    .catch(failCallback);
+            } catch (error) {
+                // TODO handle input error, shouldn't happen
+                logger.error('updateMyInfo', 'Input Error: {0}', [ error.message ]);
+                logger.error('updateMyInfo', 'Error: {0}', [ JSON.stringify(error, null, 2) ]);
+            }
         }
     }
 
