@@ -1,1 +1,58 @@
 <h1>Doctor Sign Up Form!</h1>
+<form ng-submit="vm.signUp()">
+  <div class="form-group">
+    <label for="usernameInput">Username</label>
+    <input type="text" class="form-control" id="usernameInput" ng-model="vm.doctor.username">
+  </div>
+  <div class="form-group">
+    <label for="passwordInput">Password</label>
+    <input type="password" class="form-control" id="passwordInput" ng-model="vm.doctor.password">
+  </div>
+  <div class="form-group">
+    <label for="confirmPasswordInput">Confirm Password</label>
+    <input type="password" class="form-control" id="confirmPasswordInput" ng-model="vm.doctor.confirmPassword">
+  </div>
+  <div class="form-group">
+    <label for="emailInput">Email</label>
+    <input type="email" class="form-control" id="emailInput" ng-model="vm.doctor.email">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+
+  <h2>Doctor Info</h2>
+  <div class="form-group">
+    <label for="nameInput">Name</label>
+    <input type="text" class="form-control" id="nameInput" ng-model="vm.doctor.user_info.name">
+  </div>
+  <div class="form-group">
+    <label for="phoneNumberInput">Phone Number</label>
+    <input type="text" class="form-control" id="phoneNumberInput" ng-model="vm.doctor.user_info.phone_number">
+  </div>
+  <div class="form-group">
+    <label for="addressInput">Address</label>
+    <input type="text" class="form-control" id="addressInput" ng-model="vm.doctor.user_info.address">
+  </div>
+  <div class="form-group">
+    <label for="categoryInput">Category</label>
+    <input type="text" class="form-control" id="categoryInput" ng-model="vm.doctor.user_info.category">
+  </div>
+  <div class="form-group">
+    <label for="currentHospitalInput">Current Hospital</label>
+    <input type="text" class="form-control" id="currentHospitalInput" ng-model="vm.doctor.user_info.current_hospital">
+  </div>
+  <div class="form-group">
+    <label for="titleInput">Title</label>
+    <input type="text" class="form-control" id="titleInput" ng-model="vm.doctor.user_info.title">
+  </div>
+  <div class="form-group">
+    <label for="collegeInput">College</label>
+    <input type="text" class="form-control" id="collegeInput" ng-model="vm.doctor.user_info.college">
+  </div>
+  <div class="form-group">
+    <label for="specialtyInput">Specialty</label>
+    <input type="text" class="form-control" id="specialtyInput" ng-model="vm.doctor.user_info.specialty">
+  </div>
+  <div class="form-group">
+    <label for="availableTimeInput">Available Time</label>
+    <input type="text" class="form-control" id="availableTimeInput" ng-model="vm.doctor.user_info.available_time">
+  </div>
+</form>
