@@ -25,10 +25,11 @@
                 return function(account) {
                     // TODO add handling code
                     // create failed
-                    if (!account) {
+                    // FIXME disable account check temperarily
+                    /*if (!account) {
                         logger.error('signUp', 'Invalid account in response!');
                         return;
-                    }
+                    }*/
 
                     logger.log('signUp', 'Sign Up Succeeded');
                     // create succeeded
