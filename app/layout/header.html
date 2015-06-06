@@ -4,17 +4,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-9 col-sm-9">
-          <!-- fb like -->
-          <!-- <div id="fb-root" class="fb"></div>
-          <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.3&appId=123844374304770";
-            fjs.parentNode.insertBefore(js, fjs);
-          }(document, 'script', 'facebook-jssdk'));</script>
-          <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-show-faces="false" data-share="false"></div> -->
-          <!-- fb like end -->
+          <!-- TODO fb like -->
         </div>
 
         <div class="col-lg-3 col-sm-3 hidden-xs">
@@ -45,13 +35,13 @@
     <div id="navbar" class="navbar-collapse collapse" collapse="vm.isCollapsed">
    	  <ul class="nav navbar-nav navbar-right topnav">
         <h3>我是醫生</h3>
-        <li><a ui-sref="account.signin.doctor">登入</a></li>
-        <li><a ui-sref="account.signup.doctor">註冊</a></li>
+        <li><a ui-sref="account.signin.doctor" ng-click="vm.collapse()">登入</a></li>
+        <li><a ui-sref="account.signup.doctor" ng-click="vm.collapse()">註冊</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right topnav">
         <h3>我是一般民眾</h3>
-        <li><a ui-sref="account.signin.user">登入</a></li>
-        <li><a ui-sref="account.signin.user">註冊</a></li>
+        <li><a ui-sref="account.signin.user" ng-click="vm.collapse()">登入</a></li>
+        <li><a ui-sref="account.signin.user" ng-click="vm.collapse()">註冊</a></li>
       </ul>
     </div>
   </div>
@@ -81,12 +71,12 @@
         <li class="dropdown user-thumb" dropdown>
           <a href="#" class="dropdown-toggle" dropdown-toggle role="button" aria-expanded="false"><img src="images/userpic_2.jpg" alt="" class="img-circle" /> 林祥文 <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a ui-sref="account.me">個人資料</a></li>
-            <li><a href="#">發問紀錄</a></li>
-            <li><a href="#">我的收藏</a></li>
-            <li class="divider"></li>
-            <li><a href="#">切換簡體</a></li>
-            <li><a href="#" ng-click="vm.signOut()">登出</a></li>
+            <li><a ui-sref="account.me" ng-click="vm.collapse()">個人資料</a></li>
+            <li><a href="#" ng-click="vm.collapse()">發問紀錄</a></li>
+            <li><a href="#" ng-click="vm.collapse()">我的收藏</a></li>
+            <li class="divider" ng-click="vm.collapse()"></li>
+            <li><a href="#" ng-click="vm.collapse()">切換簡體</a></li>
+            <li><a href="#" ng-click="vm.signOut()" ng-click="vm.collapse()">登出</a></li>
           </ul>
         </li>
       </ul>

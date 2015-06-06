@@ -14,6 +14,7 @@
 
         vm.signOut = signOut;
         vm.isCollapsed = true;
+        vm.collapse = collapse;
 
         /* public functions */
 
@@ -46,6 +47,10 @@
             })($rootScope);
 
             authService.signOut(signOutSuccessCallback, signOutFailCallback);
+        }
+
+        function collapse() {
+            vm.isCollapsed = true;
         }
 
         /* Check authentication status */
