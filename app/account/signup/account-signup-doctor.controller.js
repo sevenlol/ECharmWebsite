@@ -61,9 +61,9 @@
             var info = vm.doctor.user_info;
 
             // FIXME gender field temperarily disabled
-            if (!info.name || !info.phone_number || !info.address ||
-                !info.category || !info.current_hospital || !info.title || !info.college ||
-                !info.specialty || !info.available_time) {
+            // NOTE category is combined in title
+            if (!info.name || !info.current_hospital || !info.title ||
+                !info.college || !info.specialty || !info.available_time) {
                 logger.error('signUp', 'Missing doctor info fields!');
             }
 
@@ -75,6 +75,11 @@
                 info.blog_url = '';
             }
 
+
+            info.phone_number = '';
+            info.address = '';
+            info.category = '';
+            console.log('doctorAccount= ' + JSON.stringify(vm.doctor, null, 2));
             logger.log('signUp', 'Doctor account information validation done! Signing Up ...');
             try {
                 promise = memberDoctorService.createDoctor(vm.doctor);
