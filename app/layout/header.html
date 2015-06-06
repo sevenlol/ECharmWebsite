@@ -1,0 +1,96 @@
+<!-- Not Authenticated Nav -->
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="headerController" ng-show="!authenticated">
+  <div class="topbar">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 col-sm-9">
+          <!-- fb like -->
+          <!-- <div id="fb-root" class="fb"></div>
+          <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.3&appId=123844374304770";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));</script>
+          <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-show-faces="false" data-share="false"></div> -->
+          <!-- fb like end -->
+        </div>
+
+        <div class="col-lg-3 col-sm-3 hidden-xs">
+        	<ul class="quicklink">
+        		<li><a href"#"><i class="fa fa-facebook"></i></a></li>
+        		<li><a href"#">簡</a></li>
+        	</ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container hd">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+      </button>
+
+      <div id="logo">
+        <a href="index.html" class="navbar-brand" title="醫創網">醫創網</a>
+        <p class="hidden-xs">台灣第一個由<span class="blue-style-1">醫</span>師<span class="blue-style-1">創</span>建的醫療資訊與即時互動平台</p>
+      </div>
+    </div>
+
+    <div id="navbar" class="navbar-collapse collapse">
+   	  <ul class="nav navbar-nav navbar-right topnav">
+        <h3>我是醫生</h3>
+        <li><a ui-sref="account.signin.doctor">登入</a></li>
+        <li><a ui-sref="account.signup.doctor">註冊</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right topnav">
+        <h3>我是一般民眾</h3>
+        <li><a ui-sref="account.signin.user">登入</a></li>
+        <li><a ui-sref="account.signin.user">註冊</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Authenticated Nav -->
+<nav class="navbar navbar-default navbar-fixed-top" ng-show="authenticated" ng-controller="headerController">
+  <div class="container hd-small">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div id="logo">
+          <a href="index.html" class="navbar-brand" title="醫創網">醫創網</a>
+          <p class="hidden-xs">台灣第一個由<span class="blue-style-1">醫</span>師<span class="blue-style-1">創</span>建的醫療資訊與即時互動平台</p>
+          </div>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+
+      <ul class="nav navbar-nav">
+        <li class="dropdown user-thumb">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img src="images/userpic_2.jpg" alt="" class="img-circle" /> 林祥文 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">個人資料</a></li>
+            <li><a href="#">發問紀錄</a></li>
+            <li><a href="#">我的收藏</a></li>
+            <li class="divider"></li>
+            <li><a href="#">切換簡體</a></li>
+            <li><a href="#">登出</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+
+  </div><!-- /.container-fluid -->
+</nav>
