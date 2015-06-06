@@ -75,10 +75,6 @@
                 info.blog_url = '';
             }
 
-
-            info.phone_number = '';
-            info.address = '';
-            info.category = '';
             console.log('doctorAccount= ' + JSON.stringify(vm.doctor, null, 2));
             logger.log('signUp', 'Doctor account information validation done! Signing Up ...');
             try {
