@@ -2,6 +2,7 @@
     'use strict';
 
     angular.module('app.layout',[
-        'app.auth'
+        'app.auth',
+        'ui.bootstrap'
     ]);
 })();

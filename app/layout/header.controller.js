@@ -13,6 +13,7 @@
         var vm = this;
 
         vm.signOut = signOut;
+        vm.isCollapsed = true;
 
         /* public functions */
 
