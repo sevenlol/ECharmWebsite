@@ -1,1 +1,11 @@
-<h1>Content Bar</h1><div ui-view></div>
+<section class="container-fluid" ng-class="{true: 'webmenu', false: 'webmenu-lg'}[authenticated]">
+  <div class="container">
+    <ul class="nav nav-pills nav-justified newmenu">
+	  <li class="active"><a ui-sref="askdoctor.home">即時醫師問答</a></li>
+	  <li><a ui-sref="blog.home">醫師專業文章</a></li>
+	  <li><a href="#">附近醫美/月子中心</a></li>
+	</ul>
+  </div>
+</section>
+
+<div ui-view></div>
