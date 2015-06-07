@@ -24,20 +24,6 @@
 
     <div ng-include="'app/layout/header.html'"></div>
 
-    <div ng-controller="headerController as vm">
-        <button class="btn btn-primary" ui-sref="home">Home</button>
-
-        <button ng-show="!authenticated" class="btn btn-info" ui-sref="account.signup.user">User Sign Up</button>
-        <button ng-show="!authenticated" class="btn btn-danger" ui-sref="account.signup.doctor">Doctor Sign Up</button>
-
-        <button ng-show="!authenticated" class="btn btn-info" ui-sref="account.signin.user">User Sign In</button>
-        <button ng-show="!authenticated" class="btn btn-danger" ui-sref="account.signin.doctor">Doctor Sign In</button>
-
-        <button ng-show="authenticated" class="btn btn-default" ng-click="vm.signOut()">Sign Out</button>
-
-        <button ng-show="authenticated" class="btn btn-success" ui-sref="account.me" ui-sref-opts="{reload:true}">My Account</button>
-    </div>
-
     <div ui-view></div>
 
     <!-- js files -->
