@@ -1,7 +1,32 @@
-<h1>User Photo and Name</h1>
-<div class="btn-group" role="group" aria-label="...">
-  <button type="button" class="btn btn-default" ui-sref="account.me.user.detail" ui-sref-opts="{reload : true}">Detail</button>
-  <button type="button" class="btn btn-default" ui-sref="account.me.user.question">Question</button>
-  <button type="button" class="btn btn-default" ui-sref="account.me.user.favorite">Favorite</button>
-</div>
-<div ui-view></div>
+<!-- Basic User Information -->
+<section class="container-fluid profile-panel">
+  <div class="container">
+
+    <ol class="breadcrumb hidden-xs text-right">
+      <li><a ui-sref="home" ui-sref-opts="{ reload : true }">醫創網</a></li>
+      <li class="active">個人資料</li>
+    </ol>
+
+    <div class="row">
+      <div class="col-lg-5 col-lg-offset-3 col-md-5 col-md-offset-3 col-xs-12">
+        <div class="user-thumb-lg">
+          <img src="images/userpic_2.jpg" alt="" class="img-circle pull-left" />
+          <h3><strong>林祥文</strong></h3>
+          <p>39歲 台北市 <i class="fa fa-mars"></i></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- profile tab  -->
+<section class="container-fluid profile-board">
+  <div class="container">
+
+    <div ui-view></div>
+
+    <!--AD-->
+    <div class="adblock img-responsive"><a href="#"><img src="images/ad.jpg"></a></div>
+  </div>
+</section>
