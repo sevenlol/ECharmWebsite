@@ -214,6 +214,14 @@ ul.quicklink li a:hover {
 .webmenu > .container {
 	background-color:#fff;
 }
+.webmenu-lg {
+	margin-top:150px;
+	border-bottom:1px solid #e7e7e7;
+	background-color:#fff;
+}
+.webmenu-lg > .container {
+	background-color:#fff;
+}
 ul.newmenu li, ul.newmenu li a {
 	background-color:#fff;
 	font-size:1.1em;
@@ -358,7 +366,7 @@ ul.newmenu li.active > a:focus {
 }
 .vision {
 	padding-top:80px;
-	padding-bottom:80px;	
+	padding-bottom:80px;
 }
 .visionblock {
 	padding:10px 20px;
@@ -794,7 +802,7 @@ ul.category li#cate-7 {
 }
 .article-block p {
 	padding: 0 10px;
-	margin-bootom:10px;	
+	margin-bootom:10px;
 }
 .article-block p a {
 	color:#49d7e3;
@@ -925,7 +933,7 @@ div#back a {
 	margin-top:-7px;
 }
 .article-content {
-	
+
 }
 .article-content h2 {
 	font-size:1.8em;
@@ -1221,7 +1229,7 @@ ul.media li {
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-	
+
 	.identity .public {
 		width:108px;
 		height:108px;
