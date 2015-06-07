@@ -1,7 +1,43 @@
-<h1>Doctor Photo and Name</h1>
+<!-- Basic User Information -->
+<section class="container-fluid profile-panel">
+  <div class="container">
+
+    <ol class="breadcrumb hidden-xs text-right">
+      <li><a ui-sref="home" ui-sref-opts="{ reload : true }">醫創網</a></li>
+      <li class="active">個人資料</li>
+    </ol>
+
+    <div class="row">
+      <div class="col-lg-5 col-lg-offset-3 col-md-5 col-md-offset-3 col-xs-12">
+        <div class="user-thumb-lg">
+          <img src="images/docpic.jpg" alt="" class="img-circle pull-left" />
+          <h3><strong>陳威德</strong> 醫師</h3>
+          <p>
+            主治醫師  皮膚科<br />
+            問答平均 <span class="satisfy"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></span> <span>共729評價</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- profile tab  -->
+<section class="container-fluid profile-board">
+  <div class="container">
+
+    <div ui-view></div>
+
+    <!--AD-->
+    <div class="adblock img-responsive"><a href="#"><img src="images/ad.jpg"></a></div>
+  </div>
+</section>
+
+<!-- <h1>Doctor Photo and Name</h1>
 <div class="btn-group" role="group" aria-label="...">
   <button type="button" class="btn btn-default" ui-sref="account.me.doctor.detail">Detail</button>
   <button type="button" class="btn btn-default" ui-sref="account.me.doctor.answer">Answer</button>
   <button type="button" class="btn btn-default" ui-sref="account.me.doctor.article">Article</button>
 </div>
-<div ui-view></div>
+<div ui-view></div> -->
