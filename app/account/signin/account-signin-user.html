@@ -1,13 +1,41 @@
-<h1>User Sign In Form!</h1>
-<form ng-submit="vm.signIn()">
-  <button class="btn btn-primary" ng-click="vm.fbSignIn()">Facebook Sign In!</button>
-  <div class="form-group">
-    <label for="usernameInput">Username</label>
-    <input type="text" class="form-control" id="usernameInput" ng-model="vm.credentials.username">
+<section class="container-fluid login-public parallax-container" style="background-image: url('images/login-public-bg.jpg');">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 text-center ttl">
+        <div class="login-panel">
+          <h2>我是一般民眾</h2>
+          <h1>登入醫創網</h1>
+        </div>
+      </div>
+    </div>
+
+    <!---->
+    <div class="row">
+      <div class="col-lg-4 col-lg-offset-4 text-center">
+        <div class="login-panel">
+          <button type="button" class="btn btn-fb btn-lg btn-block" ng-click="vm.fbSignIn()"><i class="fa fa-facebook-square"></i> 使用Facebook登入</button>
+
+          <p class="arr-hint">使用帳號登入</p>
+
+          <form role="form" ng-submit="vm.signIn()">
+            <div class="combine-form">
+              <div class="form-group">
+                <label for="Username" class="sr-only">使用者帳號</label>
+                <input type="text" class="form-control input-lg" id="Username" ng-model="vm.credentials.username" placeholder="使用者帳號">
+              </div>
+              <div class="form-group">
+                <label for="Password" class="sr-only">密碼</label>
+                <input type="password" class="form-control input-lg" id="Password" ng-model="vm.credentials.password" placeholder="密碼">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-info btn-lg btn-block">登入</button>
+          </form>
+
+          <p>還沒有帳號，<a href="public-signup.html" class="blue-style-2">點此註冊</a> ｜ <a href="forget-pw.html" class="blue-style-2">忘記密碼？</a></p>
+
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="passwordInput">Password</label>
-    <input type="password" class="form-control" id="passwordInput" ng-model="vm.credentials.password">
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>
+</section>
