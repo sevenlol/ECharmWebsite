@@ -9,50 +9,15 @@
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane active">
 
-    <p class="history-top">共有<span class="pink-style">8則</span>發表文章</p>
+    <p class="history-top">共有<span class="pink-style">{{vm.numberOfArticle}}則</span>發表文章</p>
 
-    <div class="table-responsive">
+    <div class="table-responsive" ng-show="vm.numberOfArticle">
       <table class="table table-hover">
         <tbody>
-          <tr class='clickable-row' data-href='artical-detail.html'>
-            <th>2天前</th>
-            <td><span class="blue-style-1">[醫學美容]</span> 夜貓子注意！晚睡較消極悲觀</td>
-            <td>by <a href="profile-doctor.html">潘怡良 醫師</a> 2015/02/08</td>
-          </tr>
-          <tr class='clickable-row' data-href='artical-detail.html'>
-            <th>3天前</th>
-            <td><span class="blue-style-1">[小兒科]</span> 關於冬天時打遊戲會突然覺得冷的現象</td>
-            <td>by <a href="profile-doctor.html">潘怡良 醫師</a> 2015/02/08</td>
-          </tr>
-          <tr class='clickable-row' data-href='artical-detail.html'>
-            <th>3天前</th>
-            <td><span class="blue-style-1">[醫學美容]</span> 夜貓子注意！晚睡較消極悲觀</td>
-            <td>by <a href="profile-doctor.html">潘怡良 醫師</a> 2015/02/08</td>
-          </tr>
-          <tr class='clickable-row' data-href='artical-detail.html'>
-            <th>4天前</th>
-            <td><span class="blue-style-1">[小兒科]</span> 關於冬天時打遊戲會突然覺得冷的現象</td>
-            <td>by <a href="profile-doctor.html">潘怡良 醫師</a> 2015/02/08</td>
-          </tr>
-          <tr class='clickable-row' data-href='artical-detail.html'>
-            <th>4天前</th>
-            <td><span class="blue-style-1">[醫學美容]</span> 夜貓子注意！晚睡較消極悲觀</td>
-            <td>by <a href="profile-doctor.html">潘怡良 醫師</a> 2015/02/08</td>
-          </tr>
-          <tr class='clickable-row' data-href='artical-detail.html'>
-            <th>5天前</th>
-            <td><span class="blue-style-1">[小兒科]</span> 關於冬天時打遊戲會突然覺得冷的現象</td>
-            <td>by <a href="profile-doctor.html">潘怡良 醫師</a> 2015/02/08</td>
-          </tr>
-          <tr class='clickable-row' data-href='artical-detail.html'>
-            <th>7天前</th>
-            <td><span class="blue-style-1">[醫學美容]</span> 夜貓子注意！晚睡較消極悲觀</td>
-            <td>by <a href="profile-doctor.html">潘怡良 醫師</a> 2015/02/08</td>
-          </tr>
-          <tr class='clickable-row' data-href='artical-detail.html'>
-            <th>10天前</th>
-            <td><span class="blue-style-1">[小兒科]</span> 關於冬天時打遊戲會突然覺得冷的現象</td>
-            <td>by <a href="profile-doctor.html">潘怡良 醫師</a> 2015/02/08</td>
+          <tr class='clickable-row' ng-repeat="article in vm.articleList">
+            <th>{{article.created_at}}</th>
+            <td><span class="blue-style-1">[{{article.category}}]</span> {{article.title}}</td>
+            <td>by <a href="profile-doctor.html">{{vm.doctorName}} 醫師</a> </td>
           </tr>
         </tbody>
       </table>
