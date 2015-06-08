@@ -258,7 +258,18 @@
                 return null;
             }
 
-            return blogArticleService.readArticleByAuthorId('', myAccount.account_id);
+            var failCallback = function(error) {
+                return null;
+            };
+
+            try {
+                return blogArticleService
+                           .readArticleByAuthorId('', myAccount.account_id)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
         }
 
     }
