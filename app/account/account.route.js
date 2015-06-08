@@ -253,8 +253,12 @@
             // body...
         }
 
-        function resolveMeDoctorArticleList(myAccount) {
-            // body...
+        function resolveMeDoctorArticleList(myAccount, blogArticleService) {
+            if (!myAccount || !angular.isString(myAccount.account_id) || !myAccount.account_id) {
+                return null;
+            }
+
+            return blogArticleService.readArticleByAuthorId('', myAccount.account_id);
         }
 
     }

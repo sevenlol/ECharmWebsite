@@ -6,6 +6,7 @@
         'app.auth',
         'ny.logger',
         'data.account',
+        'data.blog',
         'data.member'
     ]);
 })();
