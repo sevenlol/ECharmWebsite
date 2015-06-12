@@ -1,3 +1,226 @@
-<h1>Home</h1>
-<button class="btn btn-default" ui-sref="askdoctor.list">Category 1</button>
-<button class="btn btn-default" ui-sref="askdoctor.list">Category 2</button>
+<!-- user panel -->
+<section class="container-fluid">
+  <div class="container">
+    <ol class="breadcrumb hidden-xs text-right">
+      <li><a href="index.html">醫創網</a></li>
+      <li class="active">即時醫師問答</li>
+    </ol>
+  </div>
+</section>
+
+
+<!-- QA category  -->
+<section class="container-fluid">
+  <div class="container">
+
+    <div class="col-lg-9 col-sm-8">
+      <!--category-->
+      <div class="row">
+        <ul class="category clearfix">
+          <li id="cate-1" class="col-lg-12">
+            <h3>醫學美容</h3>
+            <p>
+              雷射？玻尿酸？微晶瓷？減重？<br />
+              在做醫學美容前先了解一下吧
+            </p>
+            <a ui-sref="askdoctor.detail.read" class="btn round-btn">即時問答</a>
+          </li>
+
+          <li id="cate-2" class="col-lg-12">
+            <h3>整形外科</h3>
+            <p>
+              隆乳、隆鼻、割雙眼皮該用何種方式？<br />
+              由整型外科權威告訴您
+            </p>
+            <a href="qa-detail-public.html" class="btn round-btn">即時問答</a>
+          </li>
+
+
+          <li id="cate-3" class="col-lg-6">
+            <h3>婦科</h3>
+            <p>
+              月經異常、經痛、避孕安全期<br />
+              等問題來此發問
+            </p>
+            <a href="qa-detail-public.html" class="btn round-btn">即時問答</a>
+          </li>
+
+          <li id="cate-4" class="col-lg-6">
+            <h3>產科</h3>
+            <p>
+              媽媽懷孕前後的各個問題<br />
+              來此發問
+            </p>
+            <a href="qa-detail-public.html" class="btn round-btn">即時問答</a>
+          </li>
+
+          <li id="cate-5" class="col-lg-6">
+            <h3>皮膚科</h3>
+            <p>
+              專業醫師跟您講如何做<br />
+              皮膚保養與常見皮膚病
+            </p>
+            <a href="qa-detail-public.html" class="btn round-btn">即時問答</a>
+          </li>
+
+          <li id="cate-6" class="col-lg-6">
+            <h3>小兒科</h3>
+            <p>
+              由專業醫師為您解答<br />
+              寶寶照顧中的所有問題</p>
+            <a href="qa-detail-public.html" class="btn round-btn">即時問答</a>
+          </li>
+
+          <li id="cate-7" class="col-lg-12">
+            <h3>其他醫學問題</h3>
+            <a href="qa-detail-public.html" class="btn round-btn">即時問答</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- sidebar start -->
+    <div class="col-lg-3 col-sm-4">
+      <div id="side-bar">
+        <h3>常見相關問題</h3>
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+          <div class="panel">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  醫學美容
+                </a>
+              </h4>
+            </div>
+
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                <ul class="faq-rocommend">
+                  <li><span>Q</span><a href="#">如果要瘦臉.大腿內側.肚子要怎麼做</a></li>
+                  <li><span>Q</span><a href="#">睡覺鼻塞怎麼辦?</a></li>
+                  <li><span>Q</span><a href="#">女生便秘是常見的事…？怎麼解決</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!---->
+          <div class="panel">
+            <div class="panel-heading" role="tab" id="headingTwo">
+              <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  整形外科
+                </a>
+              </h4>
+            </div>
+
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+              <div class="panel-body">
+                <ul class="faq-rocommend">
+                  <li><span>Q</span><a href="#">如果要瘦臉.大腿內側.肚子要怎麼做</a></li>
+                  <li><span>Q</span><a href="#">睡覺鼻塞怎麼辦?</a></li>
+                  <li><span>Q</span><a href="#">女生便秘是常見的事…？怎麼解決</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!---->
+          <div class="panel">
+            <div class="panel-heading" role="tab" id="headingTwo">
+              <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  婦科
+                </a>
+              </h4>
+            </div>
+
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+              <div class="panel-body">
+                <ul class="faq-rocommend">
+                  <li><span>Q</span><a href="#">如果要瘦臉.大腿內側.肚子要怎麼做</a></li>
+                  <li><span>Q</span><a href="#">睡覺鼻塞怎麼辦?</a></li>
+                  <li><span>Q</span><a href="#">女生便秘是常見的事…？怎麼解決</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!---->
+          <div class="panel">
+            <div class="panel-heading" role="tab" id="headingTwo">
+              <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  產科
+                </a>
+              </h4>
+            </div>
+
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+              <div class="panel-body">
+                <ul class="faq-rocommend">
+                  <li><span>Q</span><a href="#">如果要瘦臉.大腿內側.肚子要怎麼做</a></li>
+                  <li><span>Q</span><a href="#">睡覺鼻塞怎麼辦?</a></li>
+                  <li><span>Q</span><a href="#">女生便秘是常見的事…？怎麼解決</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!---->
+          <div class="panel">
+            <div class="panel-heading" role="tab" id="headingTwo">
+              <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  皮膚科
+                </a>
+              </h4>
+            </div>
+
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+              <div class="panel-body">
+                <ul class="faq-rocommend">
+                  <li><span>Q</span><a href="#">如果要瘦臉.大腿內側.肚子要怎麼做</a></li>
+                  <li><span>Q</span><a href="#">睡覺鼻塞怎麼辦?</a></li>
+                  <li><span>Q</span><a href="#">女生便秘是常見的事…？怎麼解決</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!---->
+          <div class="panel">
+            <div class="panel-heading" role="tab" id="headingTwo">
+              <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  小兒科
+                </a>
+              </h4>
+            </div>
+
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+              <div class="panel-body">
+                <ul class="faq-rocommend">
+                  <li><span>Q</span><a href="#">如果要瘦臉.大腿內側.肚子要怎麼做</a></li>
+                  <li><span>Q</span><a href="#">睡覺鼻塞怎麼辦?</a></li>
+                  <li><span>Q</span><a href="#">女生便秘是常見的事…？怎麼解決</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="side-ad text-center">
+          <a href="#">
+            <img src="images/side-ad.jpg" alt="" class="img-responsive" />
+          </a>
+        </div>
+
+      </div><!--end sidebar-->
+    </div>
+
+  </div>
+</section>
