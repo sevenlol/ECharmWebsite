@@ -1,9 +1,251 @@
-<h1>Category List</h1>
-<button class="btn btn-default" ui-sref="askdoctor.list">Category 1</button>
-<button class="btn btn-default" ui-sref="askdoctor.list">Category 2</button>
-<h1>Ask Question Form</h1>
-<h1>Popular Doctor/Question List</h1>
-<h1>Question List</h1>
-<button class="btn btn-info" ui-sref="askdoctor.detail.read">Article 1</button>
-<button class="btn btn-info" ui-sref="askdoctor.detail.read">Article 2</button>
-<button class="btn btn-info" ui-sref="askdoctor.detail.read">Article 3</button>
+<!-- user panel -->
+<section class="container-fluid">
+  <!-- article category -->
+  <section class="container-fluid submenu">
+    <div class="container">
+
+      <div class="pull-right">
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="搜尋問題">
+              <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <ul class="nav nav-tabs">
+        <li role="navigation" class="active"><a href="#">醫學美容</a></li>
+        <li role="navigation"><a href="#">整形外科</a></li>
+        <li role="navigation"><a href="#">婦科</a></li>
+        <li role="navigation"><a href="#">產科</a></li>
+        <li role="navigation"><a href="#">皮膚科</a></li>
+        <li role="navigation"><a href="#">小兒科</a></li>
+        <li role="navigation"><a href="#">婦科</a></li>
+        <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">其他醫學問題 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li role="navigation"><a href="#">其他類型1</a></li>
+            <li role="navigation"><a href="#">其他類型2</a></li>
+            <li role="navigation"><a href="#">其他類型3</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </section><!--end-->
+
+  <div class="container">
+
+    <ol class="breadcrumb hidden-xs text-right">
+      <li><a href="index.html">醫創網</a></li>
+      <li><a href="qa-index.html">即時醫師問答</a></li>
+      <li class="active">醫學美容</li>
+    </ol>
+
+    <div class="row">
+
+      <div class="col-lg-2 col-sm-2">
+        <div class="user-thumb-md">
+          <img src="images/userpic_2.jpg" alt="" class="img-circle" />
+          <p>
+            林祥文
+            <i class="fa fa-mars"></i>
+            <span>39歲 台北市</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-10 col-sm-10">
+
+        <div role="tabpanel">
+          <ul class="nav nav-pills ask-type" role="tablist">
+            <li role="presentation" class="active"><a href="#ask-question" aria-controls="ask-question" role="tab" data-toggle="tab">我要提問</a></li>
+            <li role="presentation"><a href="#search-doctor" aria-controls="search-doctor" role="tab" data-toggle="tab">我要找醫生</a></li>
+          </ul>
+        </div>
+
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="ask-question">
+            <form>
+              <textarea class="form-control" rows="4" placeholder="請輸入問題內容，字數至少要十個字以上"></textarea>
+                <div class="pull-right"><a href="#"><i class="fa fa-camera"></i></a> <button class="btn round-btn" type="button">確認提問</button></div>
+            </form>
+          </div>
+
+          <div role="tabpanel" class="tab-pane" id="search-doctor">
+            <input type="text" class="form-control" placeholder="請輸入醫師姓名或醫院名稱">
+            <div class="pull-right">
+              <button class="btn round-btn" type="button">前往搜尋</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- ad recommend -->
+<section class="container-fluid ad-recommend">
+  <div class="container clearfix">
+
+    <div class="col-lg-6 col-md-6 col-xs-12">
+      <h3>熱門醫學美容醫師</h3>
+
+      <ul class="doc-rocommend">
+        <li><a href="#"><img src="images/docpic.jpg" alt="" class="img-circle" /><p>陳學瑞</p></a></li>
+        <li><a href="#"><img src="images/docpic_2.jpg" alt="" class="img-circle" /><p>吳庭貞</p></a></li>
+        <li><a href="#"><img src="images/docpic.jpg" alt="" class="img-circle" /><p>陳學瑞</p></a></li>
+        <li><a href="#"><img src="images/docpic_2.jpg" alt="" class="img-circle" /><p>吳庭貞</p></a></li>
+        <li><a href="#"><img src="images/docpic.jpg" alt="" class="img-circle" /><p>陳學瑞</p></a></li>
+        <li><a href="#"><img src="images/docpic_2.jpg" alt="" class="img-circle" /><p>吳庭貞</p></a></li>
+      </ul>
+
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-xs-12">
+
+      <h3>醫學美容常見問題</h3>
+
+      <ul class="faq-rocommend col-lg-6">
+        <li><span>Q</span><a href="#">如果要瘦臉.大腿內側.肚子要怎麼做</a></li>
+        <li><span>Q</span><a href="#">睡覺鼻塞怎麼辦?</a></li>
+        <li><span>Q</span><a href="#">女生便秘是常見的事…？怎麼解決</a></li>
+      </ul>
+
+      <ul class="faq-rocommend col-lg-6">
+        <li><span>Q</span><a href="#">如果要瘦臉.大腿內側.肚子要怎麼做</a></li>
+        <li><span>Q</span><a href="#">睡覺鼻塞怎麼辦?</a></li>
+        <li><span>Q</span><a href="#">女生便秘是常見的事…？怎麼解決</a></li>
+      </ul>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- QA board  -->
+<section class="container-fluid qa-board">
+  <div class="container">
+    <div class="col-lg-10 col-lg-offset-1">
+
+      <!--Q1-->
+      <div class="question-block">
+        <!-- question -->
+        <div class="question-top">
+          <div class="question-profile">
+            <a href="#">
+              <img src="images/userpic.jpg" alt="" class="img-circle" />林靜宜
+            </a>
+            <i class="fa fa-venus"></i>
+            <span>17歲 台北市 <br />15分前</span>
+          </div>
+          <p>最近胖很快，請問有沒有什麼快速地減肥方式？</p>
+        </div>
+
+        <!-- answer -->
+        <a href="#" id="show-answer" class="pull-right" data-toggle="collapse" data-target="#answer" aria-expanded="true" aria-controls="answer"><span class="fa fa-angle-up"></span> 收合</a>
+
+        <div class="answer-content collapse in" id="answer">
+          <div class="question-profile">
+            <a href="#" class="doc-profile">
+              <img src="images/docpic.jpg" alt="" class="img-circle" />陳威德 醫師
+            </a>
+            <span>仁愛醫院  皮膚科 <br />15分前</span>
+          </div>
+          <p class="pink-style">無氧訓練肌肉有助新陳代謝， 但配上有氧運動才瘦的更快。 每天游泳OR跑步30分鐘持續幾個月就能看到成效。當然飲食需謹慎挑選，不油炸，多蔬菜。有飽足感很重要。</p>
+          <p class="pink-style">是的，或是喝點湯，反正就是不要單吃水果，且記得不要太晚吃哦! 水果盡量也不要選擇香蕉，熱量太高了 像我晚餐都是吃玉米(或喝湯，堅果)，蒟蒻，水果，吃完很有飽足感，若覺得蒟蒻沒味道，建議可以加些醬油跟哇沙米，會比較沒有味道 我一個月這樣吃，也沒有特別運動從69瘦到66</p>
+
+          <div class="satisfy">滿意度 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></div>
+        </div>
+      </div>
+
+      <!--Q2-->
+      <div class="question-block">
+        <!-- question -->
+        <div class="question-top">
+          <div class="question-profile">
+            <a href="#">
+              <img src="images/userpic.jpg" alt="" class="img-circle" />林靜宜
+            </a>
+            <i class="fa fa-venus"></i>
+            <span>17歲 台北市 <br />15分前</span>
+          </div>
+          <p>最近胖很快，請問有沒有什麼快速地減肥方式？</p>
+        </div>
+
+        <!-- answer -->
+        <a href="#" id="show-answer" class="pull-right" data-toggle="collapse" data-target="#answer" aria-expanded="true" aria-controls="answer"><span class="fa fa-angle-up"></span> 收合</a>
+
+        <div class="answer-content collapse in" id="answer">
+          <div class="question-profile">
+            <a href="#" class="doc-profile">
+              <img src="images/docpic.jpg" alt="" class="img-circle" />陳威德 醫師
+            </a>
+            <span>仁愛醫院  皮膚科 <br />15分前</span>
+          </div>
+          <p class="pink-style">無氧訓練肌肉有助新陳代謝， 但配上有氧運動才瘦的更快。 每天游泳OR跑步30分鐘持續幾個月就能看到成效。當然飲食需謹慎挑選，不油炸，多蔬菜。有飽足感很重要。</p>
+          <p class="pink-style">是的，或是喝點湯，反正就是不要單吃水果，且記得不要太晚吃哦! 水果盡量也不要選擇香蕉，熱量太高了 像我晚餐都是吃玉米(或喝湯，堅果)，蒟蒻，水果，吃完很有飽足感，若覺得蒟蒻沒味道，建議可以加些醬油跟哇沙米，會比較沒有味道 我一個月這樣吃，也沒有特別運動從69瘦到66</p>
+
+          <div class="satisfy">滿意度 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></div>
+        </div>
+      </div>
+
+      <!--Q3-->
+      <div class="question-block">
+        <!-- ask -->
+        <div class="question-top noanswer">
+          <div class="question-profile">
+            <a href="#">
+              <img src="images/userpic_3.jpg" alt="" class="img-circle" />李大強
+            </a>
+            <i class="fa fa-venus"></i>
+            <span>24歲 宜蘭市 <br />45分前</span>
+          </div>
+          <p>
+            身高180公分／100公斤 這樣算胖嘛<br />
+            是否該減肥<br />
+            我朋友都說我胖
+          </p>
+        </div>
+      </div>
+
+      <!--Q4-->
+      <div class="question-block">
+        <!-- question -->
+        <div class="question-top">
+          <div class="question-profile">
+            <a href="#">
+              <img src="images/userpic.jpg" alt="" class="img-circle" />林靜宜
+            </a>
+            <i class="fa fa-venus"></i>
+            <span>17歲 台北市 <br />15分前</span>
+          </div>
+          <p>最近胖很快，請問有沒有什麼快速地減肥方式？</p>
+        </div>
+
+        <!-- answer -->
+        <a href="#" id="show-answer" class="pull-right" data-toggle="collapse" data-target="#answer" aria-expanded="true" aria-controls="answer"><span class="fa fa-angle-up"></span> 收合</a>
+
+        <div class="answer-content collapse in" id="answer">
+          <div class="question-profile">
+            <a href="#" class="doc-profile">
+              <img src="images/docpic.jpg" alt="" class="img-circle" />陳威德 醫師
+            </a>
+            <span>仁愛醫院  皮膚科 <br />15分前</span>
+          </div>
+          <p class="pink-style">無氧訓練肌肉有助新陳代謝， 但配上有氧運動才瘦的更快。 每天游泳OR跑步30分鐘持續幾個月就能看到成效。當然飲食需謹慎挑選，不油炸，多蔬菜。有飽足感很重要。</p>
+          <p class="pink-style">是的，或是喝點湯，反正就是不要單吃水果，且記得不要太晚吃哦! 水果盡量也不要選擇香蕉，熱量太高了 像我晚餐都是吃玉米(或喝湯，堅果)，蒟蒻，水果，吃完很有飽足感，若覺得蒟蒻沒味道，建議可以加些醬油跟哇沙米，會比較沒有味道 我一個月這樣吃，也沒有特別運動從69瘦到66</p>
+
+          <div class="satisfy">滿意度 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></div>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-default btn-lg btn-block">顯示更多問題</button>
+
+    </div>
+  </div>
+</section>
