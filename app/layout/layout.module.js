@@ -3,6 +3,7 @@
 
     angular.module('app.layout',[
         'app.auth',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'duScroll'
     ]);
 })();

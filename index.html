@@ -26,11 +26,14 @@
 
     <div ui-view></div>
 
+    <div ng-include="'app/layout/footer.html'"></div>
+
     <!-- js files -->
 
     <script src="js/angular.min.js"></script>
     <script src="js/angular-ui-router.min.js"></script>
     <script src="js/angular-ui-bootstrap.min.js"></script>
+    <script src="js/angular-scroll.js"></script>
 
 
     <script src="app/app.module.js"></script>
@@ -75,6 +78,7 @@
     <script src="app/layout/layout.module.js"></script>
     <script src="app/layout/header.controller.js"></script>
     <script src="app/layout/home.controller.js"></script>
+    <script src="app/layout/footer.controller.js"></script>
 
     <!-- Shared Services -->
 
