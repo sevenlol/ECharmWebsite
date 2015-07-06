@@ -22,7 +22,7 @@
         // My Account Information
         var accountMeState = {
             name : 'account.me',
-            url : '/me',
+            url : '/me/:detailCategory',
             parent : accountState,
             resolve : {
                 myAccount : resolveMyAccount
@@ -34,7 +34,7 @@
 
         var accountMeUserState = {
             name : 'account.me.user',
-            url : '/user',
+            url : '^/account/user',
             parent : accountMeState,
             resolve: {
                 user : resolveMeUser,
@@ -82,7 +82,7 @@
 
         var accountMeDoctorState = {
             name : 'account.me.doctor',
-            url : '/doctor',
+            url : '^/account/doctor',
             parent : accountMeState,
             abstract : true,
             resolve : {

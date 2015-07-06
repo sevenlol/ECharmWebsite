@@ -71,9 +71,9 @@
         <li class="dropdown user-thumb" dropdown>
           <a href="#" class="dropdown-toggle" dropdown-toggle role="button" aria-expanded="false"><img src="images/userpic_2.jpg" alt="" class="img-circle" /> 林祥文 <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a ui-sref="account.me" ng-click="vm.collapse()">個人資料</a></li>
-            <li><a href="#" ng-click="vm.collapse()">發問紀錄</a></li>
-            <li><a href="#" ng-click="vm.collapse()">我的收藏</a></li>
+            <li><a ui-sref="account.me({ detailCategory : 'detail' })" ui-sref-opts="{ reload : true }" ng-click="vm.collapse()">個人資料</a></li>
+            <li><a ui-sref="account.me({ detailCategory : 'qa' })" ui-sref-opts="{ reload : true }" ng-click="vm.collapse()">發問紀錄</a></li>
+            <li><a ui-sref="account.me({ detailCategory : 'blog' })" ui-sref-opts="{ reload : true }" ng-click="vm.collapse()">我的收藏</a></li>
             <li class="divider" ng-click="vm.collapse()"></li>
             <li><a href="#" ng-click="vm.collapse()">切換簡體</a></li>
             <li><a href="#" ng-click="vm.signOut()" ng-click="vm.collapse()">登出</a></li>
