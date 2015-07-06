@@ -6,10 +6,11 @@
 
     accountSignInDoctorController.$inject = [
         'authService',
-        '$rootScope'
+        '$rootScope',
+        '$state'
     ];
 
-    function accountSignInDoctorController(authService, $rootScope) {
+    function accountSignInDoctorController(authService, $rootScope, $state) {
         var vm = this;
 
         // state variable: credentials
@@ -23,7 +24,7 @@
             if (!vm.credentials.username || !vm.credentials.password)
                 return;
 
-            var signInSuccessCallback = (function($rootScope) {
+            var signInSuccessCallback = (function($rootScope, $state) {
                 return function(account) {
                     if (!angular.isObject(account) ||
                         !account) {
@@ -44,16 +45,17 @@
                     $rootScope.authenticated = true;
                     $rootScope.account = account;
                     $rootScope.credentials = vm.credentials;
+                    $state.go('home');
                 }
-            })($rootScope);
+            })($rootScope, $state);
 
-            var signInFailCallback = (function($rootScope) {
+            var signInFailCallback = (function($rootScope, $state) {
                 return function(error) {
                     $rootScope.authenticated = false;
                     $rootScope.account = null;
                     $rootScope.credentials = null;
                 }
-            })($rootScope);
+            })($rootScope, $state);
 
             authService.signIn(vm.credentials, signInSuccessCallback, signInFailCallback);
         }
