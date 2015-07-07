@@ -2,6 +2,8 @@
     'use strict';
 
     angular.module('app.blog', [
-        'ui.router'
+        'ui.router',
+        'data.blog',
+        'data.member'
     ]);
 })();

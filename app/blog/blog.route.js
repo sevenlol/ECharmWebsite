@@ -84,34 +84,222 @@
 
         /* resolve functions */
 
-        function resolveArticleList($stateParams) {
+        function resolveArticleList($stateParams, blogArticleService) {
+            if (!$stateParams || !$stateParams.category || !blogArticleService) {
+                return null;
+            }
+
+            // TODO verify category
+            var category = $stateParams.category;
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            // read all articles
+            // FIXME move 'all' to value file
+            if (category === 'all') {
+                try {
+                    return blogArticleService
+                               .readAllArticle()
+                               .catch(failCallback);
+                } catch(error) {
+                    return null;
+                }
+            }
+
+            // read article in category
+            try {
+                return blogArticleService
+                           .readArticleInCategory(category)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
             return null;
         }
 
-        function resolveDoctorList($stateParams) {
+        function resolveDoctorList(articleList, memberDoctorService) {
+            if (!articleList || !memberDoctorService || !angular.isArray(articleList)) {
+                return null;
+            }
+
+            if (articleList.length === 0) {
+                return null;
+            }
+
+            var idList = [];
+            for (var i in articleList) {
+                if (!articleList[i] || !angular.isString(articleList[i].author_id) ||
+                    !articleList[i].author_id) {
+                    continue;
+                }
+
+                idList.push(articleList[i].author_id);
+            }
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            // read doctors
+            try {
+                return memberDoctorService
+                           .readAllDoctors(idList)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
             return null;
         }
 
-        function resolveArticle($stateParams) {
-            // body...
+        function resolveArticle($stateParams, blogArticleService) {
+            if (!$stateParams || !$stateParams.category || !blogArticleService ||
+                !$stateParams.articleId) {
+                return null;
+            }
+
+            var category = $stateParams.category;
+            var articleId = $stateParams.articleId;
+            // TODO verify category
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            // read article in category
+            try {
+                return blogArticleService
+                           .readArticle(category, articleId)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
         }
 
-        function resolveAuthor(article) {
-            // body...
+        function resolveAuthor(article, memberDoctorService) {
+            if (!article || !memberDoctorService || !article.author_id) {
+                return null;
+            }
+
+            var id = article.author_id;
+            var idList = [ id ];
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            var successCallback = function(doctorList) {
+                if (angular.isArray(doctorList)) {
+                    return doctorList[0];
+                }
+
+                return null;
+            };
+
+            // read doctors
+            try {
+                return memberDoctorService
+                           .readAllDoctors(idList)
+                           .then(successCallback)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
         }
 
-        function resolveCommentList(article) {
-            // body...
+        function resolveCommentList(article, blogCommentService) {
+            if (!article || !blogCommentService || !article.article_id) {
+                return null;
+            }
+
+            if (!article.category) {
+                return null;
+            }
+
+            var category = article.category;
+            var id = article.article_id;
+
+            // TODO verify category
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            try {
+                return blogCommentService
+                           .readAllComment(category, id)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
         }
 
-        function resolveRatingList(article) {
-            // body...
+        function resolveRatingList(article, blogRatingService) {
+            if (!article || !blogRatingService || !article.article_id) {
+                return null;
+            }
+
+            if (!article.category) {
+                return null;
+            }
+
+            var category = article.category;
+            var id = article.article_id;
+
+            // TODO verify category
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            try {
+                return blogRatingService
+                           .readAllRating(category, id)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
         }
 
         function resolveAvgRating(ratingList) {
-            // body...
-        }
+            if (!angular.isArray(ratingList) || !ratingList.length) {
+                return 0;
+            }
 
+            var total = 0;
+            var count = 0;
+            for (var i in ratingList) {
+                var rating = ratingList[i];
+                if (!angular.isNumber(rating)) {
+                    continue;
+                }
+
+                // FIXME change limit to value file
+                if (rating < 0 || rating > 5) {
+                    continue;
+                }
+
+                total += rating;
+                count++;
+            }
+
+            if (count > 0) {
+                total = total / count;
+            }
+
+            return total;
+        }
     }
 
 })();

@@ -22,6 +22,8 @@
 
         vm.rateThisArticle = rateThisArticle;
 
+        console.log(JSON.stringify(author, null, 2));
+
         /* public functions */
 
         function rateThisArticle() {
