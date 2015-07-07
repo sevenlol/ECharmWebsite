@@ -84,16 +84,125 @@
 
         /* resolve functions */
 
-        function resolveQuestionList($stateParams) {
-            // body...
+        function resolveQuestionList($stateParams, $rootScope, askdoctorService) {
+            if (!$stateParams || !$stateParams.category || !askdoctorService) {
+                return null;
+            }
+
+            var account = $rootScope.account;
+            // TODO verify category
+            var category = $stateParams.category;
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            var isAnswered = true;
+
+            // get both answered and unanswered questions
+            if (account && account.user_type === 'DOCTOR') {
+                isAnswered = false;
+            }
+
+            // no account or USER, only sees answered questions
+
+            // read all questions
+            if (category === 'all') {
+                try {
+                    return askdoctorService
+                               .readAllEmbeddedQuestion(isAnswered, true, false, false)
+                               .catch(failCallback);
+                } catch(error) {
+                    return null;
+                }
+            }
+
+            // read questions in category
+            try {
+                return askdoctorService
+                           .readEmbeddedQuestionInCategory(category, isAnswered, true, false, false)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
         }
 
-        function resolveDoctorList($stateParams) {
-            // body...
+        function resolveDoctorList(questionList, memberDoctorService) {
+            if (!questionList || !memberDoctorService || !angular.isArray(questionList)) {
+                return null;
+            }
+
+            if (questionList.length === 0) {
+                return null;
+            }
+
+            var idList = [];
+            for (var i in questionList) {
+
+                if (!questionList[i] || !angular.isObject(questionList[i].answer) ||
+                    !questionList[i].answer) {
+                    continue;
+                }
+
+                if (!questionList[i].answer.answerer_id ||
+                    !angular.isString(questionList[i].answer.answerer_id)) {
+                    continue;
+                }
+
+                idList.push(questionList[i].answer.answerer_id);
+            }
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            // read doctors
+            try {
+                return memberDoctorService
+                           .readAllDoctors(idList)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
         }
 
-        function resolveUserList() {
-            // body...
+        function resolveUserList(questionList, memberUserService) {
+            if (!questionList || !memberUserService || !angular.isArray(questionList)) {
+                return null;
+            }
+
+            if (questionList.length === 0) {
+                return null;
+            }
+
+            var idList = [];
+            for (var i in questionList) {
+                if (!questionList[i] || !angular.isString(questionList[i].questioner_id) ||
+                    !questionList[i].questioner_id) {
+                    continue;
+                }
+
+                idList.push(questionList[i].questioner_id);
+            }
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            // read users
+            try {
+                return memberUserService
+                           .readUsers(idList)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
         }
 
         function resolveQuestion($stateParams) {
