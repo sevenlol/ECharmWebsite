@@ -6,10 +6,11 @@
 
     headerController.$inject = [
         'authService',
-        '$rootScope'
+        '$rootScope',
+        '$state'
     ];
 
-    function headerController(authService, $rootScope) {
+    function headerController(authService, $rootScope, $state) {
         var vm = this;
 
         vm.signOut = signOut;
@@ -22,16 +23,16 @@
             if(!$rootScope.authenticated)
                 return;
 
-            var signOutSuccessCallback = (function($rootScope) {
+            var signOutSuccessCallback = (function($rootScope, $state) {
                 return function(data) {
                     // just in case
                     console.log('Logout succeeded!');
                     $rootScope.authenticated = false;
                     $rootScope.account = null;
                 };
-            })($rootScope);
+            })($rootScope, $state);
 
-            var signOutFailCallback = (function($rootScope) {
+            var signOutFailCallback = (function($rootScope, $state) {
                 return function(err) {
 
                     // Spring returns 404 when logout succeeded
@@ -39,12 +40,13 @@
                         console.log('Logout succeeded!');
                         $rootScope.authenticated = false;
                         $rootScope.account = null;
+                        $state.go('home');
                         return;
                     }
 
                     console.log('Logout failed!' + JSON.stringify(err, null, 2));
                 };
-            })($rootScope);
+            })($rootScope, $state);
 
             authService.signOut(signOutSuccessCallback, signOutFailCallback);
         }
