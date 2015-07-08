@@ -47,6 +47,7 @@
             abstract : true,
             resolve : {
                 question : resolveQuestion,
+                answer : resolveAnswer,
                 user : resolveUser,
                 doctor : resolveDoctor,
                 commentList : resolveCommentList,
@@ -205,28 +206,217 @@
             return null;
         }
 
-        function resolveQuestion($stateParams) {
-            // body...
+        function resolveQuestion($stateParams, askdoctorQuestionService) {
+            if (!$stateParams || !$stateParams.category ||
+                !askdoctorQuestionService || !$stateParams.questionId) {
+                return null;
+            }
+
+            var category = $stateParams.category;
+            var questionId = $stateParams.questionId;
+            // TODO verify category
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            try {
+                return askdoctorQuestionService
+                           .readQuestion(category, questionId)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
         }
 
-        function resolveDoctor(question) {
-            // body...
+        function resolveAnswer($stateParams, askdoctorAnswerService) {
+            if (!$stateParams || !$stateParams.category ||
+                !askdoctorAnswerService || !$stateParams.questionId) {
+                return null;
+            }
+
+            var category = $stateParams.category;
+            var questionId = $stateParams.questionId;
+            // TODO verify category
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            // Note: change if allowing more than 1 answer for each question
+            var successCallback = function(answerList) {
+                if (angular.isArray(answerList && answerList) {
+                    return answerList[0];
+                }
+
+                return null;
+            };
+
+            try {
+                return askdoctorAnswerService
+                           .readAllAnswer(category, questionId)
+                           .then(successCallback)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
         }
 
-        function resolveUser(question) {
-            // body...
+        function resolveDoctor(answer, memberDoctorService) {
+            if (!answer || !memberDoctorService || !answer.answerer_id) {
+                return null;
+            }
+
+            var id = answer.answerer_id;
+            var idList = [ id ];
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            var successCallback = function(doctorList) {
+                if (angular.isArray(doctorList)) {
+                    return doctorList[0];
+                }
+
+                return null;
+            };
+
+            // read doctor
+            try {
+                return memberDoctorService
+                           .readAllDoctors(idList)
+                           .then(successCallback)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
         }
 
-        function resolveCommentList(question) {
-            // body...
+        function resolveUser(question, memberUserService) {
+            if (!question || !memberUserService || !question.questioner_id) {
+                return null;
+            }
+
+            var id = question.questioner_id;
+            var idList = [ id ];
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            var successCallback = function(userList) {
+                if (angular.isArray(userList)) {
+                    return userList[0];
+                }
+
+                return null;
+            };
+
+            // read doctors
+            try {
+                return memberUserService
+                           .readUsers(idList)
+                           .then(successCallback)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
         }
 
-        function resolveRatingList(question) {
-            // body...
+        function resolveCommentList(question, askdoctorCommentService) {
+            if (!question || !askdoctorCommentService || !question.question_id) {
+                return null;
+            }
+
+            if (!question.category) {
+                return null;
+            }
+
+            var category = question.category;
+            var id = question.question_id;
+
+            // TODO verify category
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            try {
+                return askdoctorCommentService
+                           .readAllComment(category, id)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
+        }
+
+        function resolveRatingList(question, askdoctorRatingService) {
+            if (!question || !askdoctorRatingService || !question.question_id) {
+                return null;
+            }
+
+            if (!question.category) {
+                return null;
+            }
+
+            var category = question.category;
+            var id = question.question_id;
+
+            // TODO verify category
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            try {
+                return askdoctorRatingService
+                           .readAllRating(category, id)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
         }
 
         function resolveAvgRating(ratingList) {
-            // body...
+            if (!angular.isArray(ratingList) || !ratingList.length) {
+                return 0;
+            }
+
+            var total = 0;
+            var count = 0;
+            for (var i in ratingList) {
+                var rating = ratingList[i];
+                if (!angular.isNumber(rating)) {
+                    continue;
+                }
+
+                // FIXME change limit to value file
+                if (rating < 0 || rating > 5) {
+                    continue;
+                }
+
+                total += rating;
+                count++;
+            }
+
+            if (count > 0) {
+                total = total / count;
+            }
+
+            return total;
         }
     }
 
