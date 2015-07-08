@@ -247,7 +247,7 @@
 
             // Note: change if allowing more than 1 answer for each question
             var successCallback = function(answerList) {
-                if (angular.isArray(answerList && answerList) {
+                if (angular.isArray(answerList) && answerList) {
                     return answerList[0];
                 }
 
