@@ -241,16 +241,52 @@
             return myAccount;
         }
 
-        function resolveMeUserQuestionList(myAccount) {
-            // body...
+        function resolveMeUserQuestionList(myAccount, askdoctorService) {
+            if (!myAccount || !askdoctorService || !myAccount.account_id) {
+                return null;
+            }
+
+            var id = myAccount.account_id;
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            try {
+                return askdoctorService
+                           .readAllEmbeddedQuestionByQuestionerId(id, false, true, false, false)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
         }
 
         function resolveMeDoctor(myAccount) {
             return myAccount;
         }
 
-        function resolveMeDoctorAnswerList(myAccount) {
-            // body...
+        function resolveMeDoctorAnswerList(myAccount, askdoctorService) {
+            if (!myAccount || !askdoctorService || !myAccount.account_id) {
+                return null;
+            }
+
+            var id = myAccount.account_id;
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            try {
+                return askdoctorService
+                           .readAllEmbeddedQuestionByAnswererId(id, true, true, false, false)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
         }
 
         function resolveMeDoctorArticleList(myAccount, blogArticleService) {

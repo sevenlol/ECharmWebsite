@@ -7,6 +7,7 @@
         'ny.logger',
         'data.account',
         'data.blog',
+        'data.askdoctor',
         'data.member'
     ]);
 })();
