@@ -1,0 +1,15 @@
+.doctor-profile .tab-content .table {
+	font-size:1.1em;
+	margin:0px 0;
+}
+.doctor-profile .tab-content .table th {
+	color:#959595;
+	text-align:right;
+	padding:10px 15px;
+	font-weight:normal;
+	border:none;
+}
+.doctor-profile .tab-content .table td {
+	padding:10px 15px;
+	border:none;
+}
