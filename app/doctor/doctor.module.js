@@ -2,6 +2,9 @@
     'use strict';
 
     angular.module('app.doctor', [
-        'ui.router'
+        'ui.router',
+        'data.blog',
+        'data.askdoctor',
+        'data.member'
     ]);
 })();

@@ -39,7 +39,7 @@
             resolve : {
                 doctor : resolveDoctor,
                 articleList : resolveDoctorArticleList,
-                answerList : resolveDoctorAnswerList
+                qaList : resolveDoctorQAList // question and answer list
             },
             templateUrl : 'app/doctor/doctor-detail.html',
             controller : 'doctorDetailController',
@@ -57,20 +57,130 @@
 
         /* resolve functions */
 
-        function resolveDoctorList($stateParams) {
-            // body...
+        function resolveDoctorList($stateParams, memberDoctorService) {
+            if (!$stateParams || !$stateParams.category || !memberDoctorService) {
+                return null;
+            }
+
+            // TODO verify category
+            var category = $stateParams.category;
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            // read all doctors
+            // FIXME move 'all' to value file
+            if (category === 'all') {
+                try {
+                    return memberDoctorService
+                               .readAllDoctors(null) // FIXME accept null for idList (?)
+                               .catch(failCallback);
+                } catch(error) {
+                    return null;
+                }
+            }
+
+            // read doctor in category
+            try {
+                return memberDoctorService
+                           .readDoctorsInCategory(category, null) // FIXME accept null for idList (?)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
         }
 
-        function resolveDoctor($stateParams) {
-            // body...
+        function resolveDoctor($stateParams, memberDoctorService) {
+            if (!$stateParams || !$stateParams.category || !memberDoctorService ||
+                !$stateParams.doctorId) {
+                return null;
+            }
+
+            var category = $stateParams.category;
+            var doctorId = $stateParams.doctorId;
+            // TODO verify category
+
+            var idList = [ doctorId ];
+
+            var successCallback = function(doctorList) {
+                if (angular.isArray(doctorList)) {
+                    return doctorList[0];
+                }
+
+                return null;
+            };
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            // read all doctors
+            // FIXME move 'all' to value file
+            if (category === 'all') {
+                try {
+                    return memberDoctorService
+                               .readAllDoctors(idList)
+                               .then(successCallback)
+                               .catch(failCallback);
+                } catch(error) {
+                    return null;
+                }
+            }
+
+            // read doctor in category
+            try {
+                return memberDoctorService
+                           .readDoctorsInCategory(category, idList)
+                           .then(successCallback)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
         }
 
-        function resolveDoctorArticleList(doctor) {
-            // body...
+        function resolveDoctorArticleList(doctor, blogArticleService) {
+            if (!doctor || !angular.isString(doctor.account_id) || !doctor.account_id) {
+                return null;
+            }
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            try {
+                return blogArticleService
+                           .readArticleByAuthorId('', doctor.account_id)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
         }
 
-        function resolveDoctorAnswerList(doctor) {
-            // body...
+        function resolveDoctorQAList(doctor, askdoctorService) {
+            if (!doctor || !askdoctorService || !doctor.account_id) {
+                return null;
+            }
+
+            var id = doctor.account_id;
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            try {
+                return askdoctorService
+                           .readAllEmbeddedQuestionByAnswererId(id, true, true, true, true)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
         }
     }
 
