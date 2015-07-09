@@ -9,66 +9,22 @@
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane active">
 
-    <p class="history-top">共有<span class="pink-style">21則</span>發問記錄</p>
+    <p class="history-top">共有<span class="pink-style">{{vm.numOfQuestions}}則</span>發問記錄</p>
 
-    <div class="table-responsive">
+    <div class="table-responsive" ng-show="vm.numOfQuestions">
       <table class="table table-hover">
         <tbody>
-          <tr class='clickable-row' data-href='qa-detail-public.html'>
+          <tr class='clickable-row'ng-repeat="question in vm.questionList | limitTo : vm.pageLimit : vm.index">
             <th>1小時前</th>
-            <td><span class="blue-style-1">Q</span> 每天晚上睡覺把手機放在頭部附近會怎樣嗎？是真的會變白痴嗎？</td>
-            <td>共<span class="pink-style">1則</span>回答</td>
-          </tr>
-          <tr class='clickable-row' data-href='qa-detail-public.html'>
-            <th>1小時前</th>
-            <td><span class="blue-style-1">Q</span> 有什麼方法可以止手汗？常常流手汗是好還是壞？</td>
-            <td>共<span class="pink-style">3則</span>回答</td>
-          </tr>
-          <tr class='clickable-row' data-href='qa-detail-public.html'>
-            <th>2小時前</th>
-            <td><span class="blue-style-1">Q</span> 每天晚上睡覺把手機放在頭部附近會怎樣嗎？是真的會變白痴嗎？</td>
-            <td><span class="pink-style">尚無醫師回答</span></td>
-          </tr>
-          <tr class='clickable-row' data-href='qa-detail-public.html'>
-            <th>4小時前</th>
-            <td><span class="blue-style-1">Q</span> 有什麼方法可以止手汗？常常流手汗是好還是壞？</td>
-            <td>共<span class="pink-style">3則</span>回答</td>
-          </tr>
-          <tr class='clickable-row' data-href='qa-detail-public.html'>
-            <th>8小時前</th>
-            <td><span class="blue-style-1">Q</span> 每天晚上睡覺把手機放在頭部附近會怎樣嗎？是真的會變白痴嗎？</td>
-            <td>共<span class="pink-style">2則</span>回答</td>
-          </tr>
-          <tr class='clickable-row' data-href='qa-detail-public.html'>
-            <th>12小時前</th>
-            <td><span class="blue-style-1">Q</span> 有什麼方法可以止手汗？常常流手汗是好還是壞？</td>
-            <td><span class="pink-style">尚無醫師回答</span></td>
-          </tr>
-          <tr class='clickable-row' data-href='qa-detail-public.html'>
-            <th>1天前</th>
-            <td><span class="blue-style-1">Q</span> 每天晚上睡覺把手機放在頭部附近會怎樣嗎？是真的會變白痴嗎？</td>
-            <td>共<span class="pink-style">2則</span>回答</td>
-          </tr>
-          <tr class='clickable-row' data-href='qa-detail-public.html'>
-            <th>2天前</th>
-            <td><span class="blue-style-1">Q</span> 有什麼方法可以止手汗？常常流手汗是好還是壞？</td>
-            <td><span class="pink-style">尚無醫師回答</span></td>
-          </tr>
-          <tr class='clickable-row' data-href='qa-detail-public.html'>
-            <th>3天前</th>
-            <td><span class="blue-style-1">Q</span> 每天晚上睡覺把手機放在頭部附近會怎樣嗎？是真的會變白痴嗎？</td>
-            <td>共<span class="pink-style">5則</span>回答</td>
-          </tr>
-          <tr class='clickable-row' data-href='qa-detail-public.html'>
-            <th>5天前</th>
-            <td><span class="blue-style-1">Q</span> 有什麼方法可以止手汗？常常流手汗是好還是壞？</td>
-            <td>共<span class="pink-style">3則</span>回答</td>
+            <td><span class="blue-style-1">Q</span> {{question.content_text}}</td>
+            <td ng-show="question.isAnswered">共<span class="pink-style">1則</span>回答</td>
+            <td ng-show="!question.isAnswered"><span class="pink-style">尚無醫師回答</span></td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <button type="button" class="btn btn-default btn-lg btn-block">顯示更多問答紀錄</button>
-
+    <button type="button" class="btn btn-default btn-lg btn-block" ng-show="vm.displayShowMoreButton" ng-click="vm.showMoreQuestion()">顯示更多問答紀錄</button>
+    <button type="button" class="btn btn-default btn-lg btn-block" disabled ng-show="!vm.displayShowMoreButton">沒有更多問答紀錄</button>
   </div>
 </div>
