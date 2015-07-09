@@ -23,7 +23,9 @@
             name : 'blog.home',
             url : '/home',
             parent : blogState,
-            templateUrl : 'app/blog/blog-home.html'
+            templateUrl : 'app/blog/blog-home.html',
+            controller : 'blogHomeController',
+            controllerAs : 'vm'
         };
 
         var blogListState = {
