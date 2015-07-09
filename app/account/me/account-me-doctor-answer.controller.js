@@ -25,7 +25,7 @@
         // set number of questions
         if (vm.questionList && angular.isArray(vm.questionList)) {
             vm.numOfQuestions = vm.questionList.length;
-            vm.displayShowMoreButton = vm.numOfQuestions > vm.pageLimit ? true : false
+            vm.displayShowMoreButton = vm.numOfQuestions > vm.pageLimit ? true : false;
         }
 
         if (vm.numOfQuestions > 0) {

@@ -14,7 +14,7 @@
     <div class="table-responsive" ng-show="vm.numOfQuestions">
       <table class="table table-hover">
         <tbody>
-          <tr class='clickable-row'ng-repeat="question in vm.questionList | limitTo : vm.pageLimit : vm.index">
+          <tr class='clickable-row' ng-repeat="question in vm.questionList | limitTo : vm.pageLimit : vm.index">
             <th>1小時前</th>
             <td><span class="blue-style-1">Q</span> {{question.content_text}}</td>
             <td ng-show="question.isAnswered">共<span class="pink-style">1則</span>回答</td>
