@@ -13,3 +13,27 @@
 	padding:10px 15px;
 	border:none;
 }
+
+/* doctor.list state */
+.doctor-row {
+	margin: 100px 15px;
+}
+
+ul.doctor-list {
+	margin-left:0;
+	padding-left:0;
+}
+ul.doctor-list li {
+	list-style:none;
+	float:left;
+	margin:0 10px;
+	text-align:center;
+}
+ul.doctor-list li img {
+	width:150px;
+	height:150px;
+	margin-bottom:15px;
+}
+ul.doctor-list li p {
+	font-size:0.9em;
+}
