@@ -9,66 +9,22 @@
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane active">
 
-    <p class="history-top">共有<span class="pink-style">76則</span>問答記錄</p>
+    <p class="history-top">共有<span class="pink-style">{{vm.numOfQuestions}}則</span>問答記錄</p>
 
     <div class="table-responsive">
       <table class="table table-hover">
         <tbody>
-          <tr class='clickable-row' data-href='qa-detail-doctor.html'>
+          <tr class='clickable-row' ng-repeat="question in vm.questionList | limitTo : vm.pageLimit : vm.index">
             <th>1小時前</th>
-            <td><span class="blue-style-1">Q</span> 如果要瘦臉.大腿內側.肚子要怎麼做?</td>
-            <td><span class="pink-style">A</span> 無氧訓練肌肉有助新陳代謝， 但配上有氧運動才瘦的更快。 每天...</td>
-          </tr>
-          <tr class='clickable-row' data-href='qa-detail-doctor.html'>
-            <th>1小時前</th>
-            <td><span class="blue-style-1">Q</span> 女生便秘是常見的事…？怎麼解決?</td>
-            <td><span class="pink-style">A</span> 健身後可以補充蛋白質可以幫助肌肉生成 例如：蛋白、豆漿等等...</td>
-          </tr>
-          <tr class='clickable-row' data-href='qa-detail-doctor.html'>
-            <th>2小時前</th>
-            <td><span class="blue-style-1">Q</span> 如果要瘦臉.大腿內側.肚子要怎麼做?</td>
-            <td><span class="pink-style">A</span> 無氧訓練肌肉有助新陳代謝， 但配上有氧運動才瘦的更快。 每天...</td>
-          </tr>
-          <tr class='clickable-row' data-href='qa-detail-doctor.html'>
-            <th>4小時前</th>
-            <td><span class="blue-style-1">Q</span> 女生便秘是常見的事…？怎麼解決?</td>
-            <td><span class="pink-style">A</span> 健身後可以補充蛋白質可以幫助肌肉生成 例如：蛋白、豆漿等等...</td>
-          </tr>
-          <tr class='clickable-row' data-href='qa-detail-doctor.html'>
-            <th>8小時前</th>
-            <td><span class="blue-style-1">Q</span> 如果要瘦臉.大腿內側.肚子要怎麼做?</td>
-            <td><span class="pink-style">A</span> 無氧訓練肌肉有助新陳代謝， 但配上有氧運動才瘦的更快。 每天...</td>
-          </tr>
-          <tr class='clickable-row' data-href='qa-detail-doctor.html'>
-            <th>12小時前</th>
-            <td><span class="blue-style-1">Q</span> 女生便秘是常見的事…？怎麼解決?</td>
-            <td><span class="pink-style">A</span> 健身後可以補充蛋白質可以幫助肌肉生成 例如：蛋白、豆漿等等...</td>
-          </tr>
-          <tr class='clickable-row' data-href='qa-detail-doctor.html'>
-            <th>1天前</th>
-            <td><span class="blue-style-1">Q</span> 如果要瘦臉.大腿內側.肚子要怎麼做?</td>
-            <td><span class="pink-style">A</span> 無氧訓練肌肉有助新陳代謝， 但配上有氧運動才瘦的更快。 每天...</td>
-          </tr>
-          <tr class='clickable-row' data-href='qa-detail-doctor.html'>
-            <th>2天前</th>
-            <td><span class="blue-style-1">Q</span> 女生便秘是常見的事…？怎麼解決?</td>
-            <td><span class="pink-style">A</span> 健身後可以補充蛋白質可以幫助肌肉生成 例如：蛋白、豆漿等等...</td>
-          </tr>
-          <tr class='clickable-row' data-href='qa-detail-doctor.html'>
-            <th>3天前</th>
-            <td><span class="blue-style-1">Q</span> 如果要瘦臉.大腿內側.肚子要怎麼做?</td>
-            <td><span class="pink-style">A</span> 無氧訓練肌肉有助新陳代謝， 但配上有氧運動才瘦的更快。 每天...</td>
-          </tr>
-          <tr class='clickable-row' data-href='qa-detail-doctor.html'>
-            <th>5天前</th>
-            <td><span class="blue-style-1">Q</span> 女生便秘是常見的事…？怎麼解決?</td>
-            <td><span class="pink-style">A</span> 健身後可以補充蛋白質可以幫助肌肉生成 例如：蛋白、豆漿等等...</td>
+            <td><span class="blue-style-1">Q</span> {{question.content_text}}</td>
+            <td><span class="pink-style">A</span> {{question.answer.answer_text}}</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <button type="button" class="btn btn-default btn-lg btn-block">顯示更多問答紀錄</button>
+    <button type="button" class="btn btn-default btn-lg btn-block" ng-show="vm.displayShowMoreButton" ng-click="vm.showMoreQuestion()">顯示更多問答紀錄</button>
+    <button type="button" class="btn btn-default btn-lg btn-block" disabled ng-show="!vm.displayShowMoreButton">沒有更多問答紀錄</button>
 
   </div>
 </div>
