@@ -42,3 +42,17 @@ ul.doctor-list li p {
 	color : #c62828;
 	font-size : 18px;
 }
+
+/* parallax */
+
+.parallax-background {
+	background-attachment: fixed;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+.public-login-background {
+	background-image: url(../images/login-public-bg.jpg);
+}
+.doctor-login-background {
+	background-image: url(../images/login-doctor-bg.jpg);
+}
