@@ -16,12 +16,16 @@
 
         var vm = this;
 
+        // for form validation
+        vm.submitted = false;
+
         // state variable: credentials
         vm.credentials = {};
 
         vm.signIn = signIn;
 
         vm.hideMessage = hideMessage;
+        vm.resetForm = resetForm;
 
         vm.msg = {
             isShown : false,
@@ -32,6 +36,8 @@
         /* public functions */
 
         function signIn() {
+            vm.submitted = true;
+
             if (!vm.credentials.username || !vm.credentials.password)
                 return;
 
@@ -76,6 +82,10 @@
 
         function hideMessage() {
             vm.msg.isShown = false;
+        }
+
+        function resetForm() {
+            vm.submitted = false;
         }
 
         /* private functions */
