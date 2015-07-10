@@ -33,36 +33,58 @@
 
         <alert ng-show="vm.msg.isShown" type="{{vm.msg.type}}" close="vm.hideMessage()">{{vm.msg.text}}</alert>
 
+        <alert ng-show="signUpForm.$invalid && vm.submitted" type="warning" close="vm.resetForm()">請輸入所需欄位</alert>
+
+        <alert ng-show="!vm.agreed && !signUpForm.$invalid && vm.submitted" type="warning" close="vm.resetForm()">請勾選同意使用者同意書</alert>
+
         <div class="redbar">以下您所填寫的醫師資料需經過審核，醫師資料將為您保密</div>
 
         <div class="login-panel">
-          <form role="form" ng-submit="vm.signUp()">
+          <form name="signUpForm" role="form" ng-submit="vm.signUp()" novalidate>
             <div class="col-lg-6 col-md-6 col-sm-6">
               <h3>醫師基本資料</h3>
               <div class="combine-form">
                 <div class="form-group">
-                  <label for="Name" class="sr-only">名字</label>
-                  <input type="name" class="form-control input-lg" id="Name" ng-model="vm.doctor.user_info.name" placeholder="名字">
+                  <label for="name" class="sr-only">名字</label>
+                  <div class="input-group">
+                    <span ng-show="signUpForm.name.$invalid && vm.submitted" class="input-group-addon invalid-input-sign"><i class="glyphicon glyphicon-question-sign"></i></span>
+                    <input type="text" class="form-control input-lg" name="name" ng-model="vm.doctor.user_info.name" placeholder="名字" required>
+                  </div>
                 </div>
                 <div class="form-group">
-                  <label for="School" class="sr-only">畢業學校</label>
-                  <input type="data" class="form-control input-lg" id="School" ng-model="vm.doctor.user_info.college" placeholder="畢業學校">
+                  <label for="college" class="sr-only">畢業學校</label>
+                  <div class="input-group">
+                    <span ng-show="signUpForm.college.$invalid && vm.submitted" class="input-group-addon invalid-input-sign"><i class="glyphicon glyphicon-question-sign"></i></span>
+                    <input type="text" class="form-control input-lg" name="college" ng-model="vm.doctor.user_info.college" placeholder="畢業學校" required>
+                  </div>
                 </div>
                 <div class="form-group">
-                  <label for="Hospital" class="sr-only">執業醫院/診所</label>
-                  <input type="data" class="form-control input-lg" id="Hospital" ng-model="vm.doctor.user_info.current_hospital" placeholder="執業醫院/診所">
+                  <label for="hospital" class="sr-only">執業醫院/診所</label>
+                  <div class="input-group">
+                    <span ng-show="signUpForm.hospital.$invalid && vm.submitted" class="input-group-addon invalid-input-sign"><i class="glyphicon glyphicon-question-sign"></i></span>
+                    <input type="text" class="form-control input-lg" name="hospital" ng-model="vm.doctor.user_info.current_hospital" placeholder="執業醫院/診所" required>
+                  </div>
                 </div>
                 <div class="form-group">
-                  <label for="Title" class="sr-only">科別/職稱</label>
-                  <input type="data" class="form-control input-lg" id="Title" ng-model="vm.doctor.user_info.title" placeholder="科別/職稱">
+                  <label for="title" class="sr-only">科別/職稱</label>
+                  <div class="input-group">
+                    <span ng-show="signUpForm.title.$invalid && vm.submitted" class="input-group-addon invalid-input-sign"><i class="glyphicon glyphicon-question-sign"></i></span>
+                    <input type="text" class="form-control input-lg" name="title" ng-model="vm.doctor.user_info.title" placeholder="科別/職稱" required>
+                  </div>
                 </div>
                 <div class="form-group">
-                  <label for="Subject" class="sr-only">專業領域</label>
-                  <input type="data" class="form-control input-lg" id="Subject" ng-model="vm.doctor.user_info.specialty" placeholder="專業領域">
+                  <label for="subject" class="sr-only">專業領域</label>
+                  <div class="input-group">
+                    <span ng-show="signUpForm.subject.$invalid && vm.submitted" class="input-group-addon invalid-input-sign"><i class="glyphicon glyphicon-question-sign"></i></span>
+                    <input type="text" class="form-control input-lg" name="subject" ng-model="vm.doctor.user_info.specialty" placeholder="專業領域" required>
+                  </div>
                 </div>
                 <div class="form-group">
-                  <label for="AvailableTime" class="sr-only">看診時間</label>
-                  <input type="data" class="form-control input-lg" id="AvailableTime" ng-model="vm.doctor.user_info.available_time" placeholder="看診時間">
+                  <label for="availableTime" class="sr-only">看診時間</label>
+                  <div class="input-group">
+                    <span ng-show="signUpForm.availableTime.$invalid && vm.submitted" class="input-group-addon invalid-input-sign"><i class="glyphicon glyphicon-question-sign"></i></span>
+                    <input type="text" class="form-control input-lg" name="availableTime" ng-model="vm.doctor.user_info.available_time" placeholder="看診時間" required>
+                  </div>
                 </div>
               </div>
             </div>
@@ -72,20 +94,32 @@
 
               <div class="combine-form">
                 <div class="form-group">
-                  <label for="Username" class="sr-only">使用者名稱</label>
-                  <input type="text" class="form-control input-lg" id="Username" ng-model="vm.doctor.username" placeholder="使用者名稱">
+                  <label for="username" class="sr-only">使用者名稱</label>
+                  <div class="input-group">
+                    <span ng-show="signUpForm.username.$invalid && vm.submitted" class="input-group-addon invalid-input-sign"><i class="glyphicon glyphicon-question-sign"></i></span>
+                    <input type="text" class="form-control input-lg" name="username" ng-model="vm.doctor.username" placeholder="使用者名稱" required>
+                  </div>
                 </div>
                 <div class="form-group">
-                  <label for="Email" class="sr-only">信箱</label>
-                  <input type="email" class="form-control input-lg" id="Email" ng-model="vm.doctor.email" placeholder="信箱">
+                  <label for="email" class="sr-only">信箱</label>
+                  <div class="input-group">
+                    <span ng-show="signUpForm.email.$invalid && vm.submitted" class="input-group-addon invalid-input-sign"><i class="glyphicon glyphicon-question-sign"></i></span>
+                    <input type="email" class="form-control input-lg" name="email" ng-model="vm.doctor.email" placeholder="信箱" required>
+                  </div>
                 </div>
                 <div class="form-group">
-                  <label for="Password" class="sr-only">密碼</label>
-                  <input type="password" class="form-control input-lg" id="Password" ng-model="vm.doctor.password" placeholder="密碼">
+                  <label for="password" class="sr-only">密碼</label>
+                  <div class="input-group">
+                    <span ng-show="signUpForm.password.$invalid && vm.submitted" class="input-group-addon invalid-input-sign"><i class="glyphicon glyphicon-question-sign"></i></span>
+                    <input type="password" class="form-control input-lg" name="password" ng-model="vm.doctor.password" placeholder="密碼" required>
+                  </div>
                 </div>
                 <div class="form-group">
-                  <label for="Password-again" class="sr-only">再次輸入密碼</label>
-                  <input type="password" class="form-control input-lg" id="Password-again" ng-model="vm.doctor.confirmPassword" placeholder="再次輸入密碼">
+                  <label for="passwordConfirm" class="sr-only">再次輸入密碼</label>
+                  <div class="input-group">
+                    <span ng-show="signUpForm.passwordConfirm.$invalid && vm.submitted" class="input-group-addon invalid-input-sign"><i class="glyphicon glyphicon-question-sign"></i></span>
+                    <input type="password" class="form-control input-lg" name="passwordConfirm" ng-model="vm.doctor.confirmPassword" placeholder="再次輸入密碼" required>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label for="FB" class="sr-only">臉書帳號</label>
@@ -101,8 +135,8 @@
             <!---->
 
             <div class="center-block">
-              <label class="checkbox-inline">
-                <p><input type="checkbox" id="inlineCheckbox1" value="agreement"> 我已同意<a href="doctor-signup.html" class="blue-style-2">醫創網的使用者同意書</a></p>
+              <label class="form-group checkbox-inline">
+                <p><input type="checkbox" name="testbox" ng-model="vm.agreed"> 我已同意<a href="doctor-signup.html" class="blue-style-2">醫創網的使用者同意書</a></p>
               </label>
             </div>
 

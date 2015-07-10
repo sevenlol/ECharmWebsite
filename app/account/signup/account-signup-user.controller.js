@@ -10,7 +10,7 @@
     ];
 
     function accountSignUpUserController(userAccountService, Logger) {
-        var SIGNUP_SUCCESS_MESSAGE = 'Your account is registered successfully!';
+        var SIGNUP_SUCCESS_MESSAGE = '帳號註冊成功';
         var SIGNUP_FAIL_MESSAGE = 'Something is wrong!';
         var MIN_ACC_PW_LENGTH = 8;
         var MAX_ACC_PW_LENGTH = 16;
@@ -29,9 +29,10 @@
         vm.credentials = {};
 
         vm.signUp = signUp;
-        vm.resetForm = resetForm;
+
 
         vm.hideMessage = hideMessage;
+        vm.resetForm = resetForm;
 
         vm.msg = {
             isShown : false,
@@ -92,7 +93,7 @@
             if (vm.credentials.password !== vm.credentials.confirmPassword) {
                 logger.error('signUp', 'Password should be the same as Confirm Password');
                 logger.debug('signUp', 'Password: {0}, Confirm Password: {1}', [ vm.credentials.password, vm.credentials.confirmPassword ]);
-                showFailMessage("Password  should be the same as confirmPassword");
+                showFailMessage("密碼和再次輸入密碼不一致");
                 return;
             }
 
