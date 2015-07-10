@@ -33,33 +33,35 @@
       <div class="col-lg-4 col-lg-offset-4 text-center">
 
         <div class="login-panel">
-          <button type="submit" class="btn btn-fb btn-lg btn-block"><i class="fa fa-facebook-square"></i> 使用Facebook註冊</button>
+          <!-- <button type="submit" class="btn btn-fb btn-lg btn-block"><i class="fa fa-facebook-square"></i> 使用Facebook註冊</button> -->
 
-          <p class="arr-hint">或使用信箱註冊</p>
+          <alert ng-show="vm.msg.isShown" type="{{vm.msg.type}}" close="vm.hideMessage()">{{vm.msg.text}}</alert>
+
+          <p class="arr-hint">使用信箱註冊</p>
 
           <form role="form" ng-submit="vm.signUp()">
             <div class="combine-form">
               <div class="form-group">
                 <label for="Username" class="sr-only">使用者帳號</label>
-                <input type="text" class="form-control input-lg" id="Username" ng-model="vm.credentials.username" placeholder="使用者帳號">
+                <input type="text" class="form-control input-lg" id="Username" ng-model="vm.credentials.username" placeholder="使用者帳號" required>
               </div>
               <div class="form-group">
                 <label for="Email" class="sr-only">電子郵件</label>
-                <input type="email" class="form-control input-lg" id="Email" ng-model="vm.credentials.email" placeholder="信箱">
+                <input type="email" class="form-control input-lg" id="Email" ng-model="vm.credentials.email" placeholder="信箱" required>
               </div>
               <div class="form-group">
                 <label for="Password" class="sr-only">密碼</label>
-                <input type="password" class="form-control input-lg" id="Password" ng-model="vm.credentials.password" placeholder="密碼">
+                <input type="password" class="form-control input-lg" id="Password" ng-model="vm.credentials.password" placeholder="密碼" required>
               </div>
               <div class="form-group">
                 <label for="Password-again" class="sr-only">再次輸入密碼</label>
-                <input type="password" class="form-control input-lg" id="Password-again" ng-model="vm.credentials.confirmPassword" placeholder="再次輸入密碼">
+                <input type="password" class="form-control input-lg" id="Password-again" ng-model="vm.credentials.confirmPassword" placeholder="再次輸入密碼" required>
               </div>
             </div>
             <!---->
 
             <label class="checkbox-inline">
-              <p><input type="checkbox" id="inlineCheckbox1" value="agreement"> 我已同意<a href="doctor-signup.html" class="blue-style-2">醫創網的使用者同意書</a></p>
+              <p><input type="checkbox" id="inlineCheckbox1" value="agreement" required> 我已同意<a href="doctor-signup.html" class="blue-style-2">醫創網的使用者同意書</a></p>
             </label>
 
             <button type="submit" class="btn btn-info btn-lg btn-block">註冊完成</button>

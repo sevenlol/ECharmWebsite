@@ -10,6 +10,9 @@
     ];
 
     function accountSignUpUserController(userAccountService, Logger) {
+        var SIGNUP_SUCCESS_MESSAGE = 'Your account is registered successfully!';
+        var SIGNUP_FAIL_MESSAGE = 'Something is wrong!';
+
         // Logger object
         var logger = Logger.getInstance('app - account - signup - user');
         var vm = this;
@@ -18,6 +21,14 @@
         vm.credentials = {};
 
         vm.signUp = signUp;
+
+        vm.hideMessage = hideMessage;
+
+        vm.msg = {
+            isShown : false,
+            type : 'danger',
+            text : 'text'
+        };
 
         /* public functions */
         function signUp() {
@@ -29,10 +40,12 @@
                     // create failed
                     if (!account) {
                         logger.error('signUp', 'Invalid account in response!');
+                        showFailMessage(SIGNUP_FAIL_MESSAGE);
                         return;
                     }
 
                     logger.log('signUp', 'Sign Up Succeeded');
+                    showSuccessMessage(SIGNUP_SUCCESS_MESSAGE);
                     // created succeeded
                 };
             })();
@@ -42,8 +55,13 @@
                     logger.error('signUp', 'Sign Up Failed');
 
                     // if error message isn't empty
-                    if (error.message)
+                    if (error.message) {
                         logger.debug('signUp', 'Error Message: ' + error.message);
+                        showFailMessage(error.message);
+                    }
+                    else {
+                        showFailMessage(SIGNUP_FAIL_MESSAGE);
+                    }
                 };
             })();
 
@@ -59,6 +77,7 @@
             if (vm.credentials.password !== vm.credentials.confirmPassword) {
                 logger.error('signUp', 'Password should be the same as Confirm Password');
                 logger.debug('signUp', 'Password: {0}, Confirm Password: {1}', [ vm.credentials.password, vm.credentials.confirmPassword ]);
+                showFailMessage("Password  should be the same as confirmPassword");
                 return;
             }
 
@@ -78,6 +97,24 @@
                 logger.error('signUp', 'Invalid Input: Credentials');
             }
 
+        }
+
+        function hideMessage() {
+            vm.msg.isShown = false;
+        }
+
+        /* private functions */
+
+        function showSuccessMessage(message) {
+            vm.msg.isShown = true;
+            vm.msg.type = 'success';
+            vm.msg.text = angular.isString(message) ? message : "";
+        }
+
+        function showFailMessage(message) {
+            vm.msg.isShown = true;
+            vm.msg.type = 'danger';
+            vm.msg.text = angular.isString(message) ? message : "";
         }
     }
 

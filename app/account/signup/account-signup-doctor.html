@@ -30,6 +30,9 @@
     <!---->
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 text-center">
+
+        <alert ng-show="vm.msg.isShown" type="{{vm.msg.type}}" close="vm.hideMessage()">{{vm.msg.text}}</alert>
+
         <div class="redbar">以下您所填寫的醫師資料需經過審核，醫師資料將為您保密</div>
 
         <div class="login-panel">

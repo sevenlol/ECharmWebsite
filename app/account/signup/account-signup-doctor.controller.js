@@ -10,6 +10,9 @@
     ];
 
     function accountSignUpDoctorController(memberDoctorService, Logger) {
+        var SIGNUP_SUCCESS_MESSAGE = 'Your account is registered successfully!';
+        var SIGNUP_FAIL_MESSAGE = 'Something is wrong!';
+
         // Logger object
         var logger = Logger.getInstance('app - account - signup - doctor');
         var vm = this;
@@ -17,6 +20,14 @@
         // state variable: doctor
         vm.doctor = { user_info : {} };
         vm.signUp = signUp;
+
+        vm.hideMessage = hideMessage;
+
+        vm.msg = {
+            isShown : false,
+            type : 'danger',
+            text : 'text'
+        };
 
         /* public functions */
         function signUp() {
@@ -32,6 +43,7 @@
                     }*/
 
                     logger.log('signUp', 'Sign Up Succeeded');
+                    showSuccessMessage(SIGNUP_SUCCESS_MESSAGE);
                     // create succeeded
                 };
             })();
@@ -40,8 +52,13 @@
                     logger.error('signUp', 'Sign Up Failed');
 
                     // if error message isn't empty
-                    if (error.message)
+                    if (error.message) {
                         logger.debug('signUp', 'Error Message: ' + error.message);
+                        showFailMessage(error.message);
+                    }
+                    else {
+                        showFailMessage(SIGNUP_FAIL_MESSAGE);
+                    }
                 };
             })();
 
@@ -56,6 +73,7 @@
             if (vm.doctor.password !== vm.doctor.confirmPassword) {
                 logger.error('signUp', 'Password should be the same as Confirm Password');
                 logger.debug('signUp', 'Password: {0}, Confirm Password: {1}', [ vm.doctor.password, vm.doctor.confirmPassword ]);
+                showFailMessage("Password  should be the same as confirmPassword");
                 return;
             }
 
@@ -87,6 +105,24 @@
                 // TODO input error
                 logger.error('signUp', 'Invalid Input: Credentials');
             }
+        }
+
+        function hideMessage() {
+            vm.msg.isShown = false;
+        }
+
+        /* private functions */
+
+        function showSuccessMessage(message) {
+            vm.msg.isShown = true;
+            vm.msg.type = 'success';
+            vm.msg.text = angular.isString(message) ? message : "";
+        }
+
+        function showFailMessage(message) {
+            vm.msg.isShown = true;
+            vm.msg.type = 'danger';
+            vm.msg.text = angular.isString(message) ? message : "";
         }
     }
 
