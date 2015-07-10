@@ -7,10 +7,10 @@
     doctorDetailController.$inject = [
         'doctor',
         'articleList',
-        'answerList'
+        'qaList'
     ];
 
-    function doctorDetailController(doctor, articleList, answerList) {
+    function doctorDetailController(doctor, articleList, qaList) {
         var SHOW_MORE_ARTICLE_STEP = 1;
         var SHOW_MORE_QUESTION_STEP = 1;
 
@@ -18,7 +18,7 @@
 
         vm.doctor = doctor;
         vm.articleList = articleList;
-        vm.questionList = answerList;
+        vm.questionList = qaList;
 
         /* article variable/function */
         vm.numOfArticles = 0;
@@ -33,7 +33,7 @@
 
         /* question variable/function */
         vm.numOfQuestions = 0;
-        vm.questionList = answerList;
+        vm.questionList = qaList;
         vm.questionPageLimit = 1;
         vm.questionIndex = 0;
         vm.displayShowMoreQuestionButton = false;
