@@ -16,6 +16,8 @@
         <div class="login-panel">
           <button type="button" class="btn btn-fb btn-lg btn-block" ng-click="vm.fbSignIn()"><i class="fa fa-facebook-square"></i> 使用Facebook登入</button>
 
+          <alert ng-show="vm.msg.isShown" type="{{vm.msg.type}}" close="vm.hideMessage()">{{vm.msg.text}}</alert>
+
           <p class="arr-hint">使用帳號登入</p>
 
           <form role="form" ng-submit="vm.signIn()">

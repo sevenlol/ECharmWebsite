@@ -11,12 +11,23 @@
     ];
 
     function accountSignInDoctorController(authService, $rootScope, $state) {
+        var SIGNIN_SUCCESS_MESSAGE = 'Sign in succeeded!';
+        var SIGNIN_FAIL_MESSAGE = 'Invalid account or password!';
+
         var vm = this;
 
         // state variable: credentials
         vm.credentials = {};
 
         vm.signIn = signIn;
+
+        vm.hideMessage = hideMessage;
+
+        vm.msg = {
+            isShown : false,
+            type : 'danger',
+            text : 'text'
+        };
 
         /* public functions */
 
@@ -31,6 +42,7 @@
                         $rootScope.authenticated = false;
                         $rootScope.account = null;
                         $rootScope.credentials = null;
+                        showFailMessage(SIGNIN_FAIL_MESSAGE);
                         return;
                     }
 
@@ -39,6 +51,7 @@
                         $rootScope.authenticated = false;
                         $rootScope.account = null;
                         $rootScope.credentials = null;
+                        showFailMessage(SIGNIN_FAIL_MESSAGE);
                         return;
                     }
 
@@ -54,10 +67,29 @@
                     $rootScope.authenticated = false;
                     $rootScope.account = null;
                     $rootScope.credentials = null;
+                    showFailMessage(SIGNIN_FAIL_MESSAGE);
                 }
             })($rootScope, $state);
 
             authService.signIn(vm.credentials, signInSuccessCallback, signInFailCallback);
+        }
+
+        function hideMessage() {
+            vm.msg.isShown = false;
+        }
+
+        /* private functions */
+
+        function showSuccessMessage(message) {
+            vm.msg.isShown = true;
+            vm.msg.type = 'success';
+            vm.msg.text = angular.isString(message) ? message : "";
+        }
+
+        function showFailMessage(message) {
+            vm.msg.isShown = true;
+            vm.msg.type = 'danger';
+            vm.msg.text = angular.isString(message) ? message : "";
         }
     }
 

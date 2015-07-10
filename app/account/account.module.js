@@ -3,6 +3,7 @@
 
     angular.module('app.account', [
         'ui.router',
+        'ui.bootstrap',
         'app.auth',
         'ny.logger',
         'data.account',
