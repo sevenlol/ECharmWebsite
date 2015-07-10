@@ -12,15 +12,24 @@
     function accountSignUpUserController(userAccountService, Logger) {
         var SIGNUP_SUCCESS_MESSAGE = 'Your account is registered successfully!';
         var SIGNUP_FAIL_MESSAGE = 'Something is wrong!';
+        var MIN_ACC_PW_LENGTH = 8;
+        var MAX_ACC_PW_LENGTH = 16;
 
         // Logger object
         var logger = Logger.getInstance('app - account - signup - user');
         var vm = this;
 
+        // for form validation
+        vm.submitted = false;
+        vm.agreed = false;
+        vm.min = MIN_ACC_PW_LENGTH;
+        vm.max = MAX_ACC_PW_LENGTH;
+
         // state variable: credentials
         vm.credentials = {};
 
         vm.signUp = signUp;
+        vm.resetForm = resetForm;
 
         vm.hideMessage = hideMessage;
 
@@ -32,6 +41,12 @@
 
         /* public functions */
         function signUp() {
+            vm.submitted = true;
+
+            if (!vm.agreed) {
+                return;
+            }
+
             var promise;
             var signUpSuccessCallback = (function() {
                 return function(account) {
@@ -101,6 +116,10 @@
 
         function hideMessage() {
             vm.msg.isShown = false;
+        }
+
+        function resetForm() {
+            vm.submitted = false;
         }
 
         /* private functions */
