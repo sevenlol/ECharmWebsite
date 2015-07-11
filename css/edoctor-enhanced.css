@@ -66,3 +66,8 @@ ul.doctor-list li p {
 .blog-detail-background {
 	background-image: url(../images/article-detail-bg.jpg);
 }
+
+/* askdoctor */
+.ask-btn {
+	margin-top: 15px;
+}

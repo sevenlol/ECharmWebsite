@@ -48,10 +48,13 @@
       <div class="col-lg-2 col-sm-2">
         <div class="user-thumb-md">
           <img src="images/userpic_2.jpg" alt="" class="img-circle" />
-          <p>
+          <p ng-show="authenticated">
             林祥文
             <i class="fa fa-mars"></i>
             <span>39歲 台北市</span>
+          </p>
+          <p ng-show="!authenticated">
+            訪客
           </p>
         </div>
       </div>
@@ -60,8 +63,8 @@
 
         <div role="tabpanel">
           <ul class="nav nav-pills ask-type" role="tablist">
-            <li role="presentation" class="active"><a href="#ask-question" aria-controls="ask-question" role="tab" data-toggle="tab">我要提問</a></li>
-            <li role="presentation"><a href="#search-doctor" aria-controls="search-doctor" role="tab" data-toggle="tab">我要找醫生</a></li>
+            <li role="presentation" class="active"><a href=""role="tab">我要提問</a></li>
+            <!-- <li role="presentation"><a href="#search-doctor" aria-controls="search-doctor" role="tab" data-toggle="tab">我要找醫生</a></li> -->
           </ul>
         </div>
 
@@ -69,16 +72,16 @@
           <div role="tabpanel" class="tab-pane active" id="ask-question">
             <form>
               <textarea class="form-control" rows="4" placeholder="請輸入問題內容，字數至少要十個字以上"></textarea>
-                <div class="pull-right"><a href="#"><i class="fa fa-camera"></i></a> <button class="btn round-btn" type="button">確認提問</button></div>
+              <div class="pull-right"><a href="#"><i class="fa fa-camera"></i></a> <button class="btn round-btn ask-btn" type="button">確認提問</button></div>
             </form>
           </div>
 
-          <div role="tabpanel" class="tab-pane" id="search-doctor">
+          <!-- <div role="tabpanel" class="tab-pane" id="search-doctor">
             <input type="text" class="form-control" placeholder="請輸入醫師姓名或醫院名稱">
             <div class="pull-right">
               <button class="btn round-btn" type="button">前往搜尋</button>
             </div>
-          </div>
+          </div> -->
         </div>
 
       </div>
