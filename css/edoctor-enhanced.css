@@ -56,3 +56,6 @@ ul.doctor-list li p {
 .doctor-login-background {
 	background-image: url(../images/login-doctor-bg.jpg);
 }
+.blog-detail-background {
+	background-image: url(../images/article-detail-bg.jpg);
+}
