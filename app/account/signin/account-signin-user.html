@@ -23,20 +23,16 @@
 
           <form name="signInForm" role="form" ng-submit="vm.signIn()" novalidate>
             <div class="combine-form">
-              <div class="form-group">
+              <div class="form-group validation-form-group">
                 <label for="username" class="sr-only">使用者帳號</label>
-                <div class="input-group">
-                  <span ng-show="signInForm.username.$invalid && vm.submitted" class="input-group-addon invalid-input-sign"><i class="glyphicon glyphicon-question-sign"></i></span>
-                  <input type="text" class="form-control input-lg" name="username" ng-model="vm.credentials.username" placeholder="使用者帳號" required>
-                </div>
+                <i ng-show="signInForm.username.$invalid && vm.submitted" class="glyphicon glyphicon-question-sign invalid-input-sign"></i>
+                <input type="text" class="form-control input-lg" name="username" ng-model="vm.credentials.username" placeholder="使用者帳號" required>
                 <!-- <span class="glyphicon glyphicon-warning-sign form-control-feedback" style="color:#c62828"></span> -->
               </div>
-              <div class="form-group">
+              <div class="form-group validation-form-group">
                 <label for="password" class="sr-only">密碼</label>
-                <div class="input-group">
-                  <span ng-show="signInForm.password.$invalid && vm.submitted" class="input-group-addon invalid-input-sign"><i class="glyphicon glyphicon-question-sign"></i></span>
-                  <input type="password" class="form-control input-lg" name="password" ng-model="vm.credentials.password" placeholder="密碼" required>
-                </div>
+                <i ng-show="signInForm.password.$invalid && vm.submitted" class="glyphicon glyphicon-question-sign invalid-input-sign"></i>
+                <input type="password" class="form-control input-lg" name="password" ng-model="vm.credentials.password" placeholder="密碼" required>
               </div>
             </div>
             <button type="submit" class="btn btn-info btn-lg btn-block">登入</button>

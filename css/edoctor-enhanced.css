@@ -38,7 +38,14 @@ ul.doctor-list li p {
 	font-size:0.9em;
 }
 
+.validation-form-group {
+	display: inline;
+	position: relative;
+}
 .invalid-input-sign {
+	position: absolute;
+	right:10px;
+	top: 10px;
 	color : #c62828;
 	font-size : 18px;
 }
