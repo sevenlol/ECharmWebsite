@@ -16,14 +16,15 @@
       </div>
 
 	    <ul class="nav nav-tabs">
-        <li role="navigation" class="active"><a href="#">所有醫師</a></li>
+        <li role="navigation" ng-class="{true: 'active'}[vm.category === category.name]" ng-repeat="category in vm.categoryList"><a ui-sref="doctor.list({ category : category.name })">{{category.text}}</a></li>
+        <!-- <li role="navigation" class="active"><a href="#">所有醫師</a></li>
         <li role="navigation"><a href="#">醫學美容</a></li>
         <li role="navigation"><a href="#">整形外科</a></li>
         <li role="navigation"><a href="#">婦科</a></li>
         <li role="navigation"><a href="#">產科</a></li>
         <li role="navigation"><a href="#">皮膚科</a></li>
         <li role="navigation"><a href="#">小兒科</a></li>
-        <li role="navigation"><a href="#">婦科</a></li>
+        <li role="navigation"><a href="#">婦科</a></li> -->
       </ul>
     </div>
   </section>
