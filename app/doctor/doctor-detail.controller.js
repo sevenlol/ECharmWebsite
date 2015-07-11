@@ -5,16 +5,30 @@
            .controller('doctorDetailController', doctorDetailController);
 
     doctorDetailController.$inject = [
+        '$stateParams',
+        'doctorCategoryList',
         'doctor',
         'articleList',
         'qaList'
     ];
 
-    function doctorDetailController(doctor, articleList, qaList) {
+    function doctorDetailController($stateParams, doctorCategoryList, doctor, articleList, qaList) {
         var SHOW_MORE_ARTICLE_STEP = 1;
         var SHOW_MORE_QUESTION_STEP = 1;
 
         var vm = this;
+
+        vm.categoryList = doctorCategoryList;
+        vm.category = $stateParams ? $stateParams.category : 'all';
+        vm.categoryName = '';
+        if  (vm.categoryList && angular.isArray(vm.categoryList) && vm.categoryList.length > 0) {
+            for (var i in vm.categoryList) {
+                if (vm.categoryList[i].name === vm.category) {
+                    vm.categoryName = vm.categoryList[i].text;
+                    break;
+                }
+            }
+        }
 
         vm.doctor = doctor;
         vm.articleList = articleList;

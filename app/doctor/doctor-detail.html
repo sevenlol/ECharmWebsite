@@ -4,8 +4,8 @@
 
     <ol class="breadcrumb hidden-xs text-right">
       <li><a ui-sref="home" ui-sref-opts="{ reload : true }">醫創網</a></li>
-      <li class="active">外科</li>
-      <li>陳威德醫師</li>
+      <li><a ui-sref="doctor.list({ category : vm.category })">{{vm.categoryName}}</a></li>
+      <li class="active">陳威德醫師</li>
     </ol>
 
     <div class="row">
