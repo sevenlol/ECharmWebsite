@@ -20,13 +20,13 @@
           <li class="col-lg-12" ng-repeat="category in vm.categoryList" id={{category.name}}>
             <h3>{{category.text}}</h3>
             <p>
-              {{category.description}}              
+              {{category.description}}
             </p>
             <a ui-sref="blog.list({ category : category.name })" class="btn round-btn">欣賞文章</a>
           </li>
         </ul>
       </div>
-<!-- 
+<!--
 
       <div class="row">
         <ul class="category clearfix">
@@ -97,8 +97,8 @@
       <div id="side-bar">
         <h3>常見相關問題</h3>
 
-        <accordion close-others="vm.oneAccordionAtATime" ng-repeat="category in vm.categoryList">
-          <accordion-group heading={{category.text}} is-open=$first is-disabled="false">
+        <accordion close-others="vm.oneAccordionAtATime">
+          <accordion-group heading={{category.text}} is-open=$first is-disabled="false" ng-repeat="category in vm.categoryList">
             <ul class="faq-rocommend">
               <li><span>A</span><a href="#">如果要瘦臉.大腿內側.肚子要怎麼做</a></li>
               <li><span>A</span><a href="#">睡覺鼻塞怎麼辦?</a></li>
