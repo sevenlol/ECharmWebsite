@@ -16,21 +16,15 @@
       </div>
 
       <ul class="nav nav-tabs">
-        <li role="navigation" class="active"><a href="#">醫學美容</a></li>
-        <li role="navigation"><a href="#">整形外科</a></li>
-        <li role="navigation"><a href="#">婦科</a></li>
-        <li role="navigation"><a href="#">產科</a></li>
-        <li role="navigation"><a href="#">皮膚科</a></li>
-        <li role="navigation"><a href="#">小兒科</a></li>
-        <li role="navigation"><a href="#">婦科</a></li>
-        <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">其他醫學問題 <span class="caret"></span></a>
+        <li role="navigation" ng-class="{true: 'active'}[vm.category === category.name]" ng-repeat="category in vm.categoryList"><a ui-sref="askdoctor.list({ category : category.name })">{{category.text}}</a></li>
+        <!-- <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">其他醫學問題 <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li role="navigation"><a href="#">其他類型1</a></li>
             <li role="navigation"><a href="#">其他類型2</a></li>
             <li role="navigation"><a href="#">其他類型3</a></li>
           </ul>
-        </li>
+        </li> -->
       </ul>
     </div>
   </section><!--end-->
@@ -38,8 +32,8 @@
   <div class="container">
 
     <ol class="breadcrumb hidden-xs text-right">
-      <li><a href="index.html">醫創網</a></li>
-      <li><a href="qa-index.html">即時醫師問答</a></li>
+      <li><a ui-sref="home">醫創網</a></li>
+      <li><a ui-sref="askdoctor.list({ category : 'all' })">即時醫師問答</a></li>
       <li class="active">醫學美容</li>
     </ol>
 
@@ -133,6 +127,154 @@
 <!-- QA board  -->
 <section class="container-fluid qa-board">
   <div class="container">
+
+    <div class="row">
+      <div class="col-lg-4">
+        <!--Q3-->
+        <div class="question-block">
+          <!-- ask -->
+          <div class="question-top noanswer">
+            <div class="question-profile">
+              <a href="#">
+                <img src="images/userpic_3.jpg" alt="" class="img-circle" />李大強
+              </a>
+              <i class="fa fa-venus"></i>
+              <span>24歲 宜蘭市 <br />45分前</span>
+            </div>
+            <p>
+              身高180公分／100公斤 這樣算胖嘛<br />
+              是否該減肥<br />
+              我朋友都說我胖
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <!--Q3-->
+        <div class="question-block">
+          <!-- ask -->
+          <div class="question-top noanswer">
+            <div class="question-profile">
+              <a href="#">
+                <img src="images/userpic_3.jpg" alt="" class="img-circle" />李大強
+              </a>
+              <i class="fa fa-venus"></i>
+              <span>24歲 宜蘭市 <br />45分前</span>
+            </div>
+            <p>
+              身高180公分／100公斤 這樣算胖嘛<br />
+              是否該減肥<br />
+              我朋友都說我胖
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <!--Q3-->
+        <div class="question-block">
+          <!-- ask -->
+          <div class="question-top noanswer">
+            <div class="question-profile">
+              <a href="#">
+                <img src="images/userpic_3.jpg" alt="" class="img-circle" />李大強
+              </a>
+              <i class="fa fa-venus"></i>
+              <span>24歲 宜蘭市 <br />45分前</span>
+            </div>
+            <p>
+              身高180公分／100公斤 這樣算胖嘛<br />
+              是否該減肥<br />
+              我朋友都說我胖
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <!--Q3-->
+        <div class="question-block">
+          <!-- ask -->
+          <div class="question-top">
+            <div class="question-profile">
+              <a href="#">
+                <img src="images/userpic_3.jpg" alt="" class="img-circle" />李大強
+              </a>
+              <i class="fa fa-venus"></i>
+              <span>24歲 宜蘭市 <br />45分前</span>
+            </div>
+            <p>
+              身高180公分／100公斤 這樣算胖嘛<br />
+              是否該減肥<br />
+              我朋友都說我胖
+            </p>
+          </div>
+
+          <a href="javaScript:void(0);" class="pull-right" ng-click="vm.collapse()">
+            <span ng-show="!vm.isCollapsed" class="fa fa-angle-up"></span>
+            <span ng-show="vm.isCollapsed" class="fa fa-angle-down"></span>
+            收合
+          </a>
+
+          <div class="answer-content collapse in" id="answer" collapse="vm.isCollapsed">
+            <div class="question-profile">
+              <a href="#" class="doc-profile">
+                <img src="images/docpic.jpg" alt="" class="img-circle" />陳威德 醫師
+              </a>
+              <span>仁愛醫院  皮膚科 <br />15分前</span>
+            </div>
+            <p class="pink-style">無氧訓練肌肉有助新陳代謝， 但配上有氧運動才瘦的更快。 每天游泳OR跑步30分鐘持續幾個月就能看到成效。當然飲食需謹慎挑選，不油炸，多蔬菜。有飽足感很重要。</p>
+            <p class="pink-style">是的，或是喝點湯，反正就是不要單吃水果，且記得不要太晚吃哦! 水果盡量也不要選擇香蕉，熱量太高了 像我晚餐都是吃玉米(或喝湯，堅果)，蒟蒻，水果，吃完很有飽足感，若覺得蒟蒻沒味道，建議可以加些醬油跟哇沙米，會比較沒有味道 我一個月這樣吃，也沒有特別運動從69瘦到66</p>
+
+            <div class="satisfy">滿意度 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <!--Q3-->
+        <div class="question-block">
+          <!-- ask -->
+          <div class="question-top">
+            <div class="question-profile">
+              <a href="#">
+                <img src="images/userpic_3.jpg" alt="" class="img-circle" />李大強
+              </a>
+              <i class="fa fa-venus"></i>
+              <span>24歲 宜蘭市 <br />45分前</span>
+            </div>
+            <p>
+              身高180公分／100公斤 這樣算胖嘛<br />
+              是否該減肥<br />
+              我朋友都說我胖
+            </p>
+          </div>
+
+          <!-- answer -->
+          <a href="javaScript:void(0);" class="pull-right" ng-click="vm.collapse()">
+            <span ng-show="!vm.isCollapsed" class="fa fa-angle-up"></span>
+            <span ng-show="vm.isCollapsed" class="fa fa-angle-down"></span>
+            收合
+          </a>
+
+          <div class="answer-content collapse in" id="answer">
+            <div class="question-profile">
+              <a href="#" class="doc-profile">
+                <img src="images/docpic.jpg" alt="" class="img-circle" />陳威德 醫師
+              </a>
+              <span>仁愛醫院  皮膚科 <br />15分前</span>
+            </div>
+            <p class="pink-style" collapse="!vm.isCollapsed">無氧訓練肌肉有助新陳代謝， 但配上有氧運動才瘦的更快 ...</p>
+            <p class="pink-style" collapse="vm.isCollapsed">無氧訓練肌肉有助新陳代謝， 但配上有氧運動才瘦的更快。 每天游泳OR跑步30分鐘持續幾個月就能看到成效。當然飲食需謹慎挑選，不油炸，多蔬菜。有飽足感很重要。</p>
+            <p class="pink-style" collapse="vm.isCollapsed">是的，或是喝點湯，反正就是不要單吃水果，且記得不要太晚吃哦! 水果盡量也不要選擇香蕉，熱量太高了 像我晚餐都是吃玉米(或喝湯，堅果)，蒟蒻，水果，吃完很有飽足感，若覺得蒟蒻沒味道，建議可以加些醬油跟哇沙米，會比較沒有味道 我一個月這樣吃，也沒有特別運動從69瘦到66</p>
+
+            <div class="satisfy" collapse="vm.isCollapsed">滿意度 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="col-lg-10 col-lg-offset-1">
 
       <!--Q1-->
@@ -150,38 +292,7 @@
         </div>
 
         <!-- answer -->
-        <a href="#" id="show-answer" class="pull-right" data-toggle="collapse" data-target="#answer" aria-expanded="true" aria-controls="answer"><span class="fa fa-angle-up"></span> 收合</a>
-
-        <div class="answer-content collapse in" id="answer">
-          <div class="question-profile">
-            <a href="#" class="doc-profile">
-              <img src="images/docpic.jpg" alt="" class="img-circle" />陳威德 醫師
-            </a>
-            <span>仁愛醫院  皮膚科 <br />15分前</span>
-          </div>
-          <p class="pink-style">無氧訓練肌肉有助新陳代謝， 但配上有氧運動才瘦的更快。 每天游泳OR跑步30分鐘持續幾個月就能看到成效。當然飲食需謹慎挑選，不油炸，多蔬菜。有飽足感很重要。</p>
-          <p class="pink-style">是的，或是喝點湯，反正就是不要單吃水果，且記得不要太晚吃哦! 水果盡量也不要選擇香蕉，熱量太高了 像我晚餐都是吃玉米(或喝湯，堅果)，蒟蒻，水果，吃完很有飽足感，若覺得蒟蒻沒味道，建議可以加些醬油跟哇沙米，會比較沒有味道 我一個月這樣吃，也沒有特別運動從69瘦到66</p>
-
-          <div class="satisfy">滿意度 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></div>
-        </div>
-      </div>
-
-      <!--Q2-->
-      <div class="question-block">
-        <!-- question -->
-        <div class="question-top">
-          <div class="question-profile">
-            <a href="#">
-              <img src="images/userpic.jpg" alt="" class="img-circle" />林靜宜
-            </a>
-            <i class="fa fa-venus"></i>
-            <span>17歲 台北市 <br />15分前</span>
-          </div>
-          <p>最近胖很快，請問有沒有什麼快速地減肥方式？</p>
-        </div>
-
-        <!-- answer -->
-        <a href="#" id="show-answer" class="pull-right" data-toggle="collapse" data-target="#answer" aria-expanded="true" aria-controls="answer"><span class="fa fa-angle-up"></span> 收合</a>
+        <a href="#" class="pull-right"><span class="fa fa-angle-up"></span> 收合</a>
 
         <div class="answer-content collapse in" id="answer">
           <div class="question-profile">
@@ -213,37 +324,6 @@
             是否該減肥<br />
             我朋友都說我胖
           </p>
-        </div>
-      </div>
-
-      <!--Q4-->
-      <div class="question-block">
-        <!-- question -->
-        <div class="question-top">
-          <div class="question-profile">
-            <a href="#">
-              <img src="images/userpic.jpg" alt="" class="img-circle" />林靜宜
-            </a>
-            <i class="fa fa-venus"></i>
-            <span>17歲 台北市 <br />15分前</span>
-          </div>
-          <p>最近胖很快，請問有沒有什麼快速地減肥方式？</p>
-        </div>
-
-        <!-- answer -->
-        <a href="#" id="show-answer" class="pull-right" data-toggle="collapse" data-target="#answer" aria-expanded="true" aria-controls="answer"><span class="fa fa-angle-up"></span> 收合</a>
-
-        <div class="answer-content collapse in" id="answer">
-          <div class="question-profile">
-            <a href="#" class="doc-profile">
-              <img src="images/docpic.jpg" alt="" class="img-circle" />陳威德 醫師
-            </a>
-            <span>仁愛醫院  皮膚科 <br />15分前</span>
-          </div>
-          <p class="pink-style">無氧訓練肌肉有助新陳代謝， 但配上有氧運動才瘦的更快。 每天游泳OR跑步30分鐘持續幾個月就能看到成效。當然飲食需謹慎挑選，不油炸，多蔬菜。有飽足感很重要。</p>
-          <p class="pink-style">是的，或是喝點湯，反正就是不要單吃水果，且記得不要太晚吃哦! 水果盡量也不要選擇香蕉，熱量太高了 像我晚餐都是吃玉米(或喝湯，堅果)，蒟蒻，水果，吃完很有飽足感，若覺得蒟蒻沒味道，建議可以加些醬油跟哇沙米，會比較沒有味道 我一個月這樣吃，也沒有特別運動從69瘦到66</p>
-
-          <div class="satisfy">滿意度 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></div>
         </div>
       </div>
 
