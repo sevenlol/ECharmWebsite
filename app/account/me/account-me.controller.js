@@ -40,6 +40,7 @@
         }
 
         if (myAccount.user_type === 'DOCTOR') {
+            var subState = $stateParams.detailCategory;
 
             if ($state.is('account.me.doctor.answer')  ||
                 $state.is('account.me.doctor.article') ||
