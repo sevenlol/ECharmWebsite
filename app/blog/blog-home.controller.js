@@ -5,12 +5,16 @@
            .controller('blogHomeController', blogHomeController);
 
     blogHomeController.$inject = [
+    	'$stateParams',
+        'blogCategoryList',
     ];
 
-    function blogHomeController() {
+    function blogHomeController($stateParams, blogCategoryList) {
         var vm = this;
 
         vm.oneAccordionAtATime = true;
+        vm.categoryList = blogCategoryList;
+        vm.category = $stateParams ? $stateParams.category : 'all';
     }
 
 })();

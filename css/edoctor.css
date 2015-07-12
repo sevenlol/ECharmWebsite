@@ -697,33 +697,79 @@ ul.category li p {
 ul.category li a {
 	margin-left:0;
 }
+/*醫美*/
 ul.category li#cate-1 {
 	background:url(../images/cate-1.jpg) no-repeat left center;
 	padding-left:50%;
 }
+/*整外*/
 ul.category li#cate-2 {
 	background:url(../images/cate-2.jpg) no-repeat left center;
 	padding-left:50%;
 }
+/*婦科*/
 ul.category li#cate-3 {
 	background:url(../images/cate-3.jpg) no-repeat right center;
 	border-radius:5px 0 0 5px;
 }
+/*產科*/
 ul.category li#cate-4 {
 	background:url(../images/cate-4.jpg) no-repeat right center;
 	border-radius:0 5px 5px 0;
 	border-left:none;
 }
+/*皮膚*/
 ul.category li#cate-5 {
 	background:url(../images/cate-5.jpg) no-repeat right center;
 	border-radius:5px 0 0 5px;
 }
+/*小兒*/
 ul.category li#cate-6 {
 	background:url(../images/cate-6.jpg) no-repeat right center;
 	border-radius:0 5px 5px 0;
 	border-left:none;
 }
+/*其他*/
 ul.category li#cate-7 {
+	background:url(../images/cate-7.jpg) no-repeat right center;
+}
+
+
+/*category for article*/
+/*醫美*/
+ul.category li#Category_1 {
+	background:url(../images/cate-1.jpg) no-repeat left center;
+	padding-left:50%;
+}
+/*整外*/
+ul.category li#Category_2 {
+	background:url(../images/cate-2.jpg) no-repeat left center;
+	padding-left:50%;
+}
+/*婦科*/
+ul.category li#Category_3 {
+	background:url(../images/cate-3.jpg) no-repeat right center;
+	border-radius:5px 0 0 5px;
+}
+/*產科*/
+ul.category li#Category_4 {
+	background:url(../images/cate-4.jpg) no-repeat right center;
+	border-radius:0 5px 5px 0;
+	border-left:none;
+}
+/*皮膚*/
+ul.category li#Category_5 {
+	background:url(../images/cate-5.jpg) no-repeat right center;
+	border-radius:5px 0 0 5px;
+}
+/*小兒*/
+ul.category li#Category_6 {
+	background:url(../images/cate-6.jpg) no-repeat right center;
+	border-radius:0 5px 5px 0;
+	border-left:none;
+}
+/*其他*/
+ul.category li#Category_7 {
 	background:url(../images/cate-7.jpg) no-repeat right center;
 }
 
