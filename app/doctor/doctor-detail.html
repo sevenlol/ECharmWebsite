@@ -4,8 +4,8 @@
 
     <ol class="breadcrumb hidden-xs text-right">
       <li><a ui-sref="home" ui-sref-opts="{ reload : true }">醫創網</a></li>
-      <li class="active">外科</li>
-      <li>陳威德醫師</li>
+      <li><a ui-sref="doctor.list({ category : vm.category })">{{vm.categoryName}}</a></li>
+      <li class="active">陳威德醫師</li>
     </ol>
 
     <div class="row">
@@ -65,20 +65,20 @@
 
 	    <p class="history-top">共有<span class="pink-style">{{vm.numOfArticles}}則</span>發表文章</p>
 
-                <div class="table-responsive" ng-show="vm.numOfArticles">
-                  <table class="table table-hover">
-                    <tbody>
-                      <tr class='clickable-row' ng-repeat="article in vm.articleList | limitTo : vm.articlePageLimit : vm.articleIndex">
-                        <th>{{article.created_at}}</th>
-                        <td><span class="blue-style-1">[{{article.category}}]</span> {{article.title}}</td>
-                        <td>by <a href="profile-doctor.html">{{vm.doctorName}} 醫師</a> </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+      <div class="table-responsive" ng-show="vm.numOfArticles">
+        <table class="table table-hover">
+          <tbody>
+            <tr class='clickable-row' ng-repeat="article in vm.articleList | limitTo : vm.articlePageLimit : vm.articleIndex">
+              <th>{{article.created_at}}</th>
+              <td><span class="blue-style-1">[{{article.category}}]</span> {{article.title}}</td>
+              <td>by <a href="profile-doctor.html">{{vm.doctorName}} 醫師</a> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-                <button type="button" class="btn btn-default btn-lg btn-block" ng-show="vm.displayShowMoreButton" ng-click="vm.showMoreArticle()">顯示更多發表文章</button>
-                <button type="button" class="btn btn-default btn-lg btn-block" disabled ng-show="!vm.displayShowMoreButton">沒有更多發表文章</button>
+      <button type="button" class="btn btn-default btn-lg btn-block" ng-show="vm.displayShowMoreArticleButton" ng-click="vm.showMoreArticle()">顯示更多發表文章</button>
+      <button type="button" class="btn btn-default btn-lg btn-block" disabled ng-show="!vm.displayShowMoreArticleButton">沒有更多發表文章</button>
 
 	  </div>
 	</div>
@@ -90,20 +90,20 @@
 
 	    <p class="history-top">共有<span class="pink-style">{{vm.numOfQuestions}}則</span>問答記錄</p>
 
-                <div class="table-responsive" ng-show="vm.numOfQuestions">
-                  <table class="table table-hover">
-                    <tbody>
-                      <tr class='clickable-row' ng-repeat="question in vm.questionList | limitTo : vm.questionPageLimit : vm.questionIndex">
-                        <th>1小時前</th>
-                        <td><span class="blue-style-1">Q</span> {{question.content_text}}</td>
-                        <td><span class="pink-style">A</span> {{question.answer.answer_text}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+      <div class="table-responsive" ng-show="vm.numOfQuestions">
+        <table class="table table-hover">
+          <tbody>
+            <tr class='clickable-row' ng-repeat="question in vm.questionList | limitTo : vm.questionPageLimit : vm.questionIndex">
+              <th>1小時前</th>
+              <td><span class="blue-style-1">Q</span> {{question.content_text}}</td>
+              <td><span class="pink-style">A</span> {{question.answer.answer_text}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-                <button type="button" class="btn btn-default btn-lg btn-block" ng-show="vm.displayShowMoreButton" ng-click="vm.showMoreQuestion()">顯示更多問答紀錄</button>
-                <button type="button" class="btn btn-default btn-lg btn-block" disabled ng-show="!vm.displayShowMoreButton">沒有更多問答紀錄</button>
+      <button type="button" class="btn btn-default btn-lg btn-block" ng-show="vm.displayShowMoreQuestionButton" ng-click="vm.showMoreQuestion()">顯示更多問答紀錄</button>
+      <button type="button" class="btn btn-default btn-lg btn-block" disabled ng-show="!vm.displayShowMoreQuestionButton">沒有更多問答紀錄</button>
 
 	  </div>
 	</div>

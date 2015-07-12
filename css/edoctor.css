@@ -398,7 +398,7 @@ ul.newmenu li.active > a:focus {
 /* login & sign up ====================================== */
 .login-doctor,
 .login-public {
-	height:100vh;
+	height:120vh;
 }
 
 /*.login-box {

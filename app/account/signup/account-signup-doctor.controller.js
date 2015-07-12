@@ -10,18 +10,23 @@
     ];
 
     function accountSignUpDoctorController(memberDoctorService, Logger) {
-        var SIGNUP_SUCCESS_MESSAGE = 'Your account is registered successfully!';
+        var SIGNUP_SUCCESS_MESSAGE = '帳號註冊成功';
         var SIGNUP_FAIL_MESSAGE = 'Something is wrong!';
 
         // Logger object
         var logger = Logger.getInstance('app - account - signup - doctor');
         var vm = this;
 
+        // for form validation
+        vm.submitted = false;
+        vm.agreed = false;
+
         // state variable: doctor
         vm.doctor = { user_info : {} };
         vm.signUp = signUp;
 
         vm.hideMessage = hideMessage;
+        vm.resetForm = resetForm;
 
         vm.msg = {
             isShown : false,
@@ -31,6 +36,12 @@
 
         /* public functions */
         function signUp() {
+            vm.submitted = true;
+
+            if (!vm.agreed) {
+                return;
+            }
+
             var promise;
             var signUpSuccessCallback = (function() {
                 return function(account) {
@@ -73,7 +84,7 @@
             if (vm.doctor.password !== vm.doctor.confirmPassword) {
                 logger.error('signUp', 'Password should be the same as Confirm Password');
                 logger.debug('signUp', 'Password: {0}, Confirm Password: {1}', [ vm.doctor.password, vm.doctor.confirmPassword ]);
-                showFailMessage("Password  should be the same as confirmPassword");
+                showFailMessage("密碼和再次輸入密碼不一致");
                 return;
             }
 
@@ -109,6 +120,10 @@
 
         function hideMessage() {
             vm.msg.isShown = false;
+        }
+
+        function resetForm() {
+            vm.submitted = false;
         }
 
         /* private functions */

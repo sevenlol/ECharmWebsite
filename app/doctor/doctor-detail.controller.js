@@ -5,20 +5,34 @@
            .controller('doctorDetailController', doctorDetailController);
 
     doctorDetailController.$inject = [
+        '$stateParams',
+        'doctorCategoryList',
         'doctor',
         'articleList',
-        'answerList'
+        'qaList'
     ];
 
-    function doctorDetailController(doctor, articleList, answerList) {
+    function doctorDetailController($stateParams, doctorCategoryList, doctor, articleList, qaList) {
         var SHOW_MORE_ARTICLE_STEP = 1;
         var SHOW_MORE_QUESTION_STEP = 1;
 
         var vm = this;
 
+        vm.categoryList = doctorCategoryList;
+        vm.category = $stateParams ? $stateParams.category : 'all';
+        vm.categoryName = '';
+        if  (vm.categoryList && angular.isArray(vm.categoryList) && vm.categoryList.length > 0) {
+            for (var i in vm.categoryList) {
+                if (vm.categoryList[i].name === vm.category) {
+                    vm.categoryName = vm.categoryList[i].text;
+                    break;
+                }
+            }
+        }
+
         vm.doctor = doctor;
         vm.articleList = articleList;
-        vm.questionList = answerList;
+        vm.questionList = qaList;
 
         /* article variable/function */
         vm.numOfArticles = 0;
@@ -33,7 +47,7 @@
 
         /* question variable/function */
         vm.numOfQuestions = 0;
-        vm.questionList = answerList;
+        vm.questionList = qaList;
         vm.questionPageLimit = 1;
         vm.questionIndex = 0;
         vm.displayShowMoreQuestionButton = false;

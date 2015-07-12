@@ -5,13 +5,19 @@
            .controller('doctorListController', doctorListController);
 
     doctorListController.$inject = [
+        '$stateParams',
+        'doctorCategoryList',
         'doctorList'
     ];
 
-    function doctorListController(doctorList) {
+    function doctorListController($stateParams, doctorCategoryList, doctorList) {
         var NUM_OF_DOCTORS_IN_ROW = 6;
 
         var vm = this;
+
+        vm.categoryList = doctorCategoryList;
+        vm.category = $stateParams ? $stateParams.category : 'all';
+
         vm.doctorList = [];
         vm.numOfDoctors = 0;
 

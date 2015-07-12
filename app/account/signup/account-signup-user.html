@@ -1,4 +1,4 @@
-<section class="container-fluid login-public parallax-container" style="background-image: url('images/login-public-bg.jpg');">
+<section class="container-fluid login-public parallax-container parallax-background public-login-background" parallax-background parallax-ratio="0.4">
   <div class="container">
 
     <div class="row">
@@ -36,32 +36,42 @@
           <!-- <button type="submit" class="btn btn-fb btn-lg btn-block"><i class="fa fa-facebook-square"></i> 使用Facebook註冊</button> -->
 
           <alert ng-show="vm.msg.isShown" type="{{vm.msg.type}}" close="vm.hideMessage()">{{vm.msg.text}}</alert>
+          <alert ng-show="(signUpForm.username.$error.required || signUpForm.password.$error.required || signUpForm.email.$error.required || signUpForm.passwordconfirm.$error.required) && vm.submitted" type="warning" close="vm.resetForm()">請輸入所需欄位</alert>
+          <alert ng-show="!(signUpForm.username.$error.required || signUpForm.password.$error.required || signUpForm.email.$error.required || signUpForm.passwordconfirm.$error.required) && (signUpForm.username.$error.minlength || signUpForm.username.$error.maxlength || signUpForm.password.$error.minlength  || signUpForm.password.$error.maxlength) && vm.submitted" type="warning" close="vm.resetForm()">帳號或密碼長度需要在{{vm.min}}到{{vm.max}}字元之間</alert>
+          <alert ng-show="!(signUpForm.username.$error.minlength || signUpForm.username.$error.maxlength || signUpForm.password.$error.minlength  || signUpForm.password.$error.maxlength) && !(signUpForm.username.$error.required || signUpForm.password.$error.required || signUpForm.email.$error.required || signUpForm.passwordconfirm.$error.required) && signUpForm.email.$error.email && vm.submitted" type="warning" close="vm.resetForm()">信箱格式錯誤</alert>
+          <alert ng-show="!vm.agreed && !signUpForm.$invalid && vm.submitted" type="warning" close="vm.resetForm()">請勾選同意使用者同意書</alert>
 
           <p class="arr-hint">使用信箱註冊</p>
 
-          <form role="form" ng-submit="vm.signUp()">
+          <form name="signUpForm" role="form" ng-submit="vm.signUp()" novalidate>
             <div class="combine-form">
-              <div class="form-group">
-                <label for="Username" class="sr-only">使用者帳號</label>
-                <input type="text" class="form-control input-lg" id="Username" ng-model="vm.credentials.username" placeholder="使用者帳號" required>
+              <div class="form-group validation-form-group">
+                <label for="username" class="sr-only">使用者帳號</label>
+                <i ng-show="signUpForm.username.$error.required && vm.submitted" class="glyphicon glyphicon-question-sign invalid-input-sign"></i>
+                <i ng-show="(signUpForm.username.$error.minlength || signUpForm.username.$error.maxlength) && vm.submitted" class="glyphicon glyphicon-warning-sign invalid-input-sign"></i>
+                <input type="text" class="form-control input-lg" name="username" ng-model="vm.credentials.username" ng-minlength="vm.min" ng-maxlength="vm.max" placeholder="使用者帳號" required>
               </div>
-              <div class="form-group">
-                <label for="Email" class="sr-only">電子郵件</label>
-                <input type="email" class="form-control input-lg" id="Email" ng-model="vm.credentials.email" placeholder="信箱" required>
+              <div class="form-group validation-form-group">
+                <label for="email" class="sr-only">電子郵件</label>
+                <i ng-show="signUpForm.email.$invalid && vm.submitted" class="glyphicon glyphicon-question-sign invalid-input-sign"></i>
+                <input type="email" class="form-control input-lg" name="email" ng-model="vm.credentials.email" placeholder="信箱" required>
               </div>
-              <div class="form-group">
-                <label for="Password" class="sr-only">密碼</label>
-                <input type="password" class="form-control input-lg" id="Password" ng-model="vm.credentials.password" placeholder="密碼" required>
+              <div class="form-group validation-form-group">
+                <label for="password" class="sr-only">密碼</label>
+                <i ng-show="signUpForm.password.$error.required && vm.submitted" class="glyphicon glyphicon-question-sign invalid-input-sign"></i>
+                <i ng-show="(signUpForm.password.$error.minlength || signUpForm.password.$error.maxlength) && vm.submitted" class="glyphicon glyphicon-warning-sign invalid-input-sign"></i>
+                <input type="password" class="form-control input-lg" name="password" ng-model="vm.credentials.password" ng-minlength="vm.min" ng-maxlength="vm.max" placeholder="密碼" required>
               </div>
-              <div class="form-group">
-                <label for="Password-again" class="sr-only">再次輸入密碼</label>
-                <input type="password" class="form-control input-lg" id="Password-again" ng-model="vm.credentials.confirmPassword" placeholder="再次輸入密碼" required>
+              <div class="form-group validation-form-group">
+                <label for="passwordconfirm" class="sr-only">再次輸入密碼</label>
+                <i ng-show="signUpForm.passwordconfirm.$invalid && vm.submitted" class="glyphicon glyphicon-question-sign invalid-input-sign"></i>
+                <input type="password" class="form-control input-lg" name="passwordconfirm" ng-model="vm.credentials.confirmPassword" placeholder="再次輸入密碼" required>
               </div>
             </div>
             <!---->
 
-            <label class="checkbox-inline">
-              <p><input type="checkbox" id="inlineCheckbox1" value="agreement" required> 我已同意<a href="doctor-signup.html" class="blue-style-2">醫創網的使用者同意書</a></p>
+            <label class="form-group checkbox-inline">
+              <p><input type="checkbox" name="testbox" ng-model="vm.agreed"> 我已同意<a href="#" class="blue-style-2">醫創網的使用者同意書</a></p>
             </label>
 
             <button type="submit" class="btn btn-info btn-lg btn-block">註冊完成</button>

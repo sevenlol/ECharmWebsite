@@ -1,4 +1,4 @@
-<section class="container-fluid login-public parallax-container" style="background-image: url('images/login-public-bg.jpg');">
+<section class="container-fluid login-public parallax-container parallax-background public-login-background" parallax-background parallax-ratio="0.4">
 
   <div class="container">
     <div class="row">
@@ -17,24 +17,28 @@
           <button type="button" class="btn btn-fb btn-lg btn-block" ng-click="vm.fbSignIn()"><i class="fa fa-facebook-square"></i> 使用Facebook登入</button>
 
           <alert ng-show="vm.msg.isShown" type="{{vm.msg.type}}" close="vm.hideMessage()">{{vm.msg.text}}</alert>
+          <alert ng-show="signInForm.$invalid && vm.submitted" type="warning" close="vm.resetForm()">請輸入所需欄位</alert>
 
           <p class="arr-hint">使用帳號登入</p>
 
-          <form role="form" ng-submit="vm.signIn()">
+          <form name="signInForm" role="form" ng-submit="vm.signIn()" novalidate>
             <div class="combine-form">
-              <div class="form-group">
-                <label for="Username" class="sr-only">使用者帳號</label>
-                <input type="text" class="form-control input-lg" id="Username" ng-model="vm.credentials.username" placeholder="使用者帳號">
+              <div class="form-group validation-form-group">
+                <label for="username" class="sr-only">使用者帳號</label>
+                <i ng-show="signInForm.username.$invalid && vm.submitted" class="glyphicon glyphicon-question-sign invalid-input-sign"></i>
+                <input type="text" class="form-control input-lg" name="username" ng-model="vm.credentials.username" placeholder="使用者帳號" required>
+                <!-- <span class="glyphicon glyphicon-warning-sign form-control-feedback" style="color:#c62828"></span> -->
               </div>
-              <div class="form-group">
-                <label for="Password" class="sr-only">密碼</label>
-                <input type="password" class="form-control input-lg" id="Password" ng-model="vm.credentials.password" placeholder="密碼">
+              <div class="form-group validation-form-group">
+                <label for="password" class="sr-only">密碼</label>
+                <i ng-show="signInForm.password.$invalid && vm.submitted" class="glyphicon glyphicon-question-sign invalid-input-sign"></i>
+                <input type="password" class="form-control input-lg" name="password" ng-model="vm.credentials.password" placeholder="密碼" required>
               </div>
             </div>
             <button type="submit" class="btn btn-info btn-lg btn-block">登入</button>
           </form>
 
-          <p>還沒有帳號，<a href="public-signup.html" class="blue-style-2">點此註冊</a> ｜ <a href="forget-pw.html" class="blue-style-2">忘記密碼？</a></p>
+          <p>還沒有帳號，<a ui-sref="account.signup.user" class="blue-style-2">點此註冊</a> ｜ <a href="#" class="blue-style-2">忘記密碼？</a></p>
 
         </div>
       </div>

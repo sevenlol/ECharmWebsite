@@ -4,6 +4,7 @@
     angular.module('app.account', [
         'ui.router',
         'ui.bootstrap',
+        'angular-parallax',
         'app.auth',
         'ny.logger',
         'data.account',
