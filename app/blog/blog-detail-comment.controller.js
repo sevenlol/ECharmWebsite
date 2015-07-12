@@ -16,6 +16,8 @@
         /* public functions */
         function commentThisArticle() {
             // body...
+            // 1. Check if the length of the comment is greater than the specified length
+            // 2. If yes, post the comment. If not, show an alert window and do nothing
         }
     }
 
