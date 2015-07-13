@@ -47,7 +47,6 @@
             name : 'askdoctor.detail',
             parent : askdoctorState,
             url : '/:category/:questionId',
-            abstract : true,
             resolve : {
                 question : resolveQuestion,
                 answer : resolveAnswer,
@@ -62,29 +61,13 @@
             controllerAs : 'vm'
         };
 
-        var askdoctorDetailReadState = {
-            name : 'askdoctor.detail.read',
-            parent : askdoctorDetailState,
-            templateUrl : 'app/askdoctor/askdoctor-detail-read.html'
-        };
-
-        var askdoctorDetailCommentState = {
-            name : 'askdoctor.detail.comment',
-            parent : askdoctorDetailState,
-            templateUrl : 'app/askdoctor/askdoctor-detail-comment.html',
-            controller : 'askdoctorDetailCommentController',
-            controllerAs : 'vm'
-        };
-
         /* Askdoctor System Routing */
 
         $stateProvider
             .state(askdoctorState)
             .state(askdoctorHomeState)
             .state(askdoctorListState)
-            .state(askdoctorDetailState)
-            .state(askdoctorDetailReadState)
-            .state(askdoctorDetailCommentState);
+            .state(askdoctorDetailState);
 
         /* resolve functions */
 

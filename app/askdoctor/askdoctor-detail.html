@@ -83,11 +83,35 @@
         </div>
       </div>
 
-      <div class="additional">
-        <form>
-          <textarea class="form-control" rows="3" placeholder="請輸入專業解答內容，字數至少要二十個字以上"></textarea>
-          <div class="pull-right"><a href="#"><i class="fa fa-camera"></i></a> <button class="btn round-btn" type="button">送出專業解答</button></div>
-        </form>
+      <div class="row">
+
+        <div class="col-lg-2 col-sm-2">
+          <div class="user-thumb-md">
+            <img src="images/docpic.jpg" alt="" class="img-circle" />
+            <p>
+              醫師
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-10 col-sm-10">
+
+          <div role="tabpanel">
+            <ul class="nav nav-pills ask-type" role="tablist">
+              <li role="presentation" class="active"><a href=""role="tab">解答問題</a></li>
+            </ul>
+          </div>
+
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="ask-question">
+              <form>
+                <textarea class="form-control" rows="4" placeholder="請輸入解答內容，字數至少要二十個字以上"></textarea>
+                <div class="pull-right"><!-- <a href="#"><i class="fa fa-camera"></i></a> --> <button class="btn round-btn ask-btn" type="button">確認提問</button></div>
+              </form>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <!-- comment list -->
@@ -125,7 +149,13 @@
             </p>
           </div>
         </div>
-        <div ui-view></div>
+
+        <div role="tabpanel" class="tab-pane active">
+          <form>
+            <textarea class="form-control" rows="4" placeholder="請輸入評論內容，字數至少要十個字以上"></textarea>
+            <div class="pull-right"><a href="#"><button class="btn round-btn" type="button" ui-sref="askdoctor.detail.read">發表評論</button></div>
+          </form>
+        </div>
       </div>
 
     </div>

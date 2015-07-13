@@ -219,6 +219,8 @@
       <div class="question-block" ng-repeat="question in vm.questionList | limitTo : vm.pageLimit : vm.index">
         <!-- ask -->
         <div class="question-top" ng-class="{ false : 'noanswer' }[ question.isExpanded ]">
+          <div class="pull-right"><button class="btn round-btn ask-btn" type="button" ui-sref="askdoctor.detail({ category : question.category, questionId : question.question_id })"><a href="javaScript:void(0);"><i class="fa fa-angle-right"></i></a> 參與討論</button></div>
+
           <div class="question-profile">
             <a href="#">
               <img src="images/userpic_3.jpg" alt="" class="img-circle" />{{question.user.user_info.name ? question.user.user_info.name : '使用者'}}
