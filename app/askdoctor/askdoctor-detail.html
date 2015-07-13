@@ -38,9 +38,9 @@
   <div class="container">
 
     <ol class="breadcrumb hidden-xs text-right">
-      <li><a href="index.html">醫創網</a></li>
-      <li><a href="qa-index.html">即時醫師問答</a></li>
-      <li class="active">醫學美容</li>
+      <li><a ui-sref="home">醫創網</a></li>
+      <li><a ui-sref="askdoctor.list({ category : vm.question.category })">即時醫師問答</a></li>
+      <li class="active">{{vm.categoryName}}</li>
     </ol>
 
   </div>
@@ -52,9 +52,36 @@
   <div class="container">
     <div class="col-lg-10 col-lg-offset-1">
 
-      <!--Q1-->
       <div class="question-block">
-        <!-- question -->
+        <!-- ask -->
+        <div class="question-top" ng-class="{ false : 'noanswer' }[ vm.answer ]">
+          <div class="question-profile">
+            <a href="#">
+              <img src="images/userpic_3.jpg" alt="" class="img-circle" />{{vm.user.user_info.name ? vm.user.user_info.name : '使用者'}}
+            </a>
+            <i class="fa fa-venus"></i>
+            <span>24歲 宜蘭市 <br />45分前</span>
+          </div>
+          <p>
+            {{vm.question.content_text}}
+          </p>
+        </div>
+
+        <div class="answer-content collapse in" ng-show="vm.answer">
+          <div class="question-profile">
+            <a href="#" class="doc-profile">
+              <img src="images/docpic.jpg" alt="" class="img-circle" />{{vm.doctor.user_info.name ? vm.doctor.user_info.name : ''}} 醫師
+            </a>
+            <span>{{vm.doctor.user_info.current_hospital}}  {{vm.categoryName}} <br />15分前</span>
+          </div>
+          <p class="pink-style">{{vm.answer.answer_text}}</p>
+
+          <div class="satisfy">滿意度 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></div>
+        </div>
+      </div>
+
+      <!--Q1-->
+      <!-- <div class="question-block">
         <div class="question-top">
           <div class="question-profile">
             <a href="#">
@@ -65,9 +92,6 @@
           </div>
           <p>最近胖很快，請問有沒有什麼快速地減肥方式？</p>
         </div>
-
-        <!-- answer -->
-        <a href="#" id="show-answer" class="pull-right" data-toggle="collapse" data-target="#answer" aria-expanded="true" aria-controls="answer"><span class="fa fa-angle-up"></span> 收合</a>
 
         <div class="answer-content collapse in" id="answer">
           <div class="question-profile">
@@ -81,9 +105,9 @@
 
           <div class="satisfy">滿意度 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></div>
         </div>
-      </div>
+      </div> -->
 
-      <div class="row">
+      <div class="row" ng-show="authenticated && account.user_type === 'DOCTOR' && !vm.answer">
 
         <div class="col-lg-2 col-sm-2">
           <div class="user-thumb-md">
@@ -106,7 +130,7 @@
             <div role="tabpanel" class="tab-pane active" id="ask-question">
               <form>
                 <textarea class="form-control" rows="4" placeholder="請輸入解答內容，字數至少要二十個字以上"></textarea>
-                <div class="pull-right"><!-- <a href="#"><i class="fa fa-camera"></i></a> --> <button class="btn round-btn ask-btn" type="button">確認提問</button></div>
+                <div class="pull-right"><!-- <a href="#"><i class="fa fa-camera"></i></a> --> <button class="btn round-btn ask-btn" type="button">送出解答</button></div>
               </form>
             </div>
           </div>
@@ -150,11 +174,41 @@
           </div>
         </div>
 
-        <div role="tabpanel" class="tab-pane active">
-          <form>
-            <textarea class="form-control" rows="4" placeholder="請輸入評論內容，字數至少要十個字以上"></textarea>
-            <div class="pull-right"><a href="#"><button class="btn round-btn" type="button" ui-sref="askdoctor.detail.read">發表評論</button></div>
-          </form>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-2 col-sm-2">
+          <div class="user-thumb-md">
+            <a href="#" class="doc-profile">
+              <img src="images/docpic.jpg" alt="" class="img-circle" />
+            </a>
+            <p ng-show="authenticated">
+              <i class="fa fa-venus"></i>
+              <span>24歲 宜蘭市</span>
+            </p>
+            <p ng-show="!authenticated">
+              訪客
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-10 col-sm-10">
+
+          <div role="tabpanel">
+            <ul class="nav nav-pills ask-type" role="tablist">
+              <li ><a href=""role="tab">發表評論</a></li>
+            </ul>
+          </div>
+
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="ask-question">
+              <form>
+                <textarea class="form-control" rows="4" ng-show="authenticated" placeholder="請輸入評論內容，字數至少要十個字以上"></textarea>
+                <textarea ng-show="!authenticated" class="form-control" ng-show="!authenticated" rows="4" placeholder="請先登入以發表評論" disabled></textarea>
+                <div class="pull-right"><!-- <a href="#"><i class="fa fa-camera"></i></a> --> <button class="btn round-btn ask-btn" type="button" ng-disabled="!authenticated">送出評論</button></div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
 
