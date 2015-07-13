@@ -16,6 +16,9 @@
             name : 'askdoctor',
             url : '^/askdoctor',
             abstract : true,
+            resolve : {
+                myAccount : resolveMyAccount
+            },
             templateUrl : 'app/askdoctor/askdoctor.html'
         };
 
@@ -85,12 +88,36 @@
 
         /* resolve functions */
 
-        function resolveQuestionList($stateParams, $rootScope, askdoctorService) {
+        function resolveMyAccount(authService) {
+            if (!authService) {
+                return null;
+            }
+
+            /* Check authentication status */
+            var successCallback = (function() {
+                return function(res) {
+                    return res.data;
+                };
+            })();
+            var failCallback = (function() {
+                return function(res) {
+                    return null;
+                };
+            })();
+
+            // check if the user is logged in
+            var promise = authService.checkAuthStatus(null, null);
+            return promise
+                    .then(successCallback)
+                    .catch(failCallback);
+        }
+
+        function resolveQuestionList($stateParams, myAccount, askdoctorService) {
             if (!$stateParams || !$stateParams.category || !askdoctorService) {
                 return null;
             }
 
-            var account = $rootScope.account;
+            var account = myAccount;
             // TODO verify category
             var category = $stateParams.category;
 
