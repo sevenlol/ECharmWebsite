@@ -8,7 +8,7 @@
         </div>
 
         <!--benefit start-->
-        <div id="carousel-example-generic" class="carousel slide benefit">
+        <div id="carousel-example-generic" class="carousel slide benefit hidden-sm hidden-xs">
           <carousel class="carousel-inner" interval="3000">
             <slide active="true">
               <div class="item" style="margin-bottom:30px;"><blockquote sytle="margin-bottom:50px;"><span>享受更高收入，增進生活品質；時間彈性，有手機或電腦即可與民眾互動問答</span></blockquote></div>
@@ -41,14 +41,9 @@
 
         <div class="login-panel">
           <form name="signUpForm" role="form" ng-submit="vm.signUp()" novalidate>
-            <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <h3>醫師基本資料</h3>
               <div class="combine-form">
-                <div class="form-group validation-form-group">
-                  <label for="name" class="sr-only">名字</label>
-                  <i ng-show="signUpForm.name.$invalid && vm.submitted" class="glyphicon glyphicon-warning-sign invalid-input-sign"></i>
-                  <input type="text" class="form-control input-lg" name="name" ng-model="vm.doctor.user_info.name" placeholder="名字" required>
-                </div>
                 <div class="form-group validation-form-group">
                   <label for="college" class="sr-only">畢業學校</label>
                   <i ng-show="signUpForm.college.$invalid && vm.submitted" class="glyphicon glyphicon-warning-sign invalid-input-sign"></i>
@@ -77,7 +72,7 @@
               </div>
             </div>
 
-            <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <h3>帳號資料</h3>
 
               <div class="combine-form">
@@ -102,13 +97,18 @@
                   <input type="password" class="form-control input-lg" name="passwordConfirm" ng-model="vm.doctor.confirmPassword" placeholder="再次輸入密碼" required>
                 </div>
                 <div class="form-group validation-form-group">
+                  <label for="name" class="sr-only">名字</label>
+                  <i ng-show="signUpForm.name.$invalid && vm.submitted" class="glyphicon glyphicon-warning-sign invalid-input-sign"></i>
+                  <input type="text" class="form-control input-lg" name="name" ng-model="vm.doctor.user_info.name" placeholder="名字" required>
+                </div>
+                <!-- <div class="form-group validation-form-group">
                   <label for="FB" class="sr-only">臉書帳號</label>
                   <input type="data" class="form-control input-lg" id="FB" ng-model="vm.doctor.user_info.facebook_account" placeholder="臉書帳號（非必填）">
                 </div>
                 <div class="form-group validation-form-group">
                   <label for="Blog" class="sr-only">部落格網址</label>
                   <input type="data" class="form-control input-lg" id="Blog" ng-model="vm.doctor.user_info.blog_url" placeholder="部落格網址（非必填）">
-                </div>
+                </div> -->
               </div>
             </div>
 
@@ -120,7 +120,7 @@
               </label>
             </div>
 
-            <button type="submit" class="btn btn-info btn-lg col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-xs-12">註冊完成</button>
+            <button type="submit" class="btn btn-info btn-lg col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-12 col-xs-12">註冊完成</button>
           </form>
 
         </div>
