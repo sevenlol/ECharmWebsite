@@ -54,8 +54,10 @@ ul.doctor-list li p {
 
 .parallax-background {
 	background-attachment: fixed;
-    background-size: 100% auto;
     background-repeat: no-repeat;
+    background-size: cover;
+  	-moz-background-size: cover;  /* Firefox 3.6 */
+  	background-position: center;  /* Internet Explorer 7/8 */
 }
 .public-login-background {
 	background-image: url(../images/login-public-bg.jpg);
