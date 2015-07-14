@@ -10,19 +10,20 @@
         'doctor',
         'user',
         'commentList',
+        'commentUserList',
         'ratingList',
         'avgRating',
         'askdoctorCategoryList'
     ];
 
-    function askdoctorDetailController(question, answer, doctor, user, commentList, ratingList, avgRating, askdoctorCategoryList) {
+    function askdoctorDetailController(question, answer, doctor, user, commentList, commentUserList, ratingList, avgRating, askdoctorCategoryList) {
         var vm = this;
 
         vm.question = question;
         vm.answer = answer;
         vm.doctor = doctor;
         vm.user = user;
-        vm.commentList = commentList;
+        vm.commentList = mergeCommentList(commentList);
         vm.avgRating = avgRating;
         vm.category = (question && question.category) ? question.category : 'all';
         vm.categoryName = getCategoryName(askdoctorCategoryList, question);
@@ -67,6 +68,34 @@
             }
 
             return '';
+        }
+
+        function mergeCommentList(commentList, commentUserList) {
+            if (!commentList || !angular.isArray(commentList) || commentList.length === 0) {
+                return null;
+            }
+
+            for (var i in commentList) {
+                if (!commentList[i] || !angular.isObject(commentList[i])) {
+                    continue;
+                }
+
+                if (commentUserList && angular.isArray(commentUserList) && commentUserList.length > 0) {
+
+                    for (var j in commentUserList) {
+                        if (!commentUserList[j]) {
+                            continue;
+                        }
+
+                        if (commentList[i].commenter_id === commentUserList[j].account_id) {
+                            commentList[i].user = commentUserList[j];
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return commentList;
         }
     }
 
