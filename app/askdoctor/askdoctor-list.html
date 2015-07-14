@@ -253,8 +253,8 @@
         </div>
       </div>
 
-      <button type="button" class="btn btn-default btn-lg btn-block" ng-show="!vm.filteredQuestionList || !(vm.index + vm.pageLimit + vm.step >= vm.filteredQuestionList.length)" ng-click="vm.showMoreQuestion()">顯示更多問答紀錄</button>
-      <button type="button" class="btn btn-default btn-lg btn-block" disabled ng-show="vm.filteredQuestionList && (vm.index + vm.pageLimit + vm.step >= vm.filteredQuestionList.length)">沒有更多問答紀錄</button>
+      <button type="button" class="btn btn-default btn-lg btn-block" ng-show="vm.filteredQuestionList && !(vm.index + vm.pageLimit >= vm.filteredQuestionList.length)" ng-click="vm.showMoreQuestion()">顯示更多問答紀錄</button>
+      <button type="button" class="btn btn-default btn-lg btn-block" disabled ng-show="!vm.filteredQuestionList || (vm.index + vm.pageLimit >= vm.filteredQuestionList.length)">沒有更多問答紀錄</button>
 
     </div>
   </div>

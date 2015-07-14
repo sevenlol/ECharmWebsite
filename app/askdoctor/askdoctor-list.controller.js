@@ -26,7 +26,6 @@
 
         vm.pageLimit = 1;
         vm.index = 0;
-        vm.step = SHOW_MORE_QUESTION_STEP;
         vm.numOfQuestions = countNumberOfQuestions(questionList);
         // vm.displayShowMoreButton = vm.numOfQuestions > vm.pageLimit ? true : false;
         vm.showMoreQuestion  = showMoreQuestion;
@@ -81,6 +80,8 @@
 
         function search(searchText) {
             vm.updatedSearchText = searchText;
+            vm.index = 0;
+            vm.pageLimit = 1;
         }
 
         /* private functions */
