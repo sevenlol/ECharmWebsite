@@ -29,6 +29,10 @@
         vm.categoryName = getCategoryName(askdoctorCategoryList, question);
         vm.categoryList = askdoctorCategoryList;
 
+        // comment form
+        vm.min = 10;
+        vm.commentSubmitted = false;
+
         vm.answerThisQuestion = answerThisQuestion;
         vm.commentThisQuestion = commentThisQuestion;
         vm.rateThisQuestion = rateThisQuestion;
@@ -40,7 +44,7 @@
         }
 
         function commentThisQuestion() {
-
+            vm.commentSubmitted = true;
         }
 
         function rateThisQuestion() {

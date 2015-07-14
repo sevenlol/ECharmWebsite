@@ -66,33 +66,6 @@
         </div>
       </div>
 
-      <!--Q1-->
-      <!-- <div class="question-block">
-        <div class="question-top">
-          <div class="question-profile">
-            <a href="#">
-              <img src="images/userpic.jpg" alt="" class="img-circle" />林靜宜
-            </a>
-            <i class="fa fa-venus"></i>
-            <span>17歲 台北市 <br />15分前</span>
-          </div>
-          <p>最近胖很快，請問有沒有什麼快速地減肥方式？</p>
-        </div>
-
-        <div class="answer-content collapse in" id="answer">
-          <div class="question-profile">
-            <a href="#" class="doc-profile">
-              <img src="images/docpic.jpg" alt="" class="img-circle" />陳威德 醫師
-            </a>
-            <span>仁愛醫院  皮膚科 <br />15分前</span>
-          </div>
-          <p class="pink-style">無氧訓練肌肉有助新陳代謝， 但配上有氧運動才瘦的更快。 每天游泳OR跑步30分鐘持續幾個月就能看到成效。當然飲食需謹慎挑選，不油炸，多蔬菜。有飽足感很重要。</p>
-          <p class="pink-style">是的，或是喝點湯，反正就是不要單吃水果，且記得不要太晚吃哦! 水果盡量也不要選擇香蕉，熱量太高了 像我晚餐都是吃玉米(或喝湯，堅果)，蒟蒻，水果，吃完很有飽足感，若覺得蒟蒻沒味道，建議可以加些醬油跟哇沙米，會比較沒有味道 我一個月這樣吃，也沒有特別運動從69瘦到66</p>
-
-          <div class="satisfy">滿意度 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></div>
-        </div>
-      </div> -->
-
       <div class="row" ng-show="authenticated && account.user_type === 'DOCTOR' && !vm.answer">
 
         <div class="col-lg-2 col-sm-2">
@@ -167,11 +140,12 @@
           </div>
 
           <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="ask-question">
-              <form>
-                <textarea class="form-control" rows="4" ng-show="authenticated" placeholder="請輸入評論內容，字數至少要十個字以上"></textarea>
+            <div role="tabpanel" class="tab-pane active">
+              <form name="vm.commentForm" role="form" novalidate>
+                <textarea class="form-control" ng-model="vm.commentText" name="commentText" rows="4" ng-show="authenticated" ng-minlength="vm.min" required placeholder="請輸入評論內容，字數至少要十個字以上"></textarea>
                 <textarea ng-show="!authenticated" class="form-control" ng-show="!authenticated" rows="4" placeholder="請先登入以發表評論" disabled></textarea>
-                <div class="pull-right"><!-- <a href="#"><i class="fa fa-camera"></i></a> --> <button class="btn round-btn ask-btn" type="button" ng-disabled="!authenticated">送出評論</button></div>
+                <p class="pull-left pink-style comment-error" ng-show="vm.commentSubmitted && vm.commentForm.commentText.$invalid">評論內容字數至少要十個字以上</p>
+                <div class="pull-right"><button class="btn round-btn ask-btn" ng-click="vm.commentThisQuestion()" type="submit" ng-disabled="!authenticated">送出評論</button></div>
               </form>
             </div>
           </div>
