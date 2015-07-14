@@ -26,8 +26,9 @@
 
         vm.pageLimit = 1;
         vm.index = 0;
+        vm.step = SHOW_MORE_QUESTION_STEP;
         vm.numOfQuestions = countNumberOfQuestions(questionList);
-        vm.displayShowMoreButton = vm.numOfQuestions > vm.pageLimit ? true : false;
+        // vm.displayShowMoreButton = vm.numOfQuestions > vm.pageLimit ? true : false;
         vm.showMoreQuestion  = showMoreQuestion;
 
         vm.searchText = '';
@@ -71,9 +72,9 @@
 
             if (vm.index + vm.pageLimit + SHOW_MORE_QUESTION_STEP >= vm.numOfQuestions) {
                 vm.pageLimit = vm.numOfQuestions;
-                vm.displayShowMoreButton = false;
+                // vm.displayShowMoreButton = false;
             } else {
-                vm.displayShowMoreButton = true;
+                // vm.displayShowMoreButton = true;
                 vm.pageLimit += SHOW_MORE_QUESTION_STEP;
             }
         }
