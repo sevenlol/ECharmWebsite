@@ -72,7 +72,7 @@
           <div class="user-thumb-md">
             <img src="images/docpic.jpg" alt="" class="img-circle" />
             <p>
-              醫師
+              {{ account && account.user_info && account.user_info.name ? account.user_info.name : '' }}醫師
             </p>
           </div>
         </div>
@@ -87,9 +87,11 @@
 
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="ask-question">
-              <form>
-                <textarea class="form-control" rows="4" placeholder="請輸入解答內容，字數至少要二十個字以上"></textarea>
-                <div class="pull-right"><!-- <a href="#"><i class="fa fa-camera"></i></a> --> <button class="btn round-btn ask-btn" type="button">送出解答</button></div>
+              <form name="vm.answerForm" novalidate>
+                <textarea class="form-control" name="answerText" ng-model="vm.answerText" ng-minlength="vm.answerMin" required rows="4" placeholder="請輸入解答內容，字數至少要二十個字以上"></textarea>
+                <p class="pull-left pink-style comment-error" ng-show="vm.answerSubmitted && vm.answerForm.answerText.$invalid">解答內容字數至少要十個字以上</p>
+                <p class="pull-left comment-error" ng-class="{ true : 'blue-style-1', false : 'pink-style' }[ vm.answerStatusMessage && vm.answerStatusMessage.type === 'success' ]" ng-show="!vm.answerSubmitted && vm.answerStatusMessage.isShown">{{ vm.answerStatusMessage.message }}</p>
+                <div class="pull-right"><!-- <a href="#"><i class="fa fa-camera"></i></a> --> <button class="btn round-btn ask-btn" ng-click="vm.answerThisQuestion()" type="submit">送出解答</button></div>
               </form>
             </div>
           </div>
