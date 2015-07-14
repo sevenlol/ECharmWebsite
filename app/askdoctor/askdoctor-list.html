@@ -216,7 +216,7 @@
     <!-- Question List -->
     <div class="col-lg-10 col-lg-offset-1">
 
-      <div class="question-block" ng-repeat="question in vm.filteredQuestionList = (vm.questionList | filter : vm.updatedSearchText) | limitTo : vm.pageLimit : vm.index">
+      <div class="question-block" ng-repeat="question in (vm.filteredQuestionList = (vm.questionList | filter : vm.updatedSearchText)) | limitTo : vm.pageLimit : vm.index">
         <!-- ask -->
         <div class="question-top" ng-class="{ false : 'noanswer' }[ question.isExpanded ]">
           <div class="pull-right"><button class="btn round-btn ask-btn" type="button" ui-sref="askdoctor.detail({ category : question.category, questionId : question.question_id })"><a href="javaScript:void(0);"><i class="fa fa-angle-right"></i></a> 參與討論</button></div>
@@ -253,8 +253,8 @@
         </div>
       </div>
 
-      <button type="button" class="btn btn-default btn-lg btn-block" ng-show="vm.filteredQuestionList && (vm.index + vm.pageLimit + vm.step >= vm.filteredQuestionList.length)" ng-click="vm.showMoreQuestion()">顯示更多問答紀錄</button>
-      <button type="button" class="btn btn-default btn-lg btn-block" disabled ng-show="!vm.filteredQuestionList || !(vm.index + vm.pageLimit + vm.step >= vm.filteredQuestionList.length)">沒有更多問答紀錄</button>
+      <button type="button" class="btn btn-default btn-lg btn-block" ng-show="!vm.filteredQuestionList || !(vm.index + vm.pageLimit + vm.step >= vm.filteredQuestionList.length)" ng-click="vm.showMoreQuestion()">顯示更多問答紀錄</button>
+      <button type="button" class="btn btn-default btn-lg btn-block" disabled ng-show="vm.filteredQuestionList && (vm.index + vm.pageLimit + vm.step >= vm.filteredQuestionList.length)">沒有更多問答紀錄</button>
 
     </div>
   </div>
