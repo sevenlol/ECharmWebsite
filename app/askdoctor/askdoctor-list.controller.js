@@ -30,6 +30,10 @@
         vm.displayShowMoreButton = vm.numOfQuestions > vm.pageLimit ? true : false;
         vm.showMoreQuestion  = showMoreQuestion;
 
+        vm.searchText = '';
+        vm.updatedSearchText = '';
+        vm.search = search;
+
         // TODO add state variables for askQuestion function
         // merge doctorList, userList, categoryList to questionList
         vm.questionList = mergeQuestionList(questionList, doctorList, userList, askdoctorCategoryList);
@@ -72,6 +76,10 @@
                 vm.displayShowMoreButton = true;
                 vm.pageLimit += SHOW_MORE_QUESTION_STEP;
             }
+        }
+
+        function search(searchText) {
+            vm.updatedSearchText = searchText;
         }
 
         /* private functions */

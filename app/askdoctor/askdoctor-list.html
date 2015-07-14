@@ -8,8 +8,8 @@
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="搜尋問題">
-              <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>
+              <input type="text" class="form-control" placeholder="搜尋問題" ng-model="vm.searchText">
+              <span class="input-group-btn"><button class="btn btn-default" ng-click="vm.search(vm.searchText)" type="button"><i class="fa fa-search"></i></button></span>
             </div>
           </div>
         </form>
@@ -216,7 +216,7 @@
     <!-- Question List -->
     <div class="col-lg-10 col-lg-offset-1">
 
-      <div class="question-block" ng-repeat="question in vm.questionList | limitTo : vm.pageLimit : vm.index">
+      <div class="question-block" ng-repeat="question in vm.questionList | filter : vm.updatedSearchText | limitTo : vm.pageLimit : vm.index">
         <!-- ask -->
         <div class="question-top" ng-class="{ false : 'noanswer' }[ question.isExpanded ]">
           <div class="pull-right"><button class="btn round-btn ask-btn" type="button" ui-sref="askdoctor.detail({ category : question.category, questionId : question.question_id })"><a href="javaScript:void(0);"><i class="fa fa-angle-right"></i></a> 參與討論</button></div>
