@@ -64,10 +64,12 @@
 
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="ask-question">
-            <form>
-              <textarea ng-show="authenticated" class="form-control" rows="4" placeholder="請輸入問題內容，字數至少要十個字以上"></textarea>
+            <form name="vm.questionForm" novalidate>
+              <textarea ng-show="authenticated" name="questionText" class="form-control" ng-model="vm.questionText" ng-minlength="vm.questionMin" required rows="4" placeholder="請輸入問題內容，字數至少要十個字以上"></textarea>
               <textarea ng-show="!authenticated" class="form-control" rows="4" placeholder="請先登入以發表問題" disabled></textarea>
-              <div class="pull-right"><!-- <a href="#"><i class="fa fa-camera"></i></a> --> <button class="btn round-btn ask-btn" type="button" ng-disabled="!authenticated">確認提問</button></div>
+              <p class="pull-left pink-style comment-error" ng-show="vm.questionSubmitted && vm.questionForm.questionText.$invalid">評論內容字數至少要十個字以上</p>
+              <p class="pull-left comment-error" ng-class="{ true : 'blue-style-1', false : 'pink-stype' }[ vm.statusMessage && vm.statusMessage.type ==='success' ]" ng-show="!vm.questionSubmitted && vm.statusMessage.isShown">{{ vm.statusMessage.message }}</p>
+              <div class="pull-right"><!-- <a href="#"><i class="fa fa-camera"></i></a> --> <button class="btn round-btn ask-btn" type="button" ng-click="vm.askQuestion()" ng-disabled="!authenticated">確認提問</button></div>
             </form>
           </div>
 
@@ -129,6 +131,7 @@
 <section class="container-fluid qa-board">
   <div class="container">
 
+    <!-- TODO remove this block -->
     <div class="row" ng-show="false">
       <div class="col-lg-6">
         <!--Q3-->
