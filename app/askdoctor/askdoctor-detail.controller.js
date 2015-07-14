@@ -24,7 +24,9 @@
         vm.user = user;
         vm.commentList = commentList;
         vm.avgRating = avgRating;
+        vm.category = (question && question.category) ? question.category : 'all';
         vm.categoryName = getCategoryName(askdoctorCategoryList, question);
+        vm.categoryList = askdoctorCategoryList;
 
         vm.answerThisQuestion = answerThisQuestion;
         vm.commentThisQuestion = commentThisQuestion;

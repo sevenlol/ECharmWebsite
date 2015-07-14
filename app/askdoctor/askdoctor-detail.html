@@ -16,21 +16,7 @@
       </div>
 
       <ul class="nav nav-tabs">
-        <li role="navigation" class="active"><a href="#">醫學美容</a></li>
-        <li role="navigation"><a href="#">整形外科</a></li>
-        <li role="navigation"><a href="#">婦科</a></li>
-        <li role="navigation"><a href="#">產科</a></li>
-        <li role="navigation"><a href="#">皮膚科</a></li>
-        <li role="navigation"><a href="#">小兒科</a></li>
-        <li role="navigation"><a href="#">婦科</a></li>
-        <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">其他醫學問題 <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li role="navigation"><a href="#">其他類型1</a></li>
-            <li role="navigation"><a href="#">其他類型2</a></li>
-            <li role="navigation"><a href="#">其他類型3</a></li>
-          </ul>
-        </li>
+        <li role="navigation" ng-class="{true: 'active'}[vm.category === category.name]" ng-repeat="category in vm.categoryList"><a ui-sref="askdoctor.list({ category : category.name })">{{category.text}}</a></li>
       </ul>
     </div>
   </section><!--end-->
@@ -139,41 +125,21 @@
       </div>
 
       <!-- comment list -->
-      <div class="disqus-board">
-        <div class="question-block">
+      <div class="disqus-board" ng-show="vm.commentList">
+        <div class="question-block" ng-repeat="comment in vm.commentList">
           <div class="question-top noanswer">
             <div class="question-profile">
               <a href="#">
-                <img src="images/userpic_3.jpg" alt="" class="img-circle" />李大強
+                <img src="images/userpic_3.jpg" alt="" class="img-circle" />{{comment.commenter_id}}
               </a>
               <i class="fa fa-venus"></i>
-              <span>24歲 宜蘭市 <br />45分前</span>
+              <span>{{comment.created_at}}</span>
             </div>
             <p>
-              身高180公分／100公斤 這樣算胖嘛<br />
-              是否該減肥<br />
-              我朋友都說我胖
+              {{comment.comment_text}}
             </p>
           </div>
         </div>
-        <div class="question-block">
-          <!-- ask -->
-          <div class="question-top noanswer">
-            <div class="question-profile">
-              <a href="#">
-                <img src="images/userpic_3.jpg" alt="" class="img-circle" />李大強
-              </a>
-              <i class="fa fa-venus"></i>
-              <span>24歲 宜蘭市 <br />45分前</span>
-            </div>
-            <p>
-              身高180公分／100公斤 這樣算胖嘛<br />
-              是否該減肥<br />
-              我朋友都說我胖
-            </p>
-          </div>
-        </div>
-
       </div>
 
       <div class="row">
