@@ -20,6 +20,7 @@
 
         vm.categoryList = askdoctorCategoryList;
         vm.category = $stateParams ? $stateParams.category : 'all';
+        vm.categoryName = getCategoryName(askdoctorCategoryList, vm.category);
 
         vm.isCollapsed = true;
         vm.collapse = collapse;
@@ -92,6 +93,28 @@
             }
 
             return questionList.length;
+        }
+
+        function getCategoryName(categoryList, category) {
+            if (!categoryList || !angular.isArray(categoryList) || categoryList === 0) {
+                return '';
+            }
+
+            if (!category) {
+                return '';
+            }
+
+            for (var i in categoryList) {
+                if (!categoryList[i]) {
+                    continue;
+                }
+
+                if (categoryList[i].name === category) {
+                    return categoryList[i].text;
+                }
+            }
+
+            return '';
         }
 
         function mergeQuestionList(questionList, doctorList, userList, categoryList) {
