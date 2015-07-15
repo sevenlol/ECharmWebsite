@@ -342,6 +342,8 @@
                     questionList.push(myQuestionList[index]);
                 }
             }
+
+            return questionList;
         }
     }
 
