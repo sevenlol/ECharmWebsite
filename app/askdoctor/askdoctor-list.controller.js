@@ -127,17 +127,21 @@
             vm.isCollapsed = !vm.isCollapsed;
         }
 
-        function collapseQuestion(index) {
-            if (!angular.isNumber(index)) {
+        function collapseQuestion(questionId) {
+            if (!questionId || !angular.isString(questionId)) {
                 return;
             }
 
-            if (!vm.questionList || !angular.isArray(vm.questionList) ||
-                vm.questionList.length - 1 < index || index < 0) {
+            if (!vm.questionList || !angular.isArray(vm.questionList)) {
                 return;
             }
 
-            vm.questionList[index].isExpanded = !vm.questionList[index].isExpanded;
+            for (var i in vm.questionList) {
+                if (vm.questionList[i].question_id === questionId) {
+                    vm.questionList[i].isExpanded = !vm.questionList[i].isExpanded;
+                    break;
+                }
+            }
         }
 
         function showMoreQuestion() {

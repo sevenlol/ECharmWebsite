@@ -248,7 +248,7 @@
         </div>
 
         <!-- answer -->
-        <a href="javaScript:void(0);" ng-show="question.answer" class="pull-right" ng-click="vm.collapseQuestion($index)">
+        <a href="javaScript:void(0);" ng-show="question.answer" class="pull-right" ng-click="vm.collapseQuestion(question.question_id)">
           <span ng-show="question.isExpanded" class="fa fa-angle-up"></span>
           <span ng-show="!question.isExpanded" class="fa fa-angle-down"></span>
           收合
