@@ -240,7 +240,7 @@
               <img src="images/userpic_3.jpg" alt="" class="img-circle" />{{question.user.user_info.name ? question.user.user_info.name : '使用者'}}
             </a>
             <i class="fa fa-venus"></i>
-            <span>24歲 宜蘭市 <br />45分前</span>
+            <span>{{ question.created_at ? (question.created_at | relativeDate) : '' }}</span>
           </div>
           <p>
             {{question.content_text}}
@@ -259,7 +259,7 @@
             <a href="#" class="doc-profile">
               <img src="images/docpic.jpg" alt="" class="img-circle" />{{question.doctor.user_info.name ? question.doctor.user_info.name : ''}} 醫師
             </a>
-            <span>{{question.doctor.user_info.current_hospital}}  {{question.doctor.user_info.categoryName}} <br />15分前</span>
+            <span>{{question.doctor.user_info.current_hospital}}  {{question.doctor.user_info.categoryName}} <br />{{ question.answer.created_at ? (question.answer.created_at | relativeDate) : '' }}</span>
           </div>
           <p class="pink-style">{{question.answer.answer_text}}</p>
 
