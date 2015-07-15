@@ -36,6 +36,7 @@
             templateUrl : 'app/askdoctor/askdoctor-list.html',
             resolve : {
                 questionList : resolveQuestionList,
+                myQuestionList : resolveMyQuestionList,
                 doctorList : resolveDoctorList,
                 userList : resolveUserList
             },
@@ -133,6 +134,44 @@
             try {
                 return askdoctorService
                            .readEmbeddedQuestionInCategory(category, isAnswered, true, false, false)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
+        }
+
+        function resolveMyQuestionList($stateParams, myAccount, askdoctorService) {
+            // get questions for the current user
+
+            if (!$stateParams || !$stateParams.category || !askdoctorService) {
+                return null;
+            }
+
+            if (!myAccount || !myAccount.account_id) {
+                return null;
+            }
+
+            var account = myAccount;
+            // TODO verify category
+            var category = $stateParams.category;
+
+            // read all questions of the current user
+            if (category === 'all') {
+                try {
+                    return askdoctorService
+                               .readAllEmbeddedQuestionByQuestionerId(account.account_id, false, true, false, false)
+                               .catch(failCallback);
+                } catch(error) {
+                    return null;
+                }
+            }
+
+            // read questions of the current user in category
+            try {
+                return askdoctorService
+                           .readEmbeddedQuestionInCategoryByQuestionerId(category, account.account_id, false, true, false, false)
                            .catch(failCallback);
             } catch(error) {
                 return null;

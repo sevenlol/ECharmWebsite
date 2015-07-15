@@ -10,12 +10,13 @@
         '$rootScope',
         'askdoctorCategoryList',
         'questionList',
+        'myQuestionList',
         'doctorList',
         'userList',
         'askdoctorQuestionService'
     ];
 
-    function askdoctorListController(myAccount, $stateParams, $rootScope, askdoctorCategoryList, questionList, doctorList, userList, askdoctorQuestionService) {
+    function askdoctorListController(myAccount, $stateParams, $rootScope, askdoctorCategoryList, questionList, myQuestionList, doctorList, userList, askdoctorQuestionService) {
         var SHOW_MORE_QUESTION_STEP = 1;
 
         var vm = this;
@@ -50,6 +51,7 @@
         // TODO add state variables for askQuestion function
         // merge doctorList, userList, categoryList to questionList
         vm.questionList = mergeQuestionList(questionList, doctorList, userList, askdoctorCategoryList);
+        vm.questionList = mergeMyQuestionList(vm.questionList, myQuestionList, askdoctorCategoryList, myAccount);
         vm.collapseQuestion = collapseQuestion;
         vm.askQuestion = askQuestion;
 
@@ -279,6 +281,68 @@
             return questionList;
         }
 
+        function mergeMyQuestionList(questionList, myQuestionList, categoryList, myAccount) {
+            if (!myQuestionList || !angular.isArray(myQuestionList) || myQuestionList.length === 0) {
+                return questionList;
+            }
+
+            if (!questionList || !angular.isArray(questionList) || questionList.length === 0) {
+                return myQuestionList;
+            }
+
+            var myQuestionIndexList = [];
+            for (var i in myQuestionList) {
+                if (!myQuestionList[i]) {
+                    continue;
+                }
+
+                var isExist = false;
+
+                for (var j in questionList) {
+                    if (!questionList[j]) {
+                        continue;
+                    }
+
+                    if (questionList[j].question_id === myQuestionList[i].question_id) {
+                        isExist = true;
+                        break;
+                    }
+                }
+
+                // this question not exit, add to questionList
+                if (!isExist) {
+
+                    // add myAccount
+                    myQuestionList[i].user = myAccount;
+
+                    // get category name
+                    if (categoryList && angular.isArray(categoryList) && categoryList.length > 0) {
+
+                        for (var j in categoryList) {
+                            if (!categoryList[j]) {
+                                continue;
+                            }
+
+                            if (myQuestionList[i].category === categoryList[j].name) {
+                                myQuestionList[i].categoryName = categoryList.text;
+                                break;
+                            }
+                        }
+                    }
+
+                    // save index
+                    myQuestionIndexList.push(i);
+                }
+            }
+
+            // merge myQuestionList to questionList
+            if (myQuestionIndexList.length > 0) {
+                for (var i in myQuestionIndexList) {
+                    var index = myQuestionIndexList[i];
+                    questionList.push(myQuestionList[index]);
+                }
+            }
+        }
     }
 
 })();
