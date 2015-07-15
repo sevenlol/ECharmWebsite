@@ -48,7 +48,7 @@
 
         vm.pageLimit = 1;
         vm.index = 0;
-        vm.numOfQuestions = countNumberOfQuestions(questionList);
+        vm.numOfQuestions = countNumberOfQuestions(vm.questionList);
         vm.showMoreQuestion  = showMoreQuestion;
 
         vm.searchText = '';
