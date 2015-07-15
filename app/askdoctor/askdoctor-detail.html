@@ -62,9 +62,12 @@
           </div>
           <p class="pink-style">{{vm.answer.answer_text}}</p>
 
-          <div class="satisfy">
+          <div class="satisfy" ng-show="vm.ratingList && vm.ratingList.length">
             {{ vm.overRatingValue ? vm.overRatingValue : '滿意度' }}
             <rating ng-model="vm.avgRating" max="vm.ratingMax" readonly="true" state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="vm.hoverOverRating(value)" on-leave="vm.overRatingValue = null"></rating>
+          </div>
+          <div class="satisfy" ng-show="!vm.ratingList || !vm.ratingList.length">
+            目前尚無評分紀錄
           </div>
           <!-- <div class="satisfy">滿意度 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></div> -->
         </div>

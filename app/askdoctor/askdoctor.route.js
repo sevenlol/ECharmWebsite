@@ -123,7 +123,7 @@
             if (category === 'all') {
                 try {
                     return askdoctorService
-                               .readAllEmbeddedQuestion(isAnswered, true, false, false)
+                               .readAllEmbeddedQuestion(isAnswered, true, true, true)
                                .catch(failCallback);
                 } catch(error) {
                     return null;
@@ -133,7 +133,7 @@
             // read questions in category
             try {
                 return askdoctorService
-                           .readEmbeddedQuestionInCategory(category, isAnswered, true, false, false)
+                           .readEmbeddedQuestionInCategory(category, isAnswered, true, true, true)
                            .catch(failCallback);
             } catch(error) {
                 return null;
@@ -165,7 +165,7 @@
             if (category === 'all') {
                 try {
                     return askdoctorService
-                               .readAllEmbeddedQuestionByQuestionerId(account.account_id, false, true, false, false)
+                               .readAllEmbeddedQuestionByQuestionerId(account.account_id, false, true, true, true)
                                .catch(failCallback);
                 } catch(error) {
                     return null;
@@ -175,7 +175,7 @@
             // read questions of the current user in category
             try {
                 return askdoctorService
-                           .readEmbeddedQuestionInCategoryByQuestionerId(category, account.account_id, false, true, false, false)
+                           .readEmbeddedQuestionInCategoryByQuestionerId(category, account.account_id, false, true, true, true)
                            .catch(failCallback);
             } catch(error) {
                 return null;
@@ -488,16 +488,16 @@
             var count = 0;
             for (var i in ratingList) {
                 var rating = ratingList[i];
-                if (!angular.isNumber(rating)) {
+                if (!rating || !angular.isNumber(rating.rating_value)) {
                     continue;
                 }
 
                 // FIXME change limit to value file
-                if (rating < 0 || rating > 5) {
+                if (rating.rating_value < 0 || rating.rating_value > 5) {
                     continue;
                 }
 
-                total += rating;
+                total += rating.rating_value;
                 count++;
             }
 

@@ -222,7 +222,18 @@
       <div class="question-block" ng-repeat="question in (vm.filteredQuestionList = (vm.questionList | filter : vm.updatedSearchText)) | limitTo : vm.pageLimit : vm.index">
         <!-- ask -->
         <div class="question-top" ng-class="{ false : 'noanswer' }[ question.isExpanded ]">
-          <div class="pull-right"><button class="btn round-btn ask-btn" type="button" ui-sref="askdoctor.detail({ category : question.category, questionId : question.question_id })"><a href="javaScript:void(0);"><i class="fa fa-angle-right"></i></a> 參與討論</button></div>
+          <div class="pull-right">
+            <ul class="list-unstyled">
+              <li>
+                <button class="btn round-btn ask-btn" type="button" ui-sref="askdoctor.detail({ category : question.category, questionId : question.question_id })">
+                  <a href="javaScript:void(0);"><i class="fa fa-angle-right"></i></a>
+                  參與討論
+                  <span class="badge">{{ question.commentCount ? question.commentCount : '0' }}</span>
+                </button>
+              </li>
+              <!-- <li style="margin-left:20px; margin-top:10px;">共有3則評論</li> -->
+            </ul>
+          </div>
 
           <div class="question-profile">
             <a href="#">
@@ -252,7 +263,13 @@
           </div>
           <p class="pink-style">{{question.answer.answer_text}}</p>
 
-          <div class="satisfy">滿意度 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></div>
+          <div class="satisfy" ng-show="question.rating_list && question.rating_list.length">
+            滿意度
+            <rating ng-model="question.avgRating" max="vm.ratingMax" readonly="true" state-on="'fa fa-star'" state-off="'fa fa-star-o'"></rating>
+          </div>
+          <div class="satisfy" ng-show="!question.rating_list || !question.rating_list.length">
+            目前尚無評分紀錄
+          </div>
         </div>
       </div>
 

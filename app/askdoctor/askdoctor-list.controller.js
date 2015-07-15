@@ -20,6 +20,7 @@
     function askdoctorListController($filter, myAccount, $stateParams, $rootScope, askdoctorCategoryList, questionList, myQuestionList, doctorList, userList, askdoctorQuestionService) {
         var SHOW_MORE_QUESTION_STEP = 1;
         var DATE_FORMAT = 'yyyy-MM-ddTHH:mmZ';
+        var DEFAULT_RATING_MAX = 5;
 
         var vm = this;
 
@@ -56,6 +57,9 @@
         vm.searchText = '';
         vm.updatedSearchText = '';
         vm.search = search;
+
+        // rating
+        vm.ratingMax = DEFAULT_RATING_MAX;
 
         /* public functions */
 
@@ -284,6 +288,31 @@
                     }
                 }
 
+                // calculate comment count
+                if (questionList[i].comment_list && angular.isArray(questionList[i].comment_list) && questionList[i].comment_list.length > 0) {
+                    questionList[i].commentCount = questionList[i].comment_list.length;
+                }
+
+                // calculate avg rating
+                if (questionList[i].rating_list && angular.isArray(questionList[i].rating_list) && questionList[i].rating_list.length > 0) {
+                    var total = 0;
+                    var count = 0;
+                    for (var j in questionList[i].rating_list) {
+                        var rating = questionList[i].rating_list[j];
+                        if (rating && rating.rating_value && angular.isNumber(rating.rating_value)) {
+                            if (rating.rating_value >= 0 && rating.rating_value <= 5) {
+                                total += rating.rating_value;
+                                count++;
+                            }
+                        }
+                    }
+
+                    if (count > 0) {
+                        total /= count;
+                    }
+                    questionList[i].avgRating = total;
+                }
+
                 // set isCollapsed
                 questionList[i].isExpanded = false;
             }
@@ -338,6 +367,31 @@
                                 break;
                             }
                         }
+                    }
+
+                    // calculate comment count
+                    if (myQuestionList[i].comment_list && angular.isArray(myQuestionList[i].comment_list) && myQuestionList[i].comment_list.length > 0) {
+                        myQuestionList[i].commentCount = myQuestionList[i].comment_list.length;
+                    }
+
+                    // calculate avg rating
+                    if (myQuestionList[i].rating_list && angular.isArray(myQuestionList[i].rating_list) && myQuestionList[i].rating_list.length > 0) {
+                        var total = 0;
+                        var count = 0;
+                        for (var j in myQuestionList[i].rating_list) {
+                            var rating = myQuestionList[i].rating_list[j];
+                            if (rating && rating.rating_value && angular.isNumber(rating.rating_value)) {
+                                if (rating.rating_value >= 0 && rating.rating_value <= 5) {
+                                    total += rating.rating_value;
+                                    count++;
+                                }
+                            }
+                        }
+
+                        if (count > 0) {
+                            total /= count;
+                        }
+                        myQuestionList[i].avgRating = total;
                     }
 
                     // save index

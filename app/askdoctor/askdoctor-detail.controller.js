@@ -30,6 +30,7 @@
         vm.doctor = doctor;
         vm.user = user;
         vm.commentList = mergeCommentList(commentList, commentUserList);
+        vm.ratingList = ratingList;
         vm.avgRating = avgRating;
         vm.category = (question && question.category) ? question.category : 'all';
         vm.categoryName = getCategoryName(askdoctorCategoryList, question);
