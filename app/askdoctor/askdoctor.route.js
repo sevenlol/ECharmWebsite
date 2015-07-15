@@ -157,6 +157,10 @@
             // TODO verify category
             var category = $stateParams.category;
 
+            var failCallback = function (error) {
+                return null;
+            };
+
             // read all questions of the current user
             if (category === 'all') {
                 try {
