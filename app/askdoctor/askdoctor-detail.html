@@ -46,7 +46,7 @@
               <img src="images/userpic_3.jpg" alt="" class="img-circle" />{{vm.user.user_info.name ? vm.user.user_info.name : '使用者'}}
             </a>
             <i class="fa fa-venus"></i>
-            <span>24歲 宜蘭市 <br />45分前</span>
+            <span>{{ vm.question.created_at ? (vm.question.created_at | relativeDate) : '' }}</span>
           </div>
           <p>
             {{vm.question.content_text}}
@@ -58,7 +58,10 @@
             <a href="#" class="doc-profile">
               <img src="images/docpic.jpg" alt="" class="img-circle" />{{vm.doctor.user_info.name ? vm.doctor.user_info.name : ''}} 醫師
             </a>
-            <span>{{vm.doctor.user_info.current_hospital}}  {{vm.categoryName}} <br />15分前</span>
+            <span>
+              {{vm.doctor.user_info.current_hospital}}  {{vm.categoryName}} <br />
+              {{ vm.answer.created_at ? (vm.answer.created_at | relativeDate) : '' }}
+            </span>
           </div>
           <p class="pink-style">{{vm.answer.answer_text}}</p>
 
@@ -115,7 +118,7 @@
                 <img src="images/userpic_3.jpg" alt="" class="img-circle" />{{comment.user && comment.user.user_info ? comment.user.user_info.name : '' }}
               </a>
               <i class="fa fa-venus"></i>
-              <span>{{comment.created_at}}</span>
+              <span>{{ comment.created_at ? (comment.created_at | relativeDate) : '' }}</span>
             </div>
             <p>
               {{comment.comment_text}}
