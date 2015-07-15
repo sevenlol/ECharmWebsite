@@ -73,3 +73,9 @@ ul.doctor-list li p {
 .ask-btn {
 	margin-top: 15px;
 }
+
+.comment-error {
+	margin-top: 15px;
+	margin-left:15px;
+	font-size:16px;
+}

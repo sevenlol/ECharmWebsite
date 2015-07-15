@@ -36,6 +36,7 @@
             templateUrl : 'app/askdoctor/askdoctor-list.html',
             resolve : {
                 questionList : resolveQuestionList,
+                myQuestionList : resolveMyQuestionList,
                 doctorList : resolveDoctorList,
                 userList : resolveUserList
             },
@@ -53,6 +54,7 @@
                 user : resolveUser,
                 doctor : resolveDoctor,
                 commentList : resolveCommentList,
+                commentUserList : resolveCommentUserList,
                 ratingList : resolveRatingList,
                 avgRating : resolveAvgRating
             },
@@ -132,6 +134,48 @@
             try {
                 return askdoctorService
                            .readEmbeddedQuestionInCategory(category, isAnswered, true, false, false)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
+        }
+
+        function resolveMyQuestionList($stateParams, myAccount, askdoctorService) {
+            // get questions for the current user
+
+            if (!$stateParams || !$stateParams.category || !askdoctorService) {
+                return null;
+            }
+
+            if (!myAccount || !myAccount.account_id) {
+                return null;
+            }
+
+            var account = myAccount;
+            // TODO verify category
+            var category = $stateParams.category;
+
+            var failCallback = function (error) {
+                return null;
+            };
+
+            // read all questions of the current user
+            if (category === 'all') {
+                try {
+                    return askdoctorService
+                               .readAllEmbeddedQuestionByQuestionerId(account.account_id, false, true, false, false)
+                               .catch(failCallback);
+                } catch(error) {
+                    return null;
+                }
+            }
+
+            // read questions of the current user in category
+            try {
+                return askdoctorService
+                           .readEmbeddedQuestionInCategoryByQuestionerId(category, account.account_id, false, true, false, false)
                            .catch(failCallback);
             } catch(error) {
                 return null;
@@ -363,6 +407,41 @@
             try {
                 return askdoctorCommentService
                            .readAllComment(category, id)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
+        }
+
+        function resolveCommentUserList(commentList, memberUserService) {
+            if (!commentList || !memberUserService || !angular.isArray(commentList)) {
+                return null;
+            }
+
+            if (commentList.length === 0) {
+                return null;
+            }
+
+            var idList = [];
+            for (var i in commentList) {
+                if (!commentList[i] || !angular.isString(commentList[i].commenter_id) ||
+                    !commentList[i].commenter_id) {
+                    continue;
+                }
+
+                idList.push(commentList[i].commenter_id);
+            }
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            // read users
+            try {
+                return memberUserService
+                           .readUsers(idList)
                            .catch(failCallback);
             } catch(error) {
                 return null;

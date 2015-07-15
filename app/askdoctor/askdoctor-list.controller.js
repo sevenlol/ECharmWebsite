@@ -7,43 +7,113 @@
     askdoctorListController.$inject = [
         'myAccount',
         '$stateParams',
+        '$rootScope',
         'askdoctorCategoryList',
         'questionList',
+        'myQuestionList',
         'doctorList',
-        'userList'
+        'userList',
+        'askdoctorQuestionService'
     ];
 
-    function askdoctorListController(myAccount, $stateParams, askdoctorCategoryList, questionList, doctorList, userList) {
+    function askdoctorListController(myAccount, $stateParams, $rootScope, askdoctorCategoryList, questionList, myQuestionList, doctorList, userList, askdoctorQuestionService) {
         var SHOW_MORE_QUESTION_STEP = 1;
 
         var vm = this;
 
         vm.categoryList = askdoctorCategoryList;
         vm.category = $stateParams ? $stateParams.category : 'all';
+        vm.categoryName = getCategoryName(askdoctorCategoryList, vm.category);
 
         vm.isCollapsed = true;
         vm.collapse = collapse;
 
+        // ask question form
+        vm.questionMin = 10;
+        vm.questionSubmitted = false;
+        // FIXME change this to a better solution
+        vm.askQuestionCategory = vm.category === 'all' ? askdoctorCategoryList[1].name : vm.category;
+        vm.statusMessage = {
+            isShown : false,
+            type    : 'error',
+            message : ''
+        };
+
+        // TODO add state variables for askQuestion function
+        // merge doctorList, userList, categoryList to questionList
+        vm.questionList = mergeQuestionList(questionList, doctorList, userList, askdoctorCategoryList);
+        vm.questionList = mergeMyQuestionList(vm.questionList, myQuestionList, askdoctorCategoryList, myAccount);
+        vm.collapseQuestion = collapseQuestion;
+        vm.askQuestion = askQuestion;
+
         vm.pageLimit = 1;
         vm.index = 0;
-        vm.numOfQuestions = countNumberOfQuestions(questionList);
-        // vm.displayShowMoreButton = vm.numOfQuestions > vm.pageLimit ? true : false;
+        vm.numOfQuestions = countNumberOfQuestions(vm.questionList);
         vm.showMoreQuestion  = showMoreQuestion;
 
         vm.searchText = '';
         vm.updatedSearchText = '';
         vm.search = search;
 
-        // TODO add state variables for askQuestion function
-        // merge doctorList, userList, categoryList to questionList
-        vm.questionList = mergeQuestionList(questionList, doctorList, userList, askdoctorCategoryList);
-        vm.collapseQuestion = collapseQuestion;
-        vm.askQuestion = askQuestion;
-
         /* public functions */
 
         function askQuestion() {
-            // body...
+            vm.questionSubmitted = true;
+            vm.statusMessage.isShown = false;
+
+            // invalid question text
+            if (vm.questionForm.questionText.$invalid) {
+                return;
+            }
+
+            if (!askdoctorQuestionService || !$rootScope || !$rootScope.authenticated ||
+                !myAccount || !myAccount.account_id) {
+                askQuestionFailed('提問時發生錯誤，請稍後重試');
+            }
+
+            // TODO change these
+            var questionBody = {
+                questioner_id : myAccount.account_id,
+                title : 'title', // not used atm
+                image_arr : [],
+                tag_arr : [],
+                rating : 0,
+                rating_count : 0,
+                created_at : new Date().toString(),
+                updated_at : new Date().toString(),
+                content_text : vm.questionText
+            };
+
+            // callbacks
+            var askQuestionSuccessCallback = function(question) {
+                // TODO add handling code
+                // create failed
+                if (!question) {
+                    askQuestionFailed('提問時發生錯誤，請稍後重試');
+                    return;
+                }
+
+                askQuestionSucceeded('提問發表成功', question);
+                // created succeeded
+            };
+
+            var askQuestionFailCallback = function(error) {
+                if (error && error.message) {
+                    askQuestionFailed(error.message);
+                    return;
+                }
+
+                askQuestionFailed('提問時發生錯誤，請稍後重試');
+            };
+
+            try {
+                askdoctorQuestionService
+                    .createQuestion(vm.askQuestionCategory, questionBody)
+                    .then(askQuestionSuccessCallback)
+                    .catch(askQuestionFailCallback);
+            } catch (e) {
+                askQuestionFailed('提問時發生錯誤，請稍後重試');
+            }
         }
 
         // FIXME remove this
@@ -71,9 +141,7 @@
 
             if (vm.index + vm.pageLimit + SHOW_MORE_QUESTION_STEP >= vm.numOfQuestions) {
                 vm.pageLimit = vm.numOfQuestions;
-                // vm.displayShowMoreButton = false;
             } else {
-                // vm.displayShowMoreButton = true;
                 vm.pageLimit += SHOW_MORE_QUESTION_STEP;
             }
         }
@@ -86,12 +154,56 @@
 
         /* private functions */
 
+        function askQuestionFailed(msg) {
+            vm.questionSubmitted = false;
+            vm.statusMessage.isShown = true;
+            vm.statusMessage.type = 'error';
+            vm.statusMessage.message = msg;
+        }
+
+        function askQuestionSucceeded(msg, question) {
+            vm.questionSubmitted = false;
+            vm.statusMessage.isShown = true;
+            vm.statusMessage.type = 'success';
+            vm.statusMessage.message = msg;
+
+            if (vm.questionList) {
+                vm.questionList.push(question);
+                vm.numOfQuestions++;
+            } else {
+                vm.questionList = [ question ];
+                vm.numOfQuestions = 1;
+            }
+        }
+
         function countNumberOfQuestions(questionList) {
             if (!questionList || !angular.isArray(questionList)) {
                 return 0;
             }
 
             return questionList.length;
+        }
+
+        function getCategoryName(categoryList, category) {
+            if (!categoryList || !angular.isArray(categoryList) || categoryList === 0) {
+                return '';
+            }
+
+            if (!category) {
+                return '';
+            }
+
+            for (var i in categoryList) {
+                if (!categoryList[i]) {
+                    continue;
+                }
+
+                if (categoryList[i].name === category) {
+                    return categoryList[i].text;
+                }
+            }
+
+            return '';
         }
 
         function mergeQuestionList(questionList, doctorList, userList, categoryList) {
@@ -177,6 +289,70 @@
             return questionList;
         }
 
+        function mergeMyQuestionList(questionList, myQuestionList, categoryList, myAccount) {
+            if (!myQuestionList || !angular.isArray(myQuestionList) || myQuestionList.length === 0) {
+                return questionList;
+            }
+
+            if (!questionList || !angular.isArray(questionList) || questionList.length === 0) {
+                return myQuestionList;
+            }
+
+            var myQuestionIndexList = [];
+            for (var i in myQuestionList) {
+                if (!myQuestionList[i]) {
+                    continue;
+                }
+
+                var isExist = false;
+
+                for (var j in questionList) {
+                    if (!questionList[j]) {
+                        continue;
+                    }
+
+                    if (questionList[j].question_id === myQuestionList[i].question_id) {
+                        isExist = true;
+                        break;
+                    }
+                }
+
+                // this question not exit, add to questionList
+                if (!isExist) {
+
+                    // add myAccount
+                    myQuestionList[i].user = myAccount;
+
+                    // get category name
+                    if (categoryList && angular.isArray(categoryList) && categoryList.length > 0) {
+
+                        for (var j in categoryList) {
+                            if (!categoryList[j]) {
+                                continue;
+                            }
+
+                            if (myQuestionList[i].category === categoryList[j].name) {
+                                myQuestionList[i].categoryName = categoryList.text;
+                                break;
+                            }
+                        }
+                    }
+
+                    // save index
+                    myQuestionIndexList.push(i);
+                }
+            }
+
+            // merge myQuestionList to questionList
+            if (myQuestionIndexList.length > 0) {
+                for (var i in myQuestionIndexList) {
+                    var index = myQuestionIndexList[i];
+                    questionList.push(myQuestionList[index]);
+                }
+            }
+
+            return questionList;
+        }
     }
 
 })();
