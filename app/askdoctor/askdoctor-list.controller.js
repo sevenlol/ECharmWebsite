@@ -28,15 +28,6 @@
         vm.isCollapsed = true;
         vm.collapse = collapse;
 
-        vm.pageLimit = 1;
-        vm.index = 0;
-        vm.numOfQuestions = countNumberOfQuestions(questionList);
-        vm.showMoreQuestion  = showMoreQuestion;
-
-        vm.searchText = '';
-        vm.updatedSearchText = '';
-        vm.search = search;
-
         // ask question form
         vm.questionMin = 10;
         vm.questionSubmitted = false;
@@ -54,6 +45,15 @@
         vm.questionList = mergeMyQuestionList(vm.questionList, myQuestionList, askdoctorCategoryList, myAccount);
         vm.collapseQuestion = collapseQuestion;
         vm.askQuestion = askQuestion;
+
+        vm.pageLimit = 1;
+        vm.index = 0;
+        vm.numOfQuestions = countNumberOfQuestions(questionList);
+        vm.showMoreQuestion  = showMoreQuestion;
+
+        vm.searchText = '';
+        vm.updatedSearchText = '';
+        vm.search = search;
 
         /* public functions */
 
