@@ -5,6 +5,7 @@
            .controller('askdoctorDetailController', askdoctorDetailController);
 
     askdoctorDetailController.$inject = [
+        '$filter',
         'myAccount',
         'question',
         'answer',
@@ -18,7 +19,9 @@
         'askdoctorAnswerService'
     ];
 
-    function askdoctorDetailController(myAccount, question, answer, doctor, user, commentList, commentUserList, ratingList, avgRating, askdoctorCategoryList, askdoctorAnswerService) {
+    function askdoctorDetailController($filter, myAccount, question, answer, doctor, user, commentList, commentUserList, ratingList, avgRating, askdoctorCategoryList, askdoctorAnswerService) {
+        var DATE_FORMAT = 'yyyy-MM-ddTHH:mmZ';
+
         var vm = this;
 
         vm.question = question;
@@ -67,8 +70,8 @@
             // TODO change this
             var answerBody = {
                 answerer_id : myAccount.account_id,
-                created_at : new Date().toString(),
-                updated_at : new Date().toString(),
+                created_at : $filter('date')(new Date(), DATE_FORMAT),
+                updated_at : $filter('date')(new Date(), DATE_FORMAT),
                 answer_text : vm.answerText
             };
 

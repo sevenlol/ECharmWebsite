@@ -5,6 +5,7 @@
            .controller('askdoctorListController', askdoctorListController);
 
     askdoctorListController.$inject = [
+        '$filter',
         'myAccount',
         '$stateParams',
         '$rootScope',
@@ -16,8 +17,9 @@
         'askdoctorQuestionService'
     ];
 
-    function askdoctorListController(myAccount, $stateParams, $rootScope, askdoctorCategoryList, questionList, myQuestionList, doctorList, userList, askdoctorQuestionService) {
+    function askdoctorListController($filter, myAccount, $stateParams, $rootScope, askdoctorCategoryList, questionList, myQuestionList, doctorList, userList, askdoctorQuestionService) {
         var SHOW_MORE_QUESTION_STEP = 1;
+        var DATE_FORMAT = 'yyyy-MM-ddTHH:mmZ';
 
         var vm = this;
 
@@ -79,8 +81,8 @@
                 tag_arr : [],
                 rating : 0,
                 rating_count : 0,
-                created_at : new Date().toString(),
-                updated_at : new Date().toString(),
+                created_at : $filter('date')(new Date(), DATE_FORMAT),
+                updated_at : $filter('date')(new Date(), DATE_FORMAT),
                 content_text : vm.questionText
             };
 
