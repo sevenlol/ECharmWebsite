@@ -81,7 +81,7 @@
                     return;
                 }
 
-                submitAnswerSucceeded('解答發表成功');
+                submitAnswerSucceeded('解答發表成功', answer);
                 // created succeeded
             }
             var submitAnswerFailCallback = function(error) {
@@ -120,11 +120,15 @@
             vm.answerStatusMessage.message = msg;
         }
 
-        function submitAnswerSucceeded(msg) {
+        function submitAnswerSucceeded(msg, answer) {
             vm.answerSubmitted = false;
             vm.answerStatusMessage.isShown = true;
             vm.answerStatusMessage.type = 'success';
             vm.answerStatusMessage.message = msg;
+
+            if (!vm.answer) {
+                vm.answer = answer;
+            }
         }
 
         function getCategoryName(categoryList, question) {

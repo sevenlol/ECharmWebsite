@@ -93,7 +93,7 @@
                     return;
                 }
 
-                askQuestionSucceeded('提問發表成功');
+                askQuestionSucceeded('提問發表成功', question);
                 // created succeeded
             };
 
@@ -161,11 +161,19 @@
             vm.statusMessage.message = msg;
         }
 
-        function askQuestionSucceeded(msg) {
+        function askQuestionSucceeded(msg, question) {
             vm.questionSubmitted = false;
             vm.statusMessage.isShown = true;
             vm.statusMessage.type = 'success';
             vm.statusMessage.message = msg;
+
+            if (vm.questionList) {
+                vm.questionList.push(question);
+                vm.numOfQuestions++;
+            } else {
+                vm.questionList = [ question ];
+                vm.numOfQuestions = 1;
+            }
         }
 
         function countNumberOfQuestions(questionList) {
