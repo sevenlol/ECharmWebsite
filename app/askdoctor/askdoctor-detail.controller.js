@@ -53,6 +53,11 @@
         vm.ratingMax = 5;
         vm.hoverOverRating = hoverOverRating;
 
+        // my rating bar
+        vm.isMyRatingBarCollapsed = true;
+        vm.myRating = 0;
+        vm.collapseMyRatingBar = collapseMyRatingBar;
+
         vm.answerThisQuestion = answerThisQuestion;
         vm.commentThisQuestion = commentThisQuestion;
         vm.rateThisQuestion = rateThisQuestion;
@@ -146,6 +151,10 @@
             if (!vm.answer) {
                 vm.answer = answer;
             }
+        }
+
+        function collapseMyRatingBar() {
+            vm.isMyRatingBarCollapsed = !vm.isMyRatingBarCollapsed;
         }
 
         function getCategoryName(categoryList, question) {

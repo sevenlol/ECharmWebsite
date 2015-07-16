@@ -74,6 +74,12 @@
           </div>
           <!-- <div class="satisfy">滿意度 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></div> -->
         </div>
+
+        <div class="question-content-tag">
+          <a href="#" class="btn round-btn" ng-click="vm.collapseMyRatingBar()">評分</a><a href="#" class="btn round-btn">收藏</a><a href="#" class="btn round-btn">訂閱</a>
+          <rating ng-model="vm.myRating" collapse="vm.isMyRatingBarCollapsed" max="vm.ratingMax" readonly="false" state-on="'fa fa-star'" state-off="'fa fa-star-o'"></rating>
+        </div>
+
       </div>
 
       <div class="row" ng-show="authenticated && account.user_type === 'DOCTOR' && !vm.answer">

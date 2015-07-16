@@ -83,3 +83,7 @@ ul.doctor-list li p {
 .comment-badge {
 	background-color:#616161;
 }
+
+.question-content-tag {
+	padding:20px 0;
+}
