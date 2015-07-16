@@ -40,7 +40,7 @@
 
       <div class="question-block">
         <!-- ask -->
-        <div class="question-top" ng-class="{ false : 'noanswer' }[ vm.answer ]">
+        <div class="question-top" ng-class="{ false : 'noanswer' }[ vm.answer !== null ]">
           <div class="question-profile">
             <a href="#">
               <img src="images/userpic_3.jpg" alt="" class="img-circle" />{{vm.user.user_info.name ? vm.user.user_info.name : '使用者'}}
@@ -68,7 +68,7 @@
           <!-- <div class="satisfy">滿意度 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></div> -->
         </div>
 
-        <div class="question-content-tag">
+        <div class="question-content-tag" ng-show="vm.answer">
           <div class="satisfy pull-right" ng-show="vm.ratingList && vm.ratingList.length">
             {{ vm.overRatingValue ? vm.overRatingValue : '滿意度' }}
             <rating ng-model="vm.avgRating" max="vm.ratingMax" readonly="true" state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="vm.hoverOverRating(value)" on-leave="vm.overRatingValue = null"></rating>
@@ -82,7 +82,7 @@
           <a href="#" class="btn round-btn">訂閱</a>
         </div>
 
-        <div class="my-rating-bar" collapse="vm.isMyRatingBarCollapsed" >
+        <div class="my-rating-bar" collapse="vm.isMyRatingBarCollapsed" ng-show="vm.answer">
           <p ng-show="!authenticated" class="pink-style">請先登入來進行評分</p>
           <ul ng-show="authenticated" class="list-inline list-unstyled">
             <li><rating ng-model="vm.myRating" max="vm.ratingMax" readonly="false" state-on="'fa fa-star'" state-off="'fa fa-star-o'"></rating></li>
