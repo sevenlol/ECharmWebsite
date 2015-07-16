@@ -87,3 +87,9 @@ ul.doctor-list li p {
 .question-content-tag {
 	padding:20px 0;
 }
+
+.my-rating-bar i {
+	margin:0 2px;
+	color:#faa500;
+	padding-top:10px;
+}
