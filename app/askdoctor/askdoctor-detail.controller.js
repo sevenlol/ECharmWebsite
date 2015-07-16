@@ -56,6 +56,7 @@
         // my rating bar
         vm.isMyRatingBarCollapsed = true;
         vm.myRating = 0;
+        vm.iAlreadyRated = findMyRating(vm.ratingList);
         vm.collapseMyRatingBar = collapseMyRatingBar;
 
         vm.answerThisQuestion = answerThisQuestion;
@@ -151,6 +152,27 @@
             if (!vm.answer) {
                 vm.answer = answer;
             }
+        }
+
+        function findMyRating(ratingList) {
+            if (!ratingList || !angular.isArray(ratingList) ||
+                ratingList.length === 0 || !myAccount || !myAccount.account_id) {
+                return false;
+            }
+
+            for (var i in ratingList) {
+                if (!ratingList[i]) {
+                    continue;
+                }
+
+                if (ratingList[i].rater_id === myAccount.account_id) {
+                    vm.iAlreadyRated = true;
+                    vm.myRating = ratingList[i].rating_value;
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         function collapseMyRatingBar() {

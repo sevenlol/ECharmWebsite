@@ -65,22 +65,30 @@
           </div>
           <p class="pink-style">{{vm.answer.answer_text}}</p>
 
-          <div class="satisfy" ng-show="vm.ratingList && vm.ratingList.length">
-            {{ vm.overRatingValue ? vm.overRatingValue : '滿意度' }}
-            <rating ng-model="vm.avgRating" max="vm.ratingMax" readonly="true" state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="vm.hoverOverRating(value)" on-leave="vm.overRatingValue = null"></rating>
-          </div>
-          <div class="satisfy" ng-show="!vm.ratingList || !vm.ratingList.length">
-            目前尚無評分紀錄
-          </div>
           <!-- <div class="satisfy">滿意度 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></div> -->
         </div>
 
         <div class="question-content-tag">
-          <a href="#" class="btn round-btn" ng-click="vm.collapseMyRatingBar()">評分</a><a href="#" class="btn round-btn">收藏</a><a href="#" class="btn round-btn">訂閱</a>
+          <div class="satisfy pull-right" ng-show="vm.ratingList && vm.ratingList.length">
+            {{ vm.overRatingValue ? vm.overRatingValue : '滿意度' }}
+            <rating ng-model="vm.avgRating" max="vm.ratingMax" readonly="true" state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="vm.hoverOverRating(value)" on-leave="vm.overRatingValue = null"></rating>
+          </div>
+          <div class="pull-right" ng-show="!vm.ratingList || !vm.ratingList.length">
+            目前尚無評分紀錄
+          </div>
+          <a href="#" ng-show="!vm.iAlreadyRated" class="btn round-btn" ng-click="vm.collapseMyRatingBar()">我要評分</a>
+          <button ng-show="vm.iAlreadyRated" href="#" class="btn round-btn" disabled><strong>我的評分 {{vm.myRating}}</strong></button>
+          <a href="#" class="btn round-btn">收藏</a>
+          <a href="#" class="btn round-btn">訂閱</a>
         </div>
 
-        <div class="my-rating-bar">
-          <rating ng-model="vm.myRating" collapse="vm.isMyRatingBarCollapsed" max="vm.ratingMax" readonly="false" state-on="'fa fa-star'" state-off="'fa fa-star-o'"></rating>
+        <div class="my-rating-bar" collapse="vm.isMyRatingBarCollapsed" >
+          <p ng-show="!authenticated" class="pink-style">請先登入來進行評分</p>
+          <ul ng-show="authenticated" class="list-inline list-unstyled">
+            <li><rating ng-model="vm.myRating" max="vm.ratingMax" readonly="false" state-on="'fa fa-star'" state-off="'fa fa-star-o'"></rating></li>
+            <li>我的評分{{vm.myRating}}</li>
+            <!-- <li><a href="#" class="btn btn-sm round-btn">送出評分</a></li> -->
+          </ul>
         </div>
 
       </div>
