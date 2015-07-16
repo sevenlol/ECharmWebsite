@@ -26,7 +26,9 @@
             name : 'askdoctor.home',
             url : '/home',
             parent : askdoctorState,
-            templateUrl : 'app/askdoctor/askdoctor-home.html'
+            templateUrl : 'app/askdoctor/askdoctor-home.html',
+            controller : 'askdoctorHomeController',
+            controllerAs : 'vm'
         };
 
         var askdoctorListState = {
