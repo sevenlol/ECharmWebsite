@@ -144,7 +144,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" ng-show="!authenticated || account.user_type !== 'DOCTOR' || vm.answer || vm.commentList">
         <div class="col-lg-2 col-sm-2">
           <div class="user-thumb-md">
             <a href="#" class="doc-profile">
