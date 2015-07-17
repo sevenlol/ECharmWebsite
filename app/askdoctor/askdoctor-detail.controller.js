@@ -296,6 +296,13 @@
             if (!vm.iAlreadyRated && rating && angular.isNumber(rating.rating_value)) {
                 vm.iAlreadyRated  = true;
                 vm.myRating = rating.rating_value;
+                if (!vm.ratingList || !angular.isArray(vm.ratingList) || vm.ratingList.length === 0) {
+                    vm.ratingList = [ vm.myRating ];
+                    vm.avgRating = vm.myRating;
+                } else {
+                    vm.ratingList.push(vm.myRating);
+                    vm.avgRating = (vm.myRating + vm.avgRating * (vm.ratingList.length - 1)) / vm.ratingList.length;
+                }
             }
         }
 
