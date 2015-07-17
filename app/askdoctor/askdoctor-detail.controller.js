@@ -233,7 +233,7 @@
 
             try {
                 askdoctorRatingService
-                    .createComment(vm.question.category, vm.question.question_id, ratingBody)
+                    .createRating(vm.question.category, vm.question.question_id, ratingBody)
                     .then(submitRatingSuccessCallback)
                     .catch(submitRatingFailCallback);
             } catch (e) {
