@@ -6,13 +6,18 @@
 		.controller('accountMeDoctorController', accountMeDoctorController);
 
 	accountMeDoctorController.$inject = [
-		'doctor'
+		'doctor',
+		'avgAnswerRating'
 	];
 
-	function accountMeDoctorController(doctor) {
+	function accountMeDoctorController(doctor, avgAnswerRating) {
+		var DEFAULT_RATING_MAX = 5;
+
 		var vm = this;
 
 		vm.doctor = doctor;
+		vm.avgAnswerRating = avgAnswerRating;
+		vm.ratingMax = DEFAULT_RATING_MAX;
 	}
 
 })();

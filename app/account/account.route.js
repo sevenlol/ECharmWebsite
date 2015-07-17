@@ -90,6 +90,7 @@
             resolve : {
                 doctor : resolveMeDoctor,
                 answerList : resolveMeDoctorAnswerList,
+                avgAnswerRating : resolveMeDoctorAvgAnswerRating,
                 articleList : resolveMeDoctorArticleList
             },
             templateUrl : 'app/account/me/account-me-doctor.html',
@@ -284,10 +285,47 @@
 
             try {
                 return askdoctorService
-                           .readAllEmbeddedQuestionByAnswererId(id, true, true, false, false)
+                           .readAllEmbeddedQuestionByAnswererId(id, true, true, false, true)
                            .catch(failCallback);
             } catch(error) {
                 return null;
+            }
+
+            return null;
+        }
+
+        function resolveMeDoctorAvgAnswerRating(answerList) {
+            if (!answerList || !angular.isArray(answerList) || answerList.length === 0) {
+                return null;
+            }
+
+            var total = 0;
+            var count = 0;
+            for (var i in answerList) {
+                if (!answerList[i] || !answerList[i].rating_list ||
+                    !angular.isArray(answerList[i].rating_list) || answerList[i].rating_list.length === 0) {
+                    continue;
+                }
+
+                var ratingList = answerList[i].rating_list;
+                for (var j in ratingList) {
+                    if (!ratingList[j] || !angular.isNumber(ratingList[j].rating_value)) {
+                        continue;
+                    }
+
+                    if (ratingList[j].rating_value >= 0 && ratingList[j].rating_value <= 5) {
+                        total += ratingList[j].rating_value;
+                        count++;
+                    }
+                }
+            }
+
+            if (count > 0) {
+                var avgRatingObj = {
+                    number : total / count,
+                    count : count
+                };
+                return avgRatingObj;
             }
 
             return null;
