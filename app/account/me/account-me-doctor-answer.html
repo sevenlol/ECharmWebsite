@@ -14,10 +14,10 @@
     <div class="table-responsive" ng-show="vm.numOfQuestions">
       <table class="table table-hover">
         <tbody>
-          <tr class='clickable-row' ng-repeat="question in vm.questionList | limitTo : vm.pageLimit : vm.index">
+          <tr class='clickable-row' ui-sref="askdoctor.detail({ category : question.category, questionId : question.question_id })" ng-repeat="question in vm.questionList | limitTo : vm.pageLimit : vm.index">
             <th>1小時前</th>
-            <td><span class="blue-style-1">Q</span> {{question.content_text}}</td>
-            <td><span class="pink-style">A</span> {{question.answer.answer_text}}</td>
+            <td><span class="blue-style-1">Q</span> {{question.content_text | limitTo : vm.questionLengthMax }}{{ (question.content_text.length > vm.questionLengthMax) ? ' ...' : '' }}</td>
+            <td><span class="pink-style">A</span> {{question.answer.answer_text | limitTo : vm.answerLengthMax }}{{ (question.answer.answer_text.length > vm.answerLengthMax) ? ' ...' : '' }}</td>
           </tr>
         </tbody>
       </table>

@@ -10,6 +10,8 @@
 
     function accountMeDoctorAnswerController(answerList) {
         var SHOW_MORE_QUESTION_STEP = 1;
+        var DEFAULT_QUESTION_CONTENT_MAXLENGTH = 25;
+        var DEFAULT_ANSWER_CONTENT_MAXLENGTH = 25;
 
         var vm = this;
 
@@ -18,6 +20,8 @@
 
         vm.pageLimit = 1;
         vm.index = 0;
+        vm.questionLengthMax = DEFAULT_QUESTION_CONTENT_MAXLENGTH;
+        vm.answerLengthMax = DEFAULT_ANSWER_CONTENT_MAXLENGTH;
 
         vm.displayShowMoreButton = false;
         vm.showMoreQuestion  = showMoreQuestion;
