@@ -25,6 +25,8 @@
 
         var vm = this;
 
+        vm.myAccount = myAccount;
+
         vm.categoryList = askdoctorCategoryList;
         vm.category = $stateParams ? $stateParams.category : 'all';
         vm.categoryName = getCategoryName(askdoctorCategoryList, vm.category);

@@ -153,8 +153,9 @@
               <img src="images/docpic.jpg" alt="" class="img-circle" />
             </a>
             <p ng-show="authenticated">
+              {{ (vm.myAccount && vm.myAccount.user_info && vm.myAccount.user_info.name) ? vm.myAccount.user_info.name : vm.myAccount.username }}
               <!-- <i class="fa fa-venus"></i> -->
-              <span>24歲 宜蘭市</span>
+              <!-- <span>24歲 宜蘭市</span> -->
             </p>
             <p ng-show="!authenticated">
               訪客

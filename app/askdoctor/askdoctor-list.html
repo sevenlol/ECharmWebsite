@@ -43,9 +43,9 @@
         <div class="user-thumb-md">
           <img src="images/userpic_2.jpg" alt="" class="img-circle" />
           <p ng-show="authenticated">
-            林祥文
+            {{ (vm.myAccount && vm.myAccount.user_info && vm.myAccount.user_info.name) ? vm.myAccount.user_info.name : vm.myAccount.username }}
             <!-- <i class="fa fa-mars"></i> -->
-            <span>39歲 台北市</span>
+            <!-- <span>39歲 台北市</span> -->
           </p>
           <p ng-show="!authenticated">
             訪客

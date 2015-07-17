@@ -28,6 +28,8 @@
 
         var vm = this;
 
+        vm.myAccount = myAccount;
+
         vm.question = question;
         vm.answer = answer;
         vm.doctor = doctor;
