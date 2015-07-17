@@ -25,8 +25,9 @@
 
     <ol class="breadcrumb hidden-xs text-right">
       <li><a ui-sref="home">醫創網</a></li>
-      <li><a ui-sref="askdoctor.list({ category : vm.question.category })">即時醫師問答</a></li>
-      <li class="active">{{vm.categoryName}}</li>
+      <li><a ui-sref="askdoctor.home">即時醫師問答</a></li>
+      <li><a ui-sref="askdoctor.list({ category : vm.question.category })">{{vm.categoryName}}</a></li>
+      <li class="active">問題</li>
     </ol>
 
   </div>
@@ -45,7 +46,7 @@
             <a href="#">
               <img src="images/userpic_3.jpg" alt="" class="img-circle" />{{vm.user.user_info.name ? vm.user.user_info.name : '使用者'}}
             </a>
-            <i class="fa fa-venus"></i>
+            <!-- <i class="fa fa-venus"></i> -->
             <span>{{ vm.question.created_at ? (vm.question.created_at | relativeDate) : '' }}</span>
           </div>
           <p>
@@ -79,7 +80,7 @@
           <a href="#" ng-show="!vm.iAlreadyRated" class="btn round-btn" ng-click="vm.collapseMyRatingBar()">我要評分</a>
           <button ng-show="vm.iAlreadyRated" href="#" class="btn round-btn" disabled><strong>我的評分 {{vm.myRating}}</strong></button>
           <a href="#" class="btn round-btn">收藏</a>
-          <a href="#" class="btn round-btn">訂閱</a>
+          <!-- <a href="#" class="btn round-btn">訂閱</a> -->
         </div>
 
         <div class="my-rating-bar" collapse="vm.isMyRatingBarCollapsed" ng-show="vm.answer">
@@ -135,7 +136,7 @@
               <a href="#">
                 <img src="images/userpic_3.jpg" alt="" class="img-circle" />{{comment.user && comment.user.user_info ? comment.user.user_info.name : '' }}
               </a>
-              <i class="fa fa-venus"></i>
+              <!-- <i class="fa fa-venus"></i> -->
               <span>{{ comment.created_at ? (comment.created_at | relativeDate) : '' }}</span>
             </div>
             <p>
@@ -152,7 +153,7 @@
               <img src="images/docpic.jpg" alt="" class="img-circle" />
             </a>
             <p ng-show="authenticated">
-              <i class="fa fa-venus"></i>
+              <!-- <i class="fa fa-venus"></i> -->
               <span>24歲 宜蘭市</span>
             </p>
             <p ng-show="!authenticated">

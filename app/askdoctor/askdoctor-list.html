@@ -33,7 +33,7 @@
 
     <ol class="breadcrumb hidden-xs text-right">
       <li><a ui-sref="home">醫創網</a></li>
-      <li><a ui-sref="askdoctor.list({ category : 'all' })">即時醫師問答</a></li>
+      <li><a ui-sref="askdoctor.home">即時醫師問答</a></li>
       <li class="active">醫學美容</li>
     </ol>
 
@@ -44,7 +44,7 @@
           <img src="images/userpic_2.jpg" alt="" class="img-circle" />
           <p ng-show="authenticated">
             林祥文
-            <i class="fa fa-mars"></i>
+            <!-- <i class="fa fa-mars"></i> -->
             <span>39歲 台北市</span>
           </p>
           <p ng-show="!authenticated">
@@ -142,7 +142,7 @@
               <a href="#">
                 <img src="images/userpic_3.jpg" alt="" class="img-circle" />李大強
               </a>
-              <i class="fa fa-venus"></i>
+              <!-- <i class="fa fa-venus"></i> -->
               <span>24歲 宜蘭市 <br />45分前</span>
             </div>
             <p>
@@ -239,7 +239,7 @@
             <a href="#">
               <img src="images/userpic_3.jpg" alt="" class="img-circle" />{{question.user.user_info.name ? question.user.user_info.name : '使用者'}}
             </a>
-            <i class="fa fa-venus"></i>
+            <!-- <i class="fa fa-venus"></i> -->
             <span>{{ question.created_at ? (question.created_at | relativeDate) : '' }}</span>
           </div>
           <p>
