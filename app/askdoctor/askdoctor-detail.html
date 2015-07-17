@@ -84,8 +84,9 @@
 
         <div class="my-rating-bar" collapse="vm.isMyRatingBarCollapsed" ng-show="vm.answer">
           <p ng-show="!authenticated" class="pink-style">請先登入來進行評分</p>
-          <ul ng-show="authenticated" class="list-inline list-unstyled">
-            <li><rating ng-model="vm.myRating" max="vm.ratingMax" readonly="false" state-on="'fa fa-star'" state-off="'fa fa-star-o'"></rating></li>
+          <p ng-show="authenticated && vm.ratingStatusMessage.isShown" ng-class="{ true : 'blue-style-1', false : 'pink-style' }[ vm.ratingStatusMessage && vm.ratingStatusMessage.type === 'success' ]">{{ vm.ratingStatusMessage.message }}</p>
+          <ul ng-show="authenticated && !vm.iAlreadyRated" class="list-inline list-unstyled">
+            <li><rating ng-model="vm.myRating" max="vm.ratingMax" ng-click="vm.rateThisQuestion()" readonly="false" state-on="'fa fa-star'" state-off="'fa fa-star-o'"></rating></li>
             <li>我的評分{{vm.myRating}}</li>
             <!-- <li><a href="#" class="btn btn-sm round-btn">送出評分</a></li> -->
           </ul>

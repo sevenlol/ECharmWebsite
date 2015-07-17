@@ -60,6 +60,11 @@
         // rating
         vm.ratingMax = 5;
         vm.hoverOverRating = hoverOverRating;
+        vm.ratingStatusMessage = {
+            isShown : false,
+            type    : 'error',
+            message : ''
+        };
 
         // my rating bar
         vm.isMyRatingBarCollapsed = true;
@@ -186,7 +191,54 @@
         }
 
         function rateThisQuestion() {
-            // body...
+            if (vm.iAlreadyRated) {
+                return;
+            }
+
+            if (vm.myRating < 0 || vm.myRating > 5) {
+                return;
+            }
+
+            if (!askdoctorRatingService || !myAccount || !myAccount.account_id) {
+                submitRatingFailed('發表評分時發生錯誤，請稍後重新嘗試');
+            }
+
+            var ratingBody = {
+                rater_id : myAccount.account_id,
+                created_at : $filter('date')(new Date(), DATE_FORMAT),
+                updated_at : $filter('date')(new Date(), DATE_FORMAT),
+                rating_value : vm.myRating
+            };
+
+            // callbacks
+            var submitRatingSuccessCallback = function(rating) {
+                // TODO add handling code
+                // create failed
+                if (!rating) {
+                    submitRatingFailed('發表評分時發生錯誤，請稍後重新嘗試');
+                    return;
+                }
+
+                submitRatingSucceeded('評分發表成功', rating);
+                // created succeeded
+            }
+            var submitRatingFailCallback = function(error) {
+                if (error && error.message) {
+                    submitRatingFailed(error.message);
+                    return;
+                }
+
+                submitRatingFailed('發表評分時發生錯誤，請稍後重新嘗試');
+            };
+
+            try {
+                askdoctorRatingService
+                    .createComment(vm.question.category, vm.question.question_id, ratingBody)
+                    .then(submitRatingSuccessCallback)
+                    .catch(submitRatingFailCallback);
+            } catch (e) {
+                submitAnswerFailed('發表評分時發生錯誤，請稍後重新嘗試');
+            }
         }
 
         /* private functions */
@@ -226,6 +278,24 @@
                 vm.commentList = [ comment ];
             } else {
                 vm.commentList.push(comment);
+            }
+        }
+
+        function submitRatingFailed(msg) {
+            vm.iAlreadyRated = false;
+            vm.ratingStatusMessage.isShown = true;
+            vm.ratingStatusMessage.type = 'error';
+            vm.ratingStatusMessage.message = msg;
+        }
+
+        function submitRatingSucceeded(msg, rating) {
+            vm.ratingStatusMessage.isShown = true;
+            vm.ratingStatusMessage.type = 'success';
+            vm.ratingStatusMessage.message = msg;
+
+            if (!vm.iAlreadyRated && rating && angular.isNumber(rating.rating_value)) {
+                vm.iAlreadyRated  = true;
+                vm.myRating = rating.rating_value;
             }
         }
 
