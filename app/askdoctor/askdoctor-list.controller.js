@@ -10,6 +10,7 @@
         '$stateParams',
         '$rootScope',
         'askdoctorCategoryList',
+        'accountCategoryNameTextList',
         'questionList',
         'myQuestionList',
         'doctorList',
@@ -17,7 +18,7 @@
         'askdoctorQuestionService'
     ];
 
-    function askdoctorListController($filter, myAccount, $stateParams, $rootScope, askdoctorCategoryList, questionList, myQuestionList, doctorList, userList, askdoctorQuestionService) {
+    function askdoctorListController($filter, myAccount, $stateParams, $rootScope, askdoctorCategoryList, accountCategoryNameTextList, questionList, myQuestionList, doctorList, userList, askdoctorQuestionService) {
         var SHOW_MORE_QUESTION_STEP = 1;
         var DATE_FORMAT = 'yyyy-MM-ddTHH:mmZ';
         var DEFAULT_RATING_MAX = 5;
@@ -44,7 +45,7 @@
 
         // TODO add state variables for askQuestion function
         // merge doctorList, userList, categoryList to questionList
-        vm.questionList = mergeQuestionList(questionList, doctorList, userList, askdoctorCategoryList);
+        vm.questionList = mergeQuestionList(questionList, doctorList, userList, askdoctorCategoryList, accountCategoryNameTextList);
         vm.questionList = mergeMyQuestionList(vm.questionList, myQuestionList, askdoctorCategoryList, myAccount);
         vm.collapseQuestion = collapseQuestion;
         vm.askQuestion = askQuestion;
@@ -216,27 +217,27 @@
             return '';
         }
 
-        function mergeQuestionList(questionList, doctorList, userList, categoryList) {
+        function mergeQuestionList(questionList, doctorList, userList, categoryList, doctorCategoryList) {
             if (!questionList || !angular.isArray(questionList) || questionList.length === 0) {
                 return null;
             }
 
             // add categoryName to doctorList
             if (doctorList && angular.isArray(doctorList) && doctorList.length > 0 &&
-                categoryList && angular.isArray(categoryList) && categoryList.length > 0) {
+                doctorCategoryList && angular.isArray(doctorCategoryList) && doctorCategoryList.length > 0) {
 
                 for (var i in doctorList) {
                     if (!doctorList[i]) {
                         continue;
                     }
 
-                    for (var j in categoryList) {
-                        if (!categoryList) {
+                    for (var j in doctorCategoryList) {
+                        if (!doctorCategoryList) {
                             continue;
                         }
 
-                        if (doctorList[i].user_info && doctorList[i].user_info.category === categoryList[j].name) {
-                            doctorList[i].user_info.categoryName = categoryList[j].text;
+                        if (doctorList[i].user_info && doctorList[i].user_info.category === doctorCategoryList[j].name) {
+                            doctorList[i].user_info.categoryName = doctorCategoryList[j].text;
                             break;
                         }
                     }
