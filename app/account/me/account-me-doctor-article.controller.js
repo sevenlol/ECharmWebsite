@@ -6,11 +6,13 @@
 
     accountMeDoctorArticleController.$inject = [
         'articleList',
-        'myAccount'
+        'myAccount',
+        'blogCategoryNameTextList'
     ];
 
-    function accountMeDoctorArticleController(articleList, myAccount) {
+    function accountMeDoctorArticleController(articleList, myAccount, blogCategoryNameTextList) {
         var SHOW_MORE_ARTICLE_STEP = 1;
+        var DEFAULT_ARTICLE_TITLE_LENGTH = 25;
 
         var vm = this;
 
@@ -21,6 +23,7 @@
 
         vm.pageLimit = 1;
         vm.index = 0;
+        vm.articleTitleLengthMax = DEFAULT_ARTICLE_TITLE_LENGTH;
 
         vm.displayShowMoreButton = false;
         vm.showMoreArticle  = showMoreArticle;
@@ -29,6 +32,8 @@
             vm.numberOfArticle = articleList.length;
             vm.displayShowMoreButton = vm.numberOfArticle > vm.pageLimit ? true : false;
         }
+
+        matchArticleCategoryName(vm.articleList, blogCategoryNameTextList);
 
         /* public functions */
 
@@ -43,6 +48,34 @@
             } else {
                 vm.displayShowMoreButton = true;
                 vm.pageLimit += SHOW_MORE_ARTICLE_STEP;
+            }
+        }
+
+        /* private functions */
+        function matchArticleCategoryName(articleList, categoryList) {
+            if (!articleList || !angular.isArray(articleList) || articleList.length === 0) {
+                return;
+            }
+
+            if (!categoryList || !angular.isArray(categoryList) || categoryList.length === 0) {
+                return;
+            }
+
+            for (var i in articleList) {
+                if (!articleList[i] || !articleList[i].category) {
+                    continue;
+                }
+
+                for (var j in categoryList) {
+                    if (!categoryList[j]) {
+                        continue;
+                    }
+
+                    if (articleList[i].category === categoryList[j].name) {
+                        articleList[i].categoryName = categoryList[j].text;
+                        break;
+                    }
+                }
             }
         }
     }

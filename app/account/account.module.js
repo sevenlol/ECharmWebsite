@@ -6,6 +6,7 @@
         'ui.bootstrap',
         'angular-parallax',
         'app.auth',
+        'app.value',
         'ny.logger',
         'data.account',
         'data.blog',
