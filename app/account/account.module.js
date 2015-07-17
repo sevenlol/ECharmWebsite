@@ -7,6 +7,7 @@
         'angular-parallax',
         'app.auth',
         'app.value',
+        'app.filter',
         'ny.logger',
         'data.account',
         'data.blog',

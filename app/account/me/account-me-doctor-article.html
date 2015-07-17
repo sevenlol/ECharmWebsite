@@ -15,7 +15,7 @@
       <table class="table table-hover">
         <tbody>
           <tr class='clickable-row' ng-repeat="article in vm.articleList | limitTo : vm.pageLimit : vm.index">
-            <th>{{article.created_at}}</th>
+            <th>{{ article.created_at ? (article.created_at | relativeDate) : '' }}</th>
             <td><span class="blue-style-1">[{{article.categoryName}}]</span> {{article.title | limitTo : vm.articleTitleLengthMax}}{{ (article && article.title && article.title.length > vm.articleTitleLengthMax) ? ' ...' : ''}}</td>
             <td>by <a href="profile-doctor.html">{{vm.doctorName}} 醫師</a> </td>
           </tr>
