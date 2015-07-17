@@ -16,10 +16,13 @@
         'ratingList',
         'avgRating',
         'askdoctorCategoryList',
-        'askdoctorAnswerService'
+        'askdoctorAnswerService',
+        'askdoctorCommentService',
+        'askdoctorRatingService'
     ];
 
-    function askdoctorDetailController($filter, myAccount, question, answer, doctor, user, commentList, commentUserList, ratingList, avgRating, askdoctorCategoryList, askdoctorAnswerService) {
+    function askdoctorDetailController($filter, myAccount, question, answer, doctor, user, commentList, commentUserList, ratingList, avgRating,
+                                                        askdoctorCategoryList, askdoctorAnswerService, askdoctorCommentService, askdoctorRatingService) {
         var DATE_FORMAT = 'yyyy-MM-ddTHH:mmZ';
         var DEFAULT_RATING_MAX = 5;
 
@@ -48,6 +51,11 @@
         // comment form
         vm.min = 10;
         vm.commentSubmitted = false;
+        vm.commentStatusMessage = {
+            isShown : false,
+            type    : 'error',
+            message : ''
+        };
 
         // rating
         vm.ratingMax = 5;
@@ -128,6 +136,53 @@
 
         function commentThisQuestion() {
             vm.commentSubmitted = true;
+            vm.commentStatusMessage.isShown = false;
+
+            // invalid comment text
+            if (vm.commentForm.commentText.$invalid) {
+                return;
+            }
+
+            if (!askdoctorCommentService || !myAccount || !myAccount.account_id) {
+                submitCommentFailed('發表評論時發生錯誤，請稍後重新嘗試');
+            }
+
+            var commentBody = {
+                commenter_id : myAccount.account_id,
+                created_at : $filter('date')(new Date(), DATE_FORMAT),
+                updated_at : $filter('date')(new Date(), DATE_FORMAT),
+                comment_text : vm.commentText
+            };
+
+            // callbacks
+            var submitCommentSuccessCallback = function(comment) {
+                // TODO add handling code
+                // create failed
+                if (!comment) {
+                    submitCommentFailed('發表評論時發生錯誤，請稍後重新嘗試');
+                    return;
+                }
+
+                submitCommentSucceeded('評論發表成功', comment);
+                // created succeeded
+            }
+            var submitCommentFailCallback = function(error) {
+                if (error && error.message) {
+                    submitCommentFailed(error.message);
+                    return;
+                }
+
+                submitCommentFailed('發表評論時發生錯誤，請稍後重新嘗試');
+            };
+
+            try {
+                askdoctorCommentService
+                    .createComment(vm.question.category, vm.question.question_id, commentBody)
+                    .then(submitCommentSuccessCallback)
+                    .catch(submitCommentFailCallback);
+            } catch (e) {
+                submitAnswerFailed('發表評論時發生錯誤，請稍後重新嘗試');
+            }
         }
 
         function rateThisQuestion() {
@@ -151,6 +206,26 @@
 
             if (!vm.answer) {
                 vm.answer = answer;
+            }
+        }
+
+        function submitCommentFailed(msg) {
+            vm.commentSubmitted = false;
+            vm.commentStatusMessage.isShown = true;
+            vm.commentStatusMessage.type = 'error';
+            vm.commentStatusMessage.message = msg;
+        }
+
+        function submitCommentSucceeded(msg, comment) {
+            vm.commentSubmitted = false;
+            vm.commentStatusMessage.isShown = true;
+            vm.commentStatusMessage.type = 'success';
+            vm.commentStatusMessage.message = msg;
+
+            if (!vm.commentList || !angular.isArray(vm.commentList) || vm.commentList.length === 0) {
+                vm.commentList = [ comment ];
+            } else {
+                vm.commentList.push(comment);
             }
         }
 
