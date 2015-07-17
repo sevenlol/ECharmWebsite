@@ -14,14 +14,20 @@
     <div class="table-responsive">
       <table class="table">
         <tbody>
-          <!-- <tr>
-            <th>生日</th>
-            <td>08 / 10 / 1976</td>
-          </tr> -->
-          <!-- <tr>
+          <tr>
+            <th>年齡</th>
+            <td><input type="text" class="form-control input-md" ng-model="vm.user.user_info.age"></td>
+          </tr>
+          <tr>
             <th>性別</th>
-            <td>男性</td>
-          </tr> -->
+            <td>
+              <div class="btn-group">
+                <label class="btn btn-default" ng-model="vm.user.user_info.gender" btn-radio="vm.GENDER_STRING.MALE"><i class="fa fa-mars"></i></label>
+                <label class="btn btn-default" ng-model="vm.user.user_info.gender" btn-radio="vm.GENDER_STRING.FEMALE"><i class="fa fa-venus"></i></label>
+                <label class="btn btn-default" ng-model="vm.user.user_info.gender" btn-radio="vm.GENDER_STRING.ARBITRARY"><i class="fa fa-question"></i></label>
+              </div>
+            </td>
+          </tr>
           <tr>
             <th>姓名</th>
             <td><input type="text" class="form-control input-md" id="Name" ng-model="vm.user.user_info.name"></td>

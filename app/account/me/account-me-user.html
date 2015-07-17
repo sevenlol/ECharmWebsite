@@ -12,7 +12,11 @@
         <div class="user-thumb-lg">
           <img src="images/userpic_2.jpg" alt="" class="img-circle pull-left" />
           <h3><strong>{{ (vm.user.user_info && vm.user.user_info.name) ? vm.user.user_info.name : vm.user.username }}</strong></h3>
-          <!-- <p>39歲 台北市 <i class="fa fa-mars"></i></p> -->
+          <p>
+            {{ vm.user.user_info.age ? vm.user.user_info.age + '歲' : ''}}
+            <i ng-show="vm.user.user_info.gender === vm.GENDER_STRING.MALE" class="fa fa-mars"></i>
+            <i ng-show="vm.user.user_info.gender === vm.GENDER_STRING.FEMALE" class="fa fa-venus"></i>
+          </p>
           <p>{{ vm.user.email }}</p>
         </div>
       </div>

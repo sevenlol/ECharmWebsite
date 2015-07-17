@@ -13,6 +13,9 @@
           <img src="images/docpic.jpg" alt="" class="img-circle pull-left" />
           <h3><strong>{{ vm.doctor.user_info.name }}</strong> 醫師</h3>
           <p>
+            {{ vm.doctor.user_info.age ? vm.doctor.user_info.age + '歲' : ''}}
+            <i ng-show="vm.doctor.user_info.gender === vm.GENDER_STRING.MALE" class="fa fa-mars"></i>
+            <i ng-show="vm.doctor.user_info.gender === vm.GENDER_STRING.FEMALE" class="fa fa-venus"></i><br />
             {{ vm.doctor.user_info.title }}  皮膚科<br />
             <span ng-show="vm.avgAnswerRating !== null">
               問答平均 <span class="satisfy"><rating ng-model="vm.avgAnswerRating.number" max="vm.ratingMax" readonly="true" state-on="'fa fa-star'" state-off="'fa fa-star-o'"></rating></span> <span>({{vm.avgAnswerRating.number}}) 共{{vm.avgAnswerRating.count}}評價</span>

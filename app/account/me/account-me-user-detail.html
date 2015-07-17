@@ -14,14 +14,18 @@
     <div class="table-responsive">
       <table class="table">
         <tbody>
-          <!-- <tr>
-            <th>生日</th>
-            <td>08 / 10 / 1976</td>
-          </tr> -->
-          <!-- <tr>
+          <tr>
+            <th>年齡</th>
+            <td>{{vm.user.user_info.age}}</td>
+          </tr>
+          <tr>
             <th>性別</th>
-            <td>男性</td>
-          </tr> -->
+            <td>
+              <i ng-show="vm.user.user_info.gender === vm.GENDER_STRING.MALE" class="fa fa-mars"></i>
+              <i ng-show="vm.user.user_info.gender === vm.GENDER_STRING.FEMALE" class="fa fa-venus"></i>
+              <i ng-show="vm.user.user_info.gender === vm.GENDER_STRING.ARBITRARY" class="fa fa-question"></i>
+            </td>
+          </tr>
           <tr>
             <th>姓名</th>
             <td>{{vm.user.user_info.name}}</td>

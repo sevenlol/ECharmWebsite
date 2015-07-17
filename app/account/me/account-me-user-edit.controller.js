@@ -13,9 +13,19 @@
     ];
 
     function accountMeUserEditController(user, memberUserService, $rootScope, $state, Logger) {
+        var MALE_STRING = 'MALE';
+        var FEMALE_STRING = 'FEMALE';
+        var ARBITRARY_GENDER_STRING = 'ARBITRARY';
+
         // Logger object
         var logger = Logger.getInstance('app - account - me - user - edit');
         var vm = this;
+
+        vm.GENDER_STRING = {
+            MALE : MALE_STRING,
+            FEMALE : FEMALE_STRING,
+            ARBITRARY : ARBITRARY_GENDER_STRING
+        };
 
         vm.user = user;
         vm.updateMyInfo = updateMyInfo;
