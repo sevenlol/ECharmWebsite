@@ -11,9 +11,9 @@
       <div class="col-lg-5 col-lg-offset-3 col-md-5 col-md-offset-3 col-xs-12">
         <div class="user-thumb-lg">
           <img src="images/docpic.jpg" alt="" class="img-circle pull-left" />
-          <h3><strong>陳威德</strong> 醫師</h3>
+          <h3><strong>{{ vm.doctor.user_info.name }}</strong> 醫師</h3>
           <p>
-            主治醫師  皮膚科<br />
+            {{ vm.doctor.user_info.title }}  皮膚科<br />
             問答平均 <span class="satisfy"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></span> <span>共729評價</span>
           </p>
         </div>

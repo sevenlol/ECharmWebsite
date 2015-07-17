@@ -11,8 +11,9 @@
       <div class="col-lg-5 col-lg-offset-3 col-md-5 col-md-offset-3 col-xs-12">
         <div class="user-thumb-lg">
           <img src="images/userpic_2.jpg" alt="" class="img-circle pull-left" />
-          <h3><strong>林祥文</strong></h3>
-          <p>39歲 台北市 <i class="fa fa-mars"></i></p>
+          <h3><strong>{{ (vm.user.user_info && vm.user.user_info.name) ? vm.user.user_info.name : vm.user.username }}</strong></h3>
+          <!-- <p>39歲 台北市 <i class="fa fa-mars"></i></p> -->
+          <p>{{ vm.user.email }}</p>
         </div>
       </div>
     </div>

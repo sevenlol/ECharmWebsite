@@ -41,7 +41,9 @@
                 questionList : resolveMeUserQuestionList,
             },
             abstract : true,
-            templateUrl : 'app/account/me/account-me-user.html'
+            templateUrl : 'app/account/me/account-me-user.html',
+            controller : 'accountMeUserController',
+            controllerAs : 'vm'
         };
 
         var accountMeUserDetailState = {
@@ -90,7 +92,9 @@
                 answerList : resolveMeDoctorAnswerList,
                 articleList : resolveMeDoctorArticleList
             },
-            templateUrl : 'app/account/me/account-me-doctor.html'
+            templateUrl : 'app/account/me/account-me-doctor.html',
+            controller : 'accountMeDoctorController',
+            controllerAs : 'vm'
         };
 
         var accountMeDoctorDetailState = {
