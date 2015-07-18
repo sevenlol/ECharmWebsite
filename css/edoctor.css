@@ -245,8 +245,13 @@ ul.newmenu li.active > a:focus {
 
 
 /* main KV ====================================== */
-.main-kv {
+.main-kv-auth {
+	margin-top: 55px;
+}
+.main-kv-notauth {
 	margin-top: 150px;
+}
+.main-kv {
 	padding-left:0;
 	padding-right:0;
 	padding-top:10%;

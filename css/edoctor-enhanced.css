@@ -68,6 +68,12 @@ ul.doctor-list li p {
 .blog-detail-background {
 	background-image: url(../images/article-detail-bg.jpg);
 }
+.main-kv-background {
+	background-image: url(../images/mainKV.jpg);
+}
+.sub-kv-background {
+	background-image: url(../images/subKV.jpg);
+}
 
 /* askdoctor */
 .ask-btn {

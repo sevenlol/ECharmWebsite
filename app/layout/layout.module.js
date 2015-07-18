@@ -5,6 +5,7 @@
         'app.auth',
         'ui.router',
         'ui.bootstrap',
+        'ngAnimate',
         'duScroll'
     ]);
 })();

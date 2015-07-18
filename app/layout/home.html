@@ -1,11 +1,202 @@
 <div class="container-fluid" ng-controller="homeController">
-<div class="main-kv parallax-container">
-<div class="container">
-<div class="row">
-  <button class="btn btn-info" ui-sref="blog.home">Blog</button>
-  <button class="btn btn-danger" ui-sref="askdoctor.home">Ask Doctor</button>
-  <button class="btn btn-primary" ui-sref="doctor.list({ category: 'all' })">Doctor List</button>
+  <div class="main-kv parallax-container parallax-background main-kv-background" parallax-background parallax-ratio="0.4" ng-class="{ true: 'main-kv-auth', false : 'main-kv-notauth' }[authenticated]">
+    <div class="container">
+      <div class="row">
+
+        <!--slide-->
+        <div class="col-lg-7 col-md-7">
+          <div id="doctorslide" class="carousel slide benefit">
+
+            <carousel class="carousel-inner" interval="5000">
+              <slide active="true">
+                <div class="item">
+                  <img src="images/index-doctor-01.jpg" alt="" class="img-circle img-responsive" />
+                  <div class="carousel-caption">
+                    <h4>國泰醫院婦產科 權威</h4>
+                    <img src="images/sign.png" alt="" />
+                  </div>
+                </div>
+              </slide>
+              <slide active="false">
+                <div class="item">
+                  <img src="images/index-doctor-01.jpg" alt="" class="img-circle img-responsive" />
+                  <div class="carousel-caption">
+                    <h4>台大醫院骨科 主任</h4>
+                    <img src="images/sign.png" alt="" />
+                  </div>
+                </div>
+              </slide>
+              <slide active="false">
+                <div class="item">
+                  <img src="images/index-doctor-01.jpg" alt="" class="img-circle img-responsive" />
+                  <div class="carousel-caption">
+                    <h4>中山醫院婦科 主治醫生</h4>
+                    <img src="images/sign.png" alt="" />
+                  </div>
+                </div>
+              </slide>
+            </carousel>
+
+          </div>
+        </div>
+
+        <div class="col-lg-5 col-md-5" ui-sref="doctor.list({ category : 'all' })">
+          <h1>歡迎來到 醫創網</h1>
+          <p>目前已有<strong>駐站醫師72</strong>位，提供您專業諮詢</a></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-</div>
+
+<section class="container identity">
+  <div class="row">
+
+    <div class="col-sm-6 col-lg-6 text-center">
+      <span class="public"></span>
+      <h2>我是一般民眾</h2>
+      <a href="javascript:void(0)" ui-sref="account.signin.user" class="btn round-btn">登入</a> 或 <a href="javascript:void(0)" ui-sref="account.signup.user" class="btn round-btn">註冊</a>
+    </div>
+
+    <div class="col-sm-6 col-lg-6 text-center">
+      <span class="doctor"></span>
+      <h2>我是醫生</h2>
+      <a href="javascript:void(0)" ui-sref="account.signin.doctor" class="btn round-btn">登入</a> 或 <a href="javascript:void(0)" ui-sref="account.signup.doctor" class="btn round-btn">註冊</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ask a question -->
+<section class="container-fluid ask">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2>醫生，我有問題想問</h2>
+        <form class="form-inline">
+          <div class="form-group">
+            <select class="form-control input-lg">
+              <option>皮膚</option>
+              <option>醫美</option>
+              <option>整外</option>
+              <option>婦產</option>
+              <option>小兒</option>
+              <option>其他</option>
+            </select>
+            <label for="search" class="sr-only">發問</label>
+            <div class="input-group">
+              <input type="search" class="form-control input-lg" placeholder="輸入問題，例如：減肥、生理痛" size="50">
+              <span class="input-group-btn">
+                <button class="btn btn-info btn-lg" type="submit"><i class="fa fa-search"></i> 發問</button>
+              </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container do-what">
+  <div class="container">
+    <div class="col-lg-12 text-center">
+      <h2>在這裡，我能做些什麼？</h2>
+      <h4>您可以很輕鬆完成以下</h4>
+
+      <div class="col-lg-4 col-sm-4 col-lg-4 text-center">
+        <div class="do-what-icon-1"></div>
+        <h4>醫學問題的即時發問</h4>
+        <p class="grey-style-1">上百位的醫生即時線上解決您的問題<br />免排隊掛號等待</p>
+        <p><a class="btn round-btn" href="javascript:void(0)" ui-sref="askdoctor.home" role="button">快來問問</a></p>
+      </div>
+
+      <div class="col-lg-4 col-sm-4 col-lg-4 text-center">
+        <div class="do-what-icon-2"></div>
+        <h4>看醫師把關的醫學專業文章</h4>
+        <p class="grey-style-1">這裏的文章由專業醫師把關撰寫<br />再也不用相信網路上來路不明的醫學傳言</p>
+        <p><a class="btn round-btn" href="javascript:void(0)" ui-sref="blog.home" role="button">快來看看</a></p>
+      </div>
+
+      <div class="col-lg-4 col-sm-4 col-lg-4 text-center">
+        <div class="do-what-icon-3"></div>
+        <h4>找醫美診所/月子中心</h4>
+        <p class="grey-style-1">由醫創網為您推薦<br />優質的醫美診所/月子中心</p>
+        <p><a class="btn round-btn" href="#" role="button">快來找找</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="subkv parallax-container parallax-background sub-kv-background" parallax-background parallax-ratio="0.4"></div>
+
+<!-- our service & vision  -->
+<section class="container-fluid">
+
+  <!-- our vision 1 column -->
+  <div class="container vision">
+    <div class="col-lg-8 col-lg-offset-2">
+
+      <h2 class="text-center">我們的願景</h2>
+      <blockquote class="text-center"><em>隨著互聯時代時代的開啟，醫病互動產生了鉅大的影響：<br />民眾可以藉由網路得到更即時與方便的的醫療服務，因此身為年輕醫師我們也不能故步自封，應該帶領民眾走向新的醫療世紀</em></blockquote>
+
+      <div class="col-lg-12 visionblock clearfix">
+        <h4>1. 大數據時代 <i class="fa fa-cloud-upload"></i></h4>
+        <p class="grey-style-1">【民眾自己產生的問題】，我們回答，這樣的資料叫做”open-data analysis”，當數量大後這樣的資料將產生巨大價值，能夠利用於自動化診斷與篩檢民眾疾病，使民眾未來看病更加方便！</p>
+      </div>
+
+      <div class="col-lg-12 visionblock clearfix">
+        <h4>2. 互聯網時代 <i class="fa fa-globe"></i></h4>
+        <p class="grey-style-1">很多醫療產品如雨後春筍般形成，而台灣的醫療算是發展相當成熟，不輸歐美，藉由未來的醫療隨身穿戴配備，民眾將可得到更即時的血壓、血糖、呼吸、心跳等資訊，這對於未來民眾常見的慢性疾病如【高血壓】與【糖尿病】等有非常大的價值。</p>
+      </div>
+
+      <p class="text-center clearfix">
+        <br />
+        這些服務，都是醫創團隊未來想做的。我們為何有自信辦的到？<br />
+        因為我們結合了全台灣最優秀的一群年輕人，從醫生到台清交碩士、博士工程師，都是我們擁有的人力資源。<br />
+        本公司有醫師後台諮詢、網站與醫療隨身穿戴配戴裝置開發的能力，這些人力資源是公司未來最重要的資產！<br />
+        所以我們有自信能帶領民眾走向全新的醫療革命、提供給民眾更加快速與便利的醫療服務。
+      </p>
+
+    </div>
+  </div>
+</section>
+
+<!-- our service 3 column -->
+<section class="container-fluid service">
+  <div class="container">
+    <div class="row">
+      <h2 class="text-center">我們的服務</h2>
+
+      <div class="col-lg-4 col-sm-4">
+        <h3>1. 學到更多 <span class="glyphicon glyphicon-arrow-right"></span></h3>
+        <p>透過醫創團隊的醫療文章與未來舉辦的實體健康衛教演講，您將可學到最正確的醫療知識！</p>
+        <p>
+          還在聽信網路上不正確的醫療健康流言嗎？<br />
+          快點加入醫創會員給您最正確的醫療知識！
+        </p>
+      </div>
+
+      <div class="col-lg-4 col-sm-4">
+        <h3>2. 得到幫助 <span class="glyphicon glyphicon-arrow-right"></span></h3>
+        <p>有醫療問題嗎? 來醫創網問吧！</p>
+        <p>
+          醫創團隊嚴格要求線上Q&amp;A的效率，針對此在線上回答的都具有醫師執照！<br />
+          您能透過與醫師一對一的線上交流得到最快速的醫療建議，做出更周全的醫療選擇。
+        </p>
+      </div>
+
+      <div class="col-lg-4 col-sm-4">
+        <h3>3. 立刻行動 <span class="glyphicon glyphicon-check"></span></h3>
+        <p>得到醫療建議後，就立刻行動吧！</p>
+        <p>
+          醫師給您的建議將能讓你更精確掌握自己的健康狀況，<br />
+          採取行動，讓每一天的自己都更健康。
+        </p>
+      </div>
+
+    </div>
+    <!-- AD -->
+    <div class="adblock img-responsive"><a href="#"><img src="images/ad.jpg" /></a></div>
+  </div>
+</section>
