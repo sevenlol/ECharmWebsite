@@ -41,7 +41,11 @@
 
       <div class="col-lg-2 col-sm-2">
         <div class="user-thumb-md">
-          <img src="images/userpic_2.jpg" alt="" class="img-circle" />
+          <!-- Sticker -->
+          <img ng-show="authenticated && vm.myAccount.user_type === 'USER'" ng-src="{{ (vm.myAccount.user_info.sticker_url) ? vm.myAccount.user_info.sticker_url : 'images/default-user-sticker.png'}}" alt="" class="img-circle" />
+          <img ng-show="authenticated && vm.myAccount.user_type === 'DOCTOR'" ng-src="{{ (vm.myAccount.user_info.sticker_url) ? vm.myAccount.user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="" class="img-circle" />
+          <img ng-show="!authenticated" src="images/default-user-sticker.png" alt="" class="img-circle" />
+
           <p ng-show="authenticated">
             {{ (vm.myAccount && vm.myAccount.user_info && vm.myAccount.user_info.name) ? vm.myAccount.user_info.name : vm.myAccount.username }}
           </p>
@@ -242,7 +246,11 @@
 
           <div class="question-profile">
             <a href="#">
-              <img src="images/userpic_3.jpg" alt="" class="img-circle" />{{question.user.user_info.name ? question.user.user_info.name : ''}}{{ (!question.user.user_info.name && question.user.username) ? question.user.username : '' }}{{ (!question.user.user_info.name && !question.user.username) ? '使用者' : ''}}
+              <!-- Sticker -->
+              <img ng-show="question.user.user_type !== 'DOCTOR'" ng-src="{{ (question.user.user_info.sticker_url) ? question.user.user_info.sticker_url : 'images/default-user-sticker.png'}}" alt="" class="img-circle" />
+              <img ng-show="question.user.user_type === 'DOCTOR'" ng-src="{{ (question.user.user_info.sticker_url) ? question.user.user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="" class="img-circle" />
+
+              {{question.user.user_info.name ? question.user.user_info.name : ''}}{{ (!question.user.user_info.name && question.user.username) ? question.user.username : '' }}{{ (!question.user.user_info.name && !question.user.username) ? '使用者' : ''}}
             </a>
             <i ng-show="question.user.user_info.gender === vm.GENDER_STRING.MALE" class="fa fa-mars"></i>
             <i ng-show="question.user.user_info.gender === vm.GENDER_STRING.FEMALE" class="fa fa-venus"></i>
@@ -263,7 +271,8 @@
         <div class="answer-content collapse in" ng-show="question.answer" collapse="!question.isExpanded">
           <div class="question-profile">
             <a href="#" class="doc-profile">
-              <img src="images/docpic.jpg" alt="" class="img-circle" />{{question.doctor.user_info.name ? question.doctor.user_info.name : ''}} 醫師
+              <img ng-src="{{ (question.doctor.user_info.sticker_url) ? question.doctor.user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="" class="img-circle" />
+              {{question.doctor.user_info.name ? question.doctor.user_info.name : ''}} 醫師
             </a>
             <span>{{question.doctor.user_info.current_hospital}}  {{question.doctor.user_info.categoryName}} <br />{{ question.answer.created_at ? (question.answer.created_at | relativeDate) : '' }}</span>
           </div>

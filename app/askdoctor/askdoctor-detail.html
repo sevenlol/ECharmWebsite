@@ -44,7 +44,10 @@
         <div class="question-top" ng-class="{ false : 'noanswer' }[ vm.answer !== null ]">
           <div class="question-profile">
             <a href="#">
-              <img src="images/userpic_3.jpg" alt="" class="img-circle" />{{vm.user.user_info.name ? vm.user.user_info.name : ''}}{{ (!vm.user.user_info.name && vm.user.username) ? vm.user.username : '' }}{{ (!vm.user.user_info.name && !vm.user.username) ? '使用者' : ''}}
+              <!-- Sticker -->
+              <img ng-show="vm.user.user_type !== 'DOCTOR'" ng-src="{{ (vm.user.user_info.sticker_url) ? vm.user.user_info.sticker_url : 'images/default-user-sticker.png'}}" alt="" class="img-circle" />
+              <img ng-show="vm.user.user_type === 'DOCTOR'" ng-src="{{ (vm.user.user_info.sticker_url) ? vm.user.user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="" class="img-circle" />
+              {{vm.user.user_info.name ? vm.user.user_info.name : ''}}{{ (!vm.user.user_info.name && vm.user.username) ? vm.user.username : '' }}{{ (!vm.user.user_info.name && !vm.user.username) ? '使用者' : ''}}
             </a>
             <i ng-show="vm.user.user_info.gender === vm.GENDER_STRING.MALE" class="fa fa-mars"></i>
             <i ng-show="vm.user.user_info.gender === vm.GENDER_STRING.FEMALE" class="fa fa-venus"></i>
@@ -58,7 +61,8 @@
         <div class="answer-content collapse in" ng-show="vm.answer">
           <div class="question-profile">
             <a href="#" class="doc-profile">
-              <img src="images/docpic.jpg" alt="" class="img-circle" />{{vm.doctor.user_info.name ? vm.doctor.user_info.name : ''}} 醫師
+              <img ng-src="{{ (vm.doctor.user_info.sticker_url) ? vm.doctor.user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="" class="img-circle" />
+              {{vm.doctor.user_info.name ? vm.doctor.user_info.name : ''}} 醫師
             </a>
             <i ng-show="vm.user.user_info.gender === vm.GENDER_STRING.MALE" class="fa fa-mars"></i>
             <i ng-show="vm.user.user_info.gender === vm.GENDER_STRING.FEMALE" class="fa fa-venus"></i>
@@ -102,9 +106,9 @@
 
         <div class="col-lg-2 col-sm-2">
           <div class="user-thumb-md">
-            <img src="images/docpic.jpg" alt="" class="img-circle" />
+            <img ng-src="{{ (vm.myAccount.user_info.sticker_url) ? vm.myAccount.user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="" class="img-circle" />
             <p>
-              {{ account && account.user_info && account.user_info.name ? account.user_info.name : '' }}醫師
+              {{ vm.myAccount && vm.myAccount.user_info && vm.myAccount.user_info.name ? vm.myAccount.user_info.name : '' }}醫師
             </p>
           </div>
         </div>
@@ -153,7 +157,9 @@
         <div class="col-lg-2 col-sm-2">
           <div class="user-thumb-md">
             <a href="#" class="doc-profile">
-              <img src="images/docpic.jpg" alt="" class="img-circle" />
+              <!-- Sticker -->
+              <img ng-show="vm.myAccount.user_type !== 'DOCTOR'" ng-src="{{ (vm.myAccount.user_info.sticker_url) ? vm.myAccount.user_info.sticker_url : 'images/default-user-sticker.png'}}" alt="" class="img-circle" />
+              <img ng-show="vm.myAccount.user_type === 'DOCTOR'" ng-src="{{ (vm.myAccount.user_info.sticker_url) ? vm.myAccount.user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="" class="img-circle" />
             </a>
             <p ng-show="authenticated">
               {{ (vm.myAccount && vm.myAccount.user_info && vm.myAccount.user_info.name) ? vm.myAccount.user_info.name : vm.myAccount.username }}
