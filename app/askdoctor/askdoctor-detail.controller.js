@@ -13,6 +13,7 @@
         'user',
         'commentList',
         'commentUserList',
+        'commentDoctorList',
         'ratingList',
         'avgRating',
         'askdoctorCategoryList',
@@ -21,7 +22,7 @@
         'askdoctorRatingService'
     ];
 
-    function askdoctorDetailController($filter, myAccount, question, answer, doctor, user, commentList, commentUserList, ratingList, avgRating,
+    function askdoctorDetailController($filter, myAccount, question, answer, doctor, user, commentList, commentUserList, commentDoctorList, ratingList, avgRating,
                                                         askdoctorCategoryList, askdoctorAnswerService, askdoctorCommentService, askdoctorRatingService) {
         var DATE_FORMAT = 'yyyy-MM-ddTHH:mmZ';
         var DEFAULT_RATING_MAX = 5;
@@ -41,6 +42,7 @@
         vm.doctor = doctor;
         vm.user = user;
         vm.commentList = mergeCommentList(commentList, commentUserList);
+        vm.commentList = mergeCommentList(commentList, commentDoctorList);
         vm.ratingList = ratingList;
         vm.avgRating = avgRating;
         vm.category = (question && question.category) ? question.category : 'all';
@@ -281,6 +283,9 @@
             vm.commentStatusMessage.isShown = true;
             vm.commentStatusMessage.type = 'success';
             vm.commentStatusMessage.message = msg;
+
+            // add myAccount to comment
+            comment.user = vm.myAccount;
 
             if (!vm.commentList || !angular.isArray(vm.commentList) || vm.commentList.length === 0) {
                 vm.commentList = [ comment ];
