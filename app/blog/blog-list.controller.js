@@ -5,11 +5,12 @@
            .controller('blogListController', blogListController);
 
     blogListController.$inject = [
+        '$stateParams',
         'articleList',
         'doctorList'
     ];
 
-    function blogListController(articleList, doctorList) {
+    function blogListController($stateParams, articleList, doctorList) {
         var NUM_OF_ARTICLES_IN_ROW = 5;
 
         var vm = this;

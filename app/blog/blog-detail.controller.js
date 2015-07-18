@@ -5,6 +5,7 @@
            .controller('blogDetailController', blogDetailController);
 
     blogDetailController.$inject = [
+        '$stateParams',
         'article',
         'author',
         'commentList',
@@ -12,7 +13,7 @@
         'avgRating'
     ];
 
-    function blogDetailController(article, author, commentList, ratingList, avgRating) {
+    function blogDetailController($stateParams, article, author, commentList, ratingList, avgRating) {
         var vm = this;
 
         vm.article = article;
