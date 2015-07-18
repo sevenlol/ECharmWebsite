@@ -9,14 +9,27 @@
         'doctorCategoryList',
         'doctor',
         'articleList',
-        'qaList'
+        'qaList',
+        'avgQaRating',
+        'blogCategoryNameTextList'
     ];
 
-    function doctorDetailController($stateParams, doctorCategoryList, doctor, articleList, qaList) {
+    function doctorDetailController($stateParams, doctorCategoryList, doctor, articleList, qaList, avgQaRating, blogCategoryNameTextList) {
         var SHOW_MORE_ARTICLE_STEP = 1;
         var SHOW_MORE_QUESTION_STEP = 1;
+        var MALE_STRING = 'MALE';
+        var FEMALE_STRING = 'FEMALE';
+        var DEFAULT_RATING_MAX = 5;
+        var DEFAULT_ARTICLE_TITLE_LENGTH = 25;
+        var DEFAULT_QUESTION_CONTENT_MAXLENGTH = 25;
+        var DEFAULT_ANSWER_CONTENT_MAXLENGTH = 25;
 
         var vm = this;
+
+        vm.GENDER_STRING = {
+            MALE : MALE_STRING,
+            FEMALE : FEMALE_STRING
+        };
 
         vm.categoryList = doctorCategoryList;
         vm.category = $stateParams ? $stateParams.category : 'all';
@@ -33,11 +46,14 @@
         vm.doctor = doctor;
         vm.articleList = articleList;
         vm.questionList = qaList;
+        vm.avgQaRating = avgQaRating;
+        vm.ratingMax = DEFAULT_RATING_MAX;
 
         /* article variable/function */
         vm.numOfArticles = 0;
         vm.articlePageLimit = 1;
         vm.articleIndex = 0;
+        vm.articleTitleLengthMax = DEFAULT_ARTICLE_TITLE_LENGTH;
         vm.displayShowMoreArticleButton = false;
         vm.showMoreArticle  = showMoreArticle;
         if (articleList && angular.isArray(articleList) && articleList.length > 0) {
@@ -45,11 +61,15 @@
             vm.displayShowMoreArticleButton = vm.numOfArticles > vm.articlePageLimit ? true : false;
         }
 
+        matchArticleCategoryName(vm.articleList, blogCategoryNameTextList);
+
         /* question variable/function */
         vm.numOfQuestions = 0;
         vm.questionList = qaList;
         vm.questionPageLimit = 1;
         vm.questionIndex = 0;
+        vm.questionLengthMax = DEFAULT_QUESTION_CONTENT_MAXLENGTH;
+        vm.answerLengthMax = DEFAULT_ANSWER_CONTENT_MAXLENGTH;
         vm.displayShowMoreQuestionButton = false;
         vm.showMoreQuestion  = showMoreQuestion;
 
@@ -97,6 +117,34 @@
             } else {
                 vm.displayShowMoreQuestionButton = true;
                 vm.questionPageLimit += SHOW_MORE_QUESTION_STEP;
+            }
+        }
+
+        /* private functions */
+        function matchArticleCategoryName(articleList, categoryList) {
+            if (!articleList || !angular.isArray(articleList) || articleList.length === 0) {
+                return;
+            }
+
+            if (!categoryList || !angular.isArray(categoryList) || categoryList.length === 0) {
+                return;
+            }
+
+            for (var i in articleList) {
+                if (!articleList[i] || !articleList[i].category) {
+                    continue;
+                }
+
+                for (var j in categoryList) {
+                    if (!categoryList[j]) {
+                        continue;
+                    }
+
+                    if (articleList[i].category === categoryList[j].name) {
+                        articleList[i].categoryName = categoryList[j].text;
+                        break;
+                    }
+                }
             }
         }
     }

@@ -9,14 +9,19 @@
     </ol>
 
     <div class="row">
-      <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-12">
+      <div class="col-lg-5 col-md-5 col-xs-12">
         <div class="user-thumb-lg">
           <img src="images/docpic.jpg" alt="" class="img-circle pull-left" />
-          <h3><strong>陳威德</strong> 醫師</h3>
+          <h3><strong>{{ vm.doctor.user_info.name }}</strong> 醫師</h3>
           <p>
-            主治醫師  皮膚科<br />
-            問答平均 <span class="satisfy"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></span> <span>共729評價</span>
-          </p>
+            {{ vm.doctor.user_info.age ? vm.doctor.user_info.age + '歲' : ''}}
+            <i ng-show="vm.doctor.user_info.gender === vm.GENDER_STRING.MALE" class="fa fa-mars"></i>
+            <i ng-show="vm.doctor.user_info.gender === vm.GENDER_STRING.FEMALE" class="fa fa-venus"></i><br />
+            {{ vm.doctor.user_info.title }}  皮膚科<br />
+            <span ng-show="vm.avgQaRating !== null">
+              問答平均 <span class="satisfy"><rating ng-model="vm.avgQaRating.number" max="vm.ratingMax" readonly="true" state-on="'fa fa-star'" state-off="'fa fa-star-o'"></rating></span> <span>({{vm.avgQaRating.number}}) 共{{vm.avgQaRating.count}}評價</span>
+            </span>
+            <span ng-show="vm.avgQaRating === null">尚無任何問答評分</span>
         </div>
       </div>
 
@@ -29,19 +34,19 @@
 		          <tbody>
 		            <tr>
 		              <th>執業醫院/診所</th>
-		              <td>臺大醫院</td>
+		              <td>{{ vm.doctor.user_info.current_hospital }}</td>
 		            </tr>
 		            <tr>
 		              <th>執業地址</th>
-		              <td>台北市</td>
+		              <td>{{ vm.doctor.user_info.address }}</td>
 		            </tr>
 		            <tr>
 		              <th>實體看診時間</th>
-		              <td>星期二下午五點</td>
+		              <td>{{ vm.doctor.user_info.available_time }}</td>
 		            </tr>
 		            <tr>
 		              <th>醫師信箱</th>
-		              <td><a href="#">prodoctor@gmail.com</a></td>
+		              <td><a href="#">{{ vm.doctor.email }}</a></td>
 		            </tr>
 		          </tbody>
 		        </table>
@@ -69,9 +74,9 @@
         <table class="table table-hover">
           <tbody>
             <tr class='clickable-row' ng-repeat="article in vm.articleList | limitTo : vm.articlePageLimit : vm.articleIndex">
-              <th>{{article.created_at}}</th>
-              <td><span class="blue-style-1">[{{article.category}}]</span> {{article.title}}</td>
-              <td>by <a href="profile-doctor.html">{{vm.doctorName}} 醫師</a> </td>
+              <th>{{ article.created_at ? (article.created_at | relativeDate) : '' }}</th>
+              <td><span class="blue-style-1">[{{article.categoryName}}]</span> {{article.title | limitTo : vm.articleTitleLengthMax}}{{ (article && article.title && article.title.length > vm.articleTitleLengthMax) ? ' ...' : ''}}</td>
+              <td>by <a href="profile-doctor.html">{{vm.doctor.user_info.name}} 醫師</a> </td>
             </tr>
           </tbody>
         </table>
@@ -93,10 +98,10 @@
       <div class="table-responsive" ng-show="vm.numOfQuestions">
         <table class="table table-hover">
           <tbody>
-            <tr class='clickable-row' ng-repeat="question in vm.questionList | limitTo : vm.questionPageLimit : vm.questionIndex">
-              <th>1小時前</th>
-              <td><span class="blue-style-1">Q</span> {{question.content_text}}</td>
-              <td><span class="pink-style">A</span> {{question.answer.answer_text}}</td>
+            <tr class='clickable-row' ui-sref="askdoctor.detail({ category : question.category, questionId : question.question_id })" ng-repeat="question in vm.questionList | limitTo : vm.questionPageLimit : vm.questionIndex">
+              <th>{{ question.created_at ? (question.created_at | relativeDate) : '' }}</th>
+              <td><span class="blue-style-1">Q</span> {{question.content_text | limitTo : vm.questionLengthMax }}{{ (question.content_text.length > vm.questionLengthMax) ? ' ...' : '' }}</td>
+              <td><span class="pink-style">A</span> {{question.answer.answer_text | limitTo : vm.answerLengthMax }}{{ (question.answer.answer_text.length > vm.answerLengthMax) ? ' ...' : '' }}</td>
             </tr>
           </tbody>
         </table>

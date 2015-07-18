@@ -39,7 +39,8 @@
             resolve : {
                 doctor : resolveDoctor,
                 articleList : resolveDoctorArticleList,
-                qaList : resolveDoctorQAList // question and answer list
+                qaList : resolveDoctorQAList, // question and answer list
+                avgQaRating : resolveDoctorAvgQaRating
             },
             templateUrl : 'app/doctor/doctor-detail.html',
             controller : 'doctorDetailController',
@@ -178,6 +179,43 @@
                            .catch(failCallback);
             } catch(error) {
                 return null;
+            }
+
+            return null;
+        }
+
+        function resolveDoctorAvgQaRating(qaList) {
+            if (!qaList || !angular.isArray(qaList) || qaList.length === 0) {
+                return null;
+            }
+
+            var total = 0;
+            var count = 0;
+            for (var i in qaList) {
+                if (!qaList[i] || !qaList[i].rating_list ||
+                    !angular.isArray(qaList[i].rating_list) || qaList[i].rating_list.length === 0) {
+                    continue;
+                }
+
+                var ratingList = qaList[i].rating_list;
+                for (var j in ratingList) {
+                    if (!ratingList[j] || !angular.isNumber(ratingList[j].rating_value)) {
+                        continue;
+                    }
+
+                    if (ratingList[j].rating_value >= 0 && ratingList[j].rating_value <= 5) {
+                        total += ratingList[j].rating_value;
+                        count++;
+                    }
+                }
+            }
+
+            if (count > 0) {
+                var avgRatingObj = {
+                    number : total / count,
+                    count : count
+                };
+                return avgRatingObj;
             }
 
             return null;
