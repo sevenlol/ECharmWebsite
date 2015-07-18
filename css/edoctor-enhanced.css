@@ -102,3 +102,7 @@ ul.doctor-list li p {
 	color:#faa500;
 	padding-top:10px;
 }
+
+.cursor-pointer {
+	cursor : pointer;
+}
