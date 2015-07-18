@@ -1,34 +1,38 @@
 (function() {
-	'use strict';
+    'use strict';
 
-	angular.module('app')
-	       .config(appConfig)
-	       .run(appRun);
+    angular.module('app')
+           .config(appConfig)
+           .run(appRun);
 
-	appConfig.$inject = [
-	    '$stateProvider',
-	    '$urlRouterProvider',
-	    '$httpProvider'
-	];
+    appConfig.$inject = [
+        '$stateProvider',
+        '$urlRouterProvider',
+        '$httpProvider'
+    ];
 
-	appRun.$inject = [
-		'$rootScope'
-	];
+    appRun.$inject = [
+        '$rootScope',
+        '$window'
+    ];
 
-	function appConfig($stateProvider, $urlRouterProvider, $httpProvider) {
-	    $urlRouterProvider.otherwise("/home");
+    function appConfig($stateProvider, $urlRouterProvider, $httpProvider) {
+        $urlRouterProvider.otherwise("/home");
 
-	    $stateProvider
-	    .state('home', {
-	        url: "/home",
-	        templateUrl : 'app/layout/home.html'
-	    });
+        $stateProvider
+        .state('home', {
+            url: "/home",
+            templateUrl : 'app/layout/home.html'
+        });
 
-	    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
-	}
+        $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+    }
 
-	function appRun($rootScope) {
-		$rootScope.authenticated = false;
-	}
+    function appRun($rootScope, $window) {
+        $rootScope.authenticated = false;
+        $rootScope.$on("$stateChangeSuccess", function (event, currentRoute, previousRoute) {
+            $window.scrollTo(0, 0);
+        });
+    }
 
 })();
