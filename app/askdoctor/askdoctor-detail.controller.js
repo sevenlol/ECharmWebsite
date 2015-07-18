@@ -25,10 +25,16 @@
                                                         askdoctorCategoryList, askdoctorAnswerService, askdoctorCommentService, askdoctorRatingService) {
         var DATE_FORMAT = 'yyyy-MM-ddTHH:mmZ';
         var DEFAULT_RATING_MAX = 5;
+        var MALE_STRING = 'MALE';
+        var FEMALE_STRING = 'FEMALE';
 
         var vm = this;
 
         vm.myAccount = myAccount;
+        vm.GENDER_STRING = {
+            MALE : MALE_STRING,
+            FEMALE : FEMALE_STRING
+        };
 
         vm.question = question;
         vm.answer = answer;

@@ -44,8 +44,13 @@
           <img src="images/userpic_2.jpg" alt="" class="img-circle" />
           <p ng-show="authenticated">
             {{ (vm.myAccount && vm.myAccount.user_info && vm.myAccount.user_info.name) ? vm.myAccount.user_info.name : vm.myAccount.username }}
-            <!-- <i class="fa fa-mars"></i> -->
-            <!-- <span>39歲 台北市</span> -->
+          </p>
+          <p ng-show="authenticated">
+            <!-- age -->
+            {{ vm.myAccount.user_info.age ? vm.myAccount.user_info.age + '歲' : ''}}
+            <!-- gender -->
+            <i ng-show="vm.myAccount.user_info.gender === vm.GENDER_STRING.MALE" class="fa fa-mars"></i>
+            <i ng-show="vm.myAccount.user_info.gender === vm.GENDER_STRING.FEMALE" class="fa fa-venus"></i>
           </p>
           <p ng-show="!authenticated">
             訪客
@@ -239,7 +244,8 @@
             <a href="#">
               <img src="images/userpic_3.jpg" alt="" class="img-circle" />{{question.user.user_info.name ? question.user.user_info.name : '使用者'}}
             </a>
-            <!-- <i class="fa fa-venus"></i> -->
+            <i ng-show="question.user.user_info.gender === vm.GENDER_STRING.MALE" class="fa fa-mars"></i>
+            <i ng-show="question.user.user_info.gender === vm.GENDER_STRING.FEMALE" class="fa fa-venus"></i>
             <span>{{ question.created_at ? (question.created_at | relativeDate) : '' }}</span>
           </div>
           <p>

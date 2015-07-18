@@ -46,7 +46,8 @@
             <a href="#">
               <img src="images/userpic_3.jpg" alt="" class="img-circle" />{{vm.user.user_info.name ? vm.user.user_info.name : '使用者'}}
             </a>
-            <!-- <i class="fa fa-venus"></i> -->
+            <i ng-show="vm.user.user_info.gender === vm.GENDER_STRING.MALE" class="fa fa-mars"></i>
+            <i ng-show="vm.user.user_info.gender === vm.GENDER_STRING.FEMALE" class="fa fa-venus"></i>
             <span>{{ vm.question.created_at ? (vm.question.created_at | relativeDate) : '' }}</span>
           </div>
           <p>
@@ -59,6 +60,8 @@
             <a href="#" class="doc-profile">
               <img src="images/docpic.jpg" alt="" class="img-circle" />{{vm.doctor.user_info.name ? vm.doctor.user_info.name : ''}} 醫師
             </a>
+            <i ng-show="vm.user.user_info.gender === vm.GENDER_STRING.MALE" class="fa fa-mars"></i>
+            <i ng-show="vm.user.user_info.gender === vm.GENDER_STRING.FEMALE" class="fa fa-venus"></i>
             <span>
               {{vm.doctor.user_info.current_hospital}}  {{vm.categoryName}} <br />
               {{ vm.answer.created_at ? (vm.answer.created_at | relativeDate) : '' }}
@@ -154,8 +157,13 @@
             </a>
             <p ng-show="authenticated">
               {{ (vm.myAccount && vm.myAccount.user_info && vm.myAccount.user_info.name) ? vm.myAccount.user_info.name : vm.myAccount.username }}
-              <!-- <i class="fa fa-venus"></i> -->
-              <!-- <span>24歲 宜蘭市</span> -->
+            </p>
+            <p ng-show="authenticated">
+              <!-- age -->
+              {{ vm.myAccount.user_info.age ? vm.myAccount.user_info.age + '歲' : ''}}
+              <!-- gender -->
+              <i ng-show="vm.myAccount.user_info.gender === vm.GENDER_STRING.MALE" class="fa fa-mars"></i>
+              <i ng-show="vm.myAccount.user_info.gender === vm.GENDER_STRING.FEMALE" class="fa fa-venus"></i>
             </p>
             <p ng-show="!authenticated">
               訪客
