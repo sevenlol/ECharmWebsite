@@ -69,7 +69,12 @@
 
       <ul class="nav navbar-nav">
         <li class="dropdown user-thumb" dropdown>
-          <a href="#" class="dropdown-toggle" dropdown-toggle role="button" aria-expanded="false"><img src="images/userpic_2.jpg" alt="" class="img-circle" /> {{ (account && account.user_info && account.user_info.name) ? account.user_info.name : account.username }} <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" dropdown-toggle role="button" aria-expanded="false">
+            <img ng-show="account.user_type === 'USER'" ng-src="{{ (account.user_info.sticker_url) ? account.user_info.sticker_url : 'images/default-user-sticker.png'}}" alt="" class="img-circle" />
+            <img ng-show="account.user_type === 'DOCTOR'" ng-src="{{ (account.user_info.sticker_url) ? account.user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="" class="img-circle" />
+            {{ (account && account.user_info && account.user_info.name) ? account.user_info.name : account.username }}
+            <span class="caret"></span>
+          </a>
           <ul class="dropdown-menu" role="menu">
             <li><a ui-sref="account.me({ detailCategory : 'detail' })" ui-sref-opts="{ reload : true }" ng-click="vm.collapse()">個人資料</a></li>
             <li ng-show="account.user_type === 'DOCTOR'"><a ui-sref="account.me({ detailCategory : 'qa' })" ui-sref-opts="{ reload : true }" ng-click="vm.collapse()">問答紀錄</a></li>

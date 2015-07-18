@@ -10,7 +10,8 @@
     <div class="row">
       <div class="col-lg-5 col-lg-offset-3 col-md-5 col-md-offset-3 col-xs-12">
         <div class="user-thumb-lg">
-          <img src="images/userpic_2.jpg" alt="" class="img-circle pull-left" />
+          <img ng-src="{{ (vm.user.user_info.sticker_url) ? vm.user.user_info.sticker_url : 'images/default-user-sticker.png'}}" alt="" class="img-circle pull-left" />
+          <!-- <img src="images/userpic_2.jpg" alt="" class="img-circle pull-left" /> -->
           <h3><strong>{{ (vm.user.user_info && vm.user.user_info.name) ? vm.user.user_info.name : vm.user.username }}</strong></h3>
           <p>
             {{ vm.user.user_info.age ? vm.user.user_info.age + '歲' : ''}}
