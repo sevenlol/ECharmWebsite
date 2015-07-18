@@ -44,7 +44,7 @@
         <div class="question-top" ng-class="{ false : 'noanswer' }[ vm.answer !== null ]">
           <div class="question-profile">
             <a href="#">
-              <img src="images/userpic_3.jpg" alt="" class="img-circle" />{{vm.user.user_info.name ? vm.user.user_info.name : '使用者'}}
+              <img src="images/userpic_3.jpg" alt="" class="img-circle" />{{vm.user.user_info.name ? vm.user.user_info.name : ''}}{{ (!vm.user.user_info.name && vm.user.username) ? vm.user.username : '' }}{{ (!vm.user.user_info.name && !vm.user.username) ? '使用者' : ''}}
             </a>
             <i ng-show="vm.user.user_info.gender === vm.GENDER_STRING.MALE" class="fa fa-mars"></i>
             <i ng-show="vm.user.user_info.gender === vm.GENDER_STRING.FEMALE" class="fa fa-venus"></i>
