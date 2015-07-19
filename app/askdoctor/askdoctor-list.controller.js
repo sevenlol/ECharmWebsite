@@ -61,9 +61,11 @@
         vm.index = 0;
         vm.numOfQuestions = countNumberOfQuestions(vm.questionList);
         vm.showMoreQuestion  = showMoreQuestion;
+        vm.resetPageParameters = resetPageParameters;
 
         vm.searchText = '';
         vm.updatedSearchText = '';
+        vm.onlyShowUnAnsweredQuestion = false;
         vm.search = search;
 
         // rating
@@ -172,6 +174,11 @@
 
         function search(searchText) {
             vm.updatedSearchText = searchText;
+            vm.index = 0;
+            vm.pageLimit = 1;
+        }
+
+        function resetPageParameters() {
             vm.index = 0;
             vm.pageLimit = 1;
         }

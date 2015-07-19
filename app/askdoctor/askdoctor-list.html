@@ -235,12 +235,19 @@
       </div>
     </div>
 
+    <div class="col-lg-10 col-lg-offset-1" ng-show="vm.myAccount && vm.myAccount.user_type === 'DOCTOR'">
+      <label class="pull-right">
+        <input type="checkbox" ng-model="vm.onlyShowUnAnsweredQuestion" ng-change="vm.resetPageParameters()">
+        只顯示尚未被回答的問題
+      </label>
+    </div>
+
     <!-- Question List -->
     <div class="col-lg-10 col-lg-offset-1">
 
       <h3 class="pink-style search-title" ng-show="vm.updatedSearchText">搜尋 {{vm.updatedSearchText}} 結果: 共{{vm.filteredQuestionList.length}}筆問答紀錄</h3>
 
-      <div class="question-block" ng-repeat="question in (vm.filteredQuestionList = (vm.questionList | filter : vm.updatedSearchText)) | limitTo : vm.pageLimit : vm.index">
+      <div class="question-block" ng-repeat="question in (vm.filteredQuestionList = (vm.questionList | filter : vm.updatedSearchText | isAnsweredFilter : (vm.onlyShowUnAnsweredQuestion ? 'false' : '') )) | limitTo : vm.pageLimit : vm.index">
         <!-- ask -->
         <div class="question-top" ng-class="{ false : 'noanswer' }[ question.isExpanded ]">
           <div class="pull-right">
