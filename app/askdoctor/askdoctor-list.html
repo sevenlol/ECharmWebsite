@@ -34,7 +34,7 @@
     <ol class="breadcrumb hidden-xs text-right">
       <li><a ui-sref="home">醫創網</a></li>
       <li><a ui-sref="askdoctor.home">即時醫師問答</a></li>
-      <li class="active">醫學美容</li>
+      <li class="active">{{ vm.categoryName }}</li>
     </ol>
 
     <div class="row">
@@ -249,7 +249,7 @@
 
       <div class="question-block" ng-repeat="question in (vm.filteredQuestionList = (vm.questionList | filter : vm.updatedSearchText | isAnsweredFilter : (vm.onlyShowUnAnsweredQuestion ? 'false' : '') )) | limitTo : vm.pageLimit : vm.index">
         <!-- ask -->
-        <div class="question-top" ng-class="{ false : 'noanswer' }[ question.isExpanded ]">
+        <div class="question-top" ng-class="{ false : 'noanswer' }[ (question.isExpanded) ]">
           <div class="pull-right">
             <ul class="list-unstyled">
               <li>
