@@ -107,6 +107,11 @@ ul.doctor-list li p {
 	padding-top:10px;
 }
 
+.search-title {
+	font-size:1.3em;
+	margin-bottom:20px;
+}
+
 .cursor-pointer {
 	cursor : pointer;
 }
