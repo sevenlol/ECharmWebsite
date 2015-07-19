@@ -383,6 +383,9 @@
                     // add myAccount
                     myQuestionList[i].user = myAccount;
 
+                    // set isCollapsed
+                    myQuestionList[i].isExpanded = false;
+
                     // get category name
                     if (categoryList && angular.isArray(categoryList) && categoryList.length > 0) {
 
