@@ -191,6 +191,10 @@
             vm.statusMessage.type = 'success';
             vm.statusMessage.message = msg;
 
+            if (vm.category !== question.category) {
+                return;
+            }
+
             if (vm.questionList) {
                 vm.questionList.push(question);
                 vm.numOfQuestions++;
