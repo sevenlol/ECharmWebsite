@@ -79,6 +79,10 @@ ul.doctor-list li p {
 .ask-btn {
 	margin-top: 15px;
 }
+.ask-form-category {
+	margin: 0px 15px;
+	padding: 0px;
+}
 
 .comment-error {
 	margin-top: 15px;

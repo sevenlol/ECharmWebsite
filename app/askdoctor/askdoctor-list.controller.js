@@ -43,8 +43,7 @@
         // ask question form
         vm.questionMin = 10;
         vm.questionSubmitted = false;
-        // FIXME change this to a better solution
-        vm.askQuestionCategory = vm.category === 'all' ? askdoctorCategoryList[1].name : vm.category;
+        vm.selectedCategory = vm.category;
         vm.statusMessage = {
             isShown : false,
             type    : 'error',
@@ -84,6 +83,12 @@
             if (!askdoctorQuestionService || !$rootScope || !$rootScope.authenticated ||
                 !myAccount || !myAccount.account_id) {
                 askQuestionFailed('提問時發生錯誤，請稍後重試');
+                return;
+            }
+
+            if (vm.selectedCategory === 'all') {
+                askQuestionFailed('請選擇一個問題類別');
+                return;
             }
 
             // TODO change these
@@ -123,7 +128,7 @@
 
             try {
                 askdoctorQuestionService
-                    .createQuestion(vm.askQuestionCategory, questionBody)
+                    .createQuestion(vm.selectedCategory, questionBody)
                     .then(askQuestionSuccessCallback)
                     .catch(askQuestionFailCallback);
             } catch (e) {

@@ -66,7 +66,17 @@
 
         <div role="tabpanel">
           <ul class="nav nav-pills ask-type" role="tablist">
-            <li role="presentation" class="active"><a href=""role="tab">我要提問</a></li>
+            <li role="presentation" class="active"><a href="" role="tab">我要提問</a></li>
+            <li>
+              <form class="form-inline ask-form-category">
+                <select
+                 class="form-control input-sm"
+                 ng-disabled="!authenticated"
+                 ng-model="vm.selectedCategory"
+                 ng-options="category.name as (category.name === 'all') ? '請選擇問題類別' : category.text for category in vm.categoryList">
+                </select>
+              </form>
+            </li>
             <!-- <li role="presentation"><a href="#search-doctor" aria-controls="search-doctor" role="tab" data-toggle="tab">我要找醫生</a></li> -->
           </ul>
         </div>
