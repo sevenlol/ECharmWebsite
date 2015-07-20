@@ -2,7 +2,8 @@
   <form>
     <textarea class="form-control" rows="4" placeholder="請輸入評論內容，字數至少要十個字以上" ng-show="authenticated" ng-model="vm.commentContent"></textarea>
     <textarea class="form-control" rows="4" placeholder="請登錄以評論" ng-show="!authenticated" readonly></textarea>
-    <div>{{vm.commentMessage}}</div>
+    <div><p class="pull-left pink-style comment-error" ng-show="vm.commentSucc">評論已發布</p></div>
+    <div><p class="pull-left pink-style comment-error" ng-show="!vm.commentSucc">{{vm.commentMessage}}</p></div>
     <div class="pull-right"><a href="#"><button class="btn round-btn" type="button" ng-show="authenticated" ng-click="vm.commentThisArticle()" ui-sref="blog.detail.comment({ category : vm.category, articleId : vm.articleId })">發表評論</button></div>
   </form>
 </div>

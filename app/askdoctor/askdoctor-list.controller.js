@@ -43,8 +43,7 @@
         // ask question form
         vm.questionMin = 10;
         vm.questionSubmitted = false;
-        // FIXME change this to a better solution
-        vm.askQuestionCategory = vm.category === 'all' ? askdoctorCategoryList[1].name : vm.category;
+        vm.selectedCategory = vm.category;
         vm.statusMessage = {
             isShown : false,
             type    : 'error',
@@ -62,9 +61,11 @@
         vm.index = 0;
         vm.numOfQuestions = countNumberOfQuestions(vm.questionList);
         vm.showMoreQuestion  = showMoreQuestion;
+        vm.resetPageParameters = resetPageParameters;
 
         vm.searchText = '';
         vm.updatedSearchText = '';
+        vm.onlyShowUnAnsweredQuestion = false;
         vm.search = search;
 
         // rating
@@ -84,6 +85,12 @@
             if (!askdoctorQuestionService || !$rootScope || !$rootScope.authenticated ||
                 !myAccount || !myAccount.account_id) {
                 askQuestionFailed('提問時發生錯誤，請稍後重試');
+                return;
+            }
+
+            if (vm.selectedCategory === 'all') {
+                askQuestionFailed('請選擇一個問題類別');
+                return;
             }
 
             // TODO change these
@@ -123,7 +130,7 @@
 
             try {
                 askdoctorQuestionService
-                    .createQuestion(vm.askQuestionCategory, questionBody)
+                    .createQuestion(vm.selectedCategory, questionBody)
                     .then(askQuestionSuccessCallback)
                     .catch(askQuestionFailCallback);
             } catch (e) {
@@ -171,6 +178,11 @@
             vm.pageLimit = 1;
         }
 
+        function resetPageParameters() {
+            vm.index = 0;
+            vm.pageLimit = 1;
+        }
+
         /* private functions */
 
         function askQuestionFailed(msg) {
@@ -185,6 +197,10 @@
             vm.statusMessage.isShown = true;
             vm.statusMessage.type = 'success';
             vm.statusMessage.message = msg;
+
+            if (vm.category !== question.category) {
+                return;
+            }
 
             if (vm.questionList) {
                 vm.questionList.push(question);
@@ -366,6 +382,9 @@
 
                     // add myAccount
                     myQuestionList[i].user = myAccount;
+
+                    // set isCollapsed
+                    myQuestionList[i].isExpanded = false;
 
                     // get category name
                     if (categoryList && angular.isArray(categoryList) && categoryList.length > 0) {

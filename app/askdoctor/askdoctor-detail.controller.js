@@ -108,6 +108,7 @@
             if (!askdoctorAnswerService || !myAccount ||
                 myAccount.user_type !== 'DOCTOR' || !myAccount.account_id) {
                 submitAnswerFailed('發表解答時發生錯誤，請稍後重新嘗試');
+                return;
             }
 
             // TODO change this
@@ -160,6 +161,7 @@
 
             if (!askdoctorCommentService || !myAccount || !myAccount.account_id) {
                 submitCommentFailed('發表評論時發生錯誤，請稍後重新嘗試');
+                return;
             }
 
             var commentBody = {
@@ -211,6 +213,7 @@
 
             if (!askdoctorRatingService || !myAccount || !myAccount.account_id) {
                 submitRatingFailed('發表評分時發生錯誤，請稍後重新嘗試');
+                return;
             }
 
             var ratingBody = {

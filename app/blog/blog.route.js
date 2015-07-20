@@ -16,6 +16,9 @@
             name : 'blog',
             url : '^/blog',
             abstract : true,
+            resolve : {
+                myAccount : resolveMyAccount
+            },
             templateUrl : 'app/blog/blog.html'
         };
 
@@ -85,6 +88,29 @@
 
 
         /* resolve functions */
+        function resolveMyAccount(authService) {
+            if (!authService) {
+                return null;
+            }
+
+            /* Check authentication status */
+            var successCallback = (function() {
+                return function(res) {
+                    return res.data;
+                };
+            })();
+            var failCallback = (function() {
+                return function(res) {
+                    return null;
+                };
+            })();
+
+            // check if the user is logged in
+            var promise = authService.checkAuthStatus(null, null);
+            return promise
+                    .then(successCallback)
+                    .catch(failCallback);
+        }
 
         function resolveArticleList($stateParams, blogArticleService) {
             if (!$stateParams || !$stateParams.category || !blogArticleService) {

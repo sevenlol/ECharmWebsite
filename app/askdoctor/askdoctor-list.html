@@ -34,7 +34,7 @@
     <ol class="breadcrumb hidden-xs text-right">
       <li><a ui-sref="home">醫創網</a></li>
       <li><a ui-sref="askdoctor.home">即時醫師問答</a></li>
-      <li class="active">醫學美容</li>
+      <li class="active">{{ vm.categoryName }}</li>
     </ol>
 
     <div class="row">
@@ -66,7 +66,17 @@
 
         <div role="tabpanel">
           <ul class="nav nav-pills ask-type" role="tablist">
-            <li role="presentation" class="active"><a href=""role="tab">我要提問</a></li>
+            <li role="presentation" class="active"><a href="" role="tab">我要提問</a></li>
+            <li>
+              <form class="form-inline ask-form-category">
+                <select
+                 class="form-control input-sm"
+                 ng-disabled="!authenticated"
+                 ng-model="vm.selectedCategory"
+                 ng-options="category.name as (category.name === 'all') ? '請選擇問題類別' : category.text for category in vm.categoryList">
+                </select>
+              </form>
+            </li>
             <!-- <li role="presentation"><a href="#search-doctor" aria-controls="search-doctor" role="tab" data-toggle="tab">我要找醫生</a></li> -->
           </ul>
         </div>
@@ -225,12 +235,21 @@
       </div>
     </div>
 
+    <div class="col-lg-10 col-lg-offset-1" ng-show="vm.myAccount && vm.myAccount.user_type === 'DOCTOR'">
+      <label class="pull-right">
+        <input type="checkbox" ng-model="vm.onlyShowUnAnsweredQuestion" ng-change="vm.resetPageParameters()">
+        只顯示尚未被回答的問題
+      </label>
+    </div>
+
     <!-- Question List -->
     <div class="col-lg-10 col-lg-offset-1">
 
-      <div class="question-block" ng-repeat="question in (vm.filteredQuestionList = (vm.questionList | filter : vm.updatedSearchText)) | limitTo : vm.pageLimit : vm.index">
+      <h3 class="pink-style search-title" ng-show="vm.updatedSearchText">搜尋 {{vm.updatedSearchText}} 結果: 共{{vm.filteredQuestionList.length}}筆問答紀錄</h3>
+
+      <div class="question-block" ng-repeat="question in (vm.filteredQuestionList = (vm.questionList | filter : vm.updatedSearchText | isAnsweredFilter : (vm.onlyShowUnAnsweredQuestion ? 'false' : '') )) | limitTo : vm.pageLimit : vm.index">
         <!-- ask -->
-        <div class="question-top" ng-class="{ false : 'noanswer' }[ question.isExpanded ]">
+        <div class="question-top" ng-class="{ false : 'noanswer' }[ (question.isExpanded) ]">
           <div class="pull-right">
             <ul class="list-unstyled">
               <li>
