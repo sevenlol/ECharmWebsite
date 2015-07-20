@@ -1,4 +1,4 @@
-<div class="container-fluid" ng-controller="homeController">
+<div class="container-fluid" ng-controller="homeController as vm">
   <div class="main-kv parallax-container parallax-background main-kv-background" parallax-background parallax-ratio="0.4" ng-class="{ true: 'main-kv-auth', false : 'main-kv-notauth' }[authenticated]">
     <div class="container">
       <div class="row">
@@ -40,9 +40,10 @@
           </div>
         </div>
 
-        <div class="col-lg-5 col-md-5 cursor-pointer" ui-sref="doctor.list({ category : 'all' })">
-          <h1>歡迎來到 醫創網</h1>
-          <p>目前已有<strong>駐站醫師72</strong>位，提供您專業諮詢</a></p>
+        <div class="col-lg-5 col-md-5 cursor-pointer cl-effect-15" ui-sref="doctor.list({ category : 'all' })" ng-mouseover="vm.enterDoctorListLink()" ng-mouseleave="vm.leaveDoctorListLink()">
+          <h1><a data-hover="歡迎來到 醫創網">歡迎來到 醫創網</a></h1>
+          <p><a data-hover="目前已有駐站醫師72位，提供您專業諮詢">目前已有駐站醫師72位，提供您專業諮詢</a></p>
+          <p class="instruction-text"><span ng-show="vm.showInstruction">點擊以觀看駐站醫師列表</span></p>
         </div>
 
       </div>

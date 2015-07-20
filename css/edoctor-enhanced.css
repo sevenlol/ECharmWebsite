@@ -115,3 +115,40 @@ ul.doctor-list li p {
 .cursor-pointer {
 	cursor : pointer;
 }
+
+.cl-effect-4 a {
+	padding: 0 0 10px;
+}
+
+/* home */
+
+.cl-effect-15 a {
+	color: rgba(66,66,66,0.8);
+	font-weight: 700;
+	text-shadow: none;
+}
+
+.cl-effect-15 a::before {
+	color: #fff;
+	content: attr(data-hover);
+	position: absolute;
+	transition: transform 0.3s, opacity 0.3s;
+}
+
+.cl-effect-15 a:hover::before,
+.cl-effect-15 a:focus::before {
+	transform: scale(0.9);
+	opacity: 0;
+
+}
+
+.cl-effect-15 a:hover {
+	text-decoration: none;
+}
+
+.instruction-text {
+	font-weight: 700;
+	color:#ffffff;
+	font-size:1.6em;
+	text-align:center;
+}
