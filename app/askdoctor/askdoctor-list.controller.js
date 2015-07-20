@@ -174,13 +174,19 @@
 
         function search(searchText) {
             vm.updatedSearchText = searchText;
-            vm.index = 0;
-            vm.pageLimit = 1;
+            resetPageParameters();
         }
 
         function resetPageParameters() {
             vm.index = 0;
             vm.pageLimit = 1;
+            if (vm.questionList && angular.isArray(vm.questionList) && vm.questionList.length > 0) {
+                for (var i in vm.questionList) {
+                    if (vm.questionList[i]) {
+                        vm.questionList[i].isExpanded = false;
+                    }
+                }
+            }
         }
 
         /* private functions */
@@ -197,10 +203,13 @@
             vm.statusMessage.isShown = true;
             vm.statusMessage.type = 'success';
             vm.statusMessage.message = msg;
+            vm.questionText = '';
 
             if (vm.category !== question.category) {
                 return;
             }
+
+            question.isExpanded = false;
 
             if (vm.questionList) {
                 vm.questionList.push(question);
