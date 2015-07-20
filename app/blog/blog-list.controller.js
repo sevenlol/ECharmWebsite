@@ -6,16 +6,33 @@
 
     blogListController.$inject = [
         '$stateParams',
+        '$filter',
         'articleList',
-        'doctorList'
+        'doctorList',
+        'blogCategoryList'
     ];
 
-    function blogListController($stateParams, articleList, doctorList) {
-        var NUM_OF_ARTICLES_IN_ROW = 5;
+    function blogListController($stateParams, $filter, articleList, doctorList, blogCategoryList) {
+        var NUM_OF_ARTICLES_IN_ROW = 2;
 
         var vm = this;
 
         vm.articleGrid = []; // This object is used to store the article objects to be displayed in ng-repeat
+
+        vm.categoryList = blogCategoryList;
+        vm.numOfArticles = 0;
+
+        vm.category = $stateParams.category;        
+        // Copy from askdoctor but unavailable
+        // vm.category = $stateParams ? $stateParams.category : 'all';
+        // vm.categoryName = getCategoryName(askdoctorCategoryList, vm.category);
+
+        vm.searchText = '';
+        vm.searchTag = '';
+        vm.updatedSearchText = '';
+        vm.updatedSearchTag = '';
+
+        vm.search = search;
 
         // TODO fix this
         vm.articleList = articleList;
@@ -30,7 +47,8 @@
             var resultArr = [];
 
             if (list && angular.isArray(list) && list.length > 0) {
-                vmObj.numOfArticles = list.length;
+                // vmObj.numOfArticles = list.length;
+                vm.numOfArticles = list.length;
 
                 var articleRow = [];
                 for (var i in list) {
@@ -47,5 +65,35 @@
                 }
             }
         }
+
+        function search(searchText, searchTag) {
+            vm.updatedSearchText = searchText;
+            vm.updatedSearchTag = searchTag;
+            vm.index = 0;
+            vm.pageLimit = 1;
+            // console.log(vm.updatedSearchText);
+        }
+
+        // function getCategoryName(categoryList, category) {
+        //     if (!categoryList || !angular.isArray(categoryList) || categoryList === 0) {
+        //         return '';
+        //     }
+
+        //     if (!category) {
+        //         return '';
+        //     }
+
+        //     for (var i in categoryList) {
+        //         if (!categoryList[i]) {
+        //             continue;
+        //         }
+
+        //         if (categoryList[i].name === category) {
+        //             return categoryList[i].text;
+        //         }
+        //     }
+
+        //     return '';
+        // }
     }
 })();

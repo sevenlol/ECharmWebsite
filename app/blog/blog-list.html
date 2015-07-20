@@ -8,13 +8,13 @@
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="搜尋文章">
-              <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>
+              <input type="text" class="form-control" placeholder="搜尋{{vm.category}}的文章" ng-model="vm.searchText">
+              <input type="text" class="form-control" placeholder="搜尋{{vm.category}}的標籤" ng-model="vm.searchTag">
+              <span class="input-group-btn"><button class="btn btn-default"  ng-click="vm.search(vm.searchText, vm.searchTag)" type="button"><i class="fa fa-search"></i></button></span>
             </div>
           </div>
         </form>
       </div>
-
 	  <ul class="nav nav-tabs">
         <li role="navigation" class="active"><a href="#">醫學美容</a></li>
         <li role="navigation"><a href="#">整形外科</a></li>
@@ -64,226 +64,32 @@
 	        <li role="navigation"><a href="#">子分類</a></li>
 	      </ul>
 
+          <!-- TODO cancel this -->
     	<!-- list -->
-    	<div class="article-list-box clearfix">
+    	<div class="article-list-box clearfix" >
+		<span class="articel-group" ng-repeat="article in (vm.filteredArticleList = (vm.articleList | filter : vm.updatedSearchText|filter : vm.updatedSearchTag))" >
+        
+        <!-- ng-repeat="question in (vm.filteredQuestionList = (vm.questionList | filter : vm.updatedSearchText)) | limitTo : vm.pageLimit : vm.index" -->
 
-		<div class="articel-group">
-    	  <div class="article-block" ui-sref="blog.detail.comment({ category : 'Category_1', articleId : '1428827119854' })">
-    		<div class="viewport">
-    	      <a href="artical-detail.html">
-    		    <span class="dark-background"><img src="images/icon-read.png" alt="" /></span>
-    		    <img src="images/articleimg-1.jpg" alt="" />
-    		  </a>
-			</div>
+            <div class="article-block" ui-sref="blog.detail.comment({ category : article.category, articleId : article.article_id })">
+        		<div class="viewport">
+        	      <a href="artical-detail.html">
+        		    <span class="dark-background"><img src="images/icon-read.png" alt="" /></span>
+        		    <img src="images/articleimg-1.jpg" alt="" />
+        		  </a>
+    			</div>
+                <p>{{article.title}}</p>
+        		<p><a href="artical-detail.html">[繼續閱讀]</a></p>
+        		<p class="count">8129點閱 | 2天前</p>
 
-    		<p>身體裡的不定時炸彈：巧克力囊腫在女人體內的危機...</p>
-    		<p><a href="artical-detail.html">[繼續閱讀]</a></p>
-    		<p class="count">8129點閱 | 2天前</p>
+        		<span class="article-tag" ng-repeat = "tagOfArticle in article.tag_arr">
+        		  <a href="#" class="btn round-btn">{{tagOfArticle}}</a>
+        		</span>
+            </div>
 
-    		<div class="article-tag">
-    		  <a href="#" class="btn round-btn">醫美</a><a href="#" class="btn round-btn">微整</a><a href="#" class="btn round-btn">健康</a>
-    		</div>
-    	  </div>
 
-    	  <!---->
-    	  <div class="article-block">
-    		<div class="viewport">
-    		  <a href="artical-detail.html">
-    			<span class="dark-background"><img src="images/icon-read.png" alt="" /></span>
-    			<img src="images/articleimg-2.jpg" alt="" />
-    		  </a>
-		    </div>
-
-    		<p>身體裡的不定時炸彈：巧克力囊腫在女人體內的危機...</p>
-    		<p><a href="artical-detail.html">[繼續閱讀]</a></p>
-    		<p class="count">8129點閱 | 2天前</p>
-
-    		<div class="article-tag">
-    		  <a href="#" class="btn round-btn">醫美</a><a href="#" class="btn round-btn">微整</a><a href="#" class="btn round-btn">健康</a>
-    		</div>
-    	  </div>
-
-    	  <!---->
-    	  <div class="article-block">
-    		<div class="viewport">
-    		  <a href="artical-detail.html">
-    			<span class="dark-background"><img src="images/icon-read.png" alt="" /></span>
-    			<img src="images/articleimg-3.jpg" alt="" />
-    		  </a>
-			</div>
-
-    		<p>身體裡的不定時炸彈：巧克力囊腫在女人體內的危機...</p>
-    		<p><a href="artical-detail.html">[繼續閱讀]</a></p>
-    		<p class="count">8129點閱 | 2天前</p>
-
-    		<div class="article-tag">
-   			  <a href="#" class="btn round-btn">醫美</a><a href="#" class="btn round-btn">微整</a><a href="#" class="btn round-btn">健康</a>
-    		</div>
-    	  </div>
-
-    	  <!---->
-    	  <div class="article-block">
-    		<div class="viewport">
-    		  <a href="artical-detail.html">
-    		    <span class="dark-background"><img src="images/icon-read.png" alt="" /></span>
-    		    <img src="images/articleimg-1.jpg" alt="" />
-    		  </a>
-		    </div>
-
-    		<p>身體裡的不定時炸彈：巧克力囊腫在女人體內的危機...</p>
-    		<p><a href="artical-detail.html">[繼續閱讀]</a></p>
-    		<p class="count">8129點閱 | 2天前</p>
-
-    		<div class="article-tag">
-    		  <a href="#" class="btn round-btn">醫美</a><a href="#" class="btn round-btn">微整</a><a href="#" class="btn round-btn">健康</a>
-    		</div>
-    	  </div>
-
-    	  <!---->
-    	  <div class="article-block">
-    		<div class="viewport">
-    		  <a href="artical-detail.html">
-    		    <span class="dark-background"><img src="images/icon-read.png" alt="" /></span>
-    		    <img src="images/articleimg-1.jpg" alt="" />
-    		  </a>
-		    </div>
-
-    		<p>身體裡的不定時炸彈：巧克力囊腫在女人體內的危機...</p>
-    		<p><a href="artical-detail.html">[繼續閱讀]</a></p>
-    		<p class="count">8129點閱 | 2天前</p>
-
-    		<div class="article-tag">
-    		  <a href="#" class="btn round-btn">醫美</a><a href="#" class="btn round-btn">微整</a><a href="#" class="btn round-btn">健康</a>
-    		</div>
-    	  </div>
-
-    	  <!---->
-    	  <div class="article-block">
-    		<div class="viewport">
-    		  <a href="artical-detail.html">
-    		    <span class="dark-background"><img src="images/icon-read.png" alt="" /></span>
-    		    <img src="images/articleimg-1.jpg" alt="" />
-    		  </a>
-		    </div>
-
-    		<p>身體裡的不定時炸彈：巧克力囊腫在女人體內的危機...</p>
-    		<p><a href="artical-detail.html">[繼續閱讀]</a></p>
-    		<p class="count">8129點閱 | 2天前</p>
-
-    		<div class="article-tag">
-    		  <a href="#" class="btn round-btn">醫美</a><a href="#" class="btn round-btn">微整</a><a href="#" class="btn round-btn">健康</a>
-    		</div>
-    	  </div>
-		</div>
-
-    	<!-- ad -->
-    	<div class="adblock img-responsive"><a href="#"><img src="images/ad.jpg" alt="" /></a></div>
-
-    	<!---->
-		<div class="articel-group">
-    	  <!---->
-    	  <div class="article-block">
-    		<div class="viewport">
-    		  <a href="artical-detail.html">
-    		    <span class="dark-background"><img src="images/icon-read.png" alt="" /></span>
-    		    <img src="images/articleimg-1.jpg" alt="" />
-    		  </a>
-		    </div>
-
-    		<p>身體裡的不定時炸彈：巧克力囊腫在女人體內的危機...</p>
-    		<p><a href="artical-detail.html">[繼續閱讀]</a></p>
-    		<p class="count">8129點閱 | 2天前</p>
-
-    		<div class="article-tag">
-    		  <a href="#" class="btn round-btn">醫美</a><a href="#" class="btn round-btn">微整</a><a href="#" class="btn round-btn">健康</a>
-    		</div>
-    	  </div>
-    	  <!---->
-    	  <div class="article-block">
-    		<div class="viewport">
-    		  <a href="artical-detail.html">
-    		    <span class="dark-background"><img src="images/icon-read.png" alt="" /></span>
-    		    <img src="images/articleimg-1.jpg" alt="" />
-    		  </a>
-		    </div>
-
-    		<p>身體裡的不定時炸彈：巧克力囊腫在女人體內的危機...</p>
-    		<p><a href="artical-detail.html">[繼續閱讀]</a></p>
-    		<p class="count">8129點閱 | 2天前</p>
-
-    		<div class="article-tag">
-    		  <a href="#" class="btn round-btn">醫美</a><a href="#" class="btn round-btn">微整</a><a href="#" class="btn round-btn">健康</a>
-    		</div>
-    	  </div>
-    	  <!---->
-    	  <div class="article-block">
-    		<div class="viewport">
-    		  <a href="artical-detail.html">
-    		    <span class="dark-background"><img src="images/icon-read.png" alt="" /></span>
-    		    <img src="images/articleimg-1.jpg" alt="" />
-    		  </a>
-		    </div>
-
-    		<p>身體裡的不定時炸彈：巧克力囊腫在女人體內的危機...</p>
-    		<p><a href="artical-detail.html">[繼續閱讀]</a></p>
-    		<p class="count">8129點閱 | 2天前</p>
-
-    		<div class="article-tag">
-    		  <a href="#" class="btn round-btn">醫美</a><a href="#" class="btn round-btn">微整</a><a href="#" class="btn round-btn">健康</a>
-    		</div>
-    	  </div>
-    	  <!---->
-    	  <div class="article-block">
-    		<div class="viewport">
-    		  <a href="artical-detail.html">
-    		    <span class="dark-background"><img src="images/icon-read.png" alt="" /></span>
-    		    <img src="images/articleimg-1.jpg" alt="" />
-    		  </a>
-		    </div>
-
-    		<p>身體裡的不定時炸彈：巧克力囊腫在女人體內的危機...</p>
-    		<p><a href="artical-detail.html">[繼續閱讀]</a></p>
-    		<p class="count">8129點閱 | 2天前</p>
-
-    		<div class="article-tag">
-    		  <a href="#" class="btn round-btn">醫美</a><a href="#" class="btn round-btn">微整</a><a href="#" class="btn round-btn">健康</a>
-    		</div>
-    	  </div>
-    	  <!---->
-    	  <div class="article-block">
-    		<div class="viewport">
-    		  <a href="artical-detail.html">
-    		    <span class="dark-background"><img src="images/icon-read.png" alt="" /></span>
-    		    <img src="images/articleimg-1.jpg" alt="" />
-    		  </a>
-		    </div>
-
-    		<p>身體裡的不定時炸彈：巧克力囊腫在女人體內的危機...</p>
-    		<p><a href="artical-detail.html">[繼續閱讀]</a></p>
-    		<p class="count">8129點閱 | 2天前</p>
-
-    		<div class="article-tag">
-    		  <a href="#" class="btn round-btn">醫美</a><a href="#" class="btn round-btn">微整</a><a href="#" class="btn round-btn">健康</a>
-    		</div>
-    	  </div>
-    	  <!---->
-    	  <div class="article-block">
-    		<div class="viewport">
-    		  <a href="artical-detail.html">
-    		    <span class="dark-background"><img src="images/icon-read.png" alt="" /></span>
-    		    <img src="images/articleimg-1.jpg" alt="" />
-    		  </a>
-		    </div>
-
-    		<p>身體裡的不定時炸彈：巧克力囊腫在女人體內的危機...</p>
-    		<p><a href="artical-detail.html">[繼續閱讀]</a></p>
-    		<p class="count">8129點閱 | 2天前</p>
-
-    		<div class="article-tag">
-    		  <a href="#" class="btn round-btn">醫美</a><a href="#" class="btn round-btn">微整</a><a href="#" class="btn round-btn">健康</a>
-    		</div>
-    	  </div>
-		</div>
+    	  
+		</span>
 
     	<button type="button" class="btn btn-default btn-lg btn-block">顯示更多文章</button>
 

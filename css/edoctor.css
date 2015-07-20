@@ -845,8 +845,11 @@ ul.category li#Category_7 {
 .articel-group {
 	text-align:center;
 }
+
+
 .article-block {
 	width:200px;
+	/*This changes the number of a row - Lammin*/
 	min-height:350px;
 	display:inline-block;
 	background-color:#fff;
