@@ -28,6 +28,7 @@
         var DEFAULT_RATING_MAX = 5;
         var MALE_STRING = 'MALE';
         var FEMALE_STRING = 'FEMALE';
+        var AVG_RATING_PRECISION = 2;
 
         var vm = this;
 
@@ -90,7 +91,8 @@
 
         function hoverOverRating(value) {
             if (vm.ratingList && vm.ratingList.length) {
-                vm.overRatingValue = '平均 ' + vm.avgRating + ' 分 總共' + vm.ratingList.length + '次評分紀錄';
+                vm.overRatingValue = '平均 ' + ((vm.avgRating % 1 === 0) ? vm.avgRating : $filter('number')(vm.avgRating, AVG_RATING_PRECISION));
+                vm.overRatingValue += ' 分 總共' + vm.ratingList.length + '次評分紀錄';
             } else {
                 vm.overRatingValue = '目前尚無評分紀錄';
             }

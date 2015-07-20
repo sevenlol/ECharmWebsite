@@ -12,6 +12,7 @@
 
 	function accountMeDoctorController(doctor, avgAnswerRating) {
 		var DEFAULT_RATING_MAX = 5;
+		var AVG_RATING_PRECISION = 2;
 		var MALE_STRING = 'MALE';
 		var FEMALE_STRING = 'FEMALE';
 
@@ -24,6 +25,7 @@
 		vm.doctor = doctor;
 		vm.avgAnswerRating = avgAnswerRating;
 		vm.ratingMax = DEFAULT_RATING_MAX;
+		vm.avgRatingPrecision = AVG_RATING_PRECISION;
 	}
 
 })();
