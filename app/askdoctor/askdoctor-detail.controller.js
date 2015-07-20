@@ -268,6 +268,7 @@
             vm.answerStatusMessage.isShown = true;
             vm.answerStatusMessage.type = 'success';
             vm.answerStatusMessage.message = msg;
+            vm.answerText = '';
 
             if (!vm.answer) {
                 vm.answer = answer;
@@ -286,6 +287,7 @@
             vm.commentStatusMessage.isShown = true;
             vm.commentStatusMessage.type = 'success';
             vm.commentStatusMessage.message = msg;
+            vm.commentText = '';
 
             // add myAccount to comment
             comment.user = vm.myAccount;
