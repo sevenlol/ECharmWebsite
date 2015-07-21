@@ -11,7 +11,7 @@
     ];
 
     function doctorListController($stateParams, doctorCategoryList, doctorList) {
-        var NUM_OF_DOCTORS_IN_ROW = 6;
+        var NUM_OF_DOCTORS_IN_ROW = 4;
 
         var vm = this;
 

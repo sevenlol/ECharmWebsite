@@ -1,5 +1,5 @@
 <!-- user panel -->
-<section class="container-fluid">
+<section class="container-fluid doctor-list-background">
   <!-- doctor category -->
   <section class="container-fluid submenu">
     <div class="container">
@@ -39,9 +39,82 @@
 
 </section>
 
-<section class="container-fluid ad-recommend" ng-show="vm.numOfDoctors">
+<section class="container-fluid ad-recommend doctor-list-background" ng-show="vm.numOfDoctors">
   <div class="container clearfix">
-    <div class="row doctor-row" ng-repeat="doctorRow in vm.doctorList">
+    <!-- From left and right -->
+    <div class="row" style="margin: 50px 0;" ng-repeat="doctorRow in vm.doctorList">
+      <div ng-show="doctorRow[0]" ui-sref="doctor.detail({ category : doctorRow[0].user_info.category, doctorId : doctorRow[0].account_id })" class="col-sm-12 col-md-3 col-lg-3">
+
+        <!-- normal -->
+        <div class="ih-item circle effect13 from_left_and_right"><a href="#">
+            <div class="img"><img src="images/docpic.jpg" alt="img"></div>
+            <div class="info">
+              <div class="info-back">
+                <h3>{{doctorRow[0].user_info.name}} 醫師</h3>
+                <p>
+                  {{doctorRow[0].user_info.current_hospital}} {{doctorRow[0].user_info.category}} <br>
+                  點擊觀看詳細資料
+                </p>
+              </div>
+            </div></a></div>
+        <!-- end normal -->
+
+      </div>
+
+      <div ng-show="doctorRow[1]" ui-sref="doctor.detail({ category : doctorRow[1].user_info.category, doctorId : doctorRow[1].account_id })" class="col-sm-12 col-md-3 col-lg-3">
+
+        <!-- normal -->
+        <div class="ih-item circle effect13 from_left_and_right"><a href="#">
+            <div class="img"><img src="images/docpic.jpg" alt="img"></div>
+            <div class="info">
+              <div class="info-back">
+                <h3>{{doctorRow[1].user_info.name}} 醫師</h3>
+                <p>{{doctorRow[1].user_info.current_hospital}} {{doctorRow[1].user_info.category}} <br>
+                  點擊觀看詳細資料
+                </p>
+              </div>
+            </div></a></div>
+        <!-- end normal -->
+
+      </div>
+
+      <div ng-show="doctorRow[2]" ui-sref="doctor.detail({ category : doctorRow[2].user_info.category, doctorId : doctorRow[2].account_id })" class="col-sm-12 col-md-3 col-lg-3">
+
+        <!-- normal -->
+        <div class="ih-item circle effect13 from_left_and_right"><a href="#">
+            <div class="img"><img src="images/docpic.jpg" alt="img"></div>
+            <div class="info">
+              <div class="info-back">
+                <h3>{{doctorRow[2].user_info.name}} 醫師</h3>
+                <p>{{doctorRow[2].user_info.current_hospital}} {{doctorRow[2].user_info.category}} <br>
+                  點擊觀看詳細資料
+                </p>
+              </div>
+            </div></a></div>
+        <!-- end normal -->
+
+      </div>
+
+      <div ng-show="doctorRow[3]" ui-sref="doctor.detail({ category : doctorRow[3].user_info.category, doctorId : doctorRow[3].account_id })" class="col-sm-12 col-md-3 col-lg-3">
+
+        <!-- normal -->
+        <div class="ih-item circle effect13 from_left_and_right"><a href="#">
+            <div class="img"><img src="images/docpic.jpg" alt="img"></div>
+            <div class="info">
+              <div class="info-back">
+                <h3>{{doctorRow[3].user_info.name}} 醫師</h3>
+                <p>{{doctorRow[3].user_info.current_hospital}} {{doctorRow[3].user_info.category}} <br>
+                  點擊觀看詳細資料
+                </p>
+              </div>
+            </div></a></div>
+        <!-- end normal -->
+
+      </div>
+
+    </div>
+
+    <!-- <div class="row doctor-row" ng-repeat="doctorRow in vm.doctorList">
       <div class="col-lg-6 col-md-6 col-xs-12">
         <ul class="doctor-list">
           <li ng-show="doctorRow[0]" ui-sref="doctor.detail({ category : doctorRow[0].user_info.category, doctorId : doctorRow[0].account_id })"><a href="#"><img src="images/docpic.jpg" alt="" class="img-circle" /><p>{{doctorRow[0].user_info.name}}</p></a></li>
@@ -57,7 +130,7 @@
           <li ng-show="doctorRow[5]" ui-sref="doctor.detail({ category : doctorRow[5].user_info.category, doctorId : doctorRow[5].account_id })"><a href="#"><img src="images/docpic.jpg" alt="" class="img-circle" /><p>{{doctorRow[5].user_info.name}}</p></a></li>
         </ul>
       </div>
-    </div>
+    </div> -->
 
   </div>
 
