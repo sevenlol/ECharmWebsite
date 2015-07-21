@@ -17,6 +17,7 @@
     function doctorDetailController($stateParams, doctorCategoryList, doctor, articleList, qaList, avgQaRating, blogCategoryNameTextList) {
         var SHOW_MORE_ARTICLE_STEP = 1;
         var SHOW_MORE_QUESTION_STEP = 1;
+        var AVG_RATING_PRECISION = 2;
         var MALE_STRING = 'MALE';
         var FEMALE_STRING = 'FEMALE';
         var DEFAULT_RATING_MAX = 5;
@@ -30,6 +31,7 @@
             MALE : MALE_STRING,
             FEMALE : FEMALE_STRING
         };
+        vm.avgRatingPrecision = AVG_RATING_PRECISION;
 
         vm.categoryList = doctorCategoryList;
         vm.category = $stateParams ? $stateParams.category : 'all';

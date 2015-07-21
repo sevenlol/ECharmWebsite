@@ -19,7 +19,7 @@
             <i ng-show="vm.doctor.user_info.gender === vm.GENDER_STRING.FEMALE" class="fa fa-venus"></i><br />
             {{ vm.doctor.user_info.title }}  皮膚科<br />
             <span ng-show="vm.avgQaRating !== null">
-              問答平均 <span class="satisfy"><rating ng-model="vm.avgQaRating.number" max="vm.ratingMax" readonly="true" state-on="'fa fa-star'" state-off="'fa fa-star-o'"></rating></span> <span>({{vm.avgQaRating.number}}) 共{{vm.avgQaRating.count}}評價</span>
+              問答平均 <span class="satisfy"><rating ng-model="vm.avgQaRating.number" max="vm.ratingMax" readonly="true" state-on="'fa fa-star'" state-off="'fa fa-star-o'"></rating></span> <span>({{(vm.avgQaRating.number % 1 === 0) ? vm.avgQaRating.number : (vm.avgQaRating.number | number : vm.avgRatingPrecision) }}) 共{{vm.avgQaRating.count}}評價</span>
             </span>
             <span ng-show="vm.avgQaRating === null">尚無任何問答評分</span>
         </div>
