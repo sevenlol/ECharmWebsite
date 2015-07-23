@@ -16,10 +16,30 @@
       <!--category-->
       <div class="row">
         <ul class="category clearfix">
-          <li class="col-lg-12" ng-repeat="category in vm.categoryList" id={{category.name}}>
+          <li
+            ng-show="category.display !== 'none'"
+            ng-repeat="category in vm.categoryList"
+            ng-class="{ true : 'col-lg-12', false : 'col-lg-6' }[ category.display === 'full' || category.display === 'full-nopadding' ]"
+            ng-style="
+            ((category.display === 'full') && {
+                'background' : 'url(' + category.background_url + ') no-repeat left center',
+                'padding-left' : '50%'
+            }) ||
+            ((category.display === 'left') && {
+                'background' : 'url(' + category.background_url + ') no-repeat right center',
+                'border-radius' : '5px 0 0 5px'
+            }) ||
+            ((category.display === 'right') && {
+                'background' : 'url(' + category.background_url + ') no-repeat right center',
+                'border-radius' : '0 5px 5px 0',
+                'border-left' : 'none'
+            }) ||
+            ((category.display === 'full-nopadding') && {
+                'background' : 'url(' + category.background_url + ') no-repeat right center'
+            })">
             <h3>{{category.text}}</h3>
             <p>
-              {{category.description}}
+              <span ng-repeat="des in category.description">{{ des }}<br ng-show="!$last" /></span>
             </p>
             <a ui-sref="blog.list({ category : category.name })" class="btn round-btn">欣賞文章</a>
           </li>
@@ -97,7 +117,7 @@
         <h3>常見相關問題</h3>
 
         <accordion close-others="vm.oneAccordionAtATime">
-          <accordion-group heading={{category.text}} is-open=$first is-disabled="false" ng-repeat="category in vm.categoryList">
+          <accordion-group heading="{{category.text}}" is-open="false" is-disabled="false" ng-repeat="category in vm.categoryList" ng-show="category.display !== 'none'">
             <ul class="faq-rocommend">
               <li><span>A</span><a href="#">如果要瘦臉.大腿內側.肚子要怎麼做</a></li>
               <li><span>A</span><a href="#">睡覺鼻塞怎麼辦?</a></li>
