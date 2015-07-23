@@ -43,7 +43,6 @@
             validate : validate,
             parse : parse
         };
-        return service;
 
         /* public functions */
 
@@ -80,7 +79,7 @@
                 return this;
             }
 
-            for (var i=0, i < refs.length; i++) {
+            for (var i = 0; i < refs.length; i++) {
                 var ref = refs[i];
                 if (!ref || !angular.isString(ref)) {
                     refs.splice(i--, 1);
@@ -242,6 +241,9 @@
                 return JSON.stringify(this, null, 2);
             }
         }
+
+        /* return service object here */
+        return service;
 
         function validate(articleContent) {
             if (!articleContent || !angular.isObject(articleContent)) {
