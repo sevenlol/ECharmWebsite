@@ -92,6 +92,25 @@
           | 仁愛醫院  皮膚科
         </div>
 
+
+        <!-- Newly added rating part -->
+        <br/>
+        <div class="question-content-tag">
+          <div class="satisfy pull-right" ng-show="vm.ratingList && vm.ratingList.length">
+            {{ vm.overRatingValue ? vm.overRatingValue : '滿意度' }}
+            <rating ng-model="vm.avgRating" max="vm.ratingMax" readonly="true" state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="vm.hoverOverRating(value)" on-leave="vm.overRatingValue = null"></rating>
+          </div>
+          <div class="pull-right" ng-show="!vm.ratingList || !vm.ratingList.length">
+            目前尚無評分紀錄
+          </div>
+          <a href="#" ng-show="!vm.iAlreadyRated" class="btn round-btn" ng-click="vm.collapseMyRatingBar()">我要評分</a>
+          <button ng-show="vm.iAlreadyRated" href="#" class="btn round-btn" disabled><strong>我的評分 {{vm.myRating}}</strong></button>
+          <a href="#" class="btn round-btn">收藏</a>
+          <!-- <a href="#" class="btn round-btn">訂閱</a> -->
+        </div>
+        <br/>
+
+
         <div class="more-article">
           <div class="mark"><span>熱門文章</span></div>
           <ul class="faq-rocommend">
