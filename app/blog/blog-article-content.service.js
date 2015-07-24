@@ -65,7 +65,7 @@
 
             this.intros = intros;
             return this;
-        }
+        };
         ArticleContentBuilder.prototype.addIntro = function(intro) {
             if (!intro || !angular.isString(intro)) {
                 return this;
@@ -73,7 +73,19 @@
 
             this.intros.push(intro);
             return this;
-        }
+        };
+        ArticleContentBuilder.prototype.removeIntro = function(index) {
+            if (!angular.isNumber(index)) {
+                return this;
+            }
+
+            if (this.intros.length === 0 || index < 0 || index >= this.intros.length) {
+                return this;
+            }
+
+            this.intros.splice(index, 1);
+            return this;
+        };
         ArticleContentBuilder.prototype.setRefs = function(refs) {
             if (!refs || !angular.isArray(refs)) {
                 return this;
@@ -88,7 +100,7 @@
 
             this.refs = refs;
             return this;
-        }
+        };
         ArticleContentBuilder.prototype.addRef = function(ref) {
             if (!ref || !angular.isString(ref)) {
                 return this;
@@ -96,7 +108,19 @@
 
             this.refs.push(ref);
             return this;
-        }
+        };
+        ArticleContentBuilder.prototype.removeRef = function(index) {
+            if (!angular.isNumber(index)) {
+                return this;
+            }
+
+            if (this.refs.length === 0 || index < 0 || index >= this.refs.length) {
+                return this;
+            }
+
+            this.refs.splice(index, 1);
+            return this;
+        };
         ArticleContentBuilder.prototype.addHeadingBlock = function(size, content) {
             if (!angular.isNumber(size)) {
                 return this;
@@ -114,7 +138,7 @@
 
             this.blocks.push(heading);
             return this;
-        }
+        };
         ArticleContentBuilder.prototype.addParagraphBlock = function(content) {
             if (!content || !angular.isString(content)) {
                 return this;
@@ -127,7 +151,7 @@
 
             this.blocks.push(paragraph);
             return this;
-        }
+        };
         ArticleContentBuilder.prototype.addImageBlock = function(url, caption) {
             if (!url || !angular.isString(url)) {
                 return this;
@@ -146,7 +170,7 @@
 
             this.blocks.push(image);
             return this;
-        }
+        };
         ArticleContentBuilder.prototype.addAlertBlock = function(style, message) {
             if (!style || !angular.isString(style)) {
                 return this;
@@ -169,7 +193,7 @@
 
             this.blocks.push(alert);
             return this;
-        }
+        };
         ArticleContentBuilder.prototype.addListBlock = function(style, content) {
             if (!style || !angular.isString(style)) {
                 return this;
@@ -191,7 +215,7 @@
 
             this.blocks.push(list);
             return this;
-        }
+        };
         ArticleContentBuilder.prototype.addTableBlock = function(content) {
 
             if (!content || !angular.isArray(content) || content.length === 0) {
@@ -213,7 +237,19 @@
 
             this.blocks.push(table);
             return this;
-        }
+        };
+        ArticleContentBuilder.prototype.removeBlock = function(index) {
+            if (!angular.isNumber(index)) {
+                return this;
+            }
+
+            if (this.blocks.length === 0 || index < 0 || index >= this.blocks.length) {
+                return this;
+            }
+
+            this.blocks.splice(index, 1);
+            return this;
+        };
         ArticleContentBuilder.prototype.build = function() {
             var intros = angular.copy(this.intros);
             var blocks = angular.copy(this.blocks);
@@ -240,7 +276,7 @@
             function toPrettyJSONString() {
                 return JSON.stringify(this, null, 2);
             }
-        }
+        };
 
         /* return service object here */
         return service;
