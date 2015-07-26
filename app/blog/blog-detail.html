@@ -40,7 +40,7 @@
 
     <div class="row">
       <div class="article-ttl">
-        <h1>夜貓子注意！晚睡較消極悲觀</h1>
+        <h1>{{vm.article.title}}</h1>
       </div>
     </div>
 
@@ -54,7 +54,7 @@
     <div class="article-full-block">
       <div id="back" class="hidden-md hidden-sm hidden-xs"><a href="article-index.html">返回</a></div>
 
-      <div class="article-author">Written By: <a href="#">陳威德  醫師</a> 2014/12/18 | Taged In: 精神 心理醫療
+      <div class="article-author">Written By: <a href="#">{{vm.author.accountId}}  醫師</a> {{vm.article.created_at}} | Taged In: 精神 心理醫療
        <div class="satisfy pull-right">滿意度 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></div>
       </div>
 
@@ -63,7 +63,8 @@
 	  <div class="article-content">
 
         <h2 class="text-center">“你每次的睡眠時間是多久呢？”</h2>
-
+        <p>{{vm.article.content_text}}</p>
+        <!--
         <p>美國賓漢姆頓大學（Binghamton University ）的雅各．諾塔（Jacob Nota）和梅瑞狄斯．科爾斯（Meredith Coles ），他們發現睡眠時間較短或晚睡的人，較容易產生消極想法，而這項發現被刊登於《認知治療與研究》（Cognitive Therapy and Research）期刊。</p>
         <p>常有煩人的悲觀思想不斷重複浮現在腦海中，甚至認為自己幾乎無法控制自己的思考，且會過度擔心未來，同時又鑽牛角尖於過去，腦中不斷冒出惱人卻又揮之不去的想法。這些症狀常見於廣泛性焦慮症（generalized anxiety disorder）、抑鬱症（ major depressive disorder）、創傷後壓力心理障礙症（post-traumatic stress disorder）、強迫症（obsessive-compulsive disorder，簡稱 OCD）和社交焦慮失協症（social anxiety disorder，簡稱 SAD），而這些病患也同樣具有睡眠狀況。</p>
         <p>不過，這項研究只是驗證睡眠習慣和心理健康之間關係的其中一環而已。基於睡眠和精神病理學之間關係的證據不斷增加，諾斯、科爾斯和他們大學同事希望能了解更多關於睡眠是否有助於焦慮症病患。</p>
@@ -76,11 +77,11 @@
           Don’t worry, be happy: Just go to bed earlier. [DECEMBER 4, 2014]<br />
           Nota, J. A., & Coles, M. E. (2014). Duration and Timing of Sleep are Associated with Repetitive Negative Thinking. Cognitive Therapy and Research, 1-9.
         </p>
-
+        -->
         <div class="article-content-tag">
           <a href="#" class="btn round-btn">收藏</a><a href="#" class="btn round-btn">訂閱</a><a href="#" class="btn round-btn">email給朋友</a>
         </div>
-
+        
         <!--AD-->
         <div class="adblock img-responsive"><a href="#"><img src="images/ad.jpg"></a></div>
 

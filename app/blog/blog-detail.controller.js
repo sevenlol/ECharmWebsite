@@ -49,7 +49,7 @@
         vm.rateThisArticle = rateThisArticle;
 
         console.log(JSON.stringify(author, null, 2));
-
+        console.log("Author: " + author);
         /* public functions */
 
         function hoverOverRating(value) {
