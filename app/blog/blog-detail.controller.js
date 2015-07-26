@@ -6,14 +6,18 @@
 
     blogDetailController.$inject = [
         '$stateParams',
+        '$filter',
         'article',
         'author',
         'commentList',
         'ratingList',
-        'avgRating'
+        'avgRating',
+        'myAccount',
+        'blogRatingService'
     ];
 
-    function blogDetailController($stateParams, article, author, commentList, ratingList, avgRating) {
+    function blogDetailController($stateParams, $filter, article, author, commentList, ratingList, avgRating, myAccount, blogRatingService) {
+        var DATE_FORMAT = 'yyyy-MM-ddTHH:mmZ';
         var vm = this;
 
         vm.article = article;
@@ -26,6 +30,23 @@
 
         vm.hoverOverRating = hoverOverRating;
         vm.collapseMyRatingBar = collapseMyRatingBar;
+
+        // rating
+        vm.ratingMax = 5;
+        vm.hoverOverRating = hoverOverRating;
+        vm.ratingStatusMessage = {
+            isShown : false,
+            type    : 'error',
+            message : ''
+        };
+
+        // my rating bar
+        vm.isMyRatingBarCollapsed = true;
+        vm.myRating = 0;
+        vm.iAlreadyRated = findMyRating(vm.ratingList);
+        vm.collapseMyRatingBar = collapseMyRatingBar;
+
+        vm.rateThisArticle = rateThisArticle;
 
         console.log(JSON.stringify(author, null, 2));
 
@@ -83,12 +104,13 @@
             };
 
             try {
+                console.log("Rating: " + vm.article.category + " " + vm.article.article_id);
                 blogRatingService
-                    .createRating(vm.question.category, vm.question.question_id, ratingBody)
+                    .createRating(vm.article.category, vm.article.article_id, ratingBody)
                     .then(submitRatingSuccessCallback)
                     .catch(submitRatingFailCallback);
             } catch (e) {
-                submitAnswerFailed('發表評分時發生錯誤，請稍後重新嘗試');
+                submitRatingFailed('發表評分時發生錯誤，請稍後重新嘗試');
             }
         }
 
@@ -103,7 +125,7 @@
             vm.ratingStatusMessage.isShown = true;
             vm.ratingStatusMessage.type = 'success';
             vm.ratingStatusMessage.message = msg;
-
+            console.log("rating succeed");
             if (!vm.iAlreadyRated && rating && angular.isNumber(rating.rating_value)) {
                 vm.iAlreadyRated  = true;
                 vm.myRating = rating.rating_value;
