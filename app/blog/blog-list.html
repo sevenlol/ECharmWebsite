@@ -9,8 +9,8 @@
           <div class="form-group">
             <div class="input-group">
               <input type="text" class="form-control" placeholder="搜尋{{vm.category}}的文章" ng-model="vm.searchText">
-              <input type="text" class="form-control" placeholder="搜尋{{vm.category}}的標籤" ng-model="vm.searchTag">
-              <span class="input-group-btn"><button class="btn btn-default"  ng-click="vm.search(vm.searchText, vm.searchTag)" type="button"><i class="fa fa-search"></i></button></span>
+              <!-- <input type="text" class="form-control" placeholder="搜尋{{vm.category}}的標籤" ng-model="vm.searchTag"> -->
+              <span class="input-group-btn"><button class="btn btn-default"  ng-click="vm.search(vm.searchText)" type="button"><i class="fa fa-search"></i></button></span>
             </div>
           </div>
         </form>
@@ -24,14 +24,14 @@
         <li role="navigation"><a href="#">小兒科</a></li>
         <li role="navigation"><a href="#">婦科</a></li>
         <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">其他醫學問題 <span class="caret"></span></a>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">其他醫學問題 <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li role="navigation"><a href="#">其他類型1</a></li>
             <li role="navigation"><a href="#">其他類型2</a></li>
             <li role="navigation"><a href="#">其他類型3</a></li>
           </ul>
   	    </li>
-      </ul>
+      </ul>        
     </div>
   </section><!--end-->
 
@@ -52,8 +52,8 @@
 	  <!--category-->
 	  <div class="row">
     	<div class="article-list clearfix">
-          <!-- tab -->
-	      <ul class="nav nav-pills">
+          <!-- tab -->          
+	      <!-- <ul class="nav nav-pills">
             <li role="navigation" class="active"><a href="#">全部文章</a></li>
         	<li role="navigation"><a href="#">醫美</a></li>
         	<li role="navigation"><a href="#">微整型</a></li>
@@ -62,12 +62,42 @@
 	        <li role="navigation"><a href="#">子分類</a></li>
 	        <li role="navigation"><a href="#">子分類</a></li>
 	        <li role="navigation"><a href="#">子分類</a></li>
-	      </ul>
+	      </ul> -->
+          <div class="nav nav-pills" >
+            <div class="btn-group">
+                <p>排序：</p>
+                <label class="btn btn-primary" ng-model="sorting_time" btn-radio="'latest'">最新優先</label>
+                <label class="btn btn-primary" ng-model="sorting_time" btn-radio="'oldest'">最後優先</label>
+            </div>
+          </div>
+
+
+
+          <div class="nav nav-pills" >
+
+          <p>依標籤搜尋：</p>
+            <div class="col-xs-3">
+                <select class="form-control" ng-model="vm.selectedTag1" ng-options="tag.text for tag in vm.blogTagList">
+                    <option value="">-- 請選擇標籤 --</option>
+                </select>
+            </div>
+            <div class="col-xs-3" ng-show="vm.selectedTag1 !== NULL">
+                <select class="form-control" ng-model="vm.selectedTag2" ng-options="tag.text for tag in vm.blogTagList">
+                    <option value="">-- 請選擇標籤 --</option>
+                </select>
+            </div>
+            <div class="col-xs-3" ng-show="(vm.selectedTag1 !== NULL) && (vm.selectedTag2 !== NULL)">
+                <select class="form-control" ng-model="vm.selectedTag3" ng-options="tag.text for tag in vm.blogTagList">
+                    <option value="">-- 請選擇標籤 --</option>
+                </select>
+            </div>
+
+          </div>
 
           <!-- TODO cancel this -->
     	<!-- list -->
     	<div class="article-list-box clearfix" >
-		<span class="articel-group" ng-repeat="article in (vm.filteredArticleList = (vm.articleList | filter : vm.updatedSearchText|filter : vm.updatedSearchTag))" >
+		<span class="articel-group" ng-repeat="article in (vm.filteredArticleList = (vm.articleList | filter : vm.updatedSearchText|filter : {tag_arr: vm.selectedTag1.text}| filter : {tag_arr: vm.selectedTag2.text}| filter : {tag_arr: vm.selectedTag3.text}))" >
         
         <!-- ng-repeat="question in (vm.filteredQuestionList = (vm.questionList | filter : vm.updatedSearchText)) | limitTo : vm.pageLimit : vm.index" -->
 

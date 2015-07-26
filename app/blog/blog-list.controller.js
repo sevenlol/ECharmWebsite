@@ -9,10 +9,11 @@
         '$filter',
         'articleList',
         'doctorList',
-        'blogCategoryList'
+        'blogCategoryList',
+        'blogTagList'
     ];
 
-    function blogListController($stateParams, $filter, articleList, doctorList, blogCategoryList) {
+    function blogListController($stateParams, $filter, articleList, doctorList, blogCategoryList, blogTagList) {
         var NUM_OF_ARTICLES_IN_ROW = 2;
 
         var vm = this;
@@ -20,6 +21,7 @@
         vm.articleGrid = []; // This object is used to store the article objects to be displayed in ng-repeat
 
         vm.categoryList = blogCategoryList;
+        vm.blogTagList = blogTagList;
         vm.numOfArticles = 0;
 
         vm.category = $stateParams.category;        
@@ -66,9 +68,9 @@
             }
         }
 
-        function search(searchText, searchTag) {
+        function search(searchText) {
             vm.updatedSearchText = searchText;
-            vm.updatedSearchTag = searchTag;
+            // vm.updatedSearchTag = searchTag;
             vm.index = 0;
             vm.pageLimit = 1;
             // console.log(vm.updatedSearchText);

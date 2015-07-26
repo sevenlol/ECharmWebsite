@@ -21,4 +21,16 @@
                   background_url : 'images/cate-7.jpg', description : [] }
            	]);
 
+	angular.module('app.blog')
+           .value('blogTagList', [
+           		{ name : 'Tag_1', text : '腹痛' },
+                { name : 'Tag_2', text : '頭痛' },
+                { name : 'Tag_3', text : '鬱悶' },
+                { name : 'Tag_4', text : '比利時巧克力買一送一' },
+                { name : 'Tag_5', text : '我餓了' },
+                { name : 'Tag_6', text : 'aa' },
+                { name : 'Tag_7', text : 'bb' }
+
+           	]);
+
 })();
