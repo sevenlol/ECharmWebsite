@@ -368,10 +368,10 @@ ul.doctor-list li p {
 .article-content-block h4,
 .article-content-block h5,
 .article-content-block h6,
-.article-content-block table {
+.article-content-block table,
+.article-content-block p {
   padding : 0px;
-  margin-left:50px;
-  margin-right:50px;
+  margin-left: 5%;
 }
 
 .article-content-block img {
@@ -382,8 +382,7 @@ ul.doctor-list li p {
 .article-content-block ul,
 .article-content-block ol {
   padding : 0px;
-  margin-left:80px;
-  margin-right:80px;
+  margin-left:8%;
 }
 
 .article-content-block > h1,
@@ -435,7 +434,8 @@ ul.doctor-list li p {
   font-size: 75%;
 }
 .article-content-ref {
-
+  padding : 0px;
+  margin-left: 5%;
 }
 
 .ih-item.square {
