@@ -39,10 +39,15 @@
 
   <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.TABLE">
     <table class="table table-bordered">
+      <thead>
+        <tr ng-repeat="row in block.block_content track by $index" ng-show="$first">
+          <th ng-repeat="col in row track by $index">{{ col }}</th>
+        </tr>
+      </thead>
       <tbody>
-        <tr ng-repeat="row in block.block_content track by $index">
-          <th ng-repeat="col in row track by $index" ng-show="$parent.$first || $first">{{ col }}</th>
-          <td ng-repeat="col in row track by $index" ng-show="!$parent.$first && !$first">{{ col }}</td>
+        <tr ng-repeat="row in block.block_content track by $index" ng-show="!$first">
+          <th ng-repeat="col in row track by $index" scope="row" ng-show="$first">{{ col }}</th>
+          <td ng-repeat="col in row track by $index" ng-show="!$first">{{ col }}</td>
         </tr>
       </tbody>
     </table>
