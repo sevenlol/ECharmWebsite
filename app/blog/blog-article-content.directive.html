@@ -1,4 +1,4 @@
-<div ng-show="vm.articleContent && vm.articleContent.blocks" ng-repeat="block in vm.articleContent.blocks">
+<div class="article-content-block" ng-show="vm.articleContent && vm.articleContent.blocks" ng-repeat="block in vm.articleContent.blocks">
   <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.HEADING">
     <h1 ng-show="block.heading_size === 1">{{ block.block_content }}</h1>
     <h2 ng-show="block.heading_size === 2">{{ block.block_content }}</h2>
@@ -12,9 +12,15 @@
     <p>{{ block.block_content }}</p>
   </div>
 
-  <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.IMAGE">
-    <img ng-src="{{ block.url }}">
-    <span>{{ block.img_caption }}</span>
+
+  <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.IMAGE" class="ih-item square effect3 bottom_to_top">
+    <a href="javascript:void(0)">
+      <div class="img"><img ng-src="{{ block.url }}" alt="img"></div>
+      <div class="info">
+        <h3>{{ block.img_caption }}</h3>
+        <p>Description goes here</p>
+      </div>
+    </a>
   </div>
 
   <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.ALERT">
@@ -42,6 +48,6 @@
   </div>
 </div>
 
-<div ng-show="vm.articleContent && vm.articleContent.refs" ng-repeat="ref in vm.articleContent.refs">
-  <p>{{ ref }}</p> <br ng-show="!$last">
-</div>
+<p class="article-content-ref" ng-show="vm.articleContent && vm.articleContent.refs">
+  <span ng-repeat="ref in vm.articleContent.refs">{{ ref }}<br ng-show="!$last"></span>
+</p>

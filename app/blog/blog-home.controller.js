@@ -6,7 +6,7 @@
 
     blogHomeController.$inject = [
     	'$stateParams',
-        'blogCategoryList',
+        'blogCategoryList'
     ];
 
     function blogHomeController($stateParams, blogCategoryList) {
@@ -15,6 +15,7 @@
         vm.oneAccordionAtATime = true;
         vm.categoryList = blogCategoryList;
         vm.category = $stateParams ? $stateParams.category : 'all';
+
     }
 
 })();

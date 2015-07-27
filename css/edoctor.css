@@ -936,7 +936,7 @@ ul.category li#Category_7 {
 	display:table;
 	width:100%;
 }
-.article-bg h1 {
+.article-ttl > h1 {
 	color:#ffffff;
 	text-shadow:1px 1px 5px #000;
 	font-weight:bold;
@@ -1483,7 +1483,7 @@ ul.media li {
 		min-height:300px;
 		margin-top:80px;
 	}
-	.article-bg h1 {
+	.article-ttl > h1 {
 		color:#ffffff;
 		text-shadow:1px 1px 5px #000;
 		font-weight:bold;

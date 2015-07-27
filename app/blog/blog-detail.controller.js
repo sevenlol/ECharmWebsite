@@ -13,10 +13,11 @@
         'ratingList',
         'avgRating',
         'myAccount',
-        'blogRatingService'
+        'blogRatingService',
+        'blogArticleContentService'
     ];
 
-    function blogDetailController($stateParams, $filter, article, author, commentList, ratingList, avgRating, myAccount, blogRatingService) {
+    function blogDetailController($stateParams, $filter, article, author, commentList, ratingList, avgRating, myAccount, blogRatingService, blogArticleContentService) {
         var DATE_FORMAT = 'yyyy-MM-ddTHH:mmZ';
         var vm = this;
 
@@ -30,6 +31,40 @@
 
         vm.hoverOverRating = hoverOverRating;
         vm.collapseMyRatingBar = collapseMyRatingBar;
+
+        // FIXME remove article content test later
+        /* test start */
+
+        var builder = new blogArticleContentService.Builder();
+        var articleContent = builder
+                                .addIntro('Intro 1')
+                                .addIntro('Intro 2')
+                                .addRef('Ref 1')
+                                .addRef('Ref 2')
+                                .addRef('Ref 3')
+                                .addHeadingBlock(1, 'Heading 1')
+                                .addHeadingBlock(2, 'Heading 2')
+                                .addHeadingBlock(3, 'Heading 3')
+                                .addHeadingBlock(4, 'Heading 4')
+                                .addHeadingBlock(5, 'Heading 5')
+                                .addHeadingBlock(6, 'Heading 6')
+                                .addParagraphBlock('Paragraph 1')
+                                .addImageBlock('images/article-detail-bg.jpg', 'Image Caption')
+                                .addAlertBlock('danger', 'Message 1')
+                                .addListBlock('ordered', ['item 1', 'item 2'])
+                                .addListBlock('unordered', ['item 1', 'item 2'])
+                                .addTableBlock([[ '1-1', '1-2'], [ '2-1', '2-2' ]])
+                                .build();
+
+        vm.testArticle = {
+            content_text : articleContent.toJSONString()
+        };
+        console.log(JSON.stringify(articleContent, null, 2));
+        console.log(articleContent.toJSONString());
+        console.log(articleContent.toPrettyJSONString());
+        console.log('Validate: ' + blogArticleContentService.validate(articleContent));
+
+        /* test end */
 
         // rating
         vm.ratingMax = 5;
