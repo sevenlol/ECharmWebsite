@@ -374,6 +374,14 @@ ul.doctor-list li p {
   margin-left: 5%;
 }
 
+.article-content-alert {
+  margin: 0 5%;
+}
+
+.article-content-block table {
+  width : 90%;
+}
+
 .article-content-block img {
   width:100%;
   height:auto;

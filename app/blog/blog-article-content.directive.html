@@ -24,7 +24,7 @@
   </div>
 
   <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.ALERT">
-    <alert type="{{ block.alert_style }}" close="">{{ block.message }}</alert>
+    <alert class="article-content-alert" type="{{ block.alert_style }}">{{ block.message }}</alert>
   </div>
 
   <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.LIST">
@@ -38,10 +38,11 @@
   </div>
 
   <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.TABLE">
-    <table>
+    <table class="table table-bordered">
       <tbody>
         <tr ng-repeat="row in block.block_content track by $index">
-          <td ng-repeat="col in row track by $index">{{ col }}</td>
+          <th ng-repeat="col in row track by $index" ng-show="$parent.$first || $first">{{ col }}</th>
+          <td ng-repeat="col in row track by $index" ng-show="!$parent.$first && !$first">{{ col }}</td>
         </tr>
       </tbody>
     </table>
