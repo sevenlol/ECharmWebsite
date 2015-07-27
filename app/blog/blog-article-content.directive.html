@@ -1,0 +1,23 @@
+<div ng-show="vm.articleContent && vm.articleContent.blocks" ng-repeat="block in vm.articleContent.blocks">
+  <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.HEADING">
+  </div>
+
+  <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.PARAGRAPH">
+  </div>
+
+  <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.IMAGE">
+  </div>
+
+  <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.ALERT">
+  </div>
+
+  <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.LIST">
+  </div>
+
+  <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.TABLE">
+  </div>
+</div>
+
+<div ng-show="vm.articleContent && vm.articleContent.refs" ng-repeat="ref in vm.articleContent.refs">
+  <p>{{ ref }}</p> <br ng-show="!$last">
+</div>
