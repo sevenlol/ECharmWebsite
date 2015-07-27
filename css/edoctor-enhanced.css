@@ -362,7 +362,13 @@ ul.doctor-list li p {
 .article-content-block {
 
 }
-.article-content-block h1, h2, h3, h4, h5, h6, table {
+.article-content-block h1,
+.article-content-block h2,
+.article-content-block h3,
+.article-content-block h4,
+.article-content-block h5,
+.article-content-block h6,
+.article-content-block table {
   padding : 0px;
   margin-left:50px;
   margin-right:50px;
@@ -373,13 +379,19 @@ ul.doctor-list li p {
   height:auto;
 }
 
-.article-content-block ul, ol{
+.article-content-block ul,
+.article-content-block ol {
   padding : 0px;
   margin-left:80px;
   margin-right:80px;
 }
 
-.article-content-block > h1, h2, h3, h4, h5, h6 {
+.article-content-block > h1,
+.article-content-block > h2,
+.article-content-block > h3,
+.article-content-block > h4,
+.article-content-block > h5,
+.article-content-block > h6 {
   font-weight: 400;
   line-height: 1.1;
 }
