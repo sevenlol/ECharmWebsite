@@ -33,7 +33,7 @@
         'blogArticleContentService'
     ];
 
-    function ExampleController($scope, blogArticleContentService) {
+    function ArticleContentController($scope, blogArticleContentService) {
         // Injecting $scope just for comparison
         var service = blogArticleContentService;
 

@@ -23,22 +23,19 @@
 
   <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.LIST">
     <ul ng-show="block.list_style === vm.Constants.LIST_STYLE.UNORDERED">
-      <li ng-repeat="item in block.block_content">{{ item }}</li>
+      <li ng-repeat="item in block.block_content track by $index">{{ item }}</li>
     </ul>
 
     <ol ng-show="block.list_style === vm.Constants.LIST_STYLE.ORDERED">
-      <li ng-repeat="item in block.block_content">{{ item }}</li>
+      <li ng-repeat="item in block.block_content track by $index">{{ item }}</li>
     </ol>
   </div>
 
   <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.TABLE">
     <table>
       <tbody>
-        <tr ng-repeat="row in block.block_content">
-          <div ng-repeat="col in row">
-            <th ng-show="$first">{{ col }}</th>
-            <td ng-show="!$first">{{ col }}</td>
-          </div>
+        <tr ng-repeat="row in block.block_content track by $index">
+          <td ng-repeat="col in row track by $index">{{ col }}</td>
         </tr>
       </tbody>
     </table>
