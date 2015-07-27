@@ -21,8 +21,8 @@
 
         var ALERT_STYLE = {
             INFO : 'info',
-            ERROR : 'error',
-            WARN : 'warn',
+            ERROR : 'danger',
+            WARN : 'warning',
             SUCCESS : 'success',
             DEFAULT : 'default'
         };

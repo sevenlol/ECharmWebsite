@@ -1,20 +1,47 @@
 <div ng-show="vm.articleContent && vm.articleContent.blocks" ng-repeat="block in vm.articleContent.blocks">
   <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.HEADING">
+    <h1 ng-show="block.heading_size === 1">{{ block.block_content }}</h1>
+    <h2 ng-show="block.heading_size === 2">{{ block.block_content }}</h2>
+    <h3 ng-show="block.heading_size === 3">{{ block.block_content }}</h3>
+    <h4 ng-show="block.heading_size === 4">{{ block.block_content }}</h4>
+    <h5 ng-show="block.heading_size === 5">{{ block.block_content }}</h5>
+    <h6 ng-show="block.heading_size === 6">{{ block.block_content }}</h6>
   </div>
 
   <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.PARAGRAPH">
+    <p>{{ block.block_content }}</p>
   </div>
 
   <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.IMAGE">
+    <img ng-src="{{ block.url }}">
+    <span>{{ block.img_caption }}</span>
   </div>
 
   <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.ALERT">
+    <alert type="{{ block.alert_style }}" close="">{{ block.message }}</alert>
   </div>
 
   <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.LIST">
+    <ul ng-show="block.list_style === vm.Constants.LIST_STYLE.UNORDERED">
+      <li ng-repeat="item in block.block_content">{{ item }}</li>
+    </ul>
+
+    <ol ng-show="block.list_style === vm.Constants.LIST_STYLE.ORDERED">
+      <li ng-repeat="item in block.block_content">{{ item }}</li>
+    </ol>
   </div>
 
   <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.TABLE">
+    <table>
+      <tbody>
+        <tr ng-repeat="row in block.block_content">
+          <div ng-repeat="col in row">
+            <th ng-show="$first">{{ col }}</th>
+            <td ng-show="!$first">{{ col }}</td>
+          </div>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 
