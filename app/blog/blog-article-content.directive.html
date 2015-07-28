@@ -1,5 +1,5 @@
-<div class="article-content-block" ng-show="vm.articleContent && vm.articleContent.blocks" ng-repeat="block in vm.articleContent.blocks">
-  <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.HEADING">
+<div ng-show="vm.articleContent && vm.articleContent.blocks" ng-repeat="block in vm.articleContent.blocks">
+  <div class="article-content-block" ng-show="block.block_type === vm.Constants.BLOCK_TYPE.HEADING">
     <h1 ng-show="block.heading_size === 1">{{ block.block_content }}</h1>
     <h2 ng-show="block.heading_size === 2">{{ block.block_content }}</h2>
     <h3 ng-show="block.heading_size === 3">{{ block.block_content }}</h3>
@@ -8,7 +8,7 @@
     <h6 ng-show="block.heading_size === 6">{{ block.block_content }}</h6>
   </div>
 
-  <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.PARAGRAPH">
+  <div class="article-content-block" ng-show="block.block_type === vm.Constants.BLOCK_TYPE.PARAGRAPH">
     <p ng-bind-html="block.block_content | trustHtmlFilter"></p>
   </div>
 
@@ -23,11 +23,11 @@
     </a>
   </div>
 
-  <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.ALERT">
-    <alert class="article-content-alert" type="{{ block.alert_style }}" ng-bind-html="block.message | trustHtmlFilter"></alert>
+  <div class="article-content-block" ng-show="block.block_type === vm.Constants.BLOCK_TYPE.ALERT">
+    <alert class="article-content-alert" type="{{ block.alert_style }}"><span ng-bind-html="block.message | trustHtmlFilter"></span></alert>
   </div>
 
-  <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.LIST">
+  <div class="article-content-block" ng-show="block.block_type === vm.Constants.BLOCK_TYPE.LIST">
     <ul ng-show="block.list_style === vm.Constants.LIST_STYLE.UNORDERED">
       <li ng-repeat="item in block.block_content track by $index">{{ item }}</li>
     </ul>
@@ -37,7 +37,7 @@
     </ol>
   </div>
 
-  <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.TABLE">
+  <div class="article-content-block" ng-show="block.block_type === vm.Constants.BLOCK_TYPE.TABLE">
     <table class="table table-bordered">
       <thead>
         <tr ng-repeat="row in block.block_content track by $index" ng-show="$first">

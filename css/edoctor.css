@@ -939,9 +939,9 @@ ul.category li#Category_7 {
 .article-ttl > h1 {
 	color:#ffffff;
 	text-shadow:1px 1px 5px #000;
-	font-weight:bold;
-	font-size:4em;
-	line-height:1.1em;
+	font-size: 112px;
+	font-weight: 300;
+	line-height: 128px;
 	margin-bottom:40px;
 	display: table-cell;
 	text-align:center;
@@ -991,8 +991,10 @@ div#back a {
 
 }
 .article-content h2 {
-	font-size:1.8em;
-	margin-bottom:1.4em;
+	font-size: 56px;
+	font-weight: 400;
+	line-height: 64px;
+	margin-bottom: 80px;
 }
 .article-content p {
 	/*padding-left:50px;
