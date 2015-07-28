@@ -359,6 +359,54 @@ ul.doctor-list li p {
 }
 
 /* Article Content */
+.article-intro-block {
+  position: relative;
+  margin: 60px auto 120px auto;
+  max-width: 800px;
+  width: 100%;
+  min-height: 200px;
+}
+.article-intro-block .article-intro-content {
+  position: absolute;
+  min-height: 200px;
+  border-top: 1px solid #4dbef4;
+  border-bottom: 1px solid #4dbef4;
+  padding: 2em 0;
+  top: 0;
+  width: 100%;
+}
+.article-intro-block .article-intro-content:before,
+.article-intro-block .article-intro-content:after {
+  content: " ";
+  display: table;
+}
+.article-intro-block .article-intro-content:after {
+  clear: both;
+}
+.article-intro-block .article-intro-quote {
+  margin: 0;
+  padding: 0;
+}
+.article-intro-block .article-intro-quote p {
+  font-size: 2em;
+  color: #888;
+  font-weight: 300;
+  margin: 0.4em 0.4em 0 1em;
+}
+.article-intro-block .article-intro-quote .article-intro-footer {
+  color: #4dbef4;
+  font-weight: 600;
+  font-size: 1.2em;
+}
+/*.article-intro-block .article-intro-quote .article-intro-footer:before {
+  content: '- ';
+}*/
+.article-intro-block .article-intro-content .article-intro-img {
+  float: right;
+  margin-left: 3em;
+}
+
+
 .article-content-block {
 
 }
@@ -372,6 +420,7 @@ ul.doctor-list li p {
 .article-content-block p {
   padding : 0px;
   margin-left: 5%;
+  margin-right: 5%;
   margin-bottom: 40px;
 }
 
@@ -392,7 +441,15 @@ ul.doctor-list li p {
 .article-content-block ol {
   padding : 0px;
   margin-left:8%;
+  margin-right:8%;
   margin-bottom: 40px;
+}
+
+.article-content-block li {
+  font-size: 20px;
+  line-height: 30px;
+  margin:0;
+  padding: 0;
 }
 
 .article-content-block h1 {
@@ -431,7 +488,7 @@ ul.doctor-list li p {
   font-weight: 400;
   line-height: 44px;
 }
-.article-content-block li,
+/*.article-content-block li,*/
 .article-content-block th,
 .article-content-block td,
 .article-content-block span {
@@ -449,11 +506,16 @@ ul.doctor-list li p {
 }
 .article-content-ref {
   padding : 0px;
-  margin-left: 5%;
-  margin-bottom: 40px;
+  margin: 0 5% 40px 5%;
   font-size: 16px;
   font-weight: 400;
   line-height: 32px;
+}
+.article-content-ref-title {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 44px;
+  margin: 0 5% 10px 5%;
 }
 
 .ih-item.square {

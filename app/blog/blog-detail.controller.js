@@ -37,11 +37,10 @@
 
         var builder = new blogArticleContentService.Builder();
         var articleContent = builder
-                                .addIntro('Intro 1')
-                                .addIntro('Intro 2')
-                                .addRef('Ref 1')
-                                .addRef('Ref 2')
-                                .addRef('Ref 3')
+                                .addIntro('不過，這項研究只是驗證睡眠習慣和心理健康之間關係的其中一環而已。')
+                                // .addIntro('Intro 2')
+                                .addRef('Don’t worry, be happy: Just go to bed earlier. [DECEMBER 4, 2014]')
+                                .addRef('Nota, J. A., & Coles, M. E. (2014). Duration and Timing of Sleep are Associated with Repetitive Negative Thinking. Cognitive Therapy and Research, 1-9.')
                                 // .addHeadingBlock(1, 'Heading 1')
                                 // .addHeadingBlock(2, 'Heading 2')
                                 // .addHeadingBlock(3, '小標題 SIZE3')
@@ -52,7 +51,8 @@
                                 .addHeadingBlock(4, '小標題 SIZE4')
                                 .addParagraphBlock('常有煩人的悲觀思想不斷重複浮現在腦海中，甚至認為自己幾乎無法控制自己的思考，且會過度擔心未來，同時又鑽牛角尖於過去，腦中不斷冒出惱人卻又揮之不去的想法。這些症狀常見於廣泛性焦慮症（generalized anxiety disorder）、抑鬱症（ major depressive disorder）、創傷後壓力心理障礙症（post-traumatic stress disorder）、強迫症（obsessive-compulsive disorder，簡稱 OCD）和社交焦慮失協症（social anxiety disorder，簡稱 SAD），而這些病患也同樣具有睡眠狀況。')
                                 .addImageBlock('images/article-detail-bg.jpg', '圖片標題')
-                                .addAlertBlock('danger', 'Message 1')
+                                .addParagraphBlock('不過，這項研究只是驗證睡眠習慣和心理健康之間關係的其中一環而已。基於睡眠和精神病理學之間關係的證據不斷增加，諾斯、科爾斯和他們大學同事希望能了解更多關於睡眠是否有助於焦慮症病患。')
+                                .addAlertBlock('danger', '如果有悲觀想法請打1995 各縣市生命線!')
                                 .addListBlock('ordered', ['項目一', '項目二'])
                                 .addListBlock('unordered', ['項目一', '項目二'])
                                 .addTableBlock([[ '#', 'First Name', 'Last Name'], [ '1', 'Stephen', 'Lin' ]])

@@ -1,3 +1,15 @@
+<div class="article-intro-block">
+  <div class="article-intro-content">
+    <div class="article-intro-img"><img src="images/1.jpg" alt="img01" /></div>
+    <div class="article-intro-quote">
+      <div class="article-intro-footer">你為什麼需要閱讀這篇文章</div>
+      <p>
+        <span ng-repeat="intro in vm.articleContent.intros">{{ intro }}<br ng-show="!$last"></span>
+      </p>
+    </div>
+  </div>
+</div>
+
 <div ng-show="vm.articleContent && vm.articleContent.blocks" ng-repeat="block in vm.articleContent.blocks">
   <div class="article-content-block" ng-show="block.block_type === vm.Constants.BLOCK_TYPE.HEADING">
     <h1 ng-show="block.heading_size === 1">{{ block.block_content }}</h1>
@@ -54,6 +66,8 @@
   </div>
 </div>
 
+
+<h5 class="article-content-ref-title">參考資料</h5>
 <p class="article-content-ref" ng-show="vm.articleContent && vm.articleContent.refs">
   <span ng-repeat="ref in vm.articleContent.refs">{{ ref }}<br ng-show="!$last"></span>
 </p>
