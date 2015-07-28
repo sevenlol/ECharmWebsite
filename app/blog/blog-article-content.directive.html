@@ -9,7 +9,7 @@
   </div>
 
   <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.PARAGRAPH">
-    <p>{{ block.block_content }}</p>
+    <p ng-bind-html="block.block_content | trustHtmlFilter"></p>
   </div>
 
 
@@ -17,14 +17,14 @@
     <a href="javascript:void(0)">
       <div class="img"><img ng-src="{{ block.url }}" alt="img"></div>
       <div class="info">
-        <h3>{{ block.img_caption }}</h3>
+        <h3 ng-bind-html="block.img_caption | trustHtmlFilter"></h3>
         <p>Description goes here</p>
       </div>
     </a>
   </div>
 
   <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.ALERT">
-    <alert class="article-content-alert" type="{{ block.alert_style }}">{{ block.message }}</alert>
+    <alert class="article-content-alert" type="{{ block.alert_style }}" ng-bind-html="block.message | trustHtmlFilter"></alert>
   </div>
 
   <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.LIST">
