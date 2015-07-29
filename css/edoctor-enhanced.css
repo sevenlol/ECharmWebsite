@@ -107,6 +107,10 @@ ul.doctor-list li p {
 	padding-top:10px;
 }
 
+.filter-option-bar label {
+  margin: 5px 15px;
+}
+
 .search-title {
 	font-size:1.3em;
 	margin-bottom:20px;

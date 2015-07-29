@@ -10,6 +10,7 @@
         '$stateParams',
         '$rootScope',
         'askdoctorCategoryList',
+        'askdoctorSortOptionList',
         'accountCategoryNameTextList',
         'questionList',
         'myQuestionList',
@@ -18,7 +19,8 @@
         'askdoctorQuestionService'
     ];
 
-    function askdoctorListController($filter, myAccount, $stateParams, $rootScope, askdoctorCategoryList, accountCategoryNameTextList, questionList, myQuestionList, doctorList, userList, askdoctorQuestionService) {
+    function askdoctorListController($filter, myAccount, $stateParams, $rootScope, askdoctorCategoryList, askdoctorSortOptionList,
+                                     accountCategoryNameTextList, questionList, myQuestionList, doctorList, userList, askdoctorQuestionService) {
         var SHOW_MORE_QUESTION_STEP = 1;
         var DATE_FORMAT = 'yyyy-MM-ddTHH:mmZ';
         var DEFAULT_RATING_MAX = 5;
@@ -36,6 +38,9 @@
         vm.categoryList = askdoctorCategoryList;
         vm.category = $stateParams ? $stateParams.category : 'all';
         vm.categoryName = getCategoryName(askdoctorCategoryList, vm.category);
+
+        vm.sortOptionList = askdoctorSortOptionList;
+        vm.currentSortOption = askdoctorSortOptionList ? askdoctorSortOptionList[0].name : 'avgRating';
 
         vm.isCollapsed = true;
         vm.collapse = collapse;
@@ -277,10 +282,26 @@
                 }
             }
 
+
+            // for sorting
+            var oldDate = new Date('1970-01-01');
+
             for (var i in questionList) {
 
                 if (!questionList[i] || !angular.isObject(questionList[i])) {
                     continue;
+                }
+
+                // set for sorting
+                if (questionList[i].created_at) {
+                    questionList[i].created_date = new Date(questionList[i].created_at);
+                } else {
+                    questionList[i].created_date = oldDate;
+                }
+                if (questionList[i].answer && questionList[i].answer.created_at) {
+                    questionList[i].answer_date = new Date(questionList[i].answer.created_at);
+                } else {
+                    questionList[i].answer_date = oldDate;
                 }
 
                 if (doctorList && angular.isArray(doctorList) && doctorList.length > 0 &&
@@ -329,6 +350,9 @@
                 // calculate comment count
                 if (questionList[i].comment_list && angular.isArray(questionList[i].comment_list) && questionList[i].comment_list.length > 0) {
                     questionList[i].commentCount = questionList[i].comment_list.length;
+                } else {
+                    // set for sorting
+                    questionList[i].commentCount = 0;
                 }
 
                 // calculate avg rating
@@ -349,6 +373,9 @@
                         total /= count;
                     }
                     questionList[i].avgRating = total;
+                } else {
+                    // set for sorting
+                    questionList[i].avgRating = -1;
                 }
 
                 // set isCollapsed
@@ -367,10 +394,26 @@
                 return myQuestionList;
             }
 
+
+            // for sorting
+            var oldDate = new Date('1970-01-01');
+
             var myQuestionIndexList = [];
             for (var i in myQuestionList) {
                 if (!myQuestionList[i]) {
                     continue;
+                }
+
+                // set for sorting
+                if (myQuestionList[i].created_at) {
+                    myQuestionList[i].created_date = new Date(myQuestionList[i].created_at);
+                } else {
+                    myQuestionList[i].created_date = oldDate;
+                }
+                if (myQuestionList[i].answer && myQuestionList[i].answer.created_at) {
+                    myQuestionList[i].answer_date = new Date(myQuestionList[i].answer.created_at);
+                } else {
+                    myQuestionList[i].answer_date = oldDate;
                 }
 
                 var isExist = false;
@@ -413,6 +456,9 @@
                     // calculate comment count
                     if (myQuestionList[i].comment_list && angular.isArray(myQuestionList[i].comment_list) && myQuestionList[i].comment_list.length > 0) {
                         myQuestionList[i].commentCount = myQuestionList[i].comment_list.length;
+                    } else {
+                        // set for sorting
+                        myQuestionList[i].commentCount = 0;
                     }
 
                     // calculate avg rating
@@ -433,6 +479,9 @@
                             total /= count;
                         }
                         myQuestionList[i].avgRating = total;
+                    } else {
+                        // set for sorting
+                        myQuestionList[i].avgRating = -1;
                     }
 
                     // save index
