@@ -72,6 +72,7 @@
             }
         }
         */
+
         function commentThisArticle() {
             vm.commentSubmitted = true;
             vm.commentStatusMessage.isShown = false;

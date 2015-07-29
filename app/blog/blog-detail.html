@@ -171,10 +171,61 @@
           </p>
         </div>
       </div>
-      <div ui-view></div>
+      <div class="row" ng-show="!authenticated || acount.user_type !== 'DOCTOR' || vm.commentList">
+        <div class="col-lg-2 col-sm-2">
+          <div class="user-thumb-md">
+            <a href="#" class="doc-profile">
+              <!-- Sticker -->
+              <img ng-show="vm.myAccount.user_type !== 'DOCTOR'" ng-src="{{ (vm.myAccount.user_info.sticker_url) ? vm.myAccount.user_info.sticker_url : 'images/default-user-sticker.png'}}" alt="" class="img-circle" />
+              <img ng-show="vm.myAccount.user_type === 'DOCTOR'" ng-src="{{ (vm.myAccount.user_info.sticker_url) ? vm.myAccount.user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="" class="img-circle" />
+            </a>
+            <p ng-show="authenticated">
+              {{ (vm.myAccount && vm.myAccount.user_info && vm.myAccount.user_info.name) ? vm.myAccount.user_info.name : vm.myAccount.username }}
+            </p>
+            <p ng-show="authenticated">
+              <!-- age -->
+              {{ vm.myAccount.user_info.age ? vm.myAccount.user_info.age + '歲' : ''}}
+              <!-- gender -->
+              <i ng-show="vm.myAccount.user_info.gender === vm.GENDER_STRING.MALE" class="fa fa-mars"></i>
+              <i ng-show="vm.myAccount.user_info.gender === vm.GENDER_STRING.FEMALE" class="fa fa-venus"></i>
+            </p>
+            <p ng-show="!authenticated">
+              訪客
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-10 col-sm-10">
+
+          <div role="tabpanel">
+            <ul class="nav nav-pills ask-type" role="tablist">
+              <li ><a href=""role="tab">發表評論</a></li>
+            </ul>
+          </div>
+
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active">
+              <form name="vm.commentForm" role="form" novalidate>
+                <textarea class="form-control" ng-model="vm.commentText" name="commentText" rows="4" ng-show="authenticated" ng-minlength="vm.min" required placeholder="請輸入評論內容，字數至少要十個字以上"></textarea>
+                <textarea ng-show="!authenticated" class="form-control" ng-show="!authenticated" rows="4" placeholder="請先登入以發表評論" disabled></textarea>
+                <p class="pull-left pink-style comment-error" ng-show="vm.commentSubmitted && vm.commentForm.commentText.$invalid">評論內容字數至少要十個字以上</p>
+                <p class="pull-left comment-error" ng-class="{ true : 'blue-style-1', false : 'pink-style' }[ vm.commentStatusMessage && vm.commentStatusMessage.type === 'success' ]" ng-show="!vm.commentSubmitted && vm.commentStatusMessage.isShown">{{ vm.commentStatusMessage.message }}</p>
+                <div class="pull-right"><button class="btn round-btn ask-btn" ng-click="vm.commentThisArticle()" type="submit" ng-disabled="!authenticated">送出評論</button></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
 	  </div>
+    
 
   </div>
+
+</section>
+<section class="container-fluid qa-board">
+  
 </section>
 
 

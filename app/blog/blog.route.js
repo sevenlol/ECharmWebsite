@@ -48,7 +48,6 @@
             name : 'blog.detail',
             parent : blogState,
             url : '/:category/:articleId',
-            abstract : true,
             resolve : {
                 article : resolveArticle,
                 author : resolveAuthor,
@@ -60,7 +59,7 @@
             controller : 'blogDetailController',
             controllerAs : 'vm'
         };
-
+        /*
         var blogDetailReadState = {
             name : 'blog.detail.read',
             parent : blogDetailState,
@@ -74,7 +73,7 @@
             controller : 'blogDetailCommentController',
             controllerAs : 'vm'
         };
-
+        */
 
         /* Blog System Routing */
 
@@ -82,9 +81,9 @@
             .state(blogState)
             .state(blogHomeState)
             .state(blogListState)
-            .state(blogDetailState)
-            .state(blogDetailReadState)
-            .state(blogDetailCommentState);
+            .state(blogDetailState);
+        //    .state(blogDetailReadState)
+        //    .state(blogDetailCommentState);
 
 
         /* resolve functions */
