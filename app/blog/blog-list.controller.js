@@ -27,7 +27,7 @@
         vm.category = $stateParams.category;        
         // Copy from askdoctor but unavailable
         // vm.category = $stateParams ? $stateParams.category : 'all';
-        // vm.categoryName = getCategoryName(askdoctorCategoryList, vm.category);
+        vm.categoryName = getCategoryName(blogCategoryList, vm.category);
 
         vm.searchText = '';
         vm.searchTag = '';
@@ -76,26 +76,30 @@
             // console.log(vm.updatedSearchText);
         }
 
-        // function getCategoryName(categoryList, category) {
-        //     if (!categoryList || !angular.isArray(categoryList) || categoryList === 0) {
-        //         return '';
-        //     }
 
-        //     if (!category) {
-        //         return '';
-        //     }
+        function getCategoryName(categoryList, category) {
+            if (!categoryList || !angular.isArray(categoryList) || categoryList === 0) {
+                return '';
+            }
 
-        //     for (var i in categoryList) {
-        //         if (!categoryList[i]) {
-        //             continue;
-        //         }
+            if (!category) {
+                return '';
+            }
 
-        //         if (categoryList[i].name === category) {
-        //             return categoryList[i].text;
-        //         }
-        //     }
+            for (var i in categoryList) {
+                if (!categoryList[i]) {
+                    continue;
+                }
 
-        //     return '';
-        // }
+                if (categoryList[i].name === category) {
+                    return categoryList[i].text;
+                }
+            }
+
+            return '';
+        }
+
+
+
     }
 })();

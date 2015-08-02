@@ -8,6 +8,8 @@
         'app.doctor',
         'app.layout',
         'app.auth',
-        'data.account'
+        'data.account',
+        'ui.select',
+        'ngSanitize'
     ]);
 })();
