@@ -845,8 +845,6 @@ ul.category li#Category_7 {
 .articel-group {
 	text-align:center;
 }
-
-
 .article-block {
 	width:200px;
 	/*This changes the number of a row - Lammin*/
@@ -854,6 +852,7 @@ ul.category li#Category_7 {
 	display:inline-block;
 	background-color:#fff;
 	margin:15px;
+	vertical-align:top;
 }
 .article-block p {
 	padding: 0 10px;
@@ -871,11 +870,12 @@ ul.category li#Category_7 {
 	border-top: 1px solid #e5e5e5;
 	padding:10px;
 	text-align:center;
+	display: inline-block ;
 }
 .article-tag a {
 	font-size:0.8em;
 	padding:3px 10px;
-	margin: 0 2px;
+	margin: 0 0px;
 }
 
 .viewport {

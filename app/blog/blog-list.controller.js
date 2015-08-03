@@ -15,6 +15,7 @@
 
     function blogListController($stateParams, $filter, articleList, doctorList, blogCategoryList, blogTagList) {
         var NUM_OF_ARTICLES_IN_ROW = 2;
+        var SHOW_MORE_ARTICLE_STEP = 3;
 
         var vm = this;
 
@@ -22,7 +23,10 @@
 
         vm.categoryList = blogCategoryList;
         vm.blogTagList = blogTagList;
-        vm.numOfArticles = 0;
+        vm.pageLimit = 6;
+        vm.index = 0;
+        vm.numOfArticles = countNumberOfArticles(vm.ArticleList);
+        vm.sortingIn = '-created_at';
 
         vm.category = $stateParams.category;        
         // Copy from askdoctor but unavailable
@@ -33,8 +37,14 @@
         vm.searchTag = '';
         vm.updatedSearchText = '';
         vm.updatedSearchTag = '';
+        // vm.orderIn = 'created_at';
 
+
+        // function
         vm.search = search;
+        vm.showMoreArticle = showMoreArticle;
+        // vm.order = order;
+
 
         // TODO fix this
         vm.articleList = articleList;
@@ -70,9 +80,7 @@
 
         function search(searchText) {
             vm.updatedSearchText = searchText;
-            // vm.updatedSearchTag = searchTag;
-            vm.index = 0;
-            vm.pageLimit = 1;
+            resetPageParameters();
             // console.log(vm.updatedSearchText);
         }
 
@@ -98,6 +106,44 @@
 
             return '';
         }
+
+
+        // function order(orderIn) {
+        // vm.orderIn = orderIn;
+        // };
+
+        function showMoreArticle() {
+            if (!vm.numOfArticles) {
+                return;
+            }
+
+            if (vm.index + vm.pageLimit + SHOW_MORE_ARTICLE_STEP >= vm.numOfArticles) {
+                vm.pageLimit = vm.numOfArticles;
+            } else {
+                vm.pageLimit += SHOW_MORE_ARTICLE_STEP;
+            }
+        }
+
+        function countNumberOfArticles(articleList) {
+            if (!articleList || !angular.isArray(articleList)) {
+                return 0;
+            }
+
+            return articleList.length;
+        }
+
+        function resetPageParameters(){
+            vm.index = 0;
+            vm.pageLimit = 6;
+            if (vm.articleList && angular.isArray(vm.articleList) && vm.articleList.length > 0) {
+                for (var i in vm.articleList) {
+                    if (vm.articleList[i]) {
+                        vm.articleList[i].isExpanded = false;
+                    }
+                }
+            }
+        }
+
 
 
 
