@@ -9,7 +9,9 @@
         'app.value',
         'data.blog',
         'data.member',
-        'data.askdoctor'
+        'data.askdoctor',
+        'data.favorite',
+        'data.popular'
     ]);
 
 })();

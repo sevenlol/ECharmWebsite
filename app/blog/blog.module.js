@@ -7,6 +7,8 @@
         'ui.bootstrap',
         'angular-parallax',
         'data.blog',
-        'data.member'
+        'data.member',
+        'data.favorite',
+        'data.popular'
     ]);
 })();
