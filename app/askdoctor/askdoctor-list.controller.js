@@ -12,6 +12,8 @@
         'askdoctorCategoryList',
         'askdoctorSortOptionList',
         'accountCategoryNameTextList',
+        'popularQAList',
+        'popularDoctorList',
         'questionList',
         'myQuestionList',
         'doctorList',
@@ -19,8 +21,22 @@
         'askdoctorQuestionService'
     ];
 
-    function askdoctorListController($filter, myAccount, $stateParams, $rootScope, askdoctorCategoryList, askdoctorSortOptionList,
-                                     accountCategoryNameTextList, questionList, myQuestionList, doctorList, userList, askdoctorQuestionService) {
+    function askdoctorListController(
+        $filter,
+        myAccount,
+        $stateParams,
+        $rootScope,
+        askdoctorCategoryList,
+        askdoctorSortOptionList,
+        accountCategoryNameTextList,
+        popularQAList,
+        popularDoctorList,
+        questionList,
+        myQuestionList,
+        doctorList,
+        userList,
+        askdoctorQuestionService) {
+
         var SHOW_MORE_QUESTION_STEP = 1;
         var DATE_FORMAT = 'yyyy-MM-ddTHH:mmZ';
         var DEFAULT_RATING_MAX = 5;

@@ -37,6 +37,8 @@
             url : '/:category',
             templateUrl : 'app/askdoctor/askdoctor-list.html',
             resolve : {
+                popularQAList : resolvePopularQAList,
+                popularDoctorList : resolvePopularDoctorList,
                 questionList : resolveQuestionList,
                 myQuestionList : resolveMyQuestionList,
                 doctorList : resolveDoctorList,
@@ -98,6 +100,54 @@
             return promise
                     .then(successCallback)
                     .catch(failCallback);
+        }
+
+        function resolvePopularQAList($stateParams, popularListService) {
+            if (!$stateParams || !$stateParams.category || !popularListService) {
+                return null;
+            }
+
+            var category = $stateParams.category;
+            var failCallback = function(error) {
+                return null;
+            };
+
+            // TODO implement new API
+            if (category === 'all') {
+                return null;
+            }
+
+            try {
+                return popularListService
+                            .readPopularQAList(category)
+                            .catch(failCallback);
+            } catch (error) {
+                return null;
+            }
+        }
+
+        function resolvePopularDoctorList($stateParams, popularListService) {
+            if (!$stateParams || !$stateParams.category || !popularListService) {
+                return null;
+            }
+
+            var category = $stateParams.category;
+            var failCallback = function(error) {
+                return null;
+            };
+
+            // TODO implement new API
+            if (category === 'all') {
+                return null;
+            }
+
+            try {
+                return popularListService
+                            .readPopularDoctorList(category)
+                            .catch(failCallback);
+            } catch (error) {
+                return null;
+            }
         }
 
         function resolveQuestionList($stateParams, myAccount, askdoctorService) {
