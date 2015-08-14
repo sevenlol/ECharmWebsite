@@ -33,6 +33,8 @@
         $rootScope.$on("$stateChangeSuccess", function (event, currentRoute, previousRoute) {
             $window.scrollTo(0, 0);
         });
+        // facebook like and share
+        $rootScope.facebookAppId = '[1480760568901096]'; // set your facebook app id here
     }
 
 })();

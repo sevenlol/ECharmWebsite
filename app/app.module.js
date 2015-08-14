@@ -10,6 +10,9 @@
         'app.auth',
         'data.account',
         'ui.select',
-        'ngSanitize'
+        'ngSanitize',
+        'angulike'
     ]);
+
+    
 })();
