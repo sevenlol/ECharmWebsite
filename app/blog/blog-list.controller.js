@@ -45,8 +45,6 @@
         vm.showMoreArticle = showMoreArticle;
         // vm.order = order;
 
-        vm.newlike='http://www.goldencircle.com.tw';
-
         // TODO fix this
         vm.articleList = articleList;
         //vm.category = $stateParams ? $stateParams.category : 'all';

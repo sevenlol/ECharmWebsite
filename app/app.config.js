@@ -34,7 +34,8 @@
             $window.scrollTo(0, 0);
         });
         // facebook like and share
-        $rootScope.facebookAppId = '[1480760568901096]'; // set your facebook app id here
+        // the facebookAppId here is lammin's facebook App which named EcharmWeb
+        $rootScope.facebookAppId = '[1480760568901096]'; 
     }
 
 })();

@@ -84,6 +84,11 @@
           <a ng-show="!vm.iAlreadyRated" class="btn round-btn" ng-click="vm.collapseMyRatingBar()">我要評分</a>
           <button ng-show="vm.iAlreadyRated" href="#" class="btn round-btn" disabled><strong>我的評分 {{vm.myRating}}</strong></button>
           <a href="#" class="btn round-btn">收藏</a><a href="#" class="btn round-btn">訂閱</a><a href="#" class="btn round-btn">email給朋友</a>
+
+
+
+
+          
           
           <div class="satisfy pull-right" ng-show="vm.ratingList && vm.ratingList.length">
             {{ vm.overRatingValue ? vm.overRatingValue : '滿意度' }}
@@ -105,6 +110,12 @@
               <!-- <li><a href="#" class="btn btn-sm round-btn">送出評分</a></li> -->
             </ul>
           </div>
+
+          <p>
+            <div fb-like="" class="pull-right"></div>
+            <!-- <div google-plus="">asd</div>
+            <div tweet="myModel.Name"></div> -->
+          </p>
         </div>
 
         <!--AD-->
