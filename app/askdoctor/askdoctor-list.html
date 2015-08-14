@@ -114,13 +114,8 @@
     <div class="col-lg-6 col-md-6 col-xs-12">
       <h3>熱門醫學美容醫師</h3>
 
-      <ul class="doc-rocommend">
-        <li><a href="#"><img src="images/docpic.jpg" alt="" class="img-circle" /><p>陳學瑞</p></a></li>
-        <li><a href="#"><img src="images/docpic_2.jpg" alt="" class="img-circle" /><p>吳庭貞</p></a></li>
-        <li><a href="#"><img src="images/docpic.jpg" alt="" class="img-circle" /><p>陳學瑞</p></a></li>
-        <li><a href="#"><img src="images/docpic_2.jpg" alt="" class="img-circle" /><p>吳庭貞</p></a></li>
-        <li><a href="#"><img src="images/docpic.jpg" alt="" class="img-circle" /><p>陳學瑞</p></a></li>
-        <li><a href="#"><img src="images/docpic_2.jpg" alt="" class="img-circle" /><p>吳庭貞</p></a></li>
+      <ul class="doc-rocommend" ng-show="vm.popularDoctorList" ng-repeat="doctor in vm.popularDoctorList">
+        <li><a ui-sref="doctor.detail({ category : doctor.doctor_category, doctorId : doctor.doctor_id })"><img ng-src="{{ (doctor.doctor_sticker_url) ? doctor.doctor_sticker_url : 'images/default-user-sticker.png'}}" alt="" class="img-circle" /><p>{{ doctor.doctor_name }}</p></a></li>
       </ul>
 
     </div>
@@ -129,16 +124,12 @@
 
       <h3>醫學美容常見問題</h3>
 
-      <ul class="faq-rocommend col-lg-6">
-        <li><span>Q</span><a href="#">如果要瘦臉.大腿內側.肚子要怎麼做</a></li>
-        <li><span>Q</span><a href="#">睡覺鼻塞怎麼辦?</a></li>
-        <li><span>Q</span><a href="#">女生便秘是常見的事…？怎麼解決</a></li>
+      <ul class="faq-rocommend col-lg-6" ng-show="vm.popularQAList && vm.popularQAList[0]" ng-repeat="popularQARow1 in vm.popularQAList[0]">
+        <li><span>Q</span><a ui-sref="askdoctor.detail({ category : popularQARow1.question_category, questionId : popularQARow1.question_id })">{{ popularQARow1.question_content | limitTo : vm.popularQAContentMaxLength }}</a></li>
       </ul>
 
-      <ul class="faq-rocommend col-lg-6">
-        <li><span>Q</span><a href="#">如果要瘦臉.大腿內側.肚子要怎麼做</a></li>
-        <li><span>Q</span><a href="#">睡覺鼻塞怎麼辦?</a></li>
-        <li><span>Q</span><a href="#">女生便秘是常見的事…？怎麼解決</a></li>
+      <ul class="faq-rocommend col-lg-6" ng-show="vm.popularQAList && vm.popularQAList[1]" ng-repeat="popularQARow2 in vm.popularQAList[1]">
+        <li><span>Q</span><a ui-sref="askdoctor.detail({ category : popularQARow2.question_category, questionId : popularQARow2.question_id })">{{ popularQARow2.question_content | limitTo : vm.popularQAContentMaxLength }}</a></li>
       </ul>
 
     </div>

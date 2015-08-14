@@ -42,6 +42,11 @@
         var DEFAULT_RATING_MAX = 5;
         var MALE_STRING = 'MALE';
         var FEMALE_STRING = 'FEMALE';
+        var POPULAR_LIST_LIMIT = {
+            QA : 6,
+            DOCTOR : 6
+        };
+        var POPULAR_QA_CONTENT_LENGTH_LIMIT = 20;
 
         var vm = this;
 
@@ -54,6 +59,11 @@
         vm.categoryList = askdoctorCategoryList;
         vm.category = $stateParams ? $stateParams.category : 'all';
         vm.categoryName = getCategoryName(askdoctorCategoryList, vm.category);
+
+        // popular list
+        vm.popularQAList = parsePopularQAList(popularQAList);
+        vm.popularQAContentMaxLength = POPULAR_QA_CONTENT_LENGTH_LIMIT;
+        vm.popularDoctorList = parsePopularDoctorList(popularDoctorList);
 
         vm.sortOptionList = askdoctorSortOptionList;
         vm.currentSortOption = askdoctorSortOptionList ? askdoctorSortOptionList[0].name : 'avgRating';
@@ -157,6 +167,51 @@
             } catch (e) {
                 askQuestionFailed('提問時發生錯誤，請稍後重試');
             }
+        }
+
+        // popular list parse functions
+
+        function parsePopularQAList(qaList) {
+            if (!qaList || !angular.isArray(qaList) || qaList.length === 0) {
+                return null;
+            }
+
+            var row1List = [];
+            var row2List = [];
+            var parsedQAList = [ row1List, row2List ];
+            var count = 0;
+
+            for (var i in qaList) {
+                if (!qaList[i]) continue;
+
+                if (i % 2 === 0) {
+                    row1List.push(qaList[i]);
+                } else {
+                    row2List.push(qaList[i]);
+                }
+                count++;
+
+                if (count >= POPULAR_LIST_LIMIT.QA) break;
+            }
+            return parsedQAList;
+        }
+
+        function parsePopularDoctorList(doctorList) {
+            if (!doctorList || !angular.isArray(doctorList) || doctorList.length === 0) {
+                return null;
+            }
+
+            var count = 0;
+            var parsedDoctorList = [];
+            for (var i in doctorList) {
+                if (!doctorList[i]) continue;
+
+                parsedDoctorList.push(doctorList[i]);
+                count++;
+
+                if (count >= POPULAR_LIST_LIMIT.DOCTOR) break;
+            }
+            return parsedDoctorList;
         }
 
         // FIXME remove this
