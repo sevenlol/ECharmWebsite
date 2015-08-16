@@ -58,9 +58,9 @@
         <accordion close-others="true">
           <accordion-group heading="{{category.text}}" is-open="false" is-disabled="false" ng-repeat="category in vm.categoryList" ng-show="category.display !== 'none'">
             <ul class="faq-rocommend">
-              <li><span>A</span><a href="#">如果要瘦臉.大腿內側.肚子要怎麼做</a></li>
-              <li><span>A</span><a href="#">睡覺鼻塞怎麼辦?</a></li>
-              <li><span>A</span><a href="#">女生便秘是常見的事…？怎麼解決</a></li>
+              <li ng-repeat="popularQA in vm.allPopularQAList[category.name]">
+                <span>Q</span><a ui-sref="askdoctor.detail({ category : popularQA.question_category, questionId : popularQA.question_id })">{{ popularQA.question_content | limitTo : vm.questionContentLimit }}<span ng-show="popularQA.question_content.length > vm.questionContentLimit"> ...</span></a>
+              </li>
             </ul>
           </accordion-group>
         </accordion>

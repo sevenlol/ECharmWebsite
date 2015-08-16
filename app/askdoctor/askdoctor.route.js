@@ -27,6 +27,9 @@
             url : '/home',
             parent : askdoctorState,
             templateUrl : 'app/askdoctor/askdoctor-home.html',
+            resolve : {
+                allPopularQAList : resolveAllPopularQAList
+            },
             controller : 'askdoctorHomeController',
             controllerAs : 'vm'
         };
@@ -100,6 +103,22 @@
             return promise
                     .then(successCallback)
                     .catch(failCallback);
+        }
+
+        function resolveAllPopularQAList(popularListService) {
+            if (!popularListService) return null;
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            try {
+                return popularListService
+                            .readAllPopularQAList()
+                            .catch(failCallback);
+            } catch (error) {
+                return null;
+            }
         }
 
         function resolvePopularQAList($stateParams, popularListService) {
