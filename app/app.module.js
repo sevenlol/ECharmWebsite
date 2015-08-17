@@ -11,7 +11,8 @@
         'data.account',
         'ui.select',
         'ngSanitize',
-        'angulike'
+        'angulike',
+        'ngSocial'
     ]);
 
     
