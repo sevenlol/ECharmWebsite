@@ -15,8 +15,8 @@
     ];
 
     function doctorDetailController($stateParams, doctorCategoryList, doctor, articleList, qaList, avgQaRating, blogCategoryNameTextList) {
-        var SHOW_MORE_ARTICLE_STEP = 1;
-        var SHOW_MORE_QUESTION_STEP = 1;
+        var SHOW_MORE_ARTICLE_STEP = 5;
+        var SHOW_MORE_QUESTION_STEP = 5;
         var AVG_RATING_PRECISION = 2;
         var MALE_STRING = 'MALE';
         var FEMALE_STRING = 'FEMALE';
@@ -53,7 +53,7 @@
 
         /* article variable/function */
         vm.numOfArticles = 0;
-        vm.articlePageLimit = 1;
+        vm.articlePageLimit = 5;
         vm.articleIndex = 0;
         vm.articleTitleLengthMax = DEFAULT_ARTICLE_TITLE_LENGTH;
         vm.displayShowMoreArticleButton = false;
@@ -68,7 +68,7 @@
         /* question variable/function */
         vm.numOfQuestions = 0;
         vm.questionList = qaList;
-        vm.questionPageLimit = 1;
+        vm.questionPageLimit = 5;
         vm.questionIndex = 0;
         vm.questionLengthMax = DEFAULT_QUESTION_CONTENT_MAXLENGTH;
         vm.answerLengthMax = DEFAULT_ANSWER_CONTENT_MAXLENGTH;
