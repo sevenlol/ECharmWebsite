@@ -37,7 +37,7 @@
         userList,
         askdoctorQuestionService) {
 
-        var SHOW_MORE_QUESTION_STEP = 1;
+        var SHOW_MORE_QUESTION_STEP = 5;
         var DATE_FORMAT = 'yyyy-MM-ddTHH:mmZ';
         var DEFAULT_RATING_MAX = 5;
         var MALE_STRING = 'MALE';
@@ -88,7 +88,7 @@
         vm.collapseQuestion = collapseQuestion;
         vm.askQuestion = askQuestion;
 
-        vm.pageLimit = 1;
+        vm.pageLimit = 5;
         vm.index = 0;
         vm.numOfQuestions = countNumberOfQuestions(vm.questionList);
         vm.showMoreQuestion  = showMoreQuestion;
