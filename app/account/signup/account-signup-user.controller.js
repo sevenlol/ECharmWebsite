@@ -12,8 +12,10 @@
     function accountSignUpUserController(userAccountService, Logger) {
         var SIGNUP_SUCCESS_MESSAGE = '帳號註冊成功';
         var SIGNUP_FAIL_MESSAGE = 'Something is wrong!';
-        var MIN_ACC_PW_LENGTH = 8;
-        var MAX_ACC_PW_LENGTH = 16;
+        var MIN_ACC_LENGTH = 5;
+        var MAX_ACC_LENGTH = 20;
+        var MIN_PW_LENGTH = 8;
+        var MAX_PW_LENGTH = 20;
 
         // Logger object
         var logger = Logger.getInstance('app - account - signup - user');
@@ -22,8 +24,14 @@
         // for form validation
         vm.submitted = false;
         vm.agreed = false;
-        vm.min = MIN_ACC_PW_LENGTH;
-        vm.max = MAX_ACC_PW_LENGTH;
+        vm.min = {
+            acc : MIN_ACC_LENGTH,
+            pw  : MIN_PW_LENGTH
+        };
+        vm.max = {
+            acc : MAX_ACC_LENGTH,
+            pw  : MAX_PW_LENGTH
+        };
 
         // state variable: credentials
         vm.credentials = {};

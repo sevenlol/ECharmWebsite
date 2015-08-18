@@ -17,8 +17,6 @@
         vm.allPopularQAList = parseAllPopularQAList(askdoctorCategoryList, allPopularQAList);
         vm.questionContentLimit = QUESTION_CONTENT_LIMIT;
 
-        console.log(JSON.stringify(allPopularQAList, null, 2));
-
         /* private functions */
 
         // TODO change the implementation
