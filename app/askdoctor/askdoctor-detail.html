@@ -135,6 +135,14 @@
 
       </div>
 
+      <div class="comment-caption">
+        <ul class="list-inline">
+          <li><h3>評論列表<span>{{ vm.commentList ? vm.commentList.length : '0' }}</span></h3></li>
+          <li class="pull-right"><button href="#qa-comment-form" duration="0" du-smooth-scroll class="btn round-btn pull-right">我要評論這則問答</button></li>
+        </ul>
+        <hr>
+      </div>
+
       <!-- comment list -->
       <div class="disqus-board" ng-show="vm.commentList">
         <div class="question-block" ng-repeat="comment in vm.commentList">
@@ -156,7 +164,7 @@
         </div>
       </div>
 
-      <div class="row" ng-show="!authenticated || account.user_type !== 'DOCTOR' || vm.answer || vm.commentList">
+      <div class="row" id="qa-comment-form" ng-show="!authenticated || account.user_type !== 'DOCTOR' || vm.answer || vm.commentList">
         <div class="col-lg-2 col-sm-2">
           <div class="user-thumb-md">
             <a href="#" class="doc-profile">

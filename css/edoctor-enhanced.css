@@ -124,6 +124,32 @@ ul.doctor-list li p {
 	padding: 0 0 10px;
 }
 
+.comment-caption {
+  margin-top: 40px;
+}
+.comment-caption button {
+  margin-top : 30px;
+  margin-bottom: 0px;
+}
+.comment-caption h3 {
+  color: #757575;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 44px;
+  margin-bottom: 0px;
+}
+.comment-caption h3 span {
+  color: #757575;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 44px;
+  margin: 0 10px;
+  vertical-align: super;
+}
+.comment-caption hr {
+  margin-top: 0px;
+}
+
 /* home */
 
 .cl-effect-15 a {
