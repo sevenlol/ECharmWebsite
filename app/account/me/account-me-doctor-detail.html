@@ -19,6 +19,14 @@
             <td>{{vm.doctor.user_info.name}}</td>
           </tr>
           <tr>
+            <th>性別</th>
+            <td>
+              <i ng-show="vm.doctor.user_info.gender === vm.GENDER_STRING.MALE" class="fa fa-mars"></i>
+              <i ng-show="vm.doctor.user_info.gender === vm.GENDER_STRING.FEMALE" class="fa fa-venus"></i>
+              <i ng-show="vm.doctor.user_info.gender === vm.GENDER_STRING.ARBITRARY" class="fa fa-question"></i>
+            </td>
+          </tr>
+          <tr>
             <th>執業醫院/診所</th>
             <td>{{vm.doctor.user_info.current_hospital}}</td>
           </tr>
@@ -33,6 +41,14 @@
           <tr>
             <th>醫師信箱</th>
             <td><a href="#">{{vm.doctor.email}}</a></td>
+          </tr>
+          <tr>
+            <th>粉絲專頁</th>
+            <td><a href="#">{{vm.doctor.user_info.facebook_account}}</a></td>
+          </tr>
+          <tr>
+            <th>個人部落格</th>
+            <td><a href="#">{{vm.doctor.user_info.blog_url}}</a></td>
           </tr>
         </tbody>
       </table>

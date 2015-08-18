@@ -13,9 +13,20 @@
     ];
 
     function accountMeDoctorEditController(doctor, memberDoctorService, $rootScope, $state, Logger) {
+
+        var MALE_STRING = 'MALE';
+        var FEMALE_STRING = 'FEMALE';
+        var ARBITRARY_GENDER_STRING = 'ARBITRARY';
+
         // Logger object
         var logger = Logger.getInstance('app - account - me - doctor - edit');
         var vm = this;
+
+        vm.GENDER_STRING = {
+            MALE : MALE_STRING,
+            FEMALE : FEMALE_STRING,
+            ARBITRARY : ARBITRARY_GENDER_STRING
+        };
 
         vm.doctor= doctor;
         vm.updateMyInfo = updateMyInfo;
@@ -40,6 +51,7 @@
 
             var successCallback = (function($rootScope, $state, logger) {
                 return function(account) {
+                    console.log(JSON.stringify(account.user_info, null, 2));
                     logger.log('updateMyInfo', 'Update my account information successfully!');
                     $rootScope.authenticated = true;
                     $state.go('account.me.doctor.detail');
@@ -57,9 +69,7 @@
             })($state, logger);
 
             // all fields null
-            // FIXME Note gender is disabled because of server mapping bug
-            delete info.gender;
-            if (!info.name /*&& !info.gender*/ && !info.phone_number && !info.address &&
+            if (!info.name && !info.gender && !info.phone_number && !info.address &&
                 !info.current_hospital && !info.college && !info.title && !info.specialty &&
                 !info.available_time && !info.facebook_account && !info.blog_url) {
                 logger.error('updateMyInfo', 'All fields missing! Please enter something!');

@@ -19,6 +19,16 @@
             <td><input type="text" class="form-control input-md" id="Name" ng-model="vm.doctor.user_info.name"></td>
           </tr>
           <tr>
+            <th>性別</th>
+            <td>
+              <div class="btn-group">
+                <label class="btn btn-default" ng-model="vm.doctor.user_info.gender" btn-radio="vm.GENDER_STRING.MALE"><i class="fa fa-mars"></i></label>
+                <label class="btn btn-default" ng-model="vm.doctor.user_info.gender" btn-radio="vm.GENDER_STRING.FEMALE"><i class="fa fa-venus"></i></label>
+                <label class="btn btn-default" ng-model="vm.doctor.user_info.gender" btn-radio="vm.GENDER_STRING.ARBITRARY"><i class="fa fa-question"></i></label>
+              </div>
+            </td>
+          </tr>
+          <tr>
             <th>執業醫院/診所</th>
             <td><input type="text" class="form-control input-md" id="Username" ng-model="vm.doctor.user_info.current_hospital"></td>
           </tr>
@@ -33,6 +43,14 @@
           <tr>
             <th>醫師信箱</th>
             <td><a href="#">{{vm.doctor.email}}</a></td>
+          </tr>
+          <tr>
+            <th>粉絲專頁</th>
+            <td><input type="text" class="form-control input-md" id="FbAccount" ng-model="vm.doctor.user_info.facebook_account"></td>
+          </tr>
+          <tr>
+            <th>個人部落格</th>
+            <td><input type="text" class="form-control input-md" id="BlogUrl" ng-model="vm.doctor.user_info.blog_url"></td>
           </tr>
         </tbody>
       </table>
