@@ -161,6 +161,15 @@
             controllerAs : 'vm'
         };
 
+        var accountSignUpSuccessState = {
+            name : 'account.signup.success',
+            url : '/success/:userType',
+            parent : accountSignUpState,
+            templateUrl : 'app/account/signup/account-signup-success.html',
+            controller : 'accountSignUpSuccessController',
+            controllerAs : 'vm'
+        };
+
         // Sign In
         var accountSignInState = {
             name : 'account.signin',
@@ -209,7 +218,8 @@
         $stateProvider
             .state(accountSignUpState)
             .state(accountSignUpUserState)
-            .state(accountSignUpDoctorState);
+            .state(accountSignUpDoctorState)
+            .state(accountSignUpSuccessState);
 
         // sign in
         $stateProvider

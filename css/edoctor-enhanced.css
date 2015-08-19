@@ -75,6 +75,60 @@ ul.doctor-list li p {
 	background-image: url(../images/subKV.jpg);
 }
 
+/* signup success */
+
+.signup-msg-box {
+  margin-top:35%;
+}
+.signup-msg-box h1 {
+  color:#ffffff;
+  font-weight:bold;
+  font-size:5em;
+  text-align:center;
+  margin-bottom:40px;
+}
+.signup-msg-box h2 {
+  color:#ffffff;
+  font-weight:normal;
+  font-size:2m;
+  padding-bottom:6px;
+  border-bottom:1px solid #fff;
+  display: inline-block;
+}
+.signup-msg-box h3 {
+  color:#49d7e3;
+  font-size:0.8em;
+  margin-bottom:6px;
+  text-align:left;
+}
+.signup-msg-box p {
+  color:#ffffff;
+  margin: 10px 0;
+}
+
+.signup-btn {
+  font-size: 18px;
+  border: solid 2px;
+  border-radius: 40px;
+  display: inline-block;
+  padding: 15px 40px;
+  margin : 40px 80px;
+}
+.signup-btn-fill {
+  color: #fff;
+  border: solid 2px #42a5f5 ;
+  border-radius: 40px;
+  display: inline-block;
+  text-transform: uppercase;
+  background-color: #42a5f5 ;
+}
+
+.signup-btn-fill:hover, .signup-btn-fill:focus {
+  color: #fff;
+  background-color: #1e88e5;
+  border-color: #1e88e5;
+}
+
 /* askdoctor */
 .ask-btn {
 	margin-top: 15px;

@@ -1,0 +1,25 @@
+<section
+  class="container-fluid parallax-container parallax-background"
+  parallax-background
+  parallax-ratio="0.4"
+  ng-class="{ 'login-public public-login-background' : vm.userType !== vm.userTypeConst.doctor,
+              'login-doctor doctor-signup doctor-login-background' : vm.userType === vm.userTypeConst.doctor}">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 text-center signup-msg-box">
+
+        <h2>{{ vm.varObj.smallTitle }}</h2>
+        <h1>{{ vm.varObj.largeTitle }}</h1>
+
+        <ul class="list-inline">
+          <li ng-show="vm.userType === vm.userTypeConst.doctor"><button ui-sref="account.signin.doctor" class="signup-btn signup-btn-fill">{{ vm.varObj.leftBtnText }}</button></li>
+          <li ng-show="vm.userType === vm.userTypeConst.user"><button ui-sref="account.signin.user" class="signup-btn signup-btn-fill">{{ vm.varObj.leftBtnText }}</button></li>
+          <li><button ui-sref="home" class="signup-btn signup-btn-fill">{{ vm.varObj.rightBtnText }}</button></li>
+        </ul>
+
+      </div>
+    </div>
+
+  </div>
+</section>
