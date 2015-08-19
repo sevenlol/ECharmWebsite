@@ -6,12 +6,17 @@
 
     accountSignUpDoctorController.$inject = [
         'memberDoctorService',
+        '$state',
         'Logger'
     ];
 
-    function accountSignUpDoctorController(memberDoctorService, Logger) {
+    function accountSignUpDoctorController(memberDoctorService, $state, Logger) {
         var SIGNUP_SUCCESS_MESSAGE = '帳號註冊成功';
         var SIGNUP_FAIL_MESSAGE = 'Something is wrong!';
+        var userType = {
+            doctor : 'doctor',
+            user : 'user'
+        };
 
         // Logger object
         var logger = Logger.getInstance('app - account - signup - doctor');
@@ -54,8 +59,10 @@
                     }*/
 
                     logger.log('signUp', 'Sign Up Succeeded');
-                    showSuccessMessage(SIGNUP_SUCCESS_MESSAGE);
-                    // create succeeded
+                    // changed, now moving to account.signup.success state
+                    $state.go('account.signup.success', { userType : userType.doctor });
+                    // showSuccessMessage(SIGNUP_SUCCESS_MESSAGE);
+
                 };
             })();
             var signUpFailCallback = (function() {

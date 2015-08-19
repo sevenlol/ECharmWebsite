@@ -6,12 +6,17 @@
 
     accountSignUpUserController.$inject = [
         'userAccountService',
+        '$state',
         'Logger'
     ];
 
-    function accountSignUpUserController(userAccountService, Logger) {
+    function accountSignUpUserController(userAccountService, $state, Logger) {
         var SIGNUP_SUCCESS_MESSAGE = '帳號註冊成功';
         var SIGNUP_FAIL_MESSAGE = 'Something is wrong!';
+        var userType = {
+            doctor : 'doctor',
+            user : 'user'
+        };
         var MIN_ACC_LENGTH = 5;
         var MAX_ACC_LENGTH = 20;
         var MIN_PW_LENGTH = 8;
@@ -69,8 +74,9 @@
                     }
 
                     logger.log('signUp', 'Sign Up Succeeded');
-                    showSuccessMessage(SIGNUP_SUCCESS_MESSAGE);
-                    // created succeeded
+                    // showSuccessMessage(SIGNUP_SUCCESS_MESSAGE);
+                    // changed, now moving to account.signup.success state
+                    $state.go('account.signup.success', { userType : userType.user });
                 };
             })();
 
