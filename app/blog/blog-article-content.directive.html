@@ -30,7 +30,7 @@
       <div class="img"><img ng-src="{{ block.url }}" alt="img"></div>
       <div class="info">
         <h3 ng-bind-html="block.img_caption | trustHtmlFilter"></h3>
-        <p>Description goes here</p>
+        <p ng-bind-html="block.img_desc | trustHtmlFilter"></p>
       </div>
     </a>
   </div>

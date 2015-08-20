@@ -152,20 +152,21 @@
             this.blocks.push(paragraph);
             return this;
         };
-        ArticleContentBuilder.prototype.addImageBlock = function(url, caption) {
+        ArticleContentBuilder.prototype.addImageBlock = function(url, caption, description) {
             if (!url || !angular.isString(url)) {
                 return this;
             }
 
             // allow empty string
-            if (!angular.isString(caption)) {
+            if (!angular.isString(caption) || !angular.isString(description)) {
                 return this;
             }
 
             var image = {
                 block_type : BLOCK_TYPE.IMAGE,
                 url : url,
-                img_caption : caption
+                img_caption : caption,
+                img_desc : description
             };
 
             this.blocks.push(image);
@@ -477,7 +478,8 @@
             }
 
             // allow empty string
-            if (!angular.isString(block.img_caption)) {
+            if (!angular.isString(block.img_caption) ||
+                !angular.isString(block.img_desc)) {
                 return false;
             }
 

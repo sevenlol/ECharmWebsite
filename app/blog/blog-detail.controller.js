@@ -19,7 +19,20 @@
         'blogArticleContentService'
     ];
 
-    function blogDetailController($stateParams, $rootScope, $filter, article, author, commentList, ratingList, avgRating, myAccount, blogRatingService, blogCommentService, blogArticleContentService) {
+    function blogDetailController(
+        $stateParams,
+        $rootScope,
+        $filter,
+        article,
+        author,
+        commentList,
+        ratingList,
+        avgRating,
+        myAccount,
+        blogRatingService,
+        blogCommentService,
+        blogArticleContentService) {
+
         var DATE_FORMAT = 'yyyy-MM-ddTHH:mmZ';
         var vm = this;
         var COMMNET_MIN_LENGTH = 10;
@@ -70,7 +83,7 @@
                                 .addParagraphBlock('美國賓漢姆頓大學（ <strong>Binghamton University</strong> ）的雅各．諾塔（<a href="#">Jacob Nota</a>）和梅瑞狄斯．科爾斯（Meredith Coles ），他們發現睡眠時間較短或晚睡的人，較容易產生消極想法，而這項發現被刊登於《認知治療與研究》（Cognitive Therapy and Research）期刊。')
                                 .addHeadingBlock(4, '小標題 SIZE4')
                                 .addParagraphBlock('常有煩人的悲觀思想不斷重複浮現在腦海中，甚至認為自己幾乎無法控制自己的思考，且會過度擔心未來，同時又鑽牛角尖於過去，腦中不斷冒出惱人卻又揮之不去的想法。這些症狀常見於廣泛性焦慮症（generalized anxiety disorder）、抑鬱症（ major depressive disorder）、創傷後壓力心理障礙症（post-traumatic stress disorder）、強迫症（obsessive-compulsive disorder，簡稱 OCD）和社交焦慮失協症（social anxiety disorder，簡稱 SAD），而這些病患也同樣具有睡眠狀況。')
-                                .addImageBlock('images/article-detail-bg.jpg', '圖片標題')
+                                .addImageBlock('images/article-detail-bg.jpg', '圖片標題', '圖片描述')
                                 .addParagraphBlock('不過，這項研究只是驗證睡眠習慣和心理健康之間關係的其中一環而已。基於睡眠和精神病理學之間關係的證據不斷增加，諾斯、科爾斯和他們大學同事希望能了解更多關於睡眠是否有助於焦慮症病患。')
                                 .addAlertBlock('danger', '如果有悲觀想法請打1995 各縣市生命線!')
                                 .addListBlock('ordered', ['項目一', '項目二'])
@@ -79,7 +92,7 @@
                                 .build();
 
         vm.testArticle = {
-            category : 'Category_2',
+            category : vm.article.category,
             content_text : articleContent.toJSONString()
         };
         console.log(JSON.stringify(articleContent, null, 2));
