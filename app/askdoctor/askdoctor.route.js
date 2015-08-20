@@ -64,7 +64,8 @@
                 commentUserList : resolveCommentUserList,        // FIXME, combine these two api
                 commentDoctorList : resolveCommentDoctorList,
                 ratingList : resolveRatingList,
-                avgRating : resolveAvgRating
+                avgRating : resolveAvgRating,
+                myFavQA : resolveMyFavQA
             },
             templateUrl : 'app/askdoctor/askdoctor-detail.html',
             controller : 'askdoctorDetailController',
@@ -613,6 +614,24 @@
             }
 
             return total;
+        }
+
+        function resolveMyFavQA(question, favoriteMeService) {
+            if (!question || !favoriteMeService || !question.question_id) {
+                return null;
+            }
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            try {
+                return favoriteMeService
+                           .readMyFavoriteQA(question.question_id)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
         }
     }
 

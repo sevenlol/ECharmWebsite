@@ -4,7 +4,7 @@
   <section class="container-fluid submenu">
     <div class="container">
 
-      <div class="pull-right">
+      <!-- <div class="pull-right">
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
             <div class="input-group">
@@ -13,7 +13,7 @@
             </div>
           </div>
         </form>
-      </div>
+      </div> -->
 
       <ul class="nav nav-tabs">
         <li role="navigation" ng-class="{true: 'active'}[vm.category === category.name]" ng-repeat="category in vm.categoryList"><a ui-sref="askdoctor.list({ category : category.name })">{{category.text}}</a></li>
@@ -86,7 +86,7 @@
           </div>
           <a href="#" ng-show="!vm.iAlreadyRated" class="btn round-btn" ng-click="vm.collapseMyRatingBar()">我要評分</a>
           <button ng-show="vm.iAlreadyRated" href="#" class="btn round-btn" disabled><strong>我的評分 {{vm.myRating}}</strong></button>
-          <a href="#" class="btn round-btn">收藏</a>
+          <a href="#" ng-click="vm.collapseFavMessage();vm.favUnfavThisQA()" class="btn round-btn favorite-btn">收藏 <i ng-show="vm.isThisQAFavorited" class="fa fa-heart"></i></a>
           <!-- <a href="#" class="btn round-btn">訂閱</a> -->
         </div>
 
@@ -98,6 +98,11 @@
             <li>我的評分{{vm.myRating}}</li>
             <!-- <li><a href="#" class="btn btn-sm round-btn">送出評分</a></li> -->
           </ul>
+        </div>
+
+        <div class="my-rating-bar" collapse="vm.isFavMessageCollapsed" ng-show="vm.answer">
+          <p ng-show="!authenticated" class="pink-style">請先登入來進行收藏</p>
+          <p ng-show="authenticated && vm.favoriteStatusMessage.isShown" ng-class="{ true : 'blue-style-1', false : 'pink-style' }[ vm.favoriteStatusMessage && vm.favoriteStatusMessage.type === 'success' ]">{{ vm.favoriteStatusMessage.message }}</p>
         </div>
 
       </div>

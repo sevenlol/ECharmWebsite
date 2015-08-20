@@ -16,14 +16,33 @@
         'commentDoctorList',
         'ratingList',
         'avgRating',
+        'myFavQA',
         'askdoctorCategoryList',
         'askdoctorAnswerService',
         'askdoctorCommentService',
-        'askdoctorRatingService'
+        'askdoctorRatingService',
+        'favoriteMeService'
     ];
 
-    function askdoctorDetailController($filter, myAccount, question, answer, doctor, user, commentList, commentUserList, commentDoctorList, ratingList, avgRating,
-                                                        askdoctorCategoryList, askdoctorAnswerService, askdoctorCommentService, askdoctorRatingService) {
+    function askdoctorDetailController(
+        $filter,
+        myAccount,
+        question,
+        answer,
+        doctor,
+        user,
+        commentList,
+        commentUserList,
+        commentDoctorList,
+        ratingList,
+        avgRating,
+        myFavQA,
+        askdoctorCategoryList,
+        askdoctorAnswerService,
+        askdoctorCommentService,
+        askdoctorRatingService,
+        favoriteMeService) {
+
         var DATE_FORMAT = 'yyyy-MM-ddTHH:mmZ';
         var DEFAULT_RATING_MAX = 5;
         var MALE_STRING = 'MALE';
@@ -82,6 +101,17 @@
         vm.myRating = 0;
         vm.iAlreadyRated = findMyRating(vm.ratingList);
         vm.collapseMyRatingBar = collapseMyRatingBar;
+
+        // favorite
+        vm.isThisQAFavorited = myFavQA ? true : false;
+        vm.collapseFavMessage = collapseFavMessage;
+        vm.favUnfavThisQA = favUnfavThisQA;
+        vm.isFavMessageCollapsed = true;
+        vm.favoriteStatusMessage = {
+            isShown : false,
+            type    : 'error',
+            message : ''
+        };
 
         vm.answerThisQuestion = answerThisQuestion;
         vm.commentThisQuestion = commentThisQuestion;
@@ -256,6 +286,75 @@
             }
         }
 
+        function favUnfavThisQA() {
+            if (!myAccount || !favoriteMeService) return;
+
+            // callbacks
+            var favUnfavSuccessCallback = function(idStatusList) {
+                // TODO add handling code
+                // create failed
+                if (!idStatusList) {
+                    var msg = vm.isThisQAFavorited ?
+                              '取消收藏問答時發生錯誤，請稍後重新嘗試' :
+                              '收藏問答時發生錯誤，請稍後重新嘗試';
+                    favUnfavFailed(msg);
+                    return;
+                }
+
+                favUnfavSucceeded(!vm.isThisQAFavorited);
+                // created succeeded
+            }
+            var favUnfavFailCallback = function(error) {
+                console.log(JSON.stringify(error, null, 2));
+                var msg = vm.isThisQAFavorited ?
+                              '取消收藏問答時發生錯誤，請稍後重新嘗試' :
+                              '收藏問答時發生錯誤，請稍後重新嘗試';
+                favUnfavFailed(msg);
+            };
+
+            if (vm.isThisQAFavorited) {
+                var favQAIdList = [ vm.question.question_id ];
+                try {
+                    favoriteMeService
+                        .deleteMyFavoriteQAs(favQAIdList)
+                        .then(favUnfavSuccessCallback)
+                        .catch(favUnfavFailCallback);
+                } catch (e) {
+                    favUnfavFailed('取消收藏問答時發生錯誤，請稍後重新嘗試');
+                }
+            } else {
+                // FIXME change placeholder implementation
+                var favQA = {
+                    'question_category' : vm.question.category,
+                    'question_id' : vm.question.question_id,
+                    'question_content' : vm.question.content_text,
+                    'question_created_at' : vm.question.created_at,
+                    'questioner_id' : (vm.user && vm.user.account_id) ? vm.user.account_id : 'placeholder',
+                    'questioner_name' : (vm.user && vm.user.user_info && vm.user.user_info.name) ?
+                                        vm.user.user_info.name : '使用者',
+                    'answer_id' : vm.answer.answer_id,
+                    'answer_content' : vm.answer.answer_text,
+                    'answer_created_at' : vm.answer.created_at,
+                    'answerer_category' : (vm.doctor && vm.doctor.user_info && vm.doctor.user_info.category) ?
+                                           vm.doctor.user_info.category : 'placeholder',
+                    'answerer_id' : (vm.doctor && vm.doctor.account_id) ? vm.doctor.account_id : 'placeholder',
+                    'answerer_name' : (vm.doctor && vm.doctor.user_info && vm.doctor.user_info.name) ?
+                                       vm.doctor.user_info.name : '醫師',
+                    'favorite_at' : $filter('date')(new Date(), DATE_FORMAT)
+                };
+                var favQAList = [ favQA ];
+
+                try {
+                    favoriteMeService
+                        .createMyFavoriteQAs(favQAList)
+                        .then(favUnfavSuccessCallback)
+                        .catch(favUnfavFailCallback);
+                } catch (e) {
+                    favUnfavFailed('收藏問答時發生錯誤，請稍後重新嘗試');
+                }
+            }
+        }
+
         /* private functions */
 
         function submitAnswerFailed(msg) {
@@ -326,6 +425,20 @@
             }
         }
 
+        function favUnfavFailed(msg) {
+            vm.isFavMessageCollapsed = false;
+            vm.isMyRatingBarCollapsed = true;
+
+            vm.favoriteStatusMessage.isShown = true;
+            vm.favoriteStatusMessage.type = 'error';
+            vm.favoriteStatusMessage.message = msg;
+        }
+
+        function favUnfavSucceeded(isFavorited) {
+            vm.isThisQAFavorited = isFavorited;
+            vm.isFavMessageCollapsed = true;
+        }
+
         function findMyRating(ratingList) {
             if (!ratingList || !angular.isArray(ratingList) ||
                 ratingList.length === 0 || !myAccount || !myAccount.account_id) {
@@ -349,6 +462,12 @@
 
         function collapseMyRatingBar() {
             vm.isMyRatingBarCollapsed = !vm.isMyRatingBarCollapsed;
+            vm.isFavMessageCollapsed = true;
+        }
+
+        function collapseFavMessage() {
+            vm.isFavMessageCollapsed = !vm.isFavMessageCollapsed;
+            vm.isMyRatingBarCollapsed = true;
         }
 
         function getCategoryName(categoryList, question) {
