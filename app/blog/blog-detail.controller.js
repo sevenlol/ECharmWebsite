@@ -79,6 +79,7 @@
                                 .build();
 
         vm.testArticle = {
+            category : 'Category_2',
             content_text : articleContent.toJSONString()
         };
         console.log(JSON.stringify(articleContent, null, 2));
@@ -300,6 +301,6 @@
         }
     }
 /*
-    
+
 */
 })();

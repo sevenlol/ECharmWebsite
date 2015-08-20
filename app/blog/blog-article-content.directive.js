@@ -30,10 +30,13 @@
 
     ArticleContentController.$inject = [
         '$scope',
-        'blogArticleContentService'
+        'blogArticleContentService',
+        'blogCategoryList'
     ];
 
-    function ArticleContentController($scope, blogArticleContentService) {
+    function ArticleContentController($scope, blogArticleContentService, blogCategoryList) {
+        var DEFAULT_INTRO_ICON_URL = 'images/1.jpg';
+
         // Injecting $scope just for comparison
         var service = blogArticleContentService;
 
@@ -43,6 +46,7 @@
 
         // initiate article content
         vm.articleContent = initArticleContent(vm.article, service);
+        vm.introIconUrl = getIntroIconUrl(vm.article, blogCategoryList);
 
         /* private functions */
 
@@ -56,6 +60,23 @@
             }
 
             return service.parse(article.content_text);
+        }
+
+        function getIntroIconUrl(article, catList) {
+            if (!article || !catList || !article.category ||
+                !angular.isArray(catList)) {
+                return DEFAULT_INTRO_ICON_URL;
+            }
+
+            for (var i in catList) {
+                if (catList[i].name === article.category) {
+                    return catList[i].intro_icon_url ?
+                           catList[i].intro_icon_url :
+                           DEFAULT_INTRO_ICON_URL;
+                }
+            }
+
+            return DEFAULT_INTRO_ICON_URL;
         }
     }
 
