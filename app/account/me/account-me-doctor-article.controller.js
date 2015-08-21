@@ -11,7 +11,7 @@
     ];
 
     function accountMeDoctorArticleController(articleList, myAccount, blogCategoryNameTextList) {
-        var SHOW_MORE_ARTICLE_STEP = 1;
+        var SHOW_MORE_ARTICLE_STEP = 5;
         var DEFAULT_ARTICLE_TITLE_LENGTH = 25;
 
         var vm = this;
@@ -21,7 +21,7 @@
 
         vm.numberOfArticle = 0;
 
-        vm.pageLimit = 1;
+        vm.pageLimit = 5;
         vm.index = 0;
         vm.articleTitleLengthMax = DEFAULT_ARTICLE_TITLE_LENGTH;
 

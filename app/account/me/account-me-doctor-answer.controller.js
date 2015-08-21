@@ -9,7 +9,7 @@
     ];
 
     function accountMeDoctorAnswerController(answerList) {
-        var SHOW_MORE_QUESTION_STEP = 1;
+        var SHOW_MORE_QUESTION_STEP = 5;
         var DEFAULT_QUESTION_CONTENT_MAXLENGTH = 25;
         var DEFAULT_ANSWER_CONTENT_MAXLENGTH = 25;
 
@@ -18,7 +18,7 @@
         vm.numOfQuestions = 0;
         vm.questionList = answerList;
 
-        vm.pageLimit = 1;
+        vm.pageLimit = 5;
         vm.index = 0;
         vm.questionLengthMax = DEFAULT_QUESTION_CONTENT_MAXLENGTH;
         vm.answerLengthMax = DEFAULT_ANSWER_CONTENT_MAXLENGTH;

@@ -9,7 +9,7 @@
     ];
 
     function accountMeUserQuestionController(questionList) {
-        var SHOW_MORE_QUESTION_STEP = 1;
+        var SHOW_MORE_QUESTION_STEP = 5;
         var DEFAULT_QUESTION_CONTENT_MAXLENGTH = 25;
 
         var vm = this;
@@ -17,7 +17,7 @@
         vm.numOfQuestions = 0;
         vm.questionList = questionList;
 
-        vm.pageLimit = 1;
+        vm.pageLimit = 5;
         vm.index = 0;
         vm.questionLengthMax = DEFAULT_QUESTION_CONTENT_MAXLENGTH;
 
