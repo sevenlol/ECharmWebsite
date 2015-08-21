@@ -2,7 +2,7 @@
 <section class="container-fluid submenu opacity">
   <div class="container">
 
-    <div class="pull-right">
+    <!-- <div class="pull-right">
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
           <div class="input-group">
@@ -11,24 +11,14 @@
           </div>
         </div>
       </form>
-    </div>
+    </div> -->
 
     <ul class="nav nav-tabs">
-      <li role="navigation" class="active"><a href="#">醫學美容</a></li>
-      <li role="navigation"><a href="#">整形外科</a></li>
-      <li role="navigation"><a href="#">婦科</a></li>
-      <li role="navigation"><a href="#">產科</a></li>
-      <li role="navigation"><a href="#">皮膚科</a></li>
-      <li role="navigation"><a href="#">小兒科</a></li>
-      <li role="navigation"><a href="#">婦科</a></li>
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">其他醫學問題 <span class="caret"></span></a>
-        <ul class="dropdown-menu" role="menu">
-          <li role="navigation"><a href="#">其他類型1</a></li>
-          <li role="navigation"><a href="#">其他類型2</a></li>
-          <li role="navigation"><a href="#">其他類型3</a></li>
-        </ul>
-	  </li>
+      <li role="navigation" ng-class="{true: 'active'}[vm.article.category === category.name]" ng-repeat="category in vm.categoryList">
+        <a ui-sref="blog.list({ category : category.name })">
+          {{category.text}}
+        </a>
+      </li>
     </ul>
 
   </div>
@@ -45,51 +35,30 @@
     </div>
 
     <ol class="breadcrumb hidden-xs text-right">
-      <li><a href="index.html">醫創網</a></li>
-      <li><a href="article-index.html">醫師專業文章</a></li>
-      <li class="active">醫學美容</li>
+      <li><a ui-sref="home">醫創網</a></li>
+      <li><a ui-sref="blog.list({ category : vm.article.category })">醫師專業文章</a></li>
+      <li class="active">{{ vm.categoryName }}</li>
     </ol>
 
     <!-- article start -->
     <div class="article-full-block">
       <div id="back" class="hidden-md hidden-sm hidden-xs"><a href="article-index.html">返回</a></div>
 
-      <div class="article-author">Written By: <a href="#">{{vm.author.accountId}}  醫師</a> {{vm.article.created_at}} | Taged In: 精神 心理醫療
-       <div class="satisfy pull-right">滿意度 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></div>
+      <div class="article-author">Written By: <a ui-sref="doctor.detail({ category : vm.author.user_info.category, doctorId : vm.author.account_id })">{{ vm.author.user_info.name }} 醫師</a> {{vm.article.created_at | relativeDate }} | Taged In: 精神 心理醫療
+       <!-- <div class="satisfy pull-right">滿意度 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></div> -->
       </div>
 
       <!---->
 
 	  <div class="article-content">
 
-        <!-- <h2 class="text-center">“你每次的睡眠時間是多久呢？”</h2> -->
-        <!-- <p>{{vm.article.content_text}}</p> -->
-
         <div blog-article-content-directive article="vm.testArticle"></div>
-        <!--
-        <p>美國賓漢姆頓大學（Binghamton University ）的雅各．諾塔（Jacob Nota）和梅瑞狄斯．科爾斯（Meredith Coles ），他們發現睡眠時間較短或晚睡的人，較容易產生消極想法，而這項發現被刊登於《認知治療與研究》（Cognitive Therapy and Research）期刊。</p>
-        <p>常有煩人的悲觀思想不斷重複浮現在腦海中，甚至認為自己幾乎無法控制自己的思考，且會過度擔心未來，同時又鑽牛角尖於過去，腦中不斷冒出惱人卻又揮之不去的想法。這些症狀常見於廣泛性焦慮症（generalized anxiety disorder）、抑鬱症（ major depressive disorder）、創傷後壓力心理障礙症（post-traumatic stress disorder）、強迫症（obsessive-compulsive disorder，簡稱 OCD）和社交焦慮失協症（social anxiety disorder，簡稱 SAD），而這些病患也同樣具有睡眠狀況。</p>
-        <p>不過，這項研究只是驗證睡眠習慣和心理健康之間關係的其中一環而已。基於睡眠和精神病理學之間關係的證據不斷增加，諾斯、科爾斯和他們大學同事希望能了解更多關於睡眠是否有助於焦慮症病患。</p>
-        <p>目前的研究大多將睡眠問題與重複性的消極思維連結，尤其是患者沒有得到足夠的睡眠情況下。諾塔和科爾斯開始複製這些研究，他們想知道重複性思想和睡眠時間之間的連結關係。他們找來賓漢姆頓大學的100位年輕成人，並要求他們完成一系列的問卷調查和兩份電腦化作業。在過程中，他們測量了這些學生焦慮、沉思或煩困的程度，以此三項表現來衡量他們的重複性消極思維。這些學生也被詢問了他們是慣性早起還是夜貓子，平常是有固定睡眠時間還是因應當天情形調整睡眠狀況。</p>
-        <p>研究人員發現學生當中睡眠時間較短或晚睡的人，較常有重複性的消極思維，即使夜貓子也有這種情形。諾塔認為：「對於深受惱人想法困擾的人，確保在一天中合適的時間內獲得睡眠，是一個廉價且易於宣傳的解決方法。」科爾斯則認為：「這項發現也顯示了睡眠障礙和重複性的消極思維發展有關，有望於引導內在障礙的新治療方法。而睡眠時間減少和精神病理學之間的關係的研究已經證實，臨床上睡眠的確可以減少精神病理的症狀。」</p>
-        <p>不過，這項研究只是驗證睡眠習慣和心理健康之間關係的其中一環而已。基於睡眠和精神病理學之間關係的證據不斷增加，諾斯、科爾斯和他們大學同事希望能了解更多關於睡眠是否有助於焦慮症病患。</p>
 
-        <p>
-          參考資料：<br />
-          Don’t worry, be happy: Just go to bed earlier. [DECEMBER 4, 2014]<br />
-          Nota, J. A., & Coles, M. E. (2014). Duration and Timing of Sleep are Associated with Repetitive Negative Thinking. Cognitive Therapy and Research, 1-9.
-        </p>
-        -->
         <div class="article-content-tag">
           <a ng-show="!vm.iAlreadyRated" class="btn round-btn" ng-click="vm.collapseMyRatingBar()">我要評分</a>
           <button ng-show="vm.iAlreadyRated" href="#" class="btn round-btn" disabled><strong>我的評分 {{vm.myRating}}</strong></button>
-          <a href="#" class="btn round-btn">收藏</a><a href="#" class="btn round-btn">訂閱</a><a href="#" class="btn round-btn">email給朋友</a>
+          <a href="#" class="btn round-btn">收藏</a><!-- <a href="#" class="btn round-btn">訂閱</a><a href="#" class="btn round-btn">email給朋友</a> -->
 
-
-
-
-          
-          
           <div class="satisfy pull-right" ng-show="vm.ratingList && vm.ratingList.length">
             {{ vm.overRatingValue ? vm.overRatingValue : '滿意度' }}
             <rating ng-model="vm.avgRating" max="vm.ratingMax" readonly="true" state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="vm.hoverOverRating(value)" on-leave="vm.overRatingValue = null"></rating>
@@ -97,10 +66,9 @@
           <div class="pull-right" ng-show="!vm.ratingList || !vm.ratingList.length">
             目前尚無評分紀錄
           </div>
-          
-            
+
             <!-- <a href="#" class="btn round-btn">訂閱</a> -->
-          
+
           <div class="my-rating-bar" collapse="vm.isMyRatingBarCollapsed">
             <p ng-show="!authenticated" class="pink-style">請先登入來進行評分</p>
             <p ng-show="authenticated && vm.ratingStatusMessage.isShown" ng-class="{ true : 'blue-style-1', false : 'pink-style' }[ vm.ratingStatusMessage && vm.ratingStatusMessage.type === 'success' ]">{{ vm.ratingStatusMessage.message }}</p>
@@ -112,7 +80,7 @@
           </div>
 
           <ul ng-social-buttons
-               class="pull-right"               
+               class="pull-right"
                data-title="'the tittle'"
                data-description="'the description'">
                <!-- facebook and google+ only share the url -->
@@ -136,16 +104,16 @@
 
         <!-- author -->
         <div class="question-profile">
-          <a href="#" class="doc-profile">
-            <img src="images/docpic.jpg" alt="" class="img-circle" />陳威德 醫師
+          <a ui-sref="doctor.detail({ category : vm.author.user_info.category, doctorId : vm.author.account_id })" class="doc-profile">
+            <img src="images/docpic.jpg" alt="" class="img-circle" />{{ vm.author.user_info.name }} 醫師
           </a>
-          | 仁愛醫院  皮膚科
+          | {{ vm.author.user_info.current_hospital }}  皮膚科
         </div>
 
 
         <!-- Newly added rating part -->
         <br/>
-        
+
         <br/>
 
 
@@ -162,28 +130,34 @@
 
     </div>
 
-    <div class="disqus-board">
-      
+    <div class="comment-caption">
+      <ul class="list-inline">
+        <li><h3>評論列表<span>{{ vm.commentList ? vm.commentList.length : '0' }}</span></h3></li>
+        <li class="pull-right"><button href="#blog-comment-form" duration="0" du-smooth-scroll class="btn round-btn pull-right">我要評論這則問答</button></li>
+      </ul>
+      <hr>
+    </div>
 
-      
-        <div class="question-block" ng-repeat="comment in vm.commentList" ng-show="vm.commentList">
-          <div class="question-top noanswer">
-            <div class="question-profile">
-              <a href="#">
-                <!-- Sticker -->
-                <img ng-show="comment.user.user_type !== 'DOCTOR'" ng-src="{{ (comment.user.user_info.sticker_url) ? comment.user.user_info.sticker_url : 'images/default-user-sticker.png'}}" alt="" class="img-circle" />
-                <img ng-show="comment.user.user_type === 'DOCTOR'" ng-src="{{ (comment.user.user_info.sticker_url) ? comment.user.user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="" class="img-circle" />
-                {{comment.user && comment.user.user_info ? comment.user.user_info.name : '' }}
-              </a>
-              <!-- <i class="fa fa-venus"></i> -->
-              <span>{{ comment.created_at ? (comment.created_at | relativeDate) : '' }}</span>
-            </div>
-            <p>
-              {{comment.comment_text}}
-            </p>
+    <div class="disqus-board">
+
+      <div class="question-block" ng-repeat="comment in vm.commentList" ng-show="vm.commentList">
+        <div class="question-top noanswer">
+          <div class="question-profile">
+            <a href="#">
+              <!-- Sticker -->
+              <img ng-show="comment.user.user_type !== 'DOCTOR'" ng-src="{{ (comment.user.user_info.sticker_url) ? comment.user.user_info.sticker_url : 'images/default-user-sticker.png'}}" alt="" class="img-circle" />
+              <img ng-show="comment.user.user_type === 'DOCTOR'" ng-src="{{ (comment.user.user_info.sticker_url) ? comment.user.user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="" class="img-circle" />
+              {{comment.user && comment.user.user_info ? comment.user.user_info.name : '' }}
+            </a>
+            <!-- <i class="fa fa-venus"></i> -->
+            <span>{{ comment.created_at ? (comment.created_at | relativeDate) : '' }}</span>
           </div>
+          <p>
+            {{comment.comment_text}}
+          </p>
         </div>
-     
+      </div>
+
 
       <div class="row" ng-show="!authenticated || acount.user_type !== 'DOCTOR' || vm.commentList">
         <div class="col-lg-2 col-sm-2">
@@ -219,7 +193,7 @@
 
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane active">
-              <form name="vm.commentForm" role="form" novalidate>
+              <form name="vm.commentForm" id="blog-comment-form" role="form" novalidate>
                 <textarea class="form-control" ng-model="vm.commentText" name="commentText" rows="4" ng-show="authenticated" ng-minlength="vm.min" required placeholder="請輸入評論內容，字數至少要十個字以上"></textarea>
                 <textarea ng-show="!authenticated" class="form-control" ng-show="!authenticated" rows="4" placeholder="請先登入以發表評論" disabled></textarea>
                 <p class="pull-left pink-style comment-error" ng-show="vm.commentSubmitted && vm.commentForm.commentText.$invalid">評論內容字數至少要十個字以上</p>
@@ -233,13 +207,13 @@
 
     </div>
 	  </div>
-    
+
 
   </div>
 
 </section>
 <section class="container-fluid qa-board">
-  
+
 </section>
 
 

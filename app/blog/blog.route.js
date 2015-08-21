@@ -308,16 +308,16 @@
             var count = 0;
             for (var i in ratingList) {
                 var rating = ratingList[i];
-                if (!angular.isNumber(rating)) {
+                if (!rating || !angular.isNumber(rating.rating_value)) {
                     continue;
                 }
 
                 // FIXME change limit to value file
-                if (rating < 0 || rating > 5) {
+                if (rating.rating_value < 0 || rating.rating_value > 5) {
                     continue;
                 }
 
-                total += rating;
+                total += rating.rating_value;
                 count++;
             }
 

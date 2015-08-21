@@ -14,6 +14,7 @@
         'ratingList',
         'avgRating',
         'myAccount',
+        'blogCategoryList',
         'blogRatingService',
         'blogCommentService',
         'blogArticleContentService'
@@ -29,26 +30,39 @@
         ratingList,
         avgRating,
         myAccount,
+        blogCategoryList,
         blogRatingService,
         blogCommentService,
         blogArticleContentService) {
 
         var DATE_FORMAT = 'yyyy-MM-ddTHH:mmZ';
+        var MALE_STRING = 'MALE';
+        var FEMALE_STRING = 'FEMALE';
+
         var vm = this;
         var COMMNET_MIN_LENGTH = 10;
 
+        vm.GENDER_STRING = {
+            MALE : MALE_STRING,
+            FEMALE : FEMALE_STRING
+        };
+
+        vm.myAccount = myAccount;
         vm.article = article;
         vm.author = author;
         vm.commentList = commentList;
         vm.ratingList = ratingList;
         vm.avgRating = avgRating;
 
+        vm.categoryList = blogCategoryList;
+        vm.categoryName = getCategoryName(blogCategoryList, vm.article.category);
+
         vm.rateThisArticle = rateThisArticle;
 
         vm.hoverOverRating = hoverOverRating;
         vm.collapseMyRatingBar = collapseMyRatingBar;
 
-        /*
+
         vm.min = 10;
         vm.commentSubmitted = false;
         vm.commentStatusMessage = {
@@ -63,8 +77,7 @@
         vm.commentMessage = "";
         vm.commentText = "";
         vm.commentSucc = false;
-        vm.myAccount = myAccount;
-        */
+
         // FIXME remove article content test later
         /* test start */
 
@@ -311,6 +324,28 @@
             } else {
                 vm.commentList.push(comment);
             }
+        }
+
+        function getCategoryName(categoryList, category) {
+            if (!categoryList || !angular.isArray(categoryList) || categoryList === 0) {
+                return '';
+            }
+
+            if (!category) {
+                return '';
+            }
+
+            for (var i in categoryList) {
+                if (!categoryList[i]) {
+                    continue;
+                }
+
+                if (categoryList[i].name === category) {
+                    return categoryList[i].text;
+                }
+            }
+
+            return '';
         }
     }
 /*
