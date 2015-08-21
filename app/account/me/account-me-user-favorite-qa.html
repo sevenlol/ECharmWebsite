@@ -1,0 +1,31 @@
+<div role="tabpanel">
+  <ul class="nav nav-pills profile-tab">
+    <li><a ui-sref="account.me.user.detail" ui-sref-opts="{reload : true}">個人資料</a></li>
+    <li><a ui-sref="account.me.user.question">問答紀錄</a></li>
+    <li><a ui-sref="account.me.user.favArticle">收藏文章</a></li>
+    <li class="active"><a ui-sref="account.me.user.favQA">收藏問答</a></li>
+  </ul>
+</div>
+
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active">
+
+    <p class="history-top">共有<span class="pink-style">{{vm.numberOfQAs}}則</span>收藏問答</p>
+
+      <div class="table-responsive" ng-show="vm.numberOfQAs">
+        <table class="table table-hover">
+          <tbody>
+            <tr class='clickable-row' ui-sref="askdoctor.detail({ category : qa.question_category, questionId : qa.question_id })" ng-repeat="qa in vm.qaList | limitTo : vm.pageLimit : vm.index">
+              <th>{{ qa.question_created_at ? (qa.question_created_at | relativeDate) : '' }}</th>
+              <td><span class="blue-style-1">Q</span> {{qa.question_content | limitTo : vm.questionLengthMax }}{{ (qa.question_content.length > vm.questionLengthMax) ? ' ...' : '' }}</td>
+              <td><span class="pink-style">A</span> {{qa.answer_content | limitTo : vm.answerLengthMax }}{{ (qa.answer_content.length > vm.answerLengthMax) ? ' ...' : '' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <button type="button" class="btn btn-default btn-lg btn-block" ng-show="vm.displayShowMoreButton" ng-click="vm.showMoreFavQA()">顯示更多收藏問答</button>
+      <button type="button" class="btn btn-default btn-lg btn-block" disabled ng-show="!vm.displayShowMoreButton">沒有更多收藏問答</button>
+
+  </div>
+</div>

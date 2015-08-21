@@ -39,6 +39,7 @@
             resolve: {
                 user : resolveMeUser,
                 questionList : resolveMeUserQuestionList,
+                favoriteList : resolveMeFavoriteList
             },
             abstract : true,
             templateUrl : 'app/account/me/account-me-user.html',
@@ -73,12 +74,21 @@
             controllerAs : 'vm'
         };
 
-        var accountMeUserFavoriteState = {
-            name : 'account.me.user.favorite',
-            url : '/favorite',
+        var accountMeUserFavoriteArticleState = {
+            name : 'account.me.user.favArticle',
+            url : '/favorite/article',
             parent : accountMeUserState,
-            templateUrl : 'app/account/me/account-me-user-favorite.html',
-            controller : 'accountMeUserFavoriteController',
+            templateUrl : 'app/account/me/account-me-user-favorite-article.html',
+            controller : 'accountMeUserFavoriteArticleController',
+            controllerAs : 'vm'
+        };
+
+        var accountMeUserFavoriteQAState = {
+            name : 'account.me.user.favQA',
+            url : '/favorite/qa',
+            parent : accountMeUserState,
+            templateUrl : 'app/account/me/account-me-user-favorite-qa.html',
+            controller : 'accountMeUserFavoriteQAController',
             controllerAs : 'vm'
         };
 
@@ -207,7 +217,8 @@
             .state(accountMeUserDetailState)
             .state(accountMeUserEditState)
             .state(accountMeUserQuestionState)
-            .state(accountMeUserFavoriteState)
+            .state(accountMeUserFavoriteArticleState)
+            .state(accountMeUserFavoriteQAState)
             .state(accountMeDoctorState)
             .state(accountMeDoctorDetailState)
             .state(accountMeDoctorEditState)
@@ -276,6 +287,24 @@
             }
 
             return null;
+        }
+
+        function resolveMeFavoriteList(myAccount, favoriteMeService) {
+            if (!myAccount || !favoriteMeService || !myAccount.account_id) {
+                return null;
+            }
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            try {
+                return favoriteMeService
+                            .readMyFavoriteList()
+                            .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
         }
 
         function resolveMeDoctor(myAccount) {

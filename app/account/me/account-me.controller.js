@@ -23,7 +23,8 @@
             var subState = $stateParams.detailCategory;
 
             if ($state.is('account.me.user.question') ||
-                $state.is('account.me.user.favorite') ||
+                $state.is('account.me.user.favArticle') ||
+                $state.is('account.me.user.favQA') ||
                 $state.is('account.me.user.detail')   ||
                 $state.is('account.me.user.edit')) {
                 return;
@@ -31,8 +32,10 @@
 
             if (subState === 'qa') {
                 $state.go('account.me.user.question');
-            } else if (subState === 'blog') {
-                $state.go('account.me.user.favorite');
+            } else if (subState === 'favArticle') {
+                $state.go('account.me.user.favArticle');
+            } else if (subState === 'favQA') {
+                $state.go('account.me.user.favQA');
             } else {
                 $state.go('account.me.user.detail');
             }
