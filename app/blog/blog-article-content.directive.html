@@ -11,21 +11,21 @@
 </div>
 
 <div ng-show="vm.articleContent && vm.articleContent.blocks" ng-repeat="block in vm.articleContent.blocks">
-  <div class="article-content-block" ng-show="block.block_type === vm.Constants.BLOCK_TYPE.HEADING">
-    <h1 ng-show="block.heading_size === 1">{{ block.block_content }}</h1>
-    <h2 ng-show="block.heading_size === 2">{{ block.block_content }}</h2>
-    <h3 ng-show="block.heading_size === 3">{{ block.block_content }}</h3>
-    <h4 ng-show="block.heading_size === 4">{{ block.block_content }}</h4>
-    <h5 ng-show="block.heading_size === 5">{{ block.block_content }}</h5>
-    <h6 ng-show="block.heading_size === 6">{{ block.block_content }}</h6>
+  <div class="article-content-block" ng-if="block.block_type === vm.Constants.BLOCK_TYPE.HEADING">
+    <h1 ng-if="block.heading_size === 1">{{ block.block_content }}</h1>
+    <h2 ng-if="block.heading_size === 2">{{ block.block_content }}</h2>
+    <h3 ng-if="block.heading_size === 3">{{ block.block_content }}</h3>
+    <h4 ng-if="block.heading_size === 4">{{ block.block_content }}</h4>
+    <h5 ng-if="block.heading_size === 5">{{ block.block_content }}</h5>
+    <h6 ng-if="block.heading_size === 6">{{ block.block_content }}</h6>
   </div>
 
-  <div class="article-content-block" ng-show="block.block_type === vm.Constants.BLOCK_TYPE.PARAGRAPH">
+  <div class="article-content-block" ng-if="block.block_type === vm.Constants.BLOCK_TYPE.PARAGRAPH">
     <p ng-bind-html="block.block_content | trustHtmlFilter"></p>
   </div>
 
 
-  <div ng-show="block.block_type === vm.Constants.BLOCK_TYPE.IMAGE" class="ih-item square effect3 bottom_to_top">
+  <div ng-if="block.block_type === vm.Constants.BLOCK_TYPE.IMAGE" class="ih-item square effect3 bottom_to_top">
     <a href="javascript:void(0)">
       <div class="img"><img ng-src="{{ block.url }}" alt="img"></div>
       <div class="info">
@@ -35,31 +35,31 @@
     </a>
   </div>
 
-  <div class="article-content-block" ng-show="block.block_type === vm.Constants.BLOCK_TYPE.ALERT">
+  <div class="article-content-block" ng-if="block.block_type === vm.Constants.BLOCK_TYPE.ALERT">
     <alert class="article-content-alert" type="{{ block.alert_style }}"><span ng-bind-html="block.message | trustHtmlFilter"></span></alert>
   </div>
 
-  <div class="article-content-block" ng-show="block.block_type === vm.Constants.BLOCK_TYPE.LIST">
-    <ul ng-show="block.list_style === vm.Constants.LIST_STYLE.UNORDERED">
+  <div class="article-content-block" ng-if="block.block_type === vm.Constants.BLOCK_TYPE.LIST">
+    <ul ng-if="block.list_style === vm.Constants.LIST_STYLE.UNORDERED">
       <li ng-repeat="item in block.block_content track by $index">{{ item }}</li>
     </ul>
 
-    <ol ng-show="block.list_style === vm.Constants.LIST_STYLE.ORDERED">
+    <ol ng-if="block.list_style === vm.Constants.LIST_STYLE.ORDERED">
       <li ng-repeat="item in block.block_content track by $index">{{ item }}</li>
     </ol>
   </div>
 
-  <div class="article-content-block" ng-show="block.block_type === vm.Constants.BLOCK_TYPE.TABLE">
+  <div class="article-content-block" ng-if="block.block_type === vm.Constants.BLOCK_TYPE.TABLE">
     <table class="table table-bordered">
       <thead>
-        <tr ng-repeat="row in block.block_content track by $index" ng-show="$first">
+        <tr ng-repeat="row in block.block_content track by $index" ng-if="$first">
           <th ng-repeat="col in row track by $index">{{ col }}</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="row in block.block_content track by $index" ng-show="!$first">
-          <th ng-repeat="col in row track by $index" scope="row" ng-show="$first">{{ col }}</th>
-          <td ng-repeat="col in row track by $index" ng-show="!$first">{{ col }}</td>
+        <tr ng-repeat="row in block.block_content track by $index" ng-if="!$first">
+          <th ng-repeat="col in row track by $index" scope="row" ng-if="$first">{{ col }}</th>
+          <td ng-repeat="col in row track by $index" ng-if="!$first">{{ col }}</td>
         </tr>
       </tbody>
     </table>
