@@ -15,7 +15,7 @@
 
     function blogListController($stateParams, $filter, articleList, doctorList, blogCategoryList, blogTagList) {
         var NUM_OF_ARTICLES_IN_ROW = 2;
-        var SHOW_MORE_ARTICLE_STEP = 3;
+        var SHOW_MORE_ARTICLE_STEP = 6;
 
         var vm = this;
 
@@ -27,6 +27,8 @@
         vm.index = 0;
         vm.numOfArticles = countNumberOfArticles(vm.ArticleList);
         vm.sortingIn = '-created_at';
+        vm.viewclass = 'list';
+        vm.maxShowTag = 3;
 
         vm.category = $stateParams.category;        
         // Copy from askdoctor but unavailable
