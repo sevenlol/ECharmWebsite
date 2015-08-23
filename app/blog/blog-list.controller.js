@@ -10,12 +10,19 @@
         'articleList',
         'doctorList',
         'blogCategoryList',
-        'blogTagList'
+        'blogTagList',
+        'popularBlogList',
+        'popularDoctorList'
     ];
 
-    function blogListController($stateParams, $filter, articleList, doctorList, blogCategoryList, blogTagList) {
+    function blogListController($stateParams, $filter, articleList, doctorList, blogCategoryList, blogTagList, popularBlogList, popularDoctorList) {
         var NUM_OF_ARTICLES_IN_ROW = 2;
         var SHOW_MORE_ARTICLE_STEP = 6;
+        var POPULAR_BLOG_CONTENT_LENGTH_LIMIT = 20;
+        var POPULAR_LIST_LIMIT = {
+            BLOG : 6,
+            DOCTOR : 6
+        };
 
         var vm = this;
 
@@ -40,6 +47,10 @@
         vm.updatedSearchText = '';
         vm.updatedSearchTag = '';
         // vm.orderIn = 'created_at';
+
+        vm.popularBlogList = parsePopularBlogList(popularBlogList);
+        vm.popularBlogContentMaxLength = POPULAR_BLOG_CONTENT_LENGTH_LIMIT;
+        vm.popularDoctorList = parsePopularDoctorList(popularDoctorList);
 
 
         // function
@@ -145,7 +156,48 @@
             }
         }
 
+        function parsePopularBlogList(blogList) {
+            if (!blogList || !angular.isArray(blogList) || blogList.length === 0) {
+                return null;
+            }
 
+            var row1List = [];
+            var row2List = [];
+            var parsedBlogList = [ row1List, row2List ];
+            var count = 0;
+
+            for (var i in blogList) {
+                if (!blogList[i]) continue;
+
+                if (i % 2 === 0) {
+                    row1List.push(blogList[i]);
+                } else {
+                    row2List.push(blogList[i]);
+                }
+                count++;
+
+                if (count >= POPULAR_LIST_LIMIT.QA) break;
+            }
+            return parsedBlogList;
+        }
+
+        function parsePopularDoctorList(doctorList) {
+            if (!doctorList || !angular.isArray(doctorList) || doctorList.length === 0) {
+                return null;
+            }
+
+            var count = 0;
+            var parsedDoctorList = [];
+            for (var i in doctorList) {
+                if (!doctorList[i]) continue;
+
+                parsedDoctorList.push(doctorList[i]);
+                count++;
+
+                if (count >= POPULAR_LIST_LIMIT.DOCTOR) break;
+            }
+            return parsedDoctorList;
+        }
 
 
 
