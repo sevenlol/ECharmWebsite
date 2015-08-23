@@ -56,8 +56,8 @@
 
         <div class="article-content-tag">
           <a ng-show="!vm.iAlreadyRated" class="btn round-btn" ng-click="vm.collapseMyRatingBar()">我要評分</a>
-          <button ng-show="vm.iAlreadyRated" href="#" class="btn round-btn" disabled><strong>我的評分 {{vm.myRating}}</strong></button>
-          <a href="#" class="btn round-btn">收藏</a><!-- <a href="#" class="btn round-btn">訂閱</a><a href="#" class="btn round-btn">email給朋友</a> -->
+          <button ng-show="vm.iAlreadyRated" href="javascript:void(0)" class="btn round-btn" disabled><strong>我的評分 {{vm.myRating}}</strong></button>
+          <a href="javascript:void(0)" class="btn round-btn">收藏</a><!-- <a href="#" class="btn round-btn">訂閱</a><a href="#" class="btn round-btn">email給朋友</a> -->
 
           <div class="satisfy pull-right" ng-show="vm.ratingList && vm.ratingList.length">
             {{ vm.overRatingValue ? vm.overRatingValue : '滿意度' }}

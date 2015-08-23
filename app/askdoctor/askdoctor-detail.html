@@ -84,9 +84,9 @@
           <div class="pull-right" ng-show="!vm.ratingList || !vm.ratingList.length">
             目前尚無評分紀錄
           </div>
-          <a href="#" ng-show="!vm.iAlreadyRated" class="btn round-btn" ng-click="vm.collapseMyRatingBar()">我要評分</a>
-          <button ng-show="vm.iAlreadyRated" href="#" class="btn round-btn" disabled><strong>我的評分 {{vm.myRating}}</strong></button>
-          <a href="#" ng-click="vm.collapseFavMessage();vm.favUnfavThisQA()" class="btn round-btn favorite-btn">{{vm.isThisQAFavorited ? '取消' : ''}}收藏 <i ng-show="vm.isThisQAFavorited" class="fa fa-heart"></i></a>
+          <a href="javascript:void(0)" ng-show="!vm.iAlreadyRated" class="btn round-btn" ng-click="vm.collapseMyRatingBar()">我要評分</a>
+          <button ng-show="vm.iAlreadyRated" href="javascript:void(0)" class="btn round-btn" disabled><strong>我的評分 {{vm.myRating}}</strong></button>
+          <a href="javascript:void(0)" ng-click="vm.collapseFavMessage();vm.favUnfavThisQA()" class="btn round-btn favorite-btn">{{vm.isThisQAFavorited ? '取消' : ''}}收藏 <i ng-show="vm.isThisQAFavorited" class="fa fa-heart"></i></a>
           <!-- <a href="#" class="btn round-btn">訂閱</a> -->
         </div>
 
