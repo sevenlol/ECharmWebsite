@@ -58,7 +58,8 @@
                 author : resolveAuthor,
                 commentList : resolveCommentList,
                 ratingList : resolveRatingList,
-                avgRating : resolveAvgRating
+                avgRating : resolveAvgRating,
+                myFavArticle : resolveMyFavArticle
             },
             templateUrl : 'app/blog/blog-detail.html',
             controller : 'blogDetailController',
@@ -331,6 +332,24 @@
             }
 
             return total;
+        }
+
+        function resolveMyFavArticle(article, favoriteMeService) {
+            if (!article || !favoriteMeService || !article.article_id) {
+                return null;
+            }
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            try {
+                return favoriteMeService
+                           .readMyFavoriteArticle(article.article_id)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
         }
 
         function resolveAllPopularBlogList(popularListService) {

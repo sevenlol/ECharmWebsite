@@ -305,7 +305,6 @@
                 // created succeeded
             }
             var favUnfavFailCallback = function(error) {
-                console.log(JSON.stringify(error, null, 2));
                 var msg = vm.isThisQAFavorited ?
                               '取消收藏問答時發生錯誤，請稍後重新嘗試' :
                               '收藏問答時發生錯誤，請稍後重新嘗試';
