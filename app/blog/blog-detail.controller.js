@@ -322,6 +322,7 @@
 
         function collapseMyRatingBar() {
             vm.isMyRatingBarCollapsed = !vm.isMyRatingBarCollapsed;
+            vm.isFavMessageCollapsed = true;
         }
 
         function collapseFavMessage() {
