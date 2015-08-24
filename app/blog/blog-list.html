@@ -156,9 +156,11 @@
     <!-- sidebar start -->
     <div class="col-lg-3 col-sm-4">
       <div id="side-bar">
-        <h3>熱門醫學美容文章</h3>
+        <h3>{{vm.category}}的熱門文章</h3>
         <div class="panel-box">
-          <ul class="faq-rocommend">
+          <ul class="faq-rocommend" ng-show="vm.popularBlogList && vm.popularBlogList[0]" ng-repeat="popularBlogRow1 in vm.popularBlogList[0]">
+            <li><span>{{$index + 1}}</span><a ui-sref="blog.detail({ category : popularBlogRow1.article_category, articleId : popularBlogRow1.article_id })">{{ popularBlogRow1.article_title | limitTo : vm.popularBlogContentMaxLength }}</a></li>
+            <!--
             <li><span>01</span><a href="#">愛的萬物論：為什麼我們會相愛...</a></li>
             <li><span>02</span><a href="#">愛的萬物論」：史蒂芬．霍金的...</a></li>
             <li><span>03</span><a href="#">11位稱得上是科學家的影星</a></li>
@@ -169,6 +171,7 @@
             <li><span>08</span><a href="#">為什麼關節會發出啪啪聲？</a></li>
             <li><span>09</span><a href="#">給牛奶考個古：牛奶可不是隨隨...</a></li>
             <li><span>10</span><a href="#">嚴重瀕臨滅絕的新訪客：白鶴</a></li>
+            -->
           </ul>
         </div>
 

@@ -25,6 +25,7 @@
         };
 
         var vm = this;
+        vm.count = 0;
 
         vm.articleGrid = []; // This object is used to store the article objects to be displayed in ng-repeat
 
@@ -168,15 +169,17 @@
 
             for (var i in blogList) {
                 if (!blogList[i]) continue;
-
+                row1List.push(blogList[i]);
+                /*
                 if (i % 2 === 0) {
                     row1List.push(blogList[i]);
                 } else {
                     row2List.push(blogList[i]);
                 }
+                */
                 count++;
 
-                if (count >= POPULAR_LIST_LIMIT.QA) break;
+                if (count >= POPULAR_LIST_LIMIT.BLOG) break;
             }
             return parsedBlogList;
         }
