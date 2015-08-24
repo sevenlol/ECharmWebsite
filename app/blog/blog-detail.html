@@ -56,8 +56,8 @@
 
         <div class="article-content-tag">
           <a ng-show="!vm.iAlreadyRated" class="btn round-btn" ng-click="vm.collapseMyRatingBar()">我要評分</a>
-          <button ng-show="vm.iAlreadyRated" href="#" class="btn round-btn" disabled><strong>我的評分 {{vm.myRating}}</strong></button>
-          <a href="#" class="btn round-btn">收藏</a><!-- <a href="#" class="btn round-btn">訂閱</a><a href="#" class="btn round-btn">email給朋友</a> -->
+          <button ng-show="vm.iAlreadyRated" href="javascript:void(0)" class="btn round-btn" disabled><strong>我的評分 {{vm.myRating}}</strong></button>
+          <a href="javascript:void(0)" ng-click="vm.collapseFavMessage();vm.favUnfavThisArticle()" class="btn round-btn favorite-btn">{{vm.isThisArticleFavorited ? '取消' : ''}}收藏 <i ng-show="vm.isThisArticleFavorited" class="fa fa-heart"></i></a><!-- <a href="#" class="btn round-btn">訂閱</a><a href="#" class="btn round-btn">email給朋友</a> -->
 
           <div class="satisfy pull-right" ng-show="vm.ratingList && vm.ratingList.length">
             {{ vm.overRatingValue ? vm.overRatingValue : '滿意度' }}
@@ -77,6 +77,11 @@
               <li>我的評分{{vm.myRating}}</li>
               <!-- <li><a href="#" class="btn btn-sm round-btn">送出評分</a></li> -->
             </ul>
+          </div>
+
+          <div class="my-rating-bar" collapse="vm.isFavMessageCollapsed" ng-show="vm.answer">
+            <p ng-show="!authenticated" class="pink-style">請先登入來進行收藏</p>
+            <p ng-show="authenticated && vm.favoriteStatusMessage.isShown" ng-class="{ true : 'blue-style-1', false : 'pink-style' }[ vm.favoriteStatusMessage && vm.favoriteStatusMessage.type === 'success' ]">{{ vm.favoriteStatusMessage.message }}</p>
           </div>
 
           <ul ng-social-buttons

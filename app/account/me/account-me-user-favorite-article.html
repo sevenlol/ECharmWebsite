@@ -10,56 +10,22 @@
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane active">
 
-    <p class="history-top">共有<span class="pink-style">8則</span>收藏文章</p>
+    <p class="history-top">共有<span class="pink-style">{{vm.numberOfArticles}}則</span>收藏文章</p>
 
     <div class="table-responsive">
       <table class="table table-hover">
         <tbody>
-          <tr class='clickable-row' data-href='artical-detail.html'>
-            <th>2天前</th>
-            <td><span class="blue-style-1">[醫學美容]</span> 夜貓子注意！晚睡較消極悲觀</td>
-            <td>by <a href="profile-doctor.html">潘怡良 醫師</a> 2015/02/08</td>
-          </tr>
-          <tr class='clickable-row' data-href='artical-detail.html'>
-            <th>3天前</th>
-            <td><span class="blue-style-1">[小兒科]</span> 關於冬天時打遊戲會突然覺得冷的現象</td>
-            <td>by <a href="profile-doctor.html">潘怡良 醫師</a> 2015/02/08</td>
-          </tr>
-          <tr class='clickable-row' data-href='artical-detail.html'>
-            <th>3天前</th>
-            <td><span class="blue-style-1">[醫學美容]</span> 夜貓子注意！晚睡較消極悲觀</td>
-            <td>by <a href="profile-doctor.html">潘怡良 醫師</a> 2015/02/08</td>
-          </tr>
-          <tr class='clickable-row' data-href='artical-detail.html'>
-            <th>4天前</th>
-            <td><span class="blue-style-1">[小兒科]</span> 關於冬天時打遊戲會突然覺得冷的現象</td>
-            <td>by <a href="profile-doctor.html">潘怡良 醫師</a> 2015/02/08</td>
-          </tr>
-          <tr class='clickable-row' data-href='artical-detail.html'>
-            <th>4天前</th>
-            <td><span class="blue-style-1">[醫學美容]</span> 夜貓子注意！晚睡較消極悲觀</td>
-            <td>by <a href="profile-doctor.html">潘怡良 醫師</a> 2015/02/08</td>
-          </tr>
-          <tr class='clickable-row' data-href='artical-detail.html'>
-            <th>5天前</th>
-            <td><span class="blue-style-1">[小兒科]</span> 關於冬天時打遊戲會突然覺得冷的現象</td>
-            <td>by <a href="profile-doctor.html">潘怡良 醫師</a> 2015/02/08</td>
-          </tr>
-          <tr class='clickable-row' data-href='artical-detail.html'>
-            <th>7天前</th>
-            <td><span class="blue-style-1">[醫學美容]</span> 夜貓子注意！晚睡較消極悲觀</td>
-            <td>by <a href="profile-doctor.html">潘怡良 醫師</a> 2015/02/08</td>
-          </tr>
-          <tr class='clickable-row' data-href='artical-detail.html'>
-            <th>10天前</th>
-            <td><span class="blue-style-1">[小兒科]</span> 關於冬天時打遊戲會突然覺得冷的現象</td>
-            <td>by <a href="profile-doctor.html">潘怡良 醫師</a> 2015/02/08</td>
+          <tr class='clickable-row' ng-repeat="article in vm.articleList | limitTo : vm.pageLimit : vm.index">
+            <th ui-sref="blog.detail({ category : article.article_category, articleId : article.article_id })">{{ article.article_created_at ? (article.article_created_at | relativeDate) : '' }}</th>
+            <td ui-sref="blog.detail({ category : article.article_category, articleId : article.article_id })"><span class="blue-style-1">[{{ article.categoryName }}]</span> 夜貓子注意！晚睡較消極悲觀</td>
+            <td>by <a ui-sref="doctor.detail({ category : article.author_category, doctorId : article.author_id })">{{ article.author_name || ''}} 醫師</a> </td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <button type="button" class="btn btn-default btn-lg btn-block disabled">沒有更多收藏文章</button>
+    <button type="button" class="btn btn-default btn-lg btn-block" ng-show="vm.displayShowMoreButton" ng-click="vm.showMoreFavArticle()">顯示更多收藏文章</button>
+    <button type="button" class="btn btn-default btn-lg btn-block" disabled ng-show="!vm.displayShowMoreButton">沒有更多收藏文章</button>
 
   </div>
 </div>

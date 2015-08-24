@@ -13,11 +13,13 @@
         'commentList',
         'ratingList',
         'avgRating',
+        'myFavArticle',
         'myAccount',
         'blogCategoryList',
         'blogRatingService',
         'blogCommentService',
-        'blogArticleContentService'
+        'blogArticleContentService',
+        'favoriteMeService'
     ];
 
     function blogDetailController(
@@ -29,11 +31,13 @@
         commentList,
         ratingList,
         avgRating,
+        myFavArticle,
         myAccount,
         blogCategoryList,
         blogRatingService,
         blogCommentService,
-        blogArticleContentService) {
+        blogArticleContentService,
+        favoriteMeService) {
 
         var DATE_FORMAT = 'yyyy-MM-ddTHH:mmZ';
         var MALE_STRING = 'MALE';
@@ -77,6 +81,17 @@
         vm.commentMessage = "";
         vm.commentText = "";
         vm.commentSucc = false;
+
+        // favorite
+        vm.isThisArticleFavorited = myFavArticle ? true : false;
+        vm.collapseFavMessage = collapseFavMessage;
+        vm.favUnfavThisArticle = favUnfavThisArticle;
+        vm.isFavMessageCollapsed = true;
+        vm.favoriteStatusMessage = {
+            isShown : false,
+            type    : 'error',
+            message : ''
+        };
 
         // FIXME remove article content test later
         /* test start */
@@ -198,6 +213,67 @@
             }
         }
 
+        function favUnfavThisArticle() {
+            if (!myAccount || !favoriteMeService) return;
+
+            // callbacks
+            var favUnfavSuccessCallback = function(idStatusList) {
+                // TODO add handling code
+                // create failed
+                if (!idStatusList) {
+                    var msg = vm.isThisArticleFavorited ?
+                              '取消收藏文章時發生錯誤，請稍後重新嘗試' :
+                              '收藏文章時發生錯誤，請稍後重新嘗試';
+                    favUnfavFailed(msg);
+                    return;
+                }
+
+                favUnfavSucceeded(!vm.isThisArticleFavorited);
+            }
+            var favUnfavFailCallback = function(error) {
+                var msg = vm.isThisArticleFavorited ?
+                              '取消收藏文章時發生錯誤，請稍後重新嘗試' :
+                              '收藏文章時發生錯誤，請稍後重新嘗試';
+                favUnfavFailed(msg);
+            };
+
+            if (vm.isThisArticleFavorited) {
+                var favArticleIdList = [ vm.article.article_id ];
+                try {
+                    favoriteMeService
+                        .deleteMyFavoriteArticles(favArticleIdList)
+                        .then(favUnfavSuccessCallback)
+                        .catch(favUnfavFailCallback);
+                } catch (e) {
+                    favUnfavFailed('取消收藏文章時發生錯誤，請稍後重新嘗試');
+                }
+            } else {
+                // FIXME change placeholder implementation
+                var favArticle = {
+                    'article_category' : vm.article.category,
+                    'article_id' : vm.article.article_id,
+                    'article_title' : vm.article.title,
+                    'article_created_at' : vm.article.created_at,
+                    'author_category' : (vm.author && vm.author.user_info && vm.author.user_info.category) ?
+                                           vm.author.user_info.category : 'placeholder',
+                    'author_id' : (vm.author && vm.author.account_id) ? vm.author.account_id : 'placeholder',
+                    'author_name' : (vm.author && vm.author.user_info && vm.author.user_info.name) ?
+                                       vm.author.user_info.name : '醫師',
+                    'favorite_at' : $filter('date')(new Date(), DATE_FORMAT)
+                };
+                var favArticleList = [ favArticle ];
+
+                try {
+                    favoriteMeService
+                        .createMyFavoriteArticles(favArticleList)
+                        .then(favUnfavSuccessCallback)
+                        .catch(favUnfavFailCallback);
+                } catch (e) {
+                    favUnfavFailed('收藏文章時發生錯誤，請稍後重新嘗試');
+                }
+            }
+        }
+
         function submitRatingFailed(msg) {
             vm.iAlreadyRated = false;
             vm.ratingStatusMessage.isShown = true;
@@ -246,6 +322,11 @@
 
         function collapseMyRatingBar() {
             vm.isMyRatingBarCollapsed = !vm.isMyRatingBarCollapsed;
+        }
+
+        function collapseFavMessage() {
+            vm.isFavMessageCollapsed = !vm.isFavMessageCollapsed;
+            vm.isMyRatingBarCollapsed = true;
         }
 
         function commentThisArticle() {
@@ -324,6 +405,20 @@
             } else {
                 vm.commentList.push(comment);
             }
+        }
+
+        function favUnfavFailed(msg) {
+            vm.isFavMessageCollapsed = false;
+            vm.isMyRatingBarCollapsed = true;
+
+            vm.favoriteStatusMessage.isShown = true;
+            vm.favoriteStatusMessage.type = 'error';
+            vm.favoriteStatusMessage.message = msg;
+        }
+
+        function favUnfavSucceeded(isFavorited) {
+            vm.isThisArticleFavorited = isFavorited;
+            vm.isFavMessageCollapsed = true;
         }
 
         function getCategoryName(categoryList, category) {

@@ -27,6 +27,9 @@
             url : '/home',
             parent : blogState,
             templateUrl : 'app/blog/blog-home.html',
+            resolve : {
+                allPopularBlogList : resolveAllPopularBlogList
+            },
             controller : 'blogHomeController',
             controllerAs : 'vm'
         };
@@ -37,6 +40,8 @@
             url : '/:category',
             templateUrl : 'app/blog/blog-list.html',
             resolve : {
+                popularBlogList : resolvePopularBlogList,
+                popularDoctorList : resolvePopularDoctorList,
                 articleList : resolveArticleList,
                 doctorList : resolveDoctorList
             },
@@ -53,7 +58,8 @@
                 author : resolveAuthor,
                 commentList : resolveCommentList,
                 ratingList : resolveRatingList,
-                avgRating : resolveAvgRating
+                avgRating : resolveAvgRating,
+                myFavArticle : resolveMyFavArticle
             },
             templateUrl : 'app/blog/blog-detail.html',
             controller : 'blogDetailController',
@@ -326,6 +332,88 @@
             }
 
             return total;
+        }
+
+        function resolveMyFavArticle(article, favoriteMeService) {
+            if (!article || !favoriteMeService || !article.article_id) {
+                return null;
+            }
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            try {
+                return favoriteMeService
+                           .readMyFavoriteArticle(article.article_id)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+        }
+
+        function resolveAllPopularBlogList(popularListService) {
+            if (!popularListService) return null;
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            try {
+                return popularListService
+                            .readAllPopularArticleList()
+                            .catch(failCallback);
+            } catch (error) {
+                return null;
+            }
+        }
+
+        function resolvePopularBlogList($stateParams, popularListService) {
+            if (!$stateParams || !$stateParams.category || !popularListService) {
+                return null;
+            }
+
+            var category = $stateParams.category;
+            var failCallback = function(error) {
+                return null;
+            };
+
+            // TODO implement new API
+            if (category === 'all') {
+                return null;
+            }
+
+            try {
+                return popularListService
+                            .readPopularArticleList(category)
+                            .catch(failCallback);
+            } catch (error) {
+                return null;
+            }
+        }
+
+        function resolvePopularDoctorList($stateParams, popularListService) {
+            if (!$stateParams || !$stateParams.category || !popularListService) {
+                return null;
+            }
+
+            var category = $stateParams.category;
+            var failCallback = function(error) {
+                return null;
+            };
+
+            // TODO implement new API
+            if (category === 'all') {
+                return null;
+            }
+
+            try {
+                return popularListService
+                            .readPopularDoctorList(category)
+                            .catch(failCallback);
+            } catch (error) {
+                return null;
+            }
         }
     }
 
