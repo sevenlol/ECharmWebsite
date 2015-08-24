@@ -286,6 +286,7 @@
             }
 
             question.isExpanded = false;
+            question.user = vm.myAccount;
 
             if (vm.questionList) {
                 vm.questionList.push(question);

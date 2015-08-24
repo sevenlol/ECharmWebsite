@@ -272,9 +272,14 @@
 
               {{question.user.user_info.name ? question.user.user_info.name : ''}}{{ (!question.user.user_info.name && question.user.username) ? question.user.username : '' }}{{ (!question.user.user_info.name && !question.user.username) ? '使用者' : ''}}
             </a>
-            <i ng-show="question.user.user_info.gender === vm.GENDER_STRING.MALE" class="fa fa-mars"></i>
-            <i ng-show="question.user.user_info.gender === vm.GENDER_STRING.FEMALE" class="fa fa-venus"></i>
             <span>{{ question.created_at ? (question.created_at | relativeDate) : '' }}</span>
+            <p>
+              <!-- age -->
+              {{ question.user.user_info.age ? question.user.user_info.age + '歲' : ''}}
+              <!-- gender -->
+              <i ng-show="question.user.user_info.gender === vm.GENDER_STRING.MALE" class="fa fa-mars"></i>
+              <i ng-show="question.user.user_info.gender === vm.GENDER_STRING.FEMALE" class="fa fa-venus"></i>
+            </p>
           </div>
           <p>
             {{question.content_text}}
