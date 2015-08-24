@@ -112,7 +112,7 @@
   <div class="container clearfix">
 
     <div class="col-lg-6 col-md-6 col-xs-12">
-      <h3>熱門醫學美容醫師</h3>
+      <h3>熱門{{ vm.categoryName }}醫師</h3>
 
       <ul class="doc-rocommend" ng-show="vm.popularDoctorList" ng-repeat="doctor in vm.popularDoctorList">
         <li><a ui-sref="doctor.detail({ category : doctor.doctor_category, doctorId : doctor.doctor_id })"><img ng-src="{{ (doctor.doctor_sticker_url) ? doctor.doctor_sticker_url : 'images/default-user-sticker.png'}}" alt="" class="img-circle" /><p>{{ doctor.doctor_name }}</p></a></li>
@@ -122,7 +122,7 @@
 
     <div class="col-lg-6 col-md-6 col-xs-12">
 
-      <h3>醫學美容常見問題</h3>
+      <h3>{{ vm.categoryName }}常見問題</h3>
 
       <ul class="faq-rocommend col-lg-6" ng-show="vm.popularQAList && vm.popularQAList[0]" ng-repeat="popularQARow1 in vm.popularQAList[0]">
         <li><span>Q</span><a ui-sref="askdoctor.detail({ category : popularQARow1.question_category, questionId : popularQARow1.question_id })">{{ popularQARow1.question_content | limitTo : vm.popularQAContentMaxLength }}</a></li>
