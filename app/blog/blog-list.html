@@ -112,23 +112,25 @@
 
 		</span>
 
+    </br ng-show="vm.viewclass=='list'">
     <ul ng-repeat="article in (vm.filteredArticleList = (vm.articleList | filter : vm.updatedSearchText|filter : {tag_arr: vm.selectedTag[0].text} |filter : {tag_arr: vm.selectedTag[1].text} |filter : {tag_arr: vm.selectedTag[2].text} |filter : {tag_arr: vm.selectedTag[3].text} |filter : {tag_arr: vm.selectedTag[4].text})) | orderBy: vm.sortingIn  | limitTo : vm.pageLimit : vm.index "  ng-show="vm.viewclass=='list'" class="media-list">
       
-
             <li class="media" ng-show="vm.viewclass=='list'">
               <a class="media-left" ui-sref="blog.detail({ category : article.category, articleId : article.article_id })">
                 <img src="images/articleimg-1.jpg" alt="" width="70" height="70">
               </a>
-              <div class="media-body">
+              <div class="media-body article-listview">
+                <div >
                 <h4 class="media-heading">
                   <strong>{{article.title}}</strong>
                   <span class="article-tag" ng-repeat = "tagOfArticle in article.tag_arr | limitTo: 3">
                     <a href="#" class="btn round-btn">{{tagOfArticle}}</a>
                   </span>
                 </h4>
+                </div>
                 <p>
                   <a  ui-sref="blog.detail({ category : article.category, articleId : article.article_id })">[繼續閱讀]</a>
-                  <span class="count; pull-right">
+                  <span class="count pull-right">
                     {{article.click_count-0}}次點閱 | {{ article.created_at ? (article.created_at | relativeDate) : '' }}
                   </span>
                 </p>

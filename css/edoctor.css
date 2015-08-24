@@ -866,6 +866,21 @@ ul.category li#Category_7 {
 	font-size:0.75em;
 	color:#aaa;
 }
+.article-listview {
+	width:100%;
+	background-color:#fff;
+}
+.article-listview h4 {
+	line-height:30px;
+}
+.article-listview span.count {
+	text-align:right;
+	font-size:0.75em;
+	color:#aaa;
+}
+.article-listview p a {
+	color:#49d7e3;
+}
 .article-tag {
 	border-top: 1px solid #e5e5e5;
 	padding:10px;
