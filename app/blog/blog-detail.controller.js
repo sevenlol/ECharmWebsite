@@ -11,6 +11,7 @@
         'article',
         'author',
         'commentList',
+        'commentUserList',
         'ratingList',
         'avgRating',
         'myFavArticle',
@@ -29,6 +30,7 @@
         article,
         author,
         commentList,
+        commentUserList,
         ratingList,
         avgRating,
         myFavArticle,
@@ -55,6 +57,7 @@
         vm.article = article;
         vm.author = author;
         vm.commentList = commentList;
+        vm.commentList = mergeCommentList(commentList, commentUserList);
         vm.ratingList = ratingList;
         vm.avgRating = avgRating;
 
@@ -442,6 +445,34 @@
             }
 
             return '';
+        }
+        
+        function mergeCommentList(commentList, commentUserList) {
+            if (!commentList || !angular.isArray(commentList) || commentList.length === 0) {
+                return null;
+            }
+
+            for (var i in commentList) {
+                if (!commentList[i] || !angular.isObject(commentList[i])) {
+                    continue;
+                }
+
+                if (commentUserList && angular.isArray(commentUserList) && commentUserList.length > 0) {
+
+                    for (var j in commentUserList) {
+                        if (!commentUserList[j]) {
+                            continue;
+                        }
+
+                        if (commentList[i].commenter_id === commentUserList[j].account_id) {
+                            commentList[i].user = commentUserList[j];
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return commentList;
         }
     }
 /*

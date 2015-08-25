@@ -152,7 +152,10 @@
               <!-- Sticker -->
               <img ng-show="comment.user.user_type !== 'DOCTOR'" ng-src="{{ (comment.user.user_info.sticker_url) ? comment.user.user_info.sticker_url : 'images/default-user-sticker.png'}}" alt="" class="img-circle" />
               <img ng-show="comment.user.user_type === 'DOCTOR'" ng-src="{{ (comment.user.user_info.sticker_url) ? comment.user.user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="" class="img-circle" />
+              <!--
               {{comment.user && comment.user.user_info ? comment.user.user_info.name : '' }}
+              -->
+              {{comment.user.user_info.name ? comment.user.user_info.name : comment.user.username }}
             </a>
             <!-- <i class="fa fa-venus"></i> -->
             <span>{{ comment.created_at ? (comment.created_at | relativeDate) : '' }}</span>

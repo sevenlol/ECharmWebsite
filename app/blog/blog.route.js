@@ -57,6 +57,7 @@
                 article : resolveArticle,
                 author : resolveAuthor,
                 commentList : resolveCommentList,
+                commentUserList : resolveCommentUserList,
                 ratingList : resolveRatingList,
                 avgRating : resolveAvgRating,
                 myFavArticle : resolveMyFavArticle
@@ -268,6 +269,41 @@
             try {
                 return blogCommentService
                            .readAllComment(category, id)
+                           .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
+        }
+
+        function resolveCommentUserList(commentList, memberUserService) {
+            if (!commentList || !memberUserService || !angular.isArray(commentList)) {
+                return null;
+            }
+
+            if (commentList.length === 0) {
+                return null;
+            }
+
+            var idList = [];
+            for (var i in commentList) {
+                if (!commentList[i] || !angular.isString(commentList[i].commenter_id) ||
+                    !commentList[i].commenter_id) {
+                    continue;
+                }
+
+                idList.push(commentList[i].commenter_id);
+            }
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            // read users
+            try {
+                return memberUserService
+                           .readUsers(idList)
                            .catch(failCallback);
             } catch(error) {
                 return null;
