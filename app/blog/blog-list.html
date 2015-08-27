@@ -156,7 +156,7 @@
     <!-- sidebar start -->
     <div class="col-lg-3 col-sm-4">
       <div id="side-bar">
-        <h3>{{vm.category}}的熱門文章</h3>
+        <h3>{{vm.categoryName}}的熱門文章</h3>
         <div class="panel-box">
           <ul class="faq-rocommend" ng-show="vm.popularBlogList && vm.popularBlogList[0]" ng-repeat="popularBlogRow1 in vm.popularBlogList[0]">
             <li><span>{{$index + 1}}</span><a ui-sref="blog.detail({ category : popularBlogRow1.article_category, articleId : popularBlogRow1.article_id })">{{ popularBlogRow1.article_title | limitTo : vm.popularBlogContentMaxLength }}</a></li>
