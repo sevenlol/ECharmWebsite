@@ -12,10 +12,11 @@
         'blogCategoryList',
         'blogTagList',
         'popularBlogList',
-        'popularDoctorList'
+        'popularDoctorList',
+        'blogSortOptionList'
     ];
 
-    function blogListController($stateParams, $filter, articleList, doctorList, blogCategoryList, blogTagList, popularBlogList, popularDoctorList) {
+    function blogListController($stateParams, $filter, articleList, doctorList, blogCategoryList, blogTagList, popularBlogList, popularDoctorList, blogSortOptionList) {
         var NUM_OF_ARTICLES_IN_ROW = 2;
         var SHOW_MORE_ARTICLE_STEP = 6;
         var POPULAR_BLOG_CONTENT_LENGTH_LIMIT = 20;
@@ -34,9 +35,13 @@
         vm.pageLimit = 6;
         vm.index = 0;
         vm.numOfArticles = countNumberOfArticles(vm.ArticleList);
-        vm.sortingIn = '-created_at';
-        vm.viewclass = 'list';
+        // vm.sortingIn = '-created_at';
+        vm.viewclass = 'module';
         vm.maxShowTag = 3;
+
+        vm.sortOptionList = blogSortOptionList;
+        vm.currentSortOption = blogSortOptionList ? blogSortOptionList[0].name : '-rating';
+
 
         vm.category = $stateParams.category;        
         // Copy from askdoctor but unavailable

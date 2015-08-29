@@ -29,6 +29,14 @@
             { name : 'Tag_5', text : '我餓了' },
             { name : 'Tag_6', text : 'aa' },
             { name : 'Tag_7', text : 'bb' }
-        ]);
+        ])
+		.value('blogSortOptionList', [
+            { name : '-rating', text: '平均評分〈高到低〉' },
+            { name : 'rating', text: '平均評分〈低到高〉' },
+            { name : '-created_date', text: '發問日期〈新到舊〉' },
+            { name : 'created_date', text: '發問日期〈舊到新〉' },
+            { name : '-click_count-0', text: '點擊數量〈高到低〉' },
+            { name : 'click_count-0', text: '點擊數量〈低到高〉' }
+        ]);	        
 
 })();

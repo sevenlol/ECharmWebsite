@@ -48,30 +48,30 @@
           <div class="nav nav-pills" >
 
           <!-- <p>依標籤搜尋：</p> -->
-
-          <ui-select multiple ng-model="vm.selectedTag" theme="select2" ng-disabled="disabled" style="width: 450px;">
+          <div class="row">
+          <ui-select multiple ng-model="vm.selectedTag" theme="select2" ng-disabled="disabled" class="col-md-6">
             <ui-select-match placeholder="依標籤搜尋...">{{$item.text}}</ui-select-match>
             <ui-select-choices repeat="tag in vm.blogTagList | filter:$select.search">
               {{tag.text}}
             </ui-select-choices>
           </ui-select>
 
-          <h6 class="pink-style search-title" ng-show="vm.updatedSearchText" >搜尋 {{vm.updatedSearchText}} 結果: 共{{vm.filteredArticleList.length}}篇相關文章
-          </h6>
-          {{vm.selectedTag.text}}
+            <table class="col-md-4">
+              <tr>
+                <td width=>
+                  排列：
+                </td>
+                <td>
+                  <select
+                     class="form-control"
+                     ng-model="vm.currentSortOption"
+                     ng-options="option.name as option.text for option in vm.sortOptionList">
+                  </select>
+                </td>
+              </tr>
+            </table>
 
-          </div>
-        <!-- TODO cancel this -->
-    	<!-- list -->
-    	<div class="article-list-box clearfix" >
-
-        <p class="row">
-            <div class="btn-group">
-                <label class="btn btn-primary" ng-model="vm.sortingIn" btn-radio="'-created_at'">最新</label>
-                <label class="btn btn-primary" ng-model="vm.sortingIn" btn-radio="'oldest'">熱門</label>
-                <label class="btn btn-primary" ng-model="vm.sortingIn" btn-radio="'-rating'">好評</label>
-            </div>
-            <div class="pull-right">
+            <div class="col-md-2">
               <div class="btn-group">
                 <label class="btn btn-info" ng-model="vm.viewclass" btn-radio="'module'">
                   <img src="images/view_module.png">
@@ -81,11 +81,23 @@
                 </label>
               </div>
             </div>
-        </p>
-        <!-- "question in (vm.filteredQuestionList = (vm.questionList | filter : vm.updatedSearchText | isAnsweredFilter : (vm.onlyShowUnAnsweredQuestion ? 'false' : '') )) | orderBy : vm.currentSortOption | limitTo : vm.pageLimit : vm.index " -->
+
+          </div>
+
+          <h6 class="pink-style search-title" ng-show="vm.updatedSearchText" >搜尋 {{vm.updatedSearchText}} 結果: 共{{vm.filteredArticleList.length}}篇相關文章
+          </h6>
+          {{vm.selectedTag.text}}
+
+
+
+          </div>
+        <!-- TODO cancel this -->
+    	<!-- list -->
+    	<div class="article-list-box clearfix" >
+
 
     <div class="row">
-		<span class="articel-group" ng-repeat="article in (vm.filteredArticleList = (vm.articleList | filter : vm.updatedSearchText|filter : {tag_arr: vm.selectedTag[0].text} |filter : {tag_arr: vm.selectedTag[1].text} |filter : {tag_arr: vm.selectedTag[2].text} |filter : {tag_arr: vm.selectedTag[3].text} |filter : {tag_arr: vm.selectedTag[4].text})) | orderBy: vm.sortingIn  | limitTo : vm.pageLimit : vm.index "  ng-show="vm.viewclass=='module'">
+		<span class="articel-group" ng-repeat="article in (vm.filteredArticleList = (vm.articleList | filter : vm.updatedSearchText|filter : {tag_arr: vm.selectedTag[0].text} |filter : {tag_arr: vm.selectedTag[1].text} |filter : {tag_arr: vm.selectedTag[2].text} |filter : {tag_arr: vm.selectedTag[3].text} |filter : {tag_arr: vm.selectedTag[4].text})) | orderBy: vm.currentSortOption  | limitTo : vm.pageLimit : vm.index "  ng-show="vm.viewclass=='module'">
 
         <!-- ng-repeat="question in (vm.filteredQuestionList = (vm.questionList | filter : vm.updatedSearchText)) | limitTo : vm.pageLimit : vm.index" -->
 
@@ -104,32 +116,32 @@
                     {{article.click_count-0}}次點閱 | {{ article.created_at ? (article.created_at | relativeDate) : '' }}
                 </p>
 
-        		<span class="article-tag" ng-repeat = "tagOfArticle in article.tag_arr | limitTo: 3">
-        		  <a href="#" class="btn round-btn">{{tagOfArticle}}</a>
+        		<span class="article-tag" ng-repeat = "tagOfArticle in article.tag_arr | limitTo: 3" >
+                <a class="btn round-btn">{{tagOfArticle}}</a>
+        		  
         		</span>
             </div>
 
 
 		</span>
 
-    </br ng-show="vm.viewclass=='list'">
-    <ul ng-repeat="article in (vm.filteredArticleList = (vm.articleList | filter : vm.updatedSearchText|filter : {tag_arr: vm.selectedTag[0].text} |filter : {tag_arr: vm.selectedTag[1].text} |filter : {tag_arr: vm.selectedTag[2].text} |filter : {tag_arr: vm.selectedTag[3].text} |filter : {tag_arr: vm.selectedTag[4].text})) | orderBy: vm.sortingIn  | limitTo : vm.pageLimit : vm.index "  ng-show="vm.viewclass=='list'" class="media-list">
+    <ul ng-repeat="article in (vm.filteredArticleList = (vm.articleList | filter : vm.updatedSearchText|filter : {tag_arr: vm.selectedTag[0].text} |filter : {tag_arr: vm.selectedTag[1].text} |filter : {tag_arr: vm.selectedTag[2].text} |filter : {tag_arr: vm.selectedTag[3].text} |filter : {tag_arr: vm.selectedTag[4].text})) | orderBy: vm.currentSortOption  | limitTo : vm.pageLimit : vm.index "  ng-show="vm.viewclass=='list'" class="media-list">
       
             <li class="media" ng-show="vm.viewclass=='list'">
               <a class="media-left" ui-sref="blog.detail({ category : article.category, articleId : article.article_id })">
-                <img src="images/articleimg-1.jpg" alt="" width="70" height="70">
+                <img src="images/articleimg-1.jpg" alt="" width="85" height="85">
               </a>
               <div class="media-body article-listview">
                 <div >
                 <h4 class="media-heading">
-                  <strong>{{article.title}}</strong>
-                  <span class="article-tag" ng-repeat = "tagOfArticle in article.tag_arr | limitTo: 3">
+                  <strong>　{{article.title}}</strong>
+                  <span class="article-tag-list" ng-repeat = "tagOfArticle in article.tag_arr | limitTo: 3">
                     <a href="#" class="btn round-btn">{{tagOfArticle}}</a>
                   </span>
                 </h4>
                 </div>
                 <p>
-                  <a  ui-sref="blog.detail({ category : article.category, articleId : article.article_id })">[繼續閱讀]</a>
+                  <a  ui-sref="blog.detail({ category : article.category, articleId : article.article_id })">　[繼續閱讀]</a>
                   <span class="count pull-right">
                     {{article.click_count-0}}次點閱 | {{ article.created_at ? (article.created_at | relativeDate) : '' }}
                   </span>
