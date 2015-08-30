@@ -20,10 +20,14 @@
         $urlRouterProvider.otherwise("/home");
 
         $stateProvider
-        .state('home', {
-            url: "/home",
-            templateUrl : 'app/layout/home.html'
-        });
+            .state('home', {
+                url: '/home',
+                templateUrl : 'app/layout/home.html'
+            })
+            .state('aboutus', {
+                url : '/aboutus',
+                templateUrl : 'app/layout/about-us.html'
+            });
 
         $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
         //disable IE ajax request caching

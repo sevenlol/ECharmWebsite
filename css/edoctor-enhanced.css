@@ -77,6 +77,9 @@ ul.doctor-list li p {
 .ask-kv-background {
   background-image: url(../images/askKV.jpg);
 }
+.about-kv-background {
+  background-image: url(../images/aboutKV.jpg);
+}
 
 /* signup success */
 
