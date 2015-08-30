@@ -25,7 +25,7 @@
         <div class="col-lg-5 col-md-5 cursor-pointer cl-effect-15" ui-sref="doctor.list({ category : 'all' })" ng-mouseover="vm.enterDoctorListLink()" ng-mouseleave="vm.leaveDoctorListLink()">
           <h1><a data-hover="歡迎來到 醫創網">歡迎來到 醫創網</a></h1>
           <p><a data-hover="目前已有駐站醫師72位，提供您專業諮詢">目前已有駐站醫師72位，提供您專業諮詢</a></p>
-          <p class="instruction-text"><span ng-show="vm.showInstruction">點擊以觀看駐站醫師列表</span></p>
+          <p><a class="btn round-btn" ui-sref="doctor.list({ category : 'all' })">看看有哪些醫生 »</a></p>
         </div>
 
       </div>
@@ -52,30 +52,42 @@
 </section>
 
 <!-- ask a question -->
-<section class="container-fluid ask">
+<section class="container-fluid ask parallax-container parallax-background ask-kv-background" parallax-background parallax-ratio="0.2">
   <div class="container">
     <div class="row">
-      <div class="col-lg-12 text-center">
+
+      <div class="col-lg-8 col-lg-offset-2 text-center ask-box">
         <h2>醫生，我有問題想問</h2>
-        <form class="form-inline">
+
+        <form role="form">
           <div class="form-group">
-            <select class="form-control input-lg">
-              <option>皮膚</option>
-              <option>醫美</option>
-              <option>整外</option>
-              <option>婦產</option>
-              <option>小兒</option>
-              <option>其他</option>
-            </select>
             <label for="search" class="sr-only">發問</label>
-            <div class="input-group">
-              <input type="search" class="form-control input-lg" placeholder="輸入問題，例如：減肥、生理痛" size="50">
-              <span class="input-group-btn">
-                <button class="btn btn-info btn-lg" type="submit"><i class="fa fa-search"></i> 發問</button>
-              </span>
+            <textarea class="form-control input-lg" rows="5" placeholder="請詳細描述您的症狀、疾病和身體狀況（10字以上），方便醫生了解您的情況" type="search"></textarea>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+              <select class="form-control input-lg" type="ask-type">
+                <option>選擇問題類型</option>
+                <option>皮膚科</option>
+                <option>醫學美容</option>
+                <option>整形外科</option>
+                <option>婦產科</option>
+                <option>小兒科</option>
+                <option>其他</option>
+              </select>
+            </div>
+
+            <!-- <div class="col-lg-3 col-sm-3 col-xs-12 p-top">
+              <button class="btn btn-default btn-lg" type="submit"><i class="fa fa-camera"></i> 插入圖片</button>
+            </div> -->
+
+            <div class="col-lg-6 col-sm-6 col-xs-12 p-top">
+              <button class="btn btn-info btn-lg btn-block" type="submit"><i class="fa fa-paper-plane"></i> 發問送出</button>
             </div>
           </div>
         </form>
+
       </div>
     </div>
   </div>
@@ -103,83 +115,58 @@
 
       <div class="col-lg-4 col-sm-4 col-lg-4 text-center">
         <div class="do-what-icon-3"></div>
-        <h4>找醫美診所/月子中心</h4>
-        <p class="grey-style-1">由醫創網為您推薦<br />優質的醫美診所/月子中心</p>
-        <p><a class="btn round-btn" href="#" role="button">快來找找</a></p>
+        <h4>查看駐站醫師們</h4>
+        <p class="grey-style-1">提供駐站醫師們的基本資料供您參考<br /><br /></p>
+        <p><a class="btn round-btn" href="javascript:void(0)" role="button" ui-sref="doctor.list({ category : 'all'})">快來找找</a></p>
       </div>
     </div>
   </div>
 </section>
 
-<div class="subkv parallax-container parallax-background sub-kv-background" parallax-background parallax-ratio="0.4"></div>
+<!-- <div class="subkv parallax-container parallax-background sub-kv-background" parallax-background parallax-ratio="0.4"></div> -->
 
-<!-- our service & vision  -->
-<section class="container-fluid">
-
-  <!-- our vision 1 column -->
-  <div class="container vision">
-    <div class="col-lg-8 col-lg-offset-2">
-
-      <h2 class="text-center">我們的願景</h2>
-      <blockquote class="text-center"><em>隨著互聯時代時代的開啟，醫病互動產生了鉅大的影響：<br />民眾可以藉由網路得到更即時與方便的的醫療服務，因此身為年輕醫師我們也不能故步自封，應該帶領民眾走向新的醫療世紀</em></blockquote>
-
-      <div class="col-lg-12 visionblock clearfix">
-        <h4>1. 大數據時代 <i class="fa fa-cloud-upload"></i></h4>
-        <p class="grey-style-1">【民眾自己產生的問題】，我們回答，這樣的資料叫做”open-data analysis”，當數量大後這樣的資料將產生巨大價值，能夠利用於自動化診斷與篩檢民眾疾病，使民眾未來看病更加方便！</p>
-      </div>
-
-      <div class="col-lg-12 visionblock clearfix">
-        <h4>2. 互聯網時代 <i class="fa fa-globe"></i></h4>
-        <p class="grey-style-1">很多醫療產品如雨後春筍般形成，而台灣的醫療算是發展相當成熟，不輸歐美，藉由未來的醫療隨身穿戴配備，民眾將可得到更即時的血壓、血糖、呼吸、心跳等資訊，這對於未來民眾常見的慢性疾病如【高血壓】與【糖尿病】等有非常大的價值。</p>
-      </div>
-
-      <p class="text-center clearfix">
-        <br />
-        這些服務，都是醫創團隊未來想做的。我們為何有自信辦的到？<br />
-        因為我們結合了全台灣最優秀的一群年輕人，從醫生到台清交碩士、博士工程師，都是我們擁有的人力資源。<br />
-        本公司有醫師後台諮詢、網站與醫療隨身穿戴配戴裝置開發的能力，這些人力資源是公司未來最重要的資產！<br />
-        所以我們有自信能帶領民眾走向全新的醫療革命、提供給民眾更加快速與便利的醫療服務。
-      </p>
-
-    </div>
-  </div>
-</section>
-
-<!-- our service 3 column -->
-<section class="container-fluid service">
+<!-- our service 3 row -->
+<section class="container-fluid service servicebg1 mobile-hidden-1">
   <div class="container">
     <div class="row">
-      <h2 class="text-center">我們的服務</h2>
-
-      <div class="col-lg-4 col-sm-4">
-        <h3>1. 學到更多 <span class="glyphicon glyphicon-arrow-right"></span></h3>
-        <p>透過醫創團隊的醫療文章與未來舉辦的實體健康衛教演講，您將可學到最正確的醫療知識！</p>
+      <div class="col-lg-7 col-sm-7 col-lg-offset-2">
+        <h3>學到更多</h3>
+        <p>透過醫創團隊把關的醫療文章與舉辦的實體衛教演講，您將可學到最正確的醫療知識！</p>
         <p>
           還在聽信網路上不正確的醫療健康流言嗎？<br />
           快點加入醫創會員給您最正確的醫療知識！
         </p>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="col-lg-4 col-sm-4">
-        <h3>2. 得到幫助 <span class="glyphicon glyphicon-arrow-right"></span></h3>
+<section class="container-fluid service servicebg2 mobile-hidden-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 col-sm-7 col-lg-offset-5 col-sm-offset-5">
+        <h3>得到幫助</h3>
         <p>有醫療問題嗎? 來醫創網問吧！</p>
         <p>
           醫創團隊嚴格要求線上Q&amp;A的效率，針對此在線上回答的都具有醫師執照！<br />
           您能透過與醫師一對一的線上交流得到最快速的醫療建議，做出更周全的醫療選擇。
         </p>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="col-lg-4 col-sm-4">
-        <h3>3. 立刻行動 <span class="glyphicon glyphicon-check"></span></h3>
+<section class="container-fluid service servicebg3 mobile-hidden-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 col-sm-7 col-lg-offset-2">
+        <h3>立刻行動</h3>
         <p>得到醫療建議後，就立刻行動吧！</p>
         <p>
           醫師給您的建議將能讓你更精確掌握自己的健康狀況，<br />
           採取行動，讓每一天的自己都更健康。
         </p>
       </div>
-
     </div>
-    <!-- AD -->
-    <div class="adblock img-responsive"><a href="#"><img src="images/ad.jpg" /></a></div>
   </div>
 </section>

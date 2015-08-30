@@ -10,9 +10,9 @@
         <div class="col-lg-3 col-sm-3 hidden-xs">
         	<ul class="quicklink">
         		<li><a href"#"><i class="fa fa-facebook"></i></a></li>
-        		<!-- 
+        		<!--
             簡繁轉換
-            <li><a href"#">簡</a></li> 
+            <li><a href"#">簡</a></li>
             -->
         	</ul>
         </div>
@@ -31,8 +31,14 @@
 
       <div id="logo">
         <a ui-sref="home" class="navbar-brand" title="醫創網">醫創網</a>
-        <p class="hidden-xs">台灣第一個由<span class="blue-style-1">醫</span>師<span class="blue-style-1">創</span>建的醫療資訊與即時互動平台</p>
+        <p class="hidden-xs">由<span class="blue-style-1">醫</span>師<span class="blue-style-1">創</span>建的醫療資訊與即時互動平台</p>
       </div>
+    </div>
+
+    <div class="navbar-nav btn-group menulink btn-group-lg">
+      <button type="button" class="btn btn-default navbar-btn" ui-sref="askdoctor.home">問問題</button>
+      <button type="button" class="btn btn-default navbar-btn" ui-sref="blog.home">看文章</button>
+      <button type="button" class="btn btn-default navbar-btn" ui-sref="doctor.list({ category : 'all' })">找醫生</button>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse" collapse="vm.isCollapsed">
@@ -42,7 +48,7 @@
         <li><a ui-sref="account.signup.doctor" ng-click="vm.collapse()">註冊</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right topnav">
-        <h3>我是一般民眾</h3>
+        <h3>我是民眾</h3>
         <li><a ui-sref="account.signin.user" ng-click="vm.collapse()">登入</a></li>
         <li><a ui-sref="account.signup.user" ng-click="vm.collapse()">註冊</a></li>
       </ul>
