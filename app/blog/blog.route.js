@@ -60,7 +60,8 @@
                 commentUserList : resolveCommentUserList,
                 ratingList : resolveRatingList,
                 avgRating : resolveAvgRating,
-                myFavArticle : resolveMyFavArticle
+                myFavArticle : resolveMyFavArticle,
+                authorArticleList : resolveAuthorArticleList
             },
             templateUrl : 'app/blog/blog-detail.html',
             controller : 'blogDetailController',
@@ -147,6 +148,31 @@
                 return blogArticleService
                            .readArticleInCategory(category)
                            .catch(failCallback);
+            } catch(error) {
+                return null;
+            }
+
+            return null;
+        }
+
+        function resolveAuthorArticleList($stateParams, article, blogArticleService) {
+            if (!article || !article.author_id || !blogArticleService) {
+                return null;
+            }
+
+            // TODO verify category
+            var category = $stateParams.category;
+
+            console.log('Author ID: ' + article.author_id);
+
+            var failCallback = function(error) {
+                return null;
+            };
+
+            try {
+                return blogArticleService
+                            .readArticleByAuthorId(category, article.author_id)
+                            .catch(failCallback);
             } catch(error) {
                 return null;
             }

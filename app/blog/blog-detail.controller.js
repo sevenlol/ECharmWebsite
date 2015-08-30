@@ -20,7 +20,8 @@
         'blogRatingService',
         'blogCommentService',
         'blogArticleContentService',
-        'favoriteMeService'
+        'favoriteMeService',
+        'authorArticleList'
     ];
 
     function blogDetailController(
@@ -39,7 +40,8 @@
         blogRatingService,
         blogCommentService,
         blogArticleContentService,
-        favoriteMeService) {
+        favoriteMeService,
+        authorArticleList) {
 
         var DATE_FORMAT = 'yyyy-MM-ddTHH:mmZ';
         var MALE_STRING = 'MALE';
@@ -68,8 +70,8 @@
 
         vm.hoverOverRating = hoverOverRating;
         vm.collapseMyRatingBar = collapseMyRatingBar;
-
-
+        vm.authorArticleList = authorArticleList;
+        //console.log("Author Airticle List " + authorArticleList);
         vm.min = 10;
         vm.commentSubmitted = false;
         vm.commentStatusMessage = {
