@@ -7,12 +7,20 @@
     accountMeUserEditController.$inject = [
         'user',
         'memberUserService',
+        'locationList',
         '$rootScope',
         '$state',
         'Logger'
     ];
 
-    function accountMeUserEditController(user, memberUserService, $rootScope, $state, Logger) {
+    function accountMeUserEditController(
+        user,
+        memberUserService,
+        locationList,
+        $rootScope,
+        $state,
+        Logger) {
+
         var MALE_STRING = 'MALE';
         var FEMALE_STRING = 'FEMALE';
         var ARBITRARY_GENDER_STRING = 'ARBITRARY';
@@ -29,6 +37,8 @@
 
         vm.user = user;
         vm.updateMyInfo = updateMyInfo;
+        vm.locationList = locationList;
+        vm.selectedAddress = (vm.user && vm.user.user_info) ? vm.user.user_info.address : '';
 
         if (!vm.user) {
             // TODO error handle
@@ -52,7 +62,7 @@
                 return function(account) {
                     logger.log('updateMyInfo', 'Update my account information successfully!');
                     $rootScope.authenticated = true;
-                    $state.go('account.me.user.detail');
+                    $state.go('account.me.user.detail', { reload : true });
                 };
             })($rootScope, $state, logger);
 
@@ -71,6 +81,11 @@
                 // all fields null
                 logger.error('updateMyInfo', 'All fields missing! Please enter something!');
                 return;
+            }
+
+            // set selected address
+            if (vm.selectedAddress) {
+                info.address = vm.selectedAddress;
             }
 
             // copy

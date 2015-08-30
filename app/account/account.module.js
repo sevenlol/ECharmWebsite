@@ -4,6 +4,7 @@
     angular.module('app.account', [
         'ui.router',
         'ui.bootstrap',
+        'ui.select',
         'ngAnimate',
         'angular-parallax',
         'app.auth',

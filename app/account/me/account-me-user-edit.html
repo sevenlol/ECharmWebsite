@@ -37,9 +37,24 @@
             <th>電話</th>
             <td><input type="text" class="form-control input-md" id="Username" ng-model="vm.user.user_info.phone_number"></td>
           </tr>
-          <tr>
+          <!-- <tr>
             <th>地址</th>
             <td><input type="text" class="form-control input-md" id="Username" ng-model="vm.user.user_info.address"></td>
+          </tr> -->
+          <tr>
+            <th>地區</th>
+            <td>
+              <ui-select ng-model="vm.selectedAddress"
+                theme="bootstrap"
+                reset-search-input="true"
+                style="width: 300px;">
+                <ui-select-match
+                  placeholder="輸入地區...">{{ $select.selected.name }}</ui-select-match>
+                <ui-select-choices repeat="location.name as location in vm.locationList | filter : $select.search">
+                  <div ng-bind-html="location.text | highlight: $select.search"></div>
+                </ui-select-choices>
+              </ui-select>
+            </td>
           </tr>
           <tr>
             <th>信箱</th>
