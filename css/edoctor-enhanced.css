@@ -96,16 +96,17 @@ ul.doctor-list li p {
 .signup-msg-box h2 {
   color:#ffffff;
   font-weight:normal;
-  font-size:2m;
+  font-size:2em;
   padding-bottom:6px;
   border-bottom:1px solid #fff;
   display: inline-block;
 }
 .signup-msg-box h3 {
-  color:#49d7e3;
-  font-size:0.8em;
-  margin-bottom:6px;
-  text-align:left;
+  color:#ffffff;
+  font-weight:normal;
+  font-size:2em;
+  padding-bottom:6px;
+  display: inline-block;
 }
 .signup-msg-box p {
   color:#ffffff;

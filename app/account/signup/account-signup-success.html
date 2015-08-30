@@ -11,6 +11,7 @@
 
         <h2>{{ vm.varObj.smallTitle }}</h2>
         <h1>{{ vm.varObj.largeTitle }}</h1>
+        <h3 ng-if="vm.varObj.mediumTitle">{{ vm.varObj.mediumTitle}}</h3>
 
         <ul class="list-inline">
           <li ng-show="vm.userType === vm.userTypeConst.doctor"><button ui-sref="account.signin.doctor" class="signup-btn signup-btn-fill">{{ vm.varObj.leftBtnText }}</button></li>

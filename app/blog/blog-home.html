@@ -50,14 +50,14 @@
     <!-- sidebar start -->
     <div class="col-lg-3 col-sm-4">
       <div id="side-bar">
-        <h3>常見相關問題</h3>
+        <h3>熱門文章</h3>
 
         <accordion close-others="vm.oneAccordionAtATime">
           <accordion-group heading="{{category.text}}" is-open="false" is-disabled="false" ng-repeat="category in vm.categoryList" ng-show="category.display !== 'none'">
             <ul class="faq-rocommend">
-              <li><span>A</span><a href="#">如果要瘦臉.大腿內側.肚子要怎麼做</a></li>
-              <li><span>A</span><a href="#">睡覺鼻塞怎麼辦?</a></li>
-              <li><span>A</span><a href="#">女生便秘是常見的事…？怎麼解決</a></li>
+              <li ng-repeat="article in vm.popularArticleList[category.name]">
+                <span>A</span><a ui-sref="blog.detail({ category : category.name, articleId : article.article_id })">{{ article.article_title | limitTo : vm.articleTitleLimit}} {{ article.article_title.length > vm.articleTitleLimit ? '...' : '' }}</a>
+              </li>
             </ul>
           </accordion-group>
         </accordion>

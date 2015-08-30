@@ -25,6 +25,7 @@
         var userVarObj = {
             smallTitle : '您已經註冊成功',
             largeTitle : '馬上登入來使用本站服務',
+            mediumTitle : '登入後別忘記到右上角個人頁面修改資料',
             leftBtnText : '我要登入',
             rightBtnText : '回到首頁'
         };
