@@ -14,6 +14,8 @@
               description : [ '月經異常、經痛、避孕安全期', '等問題來此發問' ], intro_icon_url : 'images/3.jpg' },
             { name : 'obstetrics', text : '產科', display : 'right', background_url : 'images/cate-4.jpg',
               description : [ '媽媽懷孕前後的各個問題', '來此發問' ], intro_icon_url : 'images/1.jpg' },
+            { name : 'dermatology', text : '皮膚科', display : 'left', background_url : 'images/cate-5.jpg',
+              description : [ '專業醫師跟您講如何做', '皮膚保養與常見皮膚病' ], intro_icon_url : 'images/1.jpg' },
             { name : 'pediatrics', text : '小兒科', display : 'right', background_url : 'images/cate-6.jpg',
               description : [ '由專業醫師為您解答', '寶寶照顧中的所有問題' ], intro_icon_url : 'images/1.jpg' },
             { name : 'others', text : '其他醫學文章', display : 'full-nopadding', background_url : 'images/cate-7.jpg',
