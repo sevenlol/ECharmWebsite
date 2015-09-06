@@ -85,6 +85,7 @@
         // merge doctorList, userList, categoryList to questionList
         vm.questionList = mergeQuestionList(questionList, doctorList, userList, askdoctorCategoryList, accountCategoryNameTextList);
         vm.questionList = mergeMyQuestionList(vm.questionList, myQuestionList, askdoctorCategoryList, myAccount);
+        console.log(JSON.stringify(vm.questionList, null, 2));
         vm.collapseQuestion = collapseQuestion;
         vm.askQuestion = askQuestion;
 
@@ -255,7 +256,7 @@
 
         function resetPageParameters() {
             vm.index = 0;
-            vm.pageLimit = 1;
+            vm.pageLimit = 5;
             if (vm.questionList && angular.isArray(vm.questionList) && vm.questionList.length > 0) {
                 for (var i in vm.questionList) {
                     if (vm.questionList[i]) {
@@ -353,7 +354,6 @@
                     }
                 }
             }
-
 
             // for sorting
             var oldDate = new Date('1970-01-01');
@@ -463,9 +463,8 @@
             }
 
             if (!questionList || !angular.isArray(questionList) || questionList.length === 0) {
-                return myQuestionList;
+                questionList = myQuestionList;
             }
-
 
             // for sorting
             var oldDate = new Date('1970-01-01');
