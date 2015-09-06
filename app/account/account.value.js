@@ -4,8 +4,13 @@
     angular
         .module('app.account')
         .value('accountCategoryList', [
-            { name : 'Category_1', text : '類別1' },
-            { name : 'Category_2', text : '類別2' }
+            { name : 'PGY', text : '不分科' },
+            { name : 'plasticsurgeon', text : '整形外科' },
+            { name : 'cosmeticsurgeon', text : '醫學美容' },
+            { name : 'dermatologist', text : '皮膚科' },
+            { name : 'pediatrician', text : '小兒科' },
+            { name : 'OBSGYN', text : '婦產科' },
+            { name : 'others', text : '其他醫師' }
         ])
         .value('locationList', [
             { name : '基隆市', text : '基隆市' },
