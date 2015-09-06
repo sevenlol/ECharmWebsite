@@ -463,7 +463,7 @@
             }
 
             if (!questionList || !angular.isArray(questionList) || questionList.length === 0) {
-                questionList = myQuestionList;
+                questionList = [];
             }
 
             // for sorting
