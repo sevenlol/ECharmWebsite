@@ -1,4 +1,4 @@
-<div class="container-fluid" ng-controller="homeController as vm">
+<div class="container-fluid">
   <div class="main-kv parallax-container parallax-background main-kv-background" parallax-background parallax-ratio="0.4" ng-class="{ true: 'main-kv-auth', false : 'main-kv-notauth' }[authenticated]">
     <div class="container">
       <div class="row">
@@ -59,22 +59,19 @@
       <div class="col-lg-8 col-lg-offset-2 text-center ask-box">
         <h2>醫生，我有問題想問</h2>
 
-        <form role="form">
+        <form role="form" name="vm.questionForm" novalidate>
           <div class="form-group">
             <label for="search" class="sr-only">發問</label>
-            <textarea class="form-control input-lg" rows="5" placeholder="請詳細描述您的症狀、疾病和身體狀況（10字以上），方便醫生了解您的情況" type="search"></textarea>
+            <textarea ng-show="authenticated" name="questionText" class="form-control input-lg" ng-model="vm.questionText" ng-minlength="vm.questionMin" required rows="5" placeholder="請詳細描述您的症狀、疾病和身體狀況（10字以上），方便醫生了解您的情況"></textarea>
+            <textarea ng-show="!authenticated" class="form-control input-lg" rows="5" placeholder="請先登入以發表問題" disabled></textarea>
           </div>
 
           <div class="row">
             <div class="col-lg-6 col-sm-6 col-xs-12">
-              <select class="form-control input-lg" type="ask-type">
-                <option>選擇問題類型</option>
-                <option>皮膚科</option>
-                <option>醫學美容</option>
-                <option>整形外科</option>
-                <option>婦產科</option>
-                <option>小兒科</option>
-                <option>其他</option>
+              <select class="form-control input-lg" type="ask-type"
+                ng-disabled="!authenticated"
+                ng-model="vm.selectedCategory"
+                ng-options="category.name as category.text for category in vm.askdoctorCategoryList">
               </select>
             </div>
 
@@ -83,8 +80,13 @@
             </div> -->
 
             <div class="col-lg-6 col-sm-6 col-xs-12 p-top">
-              <button class="btn btn-info btn-lg btn-block" type="submit"><i class="fa fa-paper-plane"></i> 發問送出</button>
+              <button ng-disabled="!authenticated" class="btn btn-info btn-lg btn-block" type="submit" ng-click="vm.askQuestion()"><i class="fa fa-paper-plane"></i> 發問送出</button>
             </div>
+          </div>
+
+          <div class="row">
+            <p class="pull-left pink-style comment-error" ng-show="vm.questionSubmitted && vm.questionForm.questionText.$invalid">問題內容字數至少要十個字以上</p>
+            <p class="pull-left comment-error" ng-class="{ true : 'blue-style-1', false : 'pink-style' }[ vm.statusMessage && vm.statusMessage.type ==='success' ]" ng-show="!vm.questionSubmitted && vm.statusMessage.isShown">{{ vm.statusMessage.message }}</p>
           </div>
         </form>
 

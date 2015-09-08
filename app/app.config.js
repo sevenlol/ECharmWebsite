@@ -22,7 +22,9 @@
         $stateProvider
             .state('home', {
                 url: '/home',
-                templateUrl : 'app/layout/home.html'
+                templateUrl : 'app/layout/home.html',
+                controller : 'homeController',
+                controllerAs : 'vm'
             })
             .state('aboutus', {
                 url : '/aboutus',
