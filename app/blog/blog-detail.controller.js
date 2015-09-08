@@ -8,6 +8,7 @@
         '$stateParams',
         '$rootScope',
         '$filter',
+        '$window',
         'article',
         'author',
         'commentList',
@@ -28,6 +29,7 @@
         $stateParams,
         $rootScope,
         $filter,
+        $window,
         article,
         author,
         commentList,
@@ -155,6 +157,12 @@
         console.log(JSON.stringify(author, null, 2));
         console.log("Author: " + author);
         /* public functions */
+
+        vm.goBack = goBack;
+
+        function goBack() {
+            $window.history.back();
+        }
 
         function hoverOverRating(value) {
             if (vm.ratingList && vm.ratingList.length) {

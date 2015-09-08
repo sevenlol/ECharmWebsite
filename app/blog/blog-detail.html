@@ -42,7 +42,7 @@
 
     <!-- article start -->
     <div class="article-full-block">
-      <div id="back" class="hidden-md hidden-sm hidden-xs"><a href="article-index.html">返回</a></div>
+      <div id="back" class="hidden-md hidden-sm hidden-xs"><a ng-click="vm.goBack()">返回</a></div>
 
       <div class="article-author">Written By: <a ui-sref="doctor.detail({ category : vm.author.user_info.category, doctorId : vm.author.account_id })">{{ vm.author.user_info.name }} 醫師</a> {{vm.article.created_at | relativeDate }} | Taged In: <a ng-repeat="tag in vm.article.tag_arr"> {{tag}} </a>
        <!-- <div class="satisfy pull-right">滿意度 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></div> -->
