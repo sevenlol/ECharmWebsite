@@ -121,7 +121,7 @@
             this.refs.splice(index, 1);
             return this;
         };
-        ArticleContentBuilder.prototype.addHeadingBlock = function(size, content) {
+        ArticleContentBuilder.prototype.addHeadingBlock = function(size, content, color) {
             if (!angular.isNumber(size)) {
                 return this;
             }
@@ -130,9 +130,14 @@
                 return this;
             }
 
+            if (!color || !angular.isString(color)) {
+                return this;
+            }
+
             var heading = {
                 block_type : BLOCK_TYPE.HEADING,
                 heading_size : size,
+                heading_color : color,
                 block_content : content
             };
 
@@ -450,6 +455,10 @@
             }
 
             if (!block.block_content || !angular.isString(block.block_content)) {
+                return false;
+            }
+
+            if (!block.heading_color || !angular.isString(block.heading_color)) {
                 return false;
             }
 
