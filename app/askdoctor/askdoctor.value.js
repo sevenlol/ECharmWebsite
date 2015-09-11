@@ -22,14 +22,14 @@
               background_url : 'images/cate-7.jpg', description : [] }
         ])
         .value('askdoctorSortOptionList', [
-            { name : '-avgRating', text: '平均評分〈高到低〉' },
-            { name : 'avgRating', text: '平均評分〈低到高〉' },
-            { name : '-commentCount', text: '評論數量〈高到低〉' },
-            { name : 'commentCount', text: '評論數量〈低到高〉' },
             { name : '-created_date', text: '發問日期〈新到舊〉' },
-            { name : 'created_date', text: '發問日期〈舊到新〉' },
+            /*{ name : 'created_date', text: '發問日期〈舊到新〉' },*/
             { name : '-answer_date', text: '回答日期〈新到舊〉' },
-            { name : 'answer_date', text: '回答日期〈舊到新〉' }
+            /*{ name : 'answer_date', text: '回答日期〈舊到新〉' }*/
+            { name : '-avgRating', text: '平均評分〈高到低〉' },
+            /*{ name : 'avgRating', text: '平均評分〈低到高〉' },*/
+            { name : '-commentCount', text: '評論數量〈高到低〉' }/*,
+            { name : 'commentCount', text: '評論數量〈低到高〉' }*/
         ]);
 
 })();
