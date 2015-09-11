@@ -62,7 +62,7 @@
         <form role="form" name="vm.questionForm" novalidate>
           <div class="form-group">
             <label for="search" class="sr-only">發問</label>
-            <textarea ng-show="authenticated" name="questionText" class="form-control input-lg" ng-model="vm.questionText" ng-minlength="vm.questionMin" required rows="5" placeholder="請詳細描述您的症狀、疾病和身體狀況（10字以上），方便醫生了解您的情況"></textarea>
+            <textarea ng-show="authenticated" name="questionText" class="form-control input-lg" ng-model="vm.questionText" ng-minlength="vm.questionLengthMin" required rows="5" placeholder="請詳細描述您的症狀、疾病和身體狀況（10字以上），方便醫生了解您的情況"></textarea>
             <textarea ng-show="!authenticated" class="form-control input-lg" rows="5" placeholder="請先登入以發表問題" disabled></textarea>
           </div>
 
