@@ -1,5 +1,5 @@
 <!-- Not Authenticated Nav -->
-<nav class="navbar navbar-default navbar-fixed-top" ng-controller="headerController as vm" ng-show="!authenticated">
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="headerController as vm">
   <div class="topbar">
     <div class="container">
       <div class="row">
@@ -9,7 +9,7 @@
 
         <div class="col-lg-3 col-sm-3 hidden-xs">
         	<ul class="quicklink">
-        		<li><a href"#"><i class="fa fa-facebook"></i></a></li>
+        		<li><a href="https://www.facebook.com/eCharmCorp" target="_blank"><i class="fa fa-facebook"></i></a></li>
         		<!--
             簡繁轉換
             <li><a href"#">簡</a></li>
@@ -35,12 +35,18 @@
       </div>
     </div>
 
+    <!-- quick menu -->
     <div class="navbar-nav btn-group menulink btn-group-lg">
       <button type="button" class="btn btn-default navbar-btn" ui-sref="askdoctor.home">問問題</button>
       <button type="button" class="btn btn-default navbar-btn" ui-sref="blog.home">看文章</button>
       <button type="button" class="btn btn-default navbar-btn" ui-sref="doctor.list({ category : 'all' })">找醫生</button>
     </div>
+    <!-- end of quick menu -->
 
+
+
+    <!-- show when unauthenticated -->
+    <nav ng-show="!authenticated">
     <div id="navbar" class="navbar-collapse collapse" collapse="vm.isCollapsed">
    	  <ul class="nav navbar-nav navbar-right topnav">
         <h3>我是醫生</h3>
@@ -53,32 +59,15 @@
         <li><a ui-sref="account.signup.user" ng-click="vm.collapse()">註冊</a></li>
       </ul>
     </div>
-  </div>
-</nav>
+    </nav>
 
-<!-- Authenticated Nav -->
-<nav class="navbar navbar-default navbar-fixed-top" ng-show="authenticated" ng-controller="headerController as vm">
-  <div class="container hd-small">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" ng-click="vm.isCollapsed = !vm.isCollapsed">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <div id="logo">
-        <a ui-sref="home" class="navbar-brand" title="醫創網">醫創網</a>
-        <p class="hidden-xs">台灣第一個由<span class="blue-style-1">醫</span>師<span class="blue-style-1">創</span>建的醫療資訊與即時互動平台</p>
-      </div>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse navbar-right" collapse="vm.isCollapsed">
-
+    <!-- show when authenticated -->
+    <nav ng-show="authenticated">
+    </br>
+      <div class="collapse navbar-collapse navbar-right" collapse="vm.isCollapsed" >
       <ul class="nav navbar-nav">
         <li class="dropdown user-thumb" dropdown>
-          <a href="#" class="dropdown-toggle" dropdown-toggle role="button" aria-expanded="false">
+          <a href="javascript:void(0)" class="dropdown-toggle" dropdown-toggle role="button" aria-expanded="false">
             <img ng-show="account.user_type === 'USER'" ng-src="{{ (account.user_info.sticker_url) ? account.user_info.sticker_url : 'images/default-user-sticker.png'}}" alt="" class="img-circle" />
             <img ng-show="account.user_type === 'DOCTOR'" ng-src="{{ (account.user_info.sticker_url) ? account.user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="" class="img-circle" />
             {{ (account && account.user_info && account.user_info.name) ? account.user_info.name : account.username }}
@@ -92,12 +81,12 @@
             <li ng-show="account.user_type !== 'DOCTOR'"><a ui-sref="account.me({ detailCategory : 'favArticle' })" ui-sref-opts="{ reload : true }" ng-click="vm.collapse()">收藏文章</a></li>
             <li ng-show="account.user_type !== 'DOCTOR'"><a ui-sref="account.me({ detailCategory : 'favQA' })" ui-sref-opts="{ reload : true }" ng-click="vm.collapse()">收藏問答</a></li>
             <li class="divider" ng-click="vm.collapse()"></li>
-            <li><a href="#" ng-click="vm.collapse()">切換簡體</a></li>
-            <li><a href="#" ng-click="vm.signOut()" ng-click="vm.collapse()">登出</a></li>
+            <!-- <li><a href="javascript:void(0)" ng-click="vm.collapse()">切換簡體</a></li> -->
+            <li><a href="javascript:void(0)" ng-click="vm.signOut()" ng-click="vm.collapse()">登出</a></li>
           </ul>
         </li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-
-  </div><!-- /.container-fluid -->
+    </div>
+    </nav>
+  </div>
 </nav>

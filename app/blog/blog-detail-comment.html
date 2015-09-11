@@ -5,7 +5,7 @@
     <textarea class="form-control" rows="4" placeholder="請登錄以評論" ng-show="!authenticated" readonly></textarea>
     <div><p class="pull-left pink-style comment-error" ng-show="vm.commentSucc">評論已發布</p></div>
     <div><p class="pull-left pink-style comment-error" ng-show="!vm.commentSucc">{{vm.commentMessage}}</p></div>
-    <div class="pull-right"><a href="#"><button class="btn round-btn" type="button" ng-show="authenticated" ng-click="vm.commentThisArticle()" ui-sref="blog.detail.comment({ category : vm.category, articleId : vm.articleId })">發表評論</button></div>
+    <div class="pull-right"><a href="javascript:void(0)"><button class="btn round-btn" type="button" ng-show="authenticated" ng-click="vm.commentThisArticle()" ui-sref="blog.detail.comment({ category : vm.category, articleId : vm.articleId })">發表評論</button></div>
   </form>
 -->
 </div>
@@ -13,7 +13,7 @@
 	<div class="row" ng-show="!authenticated || acount.user_type !== 'DOCTOR' || vm.commentList">
         <div class="col-lg-2 col-sm-2">
           <div class="user-thumb-md">
-            <a href="#" class="doc-profile">
+            <a href="javascript:void(0)" class="doc-profile">
               <!-- Sticker -->
               <img ng-show="vm.myAccount.user_type !== 'DOCTOR'" ng-src="{{ (vm.myAccount.user_info.sticker_url) ? vm.myAccount.user_info.sticker_url : 'images/default-user-sticker.png'}}" alt="" class="img-circle" />
               <img ng-show="vm.myAccount.user_type === 'DOCTOR'" ng-src="{{ (vm.myAccount.user_info.sticker_url) ? vm.myAccount.user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="" class="img-circle" />

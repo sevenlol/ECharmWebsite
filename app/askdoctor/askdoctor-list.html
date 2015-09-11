@@ -18,11 +18,11 @@
       <ul class="nav nav-tabs">
         <li role="navigation" ng-class="{true: 'active'}[vm.category === category.name]" ng-repeat="category in vm.categoryList"><a ui-sref="askdoctor.list({ category : category.name })">{{category.text}}</a></li>
         <!-- <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">其他醫學問題 <span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)" role="button" aria-expanded="false">其他醫學問題 <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li role="navigation"><a href="#">其他類型1</a></li>
-            <li role="navigation"><a href="#">其他類型2</a></li>
-            <li role="navigation"><a href="#">其他類型3</a></li>
+            <li role="navigation"><a href="javascript:void(0)">其他類型1</a></li>
+            <li role="navigation"><a href="javascript:void(0)">其他類型2</a></li>
+            <li role="navigation"><a href="javascript:void(0)">其他類型3</a></li>
           </ul>
         </li> -->
       </ul>
@@ -88,7 +88,7 @@
               <textarea ng-show="!authenticated" class="form-control" rows="4" placeholder="請先登入以發表問題" disabled></textarea>
               <p class="pull-left pink-style comment-error" ng-show="vm.questionSubmitted && vm.questionForm.questionText.$invalid">問題內容字數至少要十個字以上</p>
               <p class="pull-left comment-error" ng-class="{ true : 'blue-style-1', false : 'pink-style' }[ vm.statusMessage && vm.statusMessage.type ==='success' ]" ng-show="!vm.questionSubmitted && vm.statusMessage.isShown">{{ vm.statusMessage.message }}</p>
-              <div class="pull-right"><!-- <a href="#"><i class="fa fa-camera"></i></a> --> <button class="btn round-btn ask-btn" type="button" ng-click="vm.askQuestion()" ng-disabled="!authenticated">確認提問</button></div>
+              <div class="pull-right"><!-- <a href="javascript:void(0)"><i class="fa fa-camera"></i></a> --> <button class="btn round-btn ask-btn" type="button" ng-click="vm.askQuestion()" ng-disabled="!authenticated">確認提問</button></div>
             </form>
           </div>
 
@@ -149,7 +149,7 @@
           <!-- ask -->
           <div class="question-top">
             <div class="question-profile">
-              <a href="#">
+              <a href="javascript:void(0)">
                 <img src="images/userpic_3.jpg" alt="" class="img-circle" />李大強
               </a>
               <!-- <i class="fa fa-venus"></i> -->
@@ -170,7 +170,7 @@
 
           <div class="answer-content collapse in" id="answer" collapse="vm.isCollapsed">
             <div class="question-profile">
-              <a href="#" class="doc-profile">
+              <a href="javascript:void(0)" class="doc-profile">
                 <img src="images/docpic.jpg" alt="" class="img-circle" />陳威德 醫師
               </a>
               <span>仁愛醫院  皮膚科 <br />15分前</span>
@@ -189,7 +189,7 @@
           <!-- ask -->
           <div class="question-top">
             <div class="question-profile">
-              <a href="#">
+              <a href="javascript:void(0)">
                 <img src="images/userpic_3.jpg" alt="" class="img-circle" />李大強
               </a>
               <i class="fa fa-venus"></i>
@@ -211,7 +211,7 @@
 
           <div class="answer-content collapse in" id="answer">
             <div class="question-profile">
-              <a href="#" class="doc-profile">
+              <a href="javascript:void(0)" class="doc-profile">
                 <img src="images/docpic.jpg" alt="" class="img-circle" />陳威德 醫師
               </a>
               <span>仁愛醫院  皮膚科 <br />15分前</span>
@@ -295,7 +295,7 @@
 
         <div class="answer-content collapse in" ng-show="question.answer" collapse="!question.isExpanded">
           <div class="question-profile">
-            <a href="#" class="doc-profile">
+            <a href="javascript:void(0)" class="doc-profile">
               <img ng-src="{{ (question.doctor.user_info.sticker_url) ? question.doctor.user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="" class="img-circle" />
               {{question.doctor.user_info.name ? question.doctor.user_info.name : ''}} 醫師
             </a>
