@@ -57,7 +57,7 @@
         <div class="article-content-tag">
           <a ng-show="!vm.iAlreadyRated" class="btn round-btn" ng-click="vm.collapseMyRatingBar()">我要評分</a>
           <button ng-show="vm.iAlreadyRated" href="javascript:void(0)" class="btn round-btn" disabled><strong>我的評分 {{vm.myRating}}</strong></button>
-          <a href="javascript:void(0)" ng-click="vm.collapseFavMessage();vm.favUnfavThisArticle()" class="btn round-btn favorite-btn">{{vm.isThisArticleFavorited ? '取消' : ''}}收藏 <i ng-show="vm.isThisArticleFavorited" class="fa fa-heart"></i></a><!-- <a href="#" class="btn round-btn">訂閱</a><a href="#" class="btn round-btn">email給朋友</a> -->
+          <a href="javascript:void(0)" ng-click="vm.collapseFavMessage();vm.favUnfavThisArticle()" class="btn round-btn favorite-btn">{{vm.isThisArticleFavorited ? '取消' : ''}}收藏 <i ng-show="vm.isThisArticleFavorited" class="fa fa-heart"></i></a><!-- <a href="javascript:void(0)" class="btn round-btn">訂閱</a><a href="javascript:void(0)" class="btn round-btn">email給朋友</a> -->
 
           <div class="satisfy pull-right" ng-show="vm.ratingList && vm.ratingList.length">
             {{ vm.overRatingValue ? vm.overRatingValue : '滿意度' }}
@@ -67,7 +67,7 @@
             目前尚無評分紀錄
           </div>
 
-            <!-- <a href="#" class="btn round-btn">訂閱</a> -->
+            <!-- <a href="javascript:void(0)" class="btn round-btn">訂閱</a> -->
 
           <div class="my-rating-bar" collapse="vm.isMyRatingBarCollapsed">
             <p ng-show="!authenticated" class="pink-style">請先登入來進行評分</p>
@@ -75,7 +75,7 @@
             <ul ng-show="authenticated && !vm.iAlreadyRated" class="list-inline list-unstyled">
               <li><rating ng-model="vm.myRating" max="vm.ratingMax" ng-click="vm.rateThisArticle()" readonly="false" state-on="'fa fa-star'" state-off="'fa fa-star-o'"></rating></li>
               <li>我的評分{{vm.myRating}}</li>
-              <!-- <li><a href="#" class="btn btn-sm round-btn">送出評分</a></li> -->
+              <!-- <li><a href="javascript:void(0)" class="btn btn-sm round-btn">送出評分</a></li> -->
             </ul>
           </div>
 
@@ -105,7 +105,7 @@
         </div>
 
         <!--AD-->
-        <div class="adblock img-responsive"><a href="#"><img src="images/ad.jpg"></a></div>
+        <div class="adblock img-responsive"><a href="javascript:void(0)"><img src="images/ad.jpg"></a></div>
 
         <!-- author -->
         <div class="question-profile">
@@ -126,9 +126,9 @@
           <div class="mark"><span>熱門文章</span></div>
           <ul class="faq-rocommend">
             <!--
-            <li><span>01</span><a href="#">愛的萬物論：為什麼我們會相愛、背叛、離開彼此</a></li>
-            <li><span>02</span><a href="#">愛的萬物論：史蒂芬．霍金的愛的萬物論</a></li>
-            <li><span>03</span><a href="#">11位稱得上是科學家的影星（下）</a></li>
+            <li><span>01</span><a href="javascript:void(0)">愛的萬物論：為什麼我們會相愛、背叛、離開彼此</a></li>
+            <li><span>02</span><a href="javascript:void(0)">愛的萬物論：史蒂芬．霍金的愛的萬物論</a></li>
+            <li><span>03</span><a href="javascript:void(0)">11位稱得上是科學家的影星（下）</a></li>
             -->
             <li ng-repeat="authorArticle in vm.authorArticleList | orderBy: 'click_count' | limitTo: 3"><span>{{$index + 1}}</span><a ui-sref="blog.detail({ category : authorArticle.category, articleId : authorArticle.article_id })">{{authorArticle.title}}</a></li>
           </ul>
@@ -151,7 +151,7 @@
       <div class="question-block" ng-repeat="comment in vm.commentList" ng-show="vm.commentList">
         <div class="question-top noanswer">
           <div class="question-profile">
-            <a href="#">
+            <a href="javascript:void(0)">
               <!-- Sticker -->
               <img ng-show="comment.user.user_type !== 'DOCTOR'" ng-src="{{ (comment.user.user_info.sticker_url) ? comment.user.user_info.sticker_url : 'images/default-user-sticker.png'}}" alt="" class="img-circle" />
               <img ng-show="comment.user.user_type === 'DOCTOR'" ng-src="{{ (comment.user.user_info.sticker_url) ? comment.user.user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="" class="img-circle" />
@@ -173,7 +173,7 @@
       <div class="row" ng-show="!authenticated || acount.user_type !== 'DOCTOR' || vm.commentList">
         <div class="col-lg-2 col-sm-2">
           <div class="user-thumb-md">
-            <a href="#" class="doc-profile">
+            <a href="javascript:void(0)" class="doc-profile">
               <!-- Sticker -->
               <img ng-show="vm.myAccount.user_type !== 'DOCTOR'" ng-src="{{ (vm.myAccount.user_info.sticker_url) ? vm.myAccount.user_info.sticker_url : 'images/default-user-sticker.png'}}" alt="" class="img-circle" />
               <img ng-show="vm.myAccount.user_type === 'DOCTOR'" ng-src="{{ (vm.myAccount.user_info.sticker_url) ? vm.myAccount.user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="" class="img-circle" />

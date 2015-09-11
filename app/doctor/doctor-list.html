@@ -39,7 +39,7 @@
       <div ng-show="doctorRow[0]" ui-sref="doctor.detail({ category : doctorRow[0].user_info.category, doctorId : doctorRow[0].account_id })" class="col-sm-12 col-md-3 col-lg-3">
 
         <!-- normal -->
-        <div class="ih-item circle effect13 from_left_and_right"><a href="#">
+        <div class="ih-item circle effect13 from_left_and_right"><a href="javascript:void(0)">
             <div class="img"><img ng-src="{{ (doctorRow[0].user_info.sticker_url) ? doctorRow[0].user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="img"></div>
             <div class="info">
               <div class="info-back">
@@ -59,7 +59,7 @@
       <div ng-show="doctorRow[1]" ui-sref="doctor.detail({ category : doctorRow[1].user_info.category, doctorId : doctorRow[1].account_id })" class="col-sm-12 col-md-3 col-lg-3">
 
         <!-- normal -->
-        <div class="ih-item circle effect13 from_left_and_right"><a href="#">
+        <div class="ih-item circle effect13 from_left_and_right"><a href="javascript:void(0)">
             <div class="img"><img ng-src="{{ (doctorRow[1].user_info.sticker_url) ? doctorRow[1].user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="img"></div>
             <div class="info">
               <div class="info-back">
@@ -78,7 +78,7 @@
       <div ng-show="doctorRow[2]" ui-sref="doctor.detail({ category : doctorRow[2].user_info.category, doctorId : doctorRow[2].account_id })" class="col-sm-12 col-md-3 col-lg-3">
 
         <!-- normal -->
-        <div class="ih-item circle effect13 from_left_and_right"><a href="#">
+        <div class="ih-item circle effect13 from_left_and_right"><a href="javascript:void(0)">
             <div class="img"><img ng-src="{{ (doctorRow[2].user_info.sticker_url) ? doctorRow[2].user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="img"></div>
             <div class="info">
               <div class="info-back">
@@ -98,7 +98,7 @@
 
         <!-- normal -->
         <div class="ih-item circle effect13 from_left_and_right">
-          <a href="#">
+          <a href="javascript:void(0)">
             <div class="img"><img ng-src="{{ (doctorRow[3].user_info.sticker_url) ? doctorRow[3].user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="img"></div>
             <div class="info">
               <div class="info-back">
@@ -119,17 +119,17 @@
     <!-- <div class="row doctor-row" ng-repeat="doctorRow in vm.doctorList">
       <div class="col-lg-6 col-md-6 col-xs-12">
         <ul class="doctor-list">
-          <li ng-show="doctorRow[0]" ui-sref="doctor.detail({ category : doctorRow[0].user_info.category, doctorId : doctorRow[0].account_id })"><a href="#"><img src="images/docpic.jpg" alt="" class="img-circle" /><p>{{doctorRow[0].user_info.name}}</p></a></li>
-          <li ng-show="doctorRow[1]" ui-sref="doctor.detail({ category : doctorRow[1].user_info.category, doctorId : doctorRow[1].account_id })"><a href="#"><img src="images/docpic_2.jpg" alt="" class="img-circle" /><p>{{doctorRow[1].user_info.name}}</p></a></li>
-          <li ng-show="doctorRow[2]" ui-sref="doctor.detail({ category : doctorRow[2].user_info.category, doctorId : doctorRow[2].account_id })"><a href="#"><img src="images/docpic.jpg" alt="" class="img-circle" /><p>{{doctorRow[2].user_info.name}}</p></a></li>
+          <li ng-show="doctorRow[0]" ui-sref="doctor.detail({ category : doctorRow[0].user_info.category, doctorId : doctorRow[0].account_id })"><a href="javascript:void(0)"><img src="images/docpic.jpg" alt="" class="img-circle" /><p>{{doctorRow[0].user_info.name}}</p></a></li>
+          <li ng-show="doctorRow[1]" ui-sref="doctor.detail({ category : doctorRow[1].user_info.category, doctorId : doctorRow[1].account_id })"><a href="javascript:void(0)"><img src="images/docpic_2.jpg" alt="" class="img-circle" /><p>{{doctorRow[1].user_info.name}}</p></a></li>
+          <li ng-show="doctorRow[2]" ui-sref="doctor.detail({ category : doctorRow[2].user_info.category, doctorId : doctorRow[2].account_id })"><a href="javascript:void(0)"><img src="images/docpic.jpg" alt="" class="img-circle" /><p>{{doctorRow[2].user_info.name}}</p></a></li>
         </ul>
       </div>
 
       <div class="col-lg-6 col-md-6 col-xs-12">
         <ul class="doctor-list">
-          <li ng-show="doctorRow[3]" ui-sref="doctor.detail({ category : doctorRow[3].user_info.category, doctorId : doctorRow[3].account_id })"><a href="#"><img src="images/docpic.jpg" alt="" class="img-circle" /><p>{{doctorRow[3].user_info.name}}</p></a></li>
-          <li ng-show="doctorRow[4]" ui-sref="doctor.detail({ category : doctorRow[4].user_info.category, doctorId : doctorRow[4].account_id })"><a href="#"><img src="images/docpic_2.jpg" alt="" class="img-circle" /><p>{{doctorRow[4].user_info.name}}</p></a></li>
-          <li ng-show="doctorRow[5]" ui-sref="doctor.detail({ category : doctorRow[5].user_info.category, doctorId : doctorRow[5].account_id })"><a href="#"><img src="images/docpic.jpg" alt="" class="img-circle" /><p>{{doctorRow[5].user_info.name}}</p></a></li>
+          <li ng-show="doctorRow[3]" ui-sref="doctor.detail({ category : doctorRow[3].user_info.category, doctorId : doctorRow[3].account_id })"><a href="javascript:void(0)"><img src="images/docpic.jpg" alt="" class="img-circle" /><p>{{doctorRow[3].user_info.name}}</p></a></li>
+          <li ng-show="doctorRow[4]" ui-sref="doctor.detail({ category : doctorRow[4].user_info.category, doctorId : doctorRow[4].account_id })"><a href="javascript:void(0)"><img src="images/docpic_2.jpg" alt="" class="img-circle" /><p>{{doctorRow[4].user_info.name}}</p></a></li>
+          <li ng-show="doctorRow[5]" ui-sref="doctor.detail({ category : doctorRow[5].user_info.category, doctorId : doctorRow[5].account_id })"><a href="javascript:void(0)"><img src="images/docpic.jpg" alt="" class="img-circle" /><p>{{doctorRow[5].user_info.name}}</p></a></li>
         </ul>
       </div>
     </div> -->

@@ -43,7 +43,7 @@
         <!-- ask -->
         <div class="question-top" ng-class="{ false : 'noanswer' }[ vm.answer !== null ]">
           <div class="question-profile">
-            <a href="#">
+            <a href="javascript:void(0)">
               <!-- Sticker -->
               <img ng-show="vm.user.user_type !== 'DOCTOR'" ng-src="{{ (vm.user.user_info.sticker_url) ? vm.user.user_info.sticker_url : 'images/default-user-sticker.png'}}" alt="" class="img-circle" />
               <img ng-show="vm.user.user_type === 'DOCTOR'" ng-src="{{ (vm.user.user_info.sticker_url) ? vm.user.user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="" class="img-circle" />
@@ -60,7 +60,7 @@
 
         <div class="answer-content collapse in" ng-show="vm.answer">
           <div class="question-profile">
-            <a href="#" class="doc-profile">
+            <a href="javascript:void(0)" class="doc-profile">
               <img ng-src="{{ (vm.doctor.user_info.sticker_url) ? vm.doctor.user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="" class="img-circle" />
               {{vm.doctor.user_info.name ? vm.doctor.user_info.name : ''}} 醫師
             </a>
@@ -87,7 +87,7 @@
           <a href="javascript:void(0)" ng-show="!vm.iAlreadyRated" class="btn round-btn" ng-click="vm.collapseMyRatingBar()">我要評分</a>
           <button ng-show="vm.iAlreadyRated" href="javascript:void(0)" class="btn round-btn" disabled><strong>我的評分 {{vm.myRating}}</strong></button>
           <a href="javascript:void(0)" ng-click="vm.collapseFavMessage();vm.favUnfavThisQA()" class="btn round-btn favorite-btn">{{vm.isThisQAFavorited ? '取消' : ''}}收藏 <i ng-show="vm.isThisQAFavorited" class="fa fa-heart"></i></a>
-          <!-- <a href="#" class="btn round-btn">訂閱</a> -->
+          <!-- <a href="javascript:void(0)" class="btn round-btn">訂閱</a> -->
         </div>
 
         <div class="my-rating-bar" collapse="vm.isMyRatingBarCollapsed" ng-show="vm.answer">
@@ -96,7 +96,7 @@
           <ul ng-show="authenticated && !vm.iAlreadyRated" class="list-inline list-unstyled">
             <li><rating ng-model="vm.myRating" max="vm.ratingMax" ng-click="vm.rateThisQuestion()" readonly="false" state-on="'fa fa-star'" state-off="'fa fa-star-o'"></rating></li>
             <li>我的評分{{vm.myRating}}</li>
-            <!-- <li><a href="#" class="btn btn-sm round-btn">送出評分</a></li> -->
+            <!-- <li><a href="javascript:void(0)" class="btn btn-sm round-btn">送出評分</a></li> -->
           </ul>
         </div>
 
@@ -132,7 +132,7 @@
                 <textarea class="form-control" name="answerText" ng-model="vm.answerText" ng-minlength="vm.answerMin" required rows="4" placeholder="請輸入解答內容，字數至少要二十個字以上"></textarea>
                 <p class="pull-left pink-style comment-error" ng-show="vm.answerSubmitted && vm.answerForm.answerText.$invalid">解答內容字數至少要二十個字以上</p>
                 <p class="pull-left comment-error" ng-class="{ true : 'blue-style-1', false : 'pink-style' }[ vm.answerStatusMessage && vm.answerStatusMessage.type === 'success' ]" ng-show="!vm.answerSubmitted && vm.answerStatusMessage.isShown">{{ vm.answerStatusMessage.message }}</p>
-                <div class="pull-right"><!-- <a href="#"><i class="fa fa-camera"></i></a> --> <button class="btn round-btn ask-btn" ng-click="vm.answerThisQuestion()" type="submit">送出解答</button></div>
+                <div class="pull-right"><!-- <a href="javascript:void(0)"><i class="fa fa-camera"></i></a> --> <button class="btn round-btn ask-btn" ng-click="vm.answerThisQuestion()" type="submit">送出解答</button></div>
               </form>
             </div>
           </div>
@@ -153,7 +153,7 @@
         <div class="question-block" ng-repeat="comment in vm.commentList">
           <div class="question-top noanswer">
             <div class="question-profile">
-              <a href="#">
+              <a href="javascript:void(0)">
                 <!-- Sticker -->
                 <img ng-show="comment.user.user_type !== 'DOCTOR'" ng-src="{{ (comment.user.user_info.sticker_url) ? comment.user.user_info.sticker_url : 'images/default-user-sticker.png'}}" alt="" class="img-circle" />
                 <img ng-show="comment.user.user_type === 'DOCTOR'" ng-src="{{ (comment.user.user_info.sticker_url) ? comment.user.user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="" class="img-circle" />
@@ -172,7 +172,7 @@
       <div class="row" id="qa-comment-form" ng-show="!authenticated || account.user_type !== 'DOCTOR' || vm.answer || vm.commentList">
         <div class="col-lg-2 col-sm-2">
           <div class="user-thumb-md">
-            <a href="#" class="doc-profile">
+            <a href="javascript:void(0)" class="doc-profile">
               <!-- Sticker -->
               <img ng-show="vm.myAccount.user_type !== 'DOCTOR'" ng-src="{{ (vm.myAccount.user_info.sticker_url) ? vm.myAccount.user_info.sticker_url : 'images/default-user-sticker.png'}}" alt="" class="img-circle" />
               <img ng-show="vm.myAccount.user_type === 'DOCTOR'" ng-src="{{ (vm.myAccount.user_info.sticker_url) ? vm.myAccount.user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="" class="img-circle" />
