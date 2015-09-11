@@ -11,8 +11,8 @@
     ];
 
     function accountSignInUserController(authService, $rootScope, $state) {
-        var SIGNIN_SUCCESS_MESSAGE = 'Sign in succeeded!';
-        var SIGNIN_FAIL_MESSAGE = 'Invalid account or password!';
+        var SIGNIN_SUCCESS_MESSAGE = '登入成功!';
+        var SIGNIN_FAIL_MESSAGE = '使用者帳號或密碼錯誤!';
 
         var vm = this;
 
