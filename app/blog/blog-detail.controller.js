@@ -9,6 +9,7 @@
         '$rootScope',
         '$filter',
         '$window',
+        '$location',
         'article',
         'author',
         'commentList',
@@ -30,6 +31,7 @@
         $rootScope,
         $filter,
         $window,
+        $location,
         article,
         author,
         commentList,
@@ -100,9 +102,13 @@
             message : ''
         };
 
+
+        vm.bg_url = vm.article.image_arr[1];
+        //vm.bg_url='http://www.emtec-international.com/sites/default/files/imagecache/img_large/sdhc-class4.jpg';
+        console.log(vm.bg_url);
         // FIXME remove article content test later
         /* test start */
-
+        /*
         var builder = new blogArticleContentService.Builder();
         var articleContent = builder
                                 .addIntro('不過，這項研究只是驗證睡眠習慣和心理健康之間關係的其中一環而已。')
@@ -130,11 +136,14 @@
             category : vm.article.category,
             content_text : articleContent.toJSONString()
         };
+        */
+        //vm.testArticle = article;
+        /*
         console.log(JSON.stringify(articleContent, null, 2));
         console.log(articleContent.toJSONString());
         console.log(articleContent.toPrettyJSONString());
         console.log('Validate: ' + blogArticleContentService.validate(articleContent));
-
+        */
         /* test end */
 
         // rating

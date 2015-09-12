@@ -107,7 +107,7 @@
         		<div class="viewport">
         	      <a href="artical-detail.html">
         		    <span class="dark-background"><img src="images/icon-read.png" alt="" /></span>
-        		    <img src="images/articleimg-1.jpg" alt=""  ui-sref="blog.detail({ category : article.category, articleId : article.article_id })"/>
+        		    <img src="{{article.image_arr[0]}}" alt=""  ui-sref="blog.detail({ category : article.category, articleId : article.article_id })"/>
         		  </a>
     			</div>
                 <p>{{article.title}}</p>
