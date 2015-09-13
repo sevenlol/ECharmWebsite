@@ -7,10 +7,11 @@
     accountSignUpDoctorController.$inject = [
         'memberDoctorService',
         '$state',
+        '$modal',
         'Logger'
     ];
 
-    function accountSignUpDoctorController(memberDoctorService, $state, Logger) {
+    function accountSignUpDoctorController(memberDoctorService, $state, $modal, Logger) {
         var SIGNUP_SUCCESS_MESSAGE = '帳號註冊成功';
         var SIGNUP_FAIL_MESSAGE = 'Something is wrong!';
         var userType = {
@@ -38,6 +39,8 @@
             type : 'danger',
             text : 'text'
         };
+
+        vm.openAgreementModal = openAgreementModal;
 
         /* public functions */
         function signUp() {
@@ -131,6 +134,22 @@
 
         function resetForm() {
             vm.submitted = false;
+        }
+
+        function openAgreementModal() {
+            var modalInstance = $modal.open({
+                animation: true,
+                templateUrl: 'app/account/signup/account-signup-doctor-agreement.html',
+                windowClass: 'modal-fit',
+                controller : ['$modalInstance', function($modalInstance) {
+                    var vm = this;
+                    vm.close = function() {
+                        $modalInstance.close();
+                    }
+                }],
+                controllerAs : 'vm',
+                size: 'lg'
+            });
         }
 
         /* private functions */
