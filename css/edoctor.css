@@ -980,10 +980,15 @@ ul.category li#Category_7 {
 }
 
 /* Dark hover bg */
-.dark-background {
+.dark-background{
+    visibility: hidden;
     background-color: rgba(15, 15, 15, 0.2);
     color: #fff;
     text-shadow: #000 0px 0px 20px;
+}
+
+.dark-background:hover{
+	visibility: visible;
 }
 
 /* article detail ====================================== */
