@@ -33,6 +33,10 @@
             .state('aboutus', {
                 url : '/aboutus',
                 templateUrl : 'app/layout/about-us.html'
+            })
+            .state('privacy_policy', {
+                url : '/privacy_policy',
+                templateUrl : 'app/layout/privacy-policy.html'
             });
 
         $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
