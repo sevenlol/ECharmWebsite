@@ -8,7 +8,8 @@
     appConfig.$inject = [
         '$stateProvider',
         '$urlRouterProvider',
-        '$httpProvider'
+        '$httpProvider',
+        'LoggerProvider'
     ];
 
     appRun.$inject = [
@@ -16,7 +17,10 @@
         '$window'
     ];
 
-    function appConfig($stateProvider, $urlRouterProvider, $httpProvider) {
+    function appConfig($stateProvider, $urlRouterProvider, $httpProvider, LoggerProvider) {
+
+        LoggerProvider.enabled(false);
+
         $urlRouterProvider.otherwise("/home");
 
         $stateProvider

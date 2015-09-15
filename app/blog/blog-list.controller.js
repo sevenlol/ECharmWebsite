@@ -43,7 +43,7 @@
         vm.currentSortOption = blogSortOptionList ? blogSortOptionList[0].name : '-rating';
 
 
-        vm.category = $stateParams.category;        
+        vm.category = $stateParams.category;
         // Copy from askdoctor but unavailable
         // vm.category = $stateParams ? $stateParams.category : 'all';
         vm.categoryName = getCategoryName(blogCategoryList, vm.category);
@@ -68,10 +68,9 @@
         vm.articleList = articleList;
         //vm.category = $stateParams ? $stateParams.category : 'all';
         genArticleGrid(vm, articleList);
-        console.log("Total: " + vm.numOfArticles + ", Row: " + vm.articleGrid[0]);
         // To do generate grid object here
         // articleGrid = [[article_1, article_2, article_3...],[],[],...]
-        
+
         function genArticleGrid(vmObj, list) {
 
             var resultArr = [];
