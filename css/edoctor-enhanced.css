@@ -744,7 +744,7 @@ ul.doctor-list li p {
 /* entire container, keeps perspective */
 .flip-container {
   perspective: 500;
-
+  margin: 30px auto;
 }
 
 .flipper p {

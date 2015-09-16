@@ -85,7 +85,6 @@
         // merge doctorList, userList, categoryList to questionList
         vm.questionList = mergeQuestionList(questionList, doctorList, userList, askdoctorCategoryList, accountCategoryNameTextList);
         vm.questionList = mergeMyQuestionList(vm.questionList, myQuestionList, askdoctorCategoryList, myAccount);
-        console.log(JSON.stringify(vm.questionList, null, 2));
         vm.collapseQuestion = collapseQuestion;
         vm.askQuestion = askQuestion;
 
