@@ -19,9 +19,9 @@
             { name : 'pediatrics', text : '小兒科', display : 'right', background_url : 'images/cate-6.jpg',
               description : [ '由專業醫師為您解答', '寶寶照顧中的所有問題' ], intro_icon_url : 'images/pediatrics.png' },
             { name : 'oncology_consultation', text : '癌症諮詢', display : 'full-nopadding', background_url : 'images/oncology.png',
-              description : [ '向專業醫師諮詢', '癌症相關知識' ], intro_icon_url : 'images/oncology.jpg' },
+              description : [ '向專業醫師諮詢', '癌症相關知識' ], intro_icon_url : 'images/oncology-1.png' },
             { name : 'others', text : '其他醫學文章', display : 'full-nopadding', background_url : 'images/cate-7.jpg',
-              description : [], intro_icon_url : 'images/1.jpg' }
+              description : [], intro_icon_url : 'images/pediatrics.png' }
         ])
         .value('blogTagList', [
             { name : 'Tag_1', text : '腹痛' },

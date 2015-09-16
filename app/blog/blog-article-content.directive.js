@@ -35,7 +35,7 @@
     ];
 
     function ArticleContentController($scope, blogArticleContentService, blogCategoryList) {
-        var DEFAULT_INTRO_ICON_URL = 'images/1.jpg';
+        var DEFAULT_INTRO_ICON_URL = 'images/pediatrics.png';
 
         // Injecting $scope just for comparison
         var service = blogArticleContentService;
