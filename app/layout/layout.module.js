@@ -5,6 +5,7 @@
         'app.auth',
         'app.value',
         'data.askdoctor',
+        'data.member',
         'ui.router',
         'ui.bootstrap',
         'ngAnimate',

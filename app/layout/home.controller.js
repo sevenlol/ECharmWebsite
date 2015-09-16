@@ -10,6 +10,7 @@
         '$filter',
         '$state',
         'frontPageDoctorSlideList',
+        'doctorCount',
         'askDoctorCategoryNameTextList',
         'askdoctorQuestionService'
     ];
@@ -20,6 +21,7 @@
         $filter,
         $state,
         frontPageDoctorSlideList,
+        doctorCount,
         askDoctorCategoryNameTextList,
         askdoctorQuestionService) {
 
@@ -29,6 +31,8 @@
         var vm = this;
 
         vm.frontPageDoctorSlideList = frontPageDoctorSlideList;
+
+        vm.doctorCount = doctorCount || 0;
 
         vm.showInstruction = false;
 
