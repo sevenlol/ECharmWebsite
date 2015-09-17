@@ -310,6 +310,9 @@ ul.newmenu li.active > a:focus {
 	text-align: left;
 	margin-left:220px;
 }
+#doctorslide .carousel-caption img {
+	margin-left : -10px;
+}
 
 
 /* index content ====================================== */
