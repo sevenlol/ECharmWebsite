@@ -102,10 +102,21 @@
             message : ''
         };
 
+        if(vm.article.image_arr[1])
+            vm.bg_url = vm.article.image_arr[1];
+        else {
+            var index;
+            console.log(vm.categoryList);
+            for(index in vm.categoryList) {
 
-        vm.bg_url = vm.article.image_arr[1];
+                //console.log(vm.categoryList[index].name);
+                if(String(vm.categoryList[index].name) === String(vm.article.category)) {
+                    vm.bg_url = vm.categoryList[index].background_url;
+                }
+            }
+        }
         //vm.bg_url='http://www.emtec-international.com/sites/default/files/imagecache/img_large/sdhc-class4.jpg';
-        console.log(vm.bg_url);
+        console.log("BG URL " + vm.bg_url);
         // FIXME remove article content test later
         /* test start */
         /*
