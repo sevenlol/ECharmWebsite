@@ -8,10 +8,13 @@
         'userAccountService',
         '$state',
         '$modal',
+        '$filter',
         'Logger'
     ];
 
-    function accountSignUpUserController(userAccountService, $state, $modal, Logger) {
+    function accountSignUpUserController(userAccountService, $state, $modal, $filter, Logger) {
+
+        var DATE_FORMAT = 'yyyy-MM-ddTHH:mmZ';
         var SIGNUP_SUCCESS_MESSAGE = '帳號註冊成功';
         var SIGNUP_FAIL_MESSAGE = 'Something is wrong!';
         var userType = {
@@ -116,7 +119,7 @@
 
             vm.credentials.account_type = 'ECHARM';
             vm.credentials.salt = 'salt';
-            vm.credentials.created_at = (new Date()).toLocaleDateString();
+            vm.credentials.created_at = $filter('date')(new Date(), DATE_FORMAT);
             vm.credentials.user_info = {};
 
             logger.log('signUp', 'Credentials validation done! Signing Up ...');
