@@ -62,6 +62,7 @@
         // function
         vm.search = search;
         vm.showMoreArticle = showMoreArticle;
+        vm.searchGroups = searchGroups;
         // vm.order = order;
 
         // TODO fix this
@@ -204,6 +205,11 @@
                 if (count >= POPULAR_LIST_LIMIT.DOCTOR) break;
             }
             return parsedDoctorList;
+        }
+
+
+        function searchGroups(tag) {
+            return tag.category;
         }
 
 

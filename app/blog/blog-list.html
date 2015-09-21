@@ -49,9 +49,17 @@
 
           <!-- <p>依標籤搜尋：</p> -->
           <div class="row">
-          <ui-select multiple ng-model="vm.selectedTag" theme="select2" ng-disabled="disabled" class="col-md-6">
+          <ui-select multiple ng-model="vm.selectedTag" theme="select2" ng-disabled="disabled" class="col-md-6"  ng-show="vm.category != 'all'">
             <ui-select-match placeholder="依標籤搜尋...">{{$item.text}}</ui-select-match>
-            <ui-select-choices repeat="tag in vm.blogTagList | filter:$select.search">
+            <ui-select-choices group-by="vm.searchGroups" repeat="tag in vm.blogTagList | filter:$select.search | filter: vm.category">
+              {{tag.text}}
+            </ui-select-choices>
+          </ui-select>
+
+          <!-- Lammin: copy for not filtering the tag in 'all', there should be a better way -->
+          <ui-select multiple ng-model="vm.selectedTag" theme="select2" ng-disabled="disabled" class="col-md-6"  ng-show="vm.category == 'all'">
+            <ui-select-match placeholder="依標籤搜尋...">{{$item.text}}</ui-select-match>
+            <ui-select-choices group-by="vm.searchGroups" repeat="tag in vm.blogTagList | filter:$select.search">
               {{tag.text}}
             </ui-select-choices>
           </ui-select>
@@ -129,7 +137,7 @@
       
             <li class="media" ng-show="vm.viewclass=='list'">
               <a class="media-left" ui-sref="blog.detail({ category : article.category, articleId : article.article_id })">
-                <img src="images/articleimg-1.jpg" alt="" width="85" height="85">
+                <img ng-src="{{article.image_arr[0] ? article.image_arr[0] : 'images/userpic.jpg'}}" alt="" width="85" height="85">
               </a>
               <div class="media-body article-listview">
                 <div >
