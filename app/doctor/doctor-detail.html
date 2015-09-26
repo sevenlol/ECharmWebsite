@@ -11,13 +11,13 @@
     <div class="row">
       <div class="col-lg-5 col-md-5 col-xs-12">
         <div class="user-thumb-lg">
-          <img src="images/docpic.jpg" alt="" class="img-circle pull-left" />
+          <img ng-src="{{ (vm.doctor.user_info.sticker_url) ? vm.doctor.user_info.sticker_url : 'images/default-doctor-sticker.png'}}" alt="" class="img-circle pull-left" />
           <h3><strong>{{ vm.doctor.user_info.name }}</strong> 醫師</h3>
           <p>
             {{ vm.doctor.user_info.age ? vm.doctor.user_info.age + '歲' : ''}}
             <i ng-show="vm.doctor.user_info.gender === vm.GENDER_STRING.MALE" class="fa fa-mars"></i>
             <i ng-show="vm.doctor.user_info.gender === vm.GENDER_STRING.FEMALE" class="fa fa-venus"></i><br />
-            {{ vm.doctor.user_info.title }}  皮膚科<br />
+            {{ vm.doctor.user_info.title }}  {{vm.categoryName}}<br />
             <span ng-show="vm.avgQaRating !== null">
               問答平均 <span class="satisfy"><rating ng-model="vm.avgQaRating.number" max="vm.ratingMax" readonly="true" state-on="'fa fa-star'" state-off="'fa fa-star-o'"></rating></span> <span>({{(vm.avgQaRating.number % 1 === 0) ? vm.avgQaRating.number : (vm.avgQaRating.number | number : vm.avgRatingPrecision) }}) 共{{vm.avgQaRating.count}}評價</span>
             </span>
