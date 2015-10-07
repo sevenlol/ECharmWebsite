@@ -8,7 +8,7 @@
           <div id="doctorslide" class="carousel slide benefit">
 
             <carousel class="carousel-inner" interval="5000">
-              <slide active="$first" ng-repeat="doctor in vm.frontPageDoctorSlideList">
+              <slide id="carousel-slide" active="$first" ng-repeat="doctor in vm.frontPageDoctorSlideList">
                 <div class="item">
                   <img ng-src="{{ doctor.photo_url }}" alt="" class="img-circle img-responsive" />
                   <div class="carousel-caption">
@@ -24,7 +24,7 @@
 
         <div class="col-lg-5 col-md-5 cursor-pointer cl-effect-15" ui-sref="doctor.list({ category : 'all' })" ng-mouseover="vm.enterDoctorListLink()" ng-mouseleave="vm.leaveDoctorListLink()">
           <h1><a data-hover="歡迎來到 醫創網">歡迎來到 醫創網</a></h1>
-          <p><a data-hover="目前已有駐站醫師{{ vm.doctorCount }}位，提供您專業諮詢">目前已有駐站醫師{{ vm.doctorCount }}位，提供您專業諮詢</a></p>
+          <p class="hidden-xs hidden-sm"><a data-hover="目前已有駐站醫師{{ vm.doctorCount }}位，提供您專業諮詢">目前已有駐站醫師{{ vm.doctorCount }}位，提供您專業諮詢</a></p>
           <p><a class="btn round-btn" ui-sref="doctor.list({ category : 'all' })">看看有哪些醫生 »</a></p>
         </div>
 

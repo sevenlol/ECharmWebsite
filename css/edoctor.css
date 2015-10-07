@@ -1405,8 +1405,13 @@ ul.media li {
 }
 
 @media (max-width: 767px) {
+	.main-kv-notauth {
+		margin-top:50px;
+	}
+	.main-kv-auth {
+		margin-top:100px;
+	}
 	.main-kv {
-		margin-top:110px;
 		height:500px;
 	}
 	.main-kv h1 {
@@ -1423,11 +1428,11 @@ ul.media li {
 		margin-bottom:20px;
 		height:auto;
 	}
-	#doctorslide .carousel-inner > .item > img,
-	#doctorslide .carousel-inner > .item > a > img {
+	#carousel-slide > .item > img,
+	#carousel-slide > .item > div > img {
 		max-width: 50%;
 	}
-	#doctorslide .carousel-caption {
+	#carousel-slide > .item > .carousel-caption {
 		margin-left:110px;
 		top:20px;
 	}
