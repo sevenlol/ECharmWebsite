@@ -1,5 +1,41 @@
 <div class="container-fluid">
-  <div class="main-kv parallax-container parallax-background main-kv-background" parallax-background parallax-ratio="0.4" ng-class="{ true: 'main-kv-auth', false : 'main-kv-notauth' }[authenticated]">
+
+  <!-- For pc -->
+  <div class="hidden-xs main-kv parallax-container parallax-background main-kv-background" parallax-background parallax-ratio="0.4" ng-class="{ true: 'main-kv-auth', false : 'main-kv-notauth' }[authenticated]">
+    <div class="container">
+      <div class="row">
+
+        <!--slide-->
+        <div class="col-lg-7 col-md-7">
+          <div id="doctorslide" class="carousel slide">
+
+            <carousel class="carousel-inner" interval="5000">
+              <slide id="carousel-slide" active="$first" ng-repeat="doctor in vm.frontPageDoctorSlideList">
+                <div class="item">
+                  <img ng-src="{{ doctor.photo_url }}" alt="" class="img-circle img-responsive" />
+                  <div class="carousel-caption">
+                    <h4>{{ doctor.doctor_title }}</h4>
+                    <img ng-src="{{ doctor.sign_url }}" alt="" />
+                  </div>
+                </div>
+              </slide>
+            </carousel>
+
+          </div>
+        </div>
+
+        <div class="col-lg-5 col-md-5">
+          <h1><!-- <a data-hover="歡迎來到 醫創網"> -->歡迎來到 醫創網<!-- </a> --></h1>
+          <p class="hidden-xs hidden-sm"><!-- <a data-hover="目前已有駐站醫師{{ vm.doctorCount }}位，提供您專業諮詢"> -->目前已有駐站醫師{{ vm.doctorCount }}位，提供您專業諮詢<!-- </a> --></p>
+          <p><a class="btn round-btn" ui-sref="doctor.list({ category : 'all' })">看看有哪些醫生 »</a></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- For mobile -->
+  <div class="visible-xs-block main-kv main-kv-background" ng-class="{ true: 'main-kv-auth', false : 'main-kv-notauth' }[authenticated]">
     <div class="container">
       <div class="row">
 
