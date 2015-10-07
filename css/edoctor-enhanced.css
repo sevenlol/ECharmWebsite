@@ -509,6 +509,15 @@ ul.doctor-list li p {
   font-weight: 600;
   font-size: 1.2em;
 }
+
+@media (max-width: 767px) {
+  .article-intro-block .article-intro-quote p {
+    font-size: 1.5em;
+  }
+  .article-intro-block .article-intro-quote .article-intro-footer {
+    font-size: 1em;
+  }
+}
 /*.article-intro-block .article-intro-quote .article-intro-footer:before {
   content: '- ';
 }*/
