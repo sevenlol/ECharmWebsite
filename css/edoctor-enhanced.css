@@ -511,6 +511,9 @@ ul.doctor-list li p {
 }
 
 @media (max-width: 767px) {
+  .article-intro-block {
+    margin-bottom : 200px;
+  }
   .article-intro-block .article-intro-quote p {
     font-size: 1.5em;
   }

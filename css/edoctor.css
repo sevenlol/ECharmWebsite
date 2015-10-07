@@ -1406,17 +1406,17 @@ ul.media li {
 
 @media (max-width: 767px) {
 	.main-kv-notauth {
-		margin-top:50px;
+		margin-top: 100px;
 	}
 	.main-kv-auth {
-		margin-top:100px;
+		margin-top: 50px;
 	}
 	.main-kv {
-		height:500px;
+		height:60vh;
 	}
 	.main-kv h1 {
-		font-size:3em;
-		margin-top:20%;
+		font-size:2.5em;
+		margin-top:15%;
 	}
 	.subkv{
 		height:300px;
@@ -1428,13 +1428,18 @@ ul.media li {
 		margin-bottom:20px;
 		height:auto;
 	}
-	#carousel-slide > .item > img,
-	#carousel-slide > .item > div > img {
+	#carousel-slide > .item > img {
 		max-width: 50%;
 	}
+	#carousel-slide > .item > div > img {
+		max-width: 80%;
+	}
 	#carousel-slide > .item > .carousel-caption {
-		margin-left:110px;
-		top:20px;
+		margin-left:25%;
+		top:10%;
+	}
+	#carousel-slide > .item > .carousel-caption > img {
+		margin-left:5px;
 	}
 	.identity .public {
 		display:block;
