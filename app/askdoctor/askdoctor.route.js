@@ -82,6 +82,10 @@
 
         /* resolve functions */
 
+        resolveMyAccount.$inject = [
+            'authService'
+        ];
+
         function resolveMyAccount(authService) {
             if (!authService) {
                 return null;
@@ -106,6 +110,10 @@
                     .catch(failCallback);
         }
 
+        resolveAllPopularQAList.$inject = [
+            'popularListService'
+        ];
+
         function resolveAllPopularQAList(popularListService) {
             if (!popularListService) return null;
 
@@ -121,6 +129,11 @@
                 return null;
             }
         }
+
+        resolvePopularQAList.$inject = [
+            '$stateParams',
+            'popularListService'
+        ];
 
         function resolvePopularQAList($stateParams, popularListService) {
             if (!$stateParams || !$stateParams.category || !popularListService) {
@@ -146,6 +159,11 @@
             }
         }
 
+        resolvePopularDoctorList.$inject = [
+            '$stateParams',
+            'popularListService'
+        ];
+
         function resolvePopularDoctorList($stateParams, popularListService) {
             if (!$stateParams || !$stateParams.category || !popularListService) {
                 return null;
@@ -169,6 +187,12 @@
                 return null;
             }
         }
+
+        resolveQuestionList.$inject = [
+            '$stateParams',
+            'myAccount',
+            'askdoctorService'
+        ];
 
         function resolveQuestionList($stateParams, myAccount, askdoctorService) {
             if (!$stateParams || !$stateParams.category || !askdoctorService) {
@@ -215,6 +239,12 @@
             return null;
         }
 
+        resolveMyQuestionList.$inject = [
+            '$stateParams',
+            'myAccount',
+            'askdoctorService'
+        ];
+
         function resolveMyQuestionList($stateParams, myAccount, askdoctorService) {
             // get questions for the current user
 
@@ -257,6 +287,11 @@
             return null;
         }
 
+        resolveDoctorList.$inject = [
+            'questionList',
+            'memberDoctorService'
+        ];
+
         function resolveDoctorList(questionList, memberDoctorService) {
             if (!questionList || !memberDoctorService || !angular.isArray(questionList)) {
                 return null;
@@ -298,6 +333,11 @@
             return null;
         }
 
+        resolveUserList.$inject = [
+            'questionList',
+            'memberUserService'
+        ];
+
         function resolveUserList(questionList, memberUserService) {
             if (!questionList || !memberUserService || !angular.isArray(questionList)) {
                 return null;
@@ -333,6 +373,11 @@
             return null;
         }
 
+        resolveQuestion.$inject = [
+            '$stateParams',
+            'askdoctorQuestionService'
+        ];
+
         function resolveQuestion($stateParams, askdoctorQuestionService) {
             if (!$stateParams || !$stateParams.category ||
                 !askdoctorQuestionService || !$stateParams.questionId) {
@@ -357,6 +402,11 @@
 
             return null;
         }
+
+        resolveAnswer.$inject = [
+            '$stateParams',
+            'askdoctorAnswerService'
+        ];
 
         function resolveAnswer($stateParams, askdoctorAnswerService) {
             if (!$stateParams || !$stateParams.category ||
@@ -393,6 +443,11 @@
             return null;
         }
 
+        resolveDoctor.$inject = [
+            'answer',
+            'memberDoctorService'
+        ];
+
         function resolveDoctor(answer, memberDoctorService) {
             if (!answer || !memberDoctorService || !answer.answerer_id) {
                 return null;
@@ -425,6 +480,11 @@
 
             return null;
         }
+
+        resolveUser.$inject = [
+            'question',
+            'memberUserService'
+        ];
 
         function resolveUser(question, memberUserService) {
             if (!question || !memberUserService || !question.questioner_id) {
@@ -459,6 +519,11 @@
             return null;
         }
 
+        resolveCommentList.$inject = [
+            'question',
+            'askdoctorCommentService'
+        ];
+
         function resolveCommentList(question, askdoctorCommentService) {
             if (!question || !askdoctorCommentService || !question.question_id) {
                 return null;
@@ -487,6 +552,11 @@
 
             return null;
         }
+
+        resolveCommentUserList.$inject = [
+            'commentList',
+            'memberUserService'
+        ];
 
         function resolveCommentUserList(commentList, memberUserService) {
             if (!commentList || !memberUserService || !angular.isArray(commentList)) {
@@ -523,6 +593,11 @@
             return null;
         }
 
+        resolveCommentDoctorList.$inject = [
+            'commentList',
+            'memberDoctorService'
+        ];
+
         function resolveCommentDoctorList(commentList, memberDoctorService) {
             if (!commentList || !memberDoctorService || !angular.isArray(commentList)) {
                 return null;
@@ -558,6 +633,11 @@
             return null;
         }
 
+        resolveRatingList.$inject = [
+            'question',
+            'askdoctorRatingService'
+        ];
+
         function resolveRatingList(question, askdoctorRatingService) {
             if (!question || !askdoctorRatingService || !question.question_id) {
                 return null;
@@ -587,6 +667,10 @@
             return null;
         }
 
+        resolveAvgRating.$inject = [
+            'ratingList'
+        ];
+
         function resolveAvgRating(ratingList) {
             if (!angular.isArray(ratingList) || !ratingList.length) {
                 return 0;
@@ -615,6 +699,11 @@
 
             return total;
         }
+
+        resolveMyFavQA.$inject = [
+            'question',
+            'favoriteMeService'
+        ];
 
         function resolveMyFavQA(question, favoriteMeService) {
             if (!question || !favoriteMeService || !question.question_id) {

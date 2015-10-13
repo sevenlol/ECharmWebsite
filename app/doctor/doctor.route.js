@@ -58,6 +58,11 @@
 
         /* resolve functions */
 
+        resolveDoctorList.$inject = [
+            '$stateParams',
+            'memberDoctorService'
+        ];
+
         function resolveDoctorList($stateParams, memberDoctorService) {
             if (!$stateParams || !$stateParams.category || !memberDoctorService) {
                 return null;
@@ -93,6 +98,11 @@
 
             return null;
         }
+
+        resolveDoctor.$inject = [
+            '$stateParams',
+            'memberDoctorService'
+        ];
 
         function resolveDoctor($stateParams, memberDoctorService) {
             if (!$stateParams || !$stateParams.category || !memberDoctorService ||
@@ -144,6 +154,11 @@
             return null;
         }
 
+        resolveDoctorArticleList.$inject = [
+            'doctor',
+            'blogArticleService'
+        ];
+
         function resolveDoctorArticleList(doctor, blogArticleService) {
             if (!doctor || !angular.isString(doctor.account_id) || !doctor.account_id) {
                 return null;
@@ -161,6 +176,11 @@
                 return null;
             }
         }
+
+        resolveDoctorQAList.$inject = [
+            'doctor',
+            'askdoctorService'
+        ];
 
         function resolveDoctorQAList(doctor, askdoctorService) {
             if (!doctor || !askdoctorService || !doctor.account_id) {
@@ -183,6 +203,10 @@
 
             return null;
         }
+
+        resolveDoctorAvgQaRating.$inject = [
+            'qaList'
+        ];
 
         function resolveDoctorAvgQaRating(qaList) {
             if (!qaList || !angular.isArray(qaList) || qaList.length === 0) {

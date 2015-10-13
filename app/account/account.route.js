@@ -263,9 +263,18 @@
                     .catch(callback);
         }
 
+        resolveMeUser.$inject = [
+            'myAccount'
+        ];
+
         function resolveMeUser(myAccount) {
             return myAccount;
         }
+
+        resolveMeUserQuestionList.$inject = [
+            'myAccount',
+            'askdoctorService'
+        ];
 
         function resolveMeUserQuestionList(myAccount, askdoctorService) {
             if (!myAccount || !askdoctorService || !myAccount.account_id) {
@@ -289,6 +298,11 @@
             return null;
         }
 
+        resolveMeFavoriteList.$inject = [
+            'myAccount',
+            'favoriteMeService'
+        ];
+
         function resolveMeFavoriteList(myAccount, favoriteMeService) {
             if (!myAccount || !favoriteMeService || !myAccount.account_id) {
                 return null;
@@ -307,9 +321,18 @@
             }
         }
 
+        resolveMeDoctor.$inject = [
+            'myAccount'
+        ];
+
         function resolveMeDoctor(myAccount) {
             return myAccount;
         }
+
+        resolveMeDoctorAnswerList.$inject = [
+            'myAccount',
+            'askdoctorService'
+        ];
 
         function resolveMeDoctorAnswerList(myAccount, askdoctorService) {
             if (!myAccount || !askdoctorService || !myAccount.account_id) {
@@ -332,6 +355,10 @@
 
             return null;
         }
+
+        resolveMeDoctorAvgAnswerRating.$inject = [
+            'answerList'
+        ];
 
         function resolveMeDoctorAvgAnswerRating(answerList) {
             if (!answerList || !angular.isArray(answerList) || answerList.length === 0) {
@@ -369,6 +396,11 @@
 
             return null;
         }
+
+        resolveMeDoctorArticleList.$inject = [
+            'myAccount',
+            'blogArticleService'
+        ];
 
         function resolveMeDoctorArticleList(myAccount, blogArticleService) {
             if (!myAccount || !angular.isString(myAccount.account_id) || !myAccount.account_id) {

@@ -95,6 +95,11 @@
 
 
         /* resolve functions */
+
+        resolveMyAccount.$inject = [
+            'authService'
+        ];
+
         function resolveMyAccount(authService) {
             if (!authService) {
                 return null;
@@ -118,6 +123,11 @@
                     .then(successCallback)
                     .catch(failCallback);
         }
+
+        resolveArticleList.$inject = [
+            '$stateParams',
+            'blogArticleService'
+        ];
 
         function resolveArticleList($stateParams, blogArticleService) {
             if (!$stateParams || !$stateParams.category || !blogArticleService) {
@@ -155,6 +165,12 @@
             return null;
         }
 
+        resolveAuthorArticleList.$inject = [
+            '$stateParams',
+            'article',
+            'blogArticleService'
+        ];
+
         function resolveAuthorArticleList($stateParams, article, blogArticleService) {
             if (!article || !article.author_id || !blogArticleService) {
                 return null;
@@ -179,6 +195,11 @@
 
             return null;
         }
+
+        resolveDoctorList.$inject = [
+            'articleList',
+            'memberDoctorService'
+        ];
 
         function resolveDoctorList(articleList, memberDoctorService) {
             if (!articleList || !memberDoctorService || !angular.isArray(articleList)) {
@@ -215,6 +236,11 @@
             return null;
         }
 
+        resolveArticle.$inject = [
+            '$stateParams',
+            'blogArticleService'
+        ];
+
         function resolveArticle($stateParams, blogArticleService) {
             if (!$stateParams || !$stateParams.category || !blogArticleService ||
                 !$stateParams.articleId) {
@@ -240,6 +266,11 @@
 
             return null;
         }
+
+        resolveAuthor.$inject = [
+            'article',
+            'memberDoctorService'
+        ];
 
         function resolveAuthor(article, memberDoctorService) {
             if (!article || !memberDoctorService || !article.author_id) {
@@ -274,6 +305,11 @@
             return null;
         }
 
+        resolveCommentList.$inject = [
+            'article',
+            'blogCommentService'
+        ];
+
         function resolveCommentList(article, blogCommentService) {
             if (!article || !blogCommentService || !article.article_id) {
                 return null;
@@ -302,6 +338,11 @@
 
             return null;
         }
+
+        resolveCommentUserList.$inject = [
+            'commentList',
+            'memberUserService'
+        ];
 
         function resolveCommentUserList(commentList, memberUserService) {
             if (!commentList || !memberUserService || !angular.isArray(commentList)) {
@@ -338,6 +379,11 @@
             return null;
         }
 
+        resolveRatingList.$inject = [
+            'article',
+            'blogRatingService'
+        ];
+
         function resolveRatingList(article, blogRatingService) {
             if (!article || !blogRatingService || !article.article_id) {
                 return null;
@@ -366,6 +412,10 @@
 
             return null;
         }
+
+        resolveAvgRating.$inject = [
+            'ratingList'
+        ];
 
         function resolveAvgRating(ratingList) {
             if (!angular.isArray(ratingList) || !ratingList.length) {
@@ -396,6 +446,11 @@
             return total;
         }
 
+        resolveMyFavArticle.$inject = [
+            'article',
+            'favoriteMeService'
+        ];
+
         function resolveMyFavArticle(article, favoriteMeService) {
             if (!article || !favoriteMeService || !article.article_id) {
                 return null;
@@ -414,6 +469,10 @@
             }
         }
 
+        resolveAllPopularBlogList.$inject = [
+            'popularListService'
+        ];
+
         function resolveAllPopularBlogList(popularListService) {
             if (!popularListService) return null;
 
@@ -429,6 +488,11 @@
                 return null;
             }
         }
+
+        resolvePopularBlogList.$inject = [
+            '$stateParams',
+            'popularListService'
+        ];
 
         function resolvePopularBlogList($stateParams, popularListService) {
             if (!$stateParams || !$stateParams.category || !popularListService) {
@@ -453,6 +517,11 @@
                 return null;
             }
         }
+
+        resolvePopularDoctorList.$inject = [
+            '$stateParams',
+            'popularListService'
+        ];
 
         function resolvePopularDoctorList($stateParams, popularListService) {
             if (!$stateParams || !$stateParams.category || !popularListService) {
