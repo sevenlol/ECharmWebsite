@@ -92,6 +92,15 @@
             controllerAs : 'vm'
         };
 
+        var accountMeUserSettingState = {
+            name : 'account.me.user.setting',
+            url : '/setting',
+            parent : accountMeUserState,
+            templateUrl : 'app/account/me/account-me-user-setting.html',
+            controller : 'accountMeUserSettingController',
+            controllerAs : 'vm'
+        };
+
         var accountMeDoctorState = {
             name : 'account.me.doctor',
             url : '^/account/doctor',
@@ -141,6 +150,15 @@
             parent : accountMeDoctorState,
             templateUrl : 'app/account/me/account-me-doctor-article.html',
             controller : 'accountMeDoctorArticleController',
+            controllerAs : 'vm'
+        };
+
+        var accountMeDoctorSettingState = {
+            name : 'account.me.doctor.setting',
+            url : '/setting',
+            parent : accountMeDoctorState,
+            templateUrl : 'app/account/me/account-me-doctor-setting.html',
+            controller : 'accountMeDoctorSettingController',
             controllerAs : 'vm'
         };
 
@@ -219,11 +237,13 @@
             .state(accountMeUserQuestionState)
             .state(accountMeUserFavoriteArticleState)
             .state(accountMeUserFavoriteQAState)
+            .state(accountMeUserSettingState)
             .state(accountMeDoctorState)
             .state(accountMeDoctorDetailState)
             .state(accountMeDoctorEditState)
             .state(accountMeDoctorAnswerState)
-            .state(accountMeDoctorArticleState);
+            .state(accountMeDoctorArticleState)
+            .state(accountMeDoctorSettingState);
 
         // sign up
         $stateProvider

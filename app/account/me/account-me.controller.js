@@ -26,7 +26,8 @@
                 $state.is('account.me.user.favArticle') ||
                 $state.is('account.me.user.favQA') ||
                 $state.is('account.me.user.detail')   ||
-                $state.is('account.me.user.edit')) {
+                $state.is('account.me.user.edit') ||
+                $state.is('account.me.user.setting')) {
                 return;
             }
 
@@ -36,6 +37,8 @@
                 $state.go('account.me.user.favArticle');
             } else if (subState === 'favQA') {
                 $state.go('account.me.user.favQA');
+            } else if (subState === 'setting') {
+                $state.go('account.me.user.setting')
             } else {
                 $state.go('account.me.user.detail');
             }
@@ -48,7 +51,8 @@
             if ($state.is('account.me.doctor.answer')  ||
                 $state.is('account.me.doctor.article') ||
                 $state.is('account.me.doctor.detail')  ||
-                $state.is('account.me.doctor.edit')) {
+                $state.is('account.me.doctor.edit')    ||
+                $state.is('account.me.doctor.setting')) {
                 return;
             }
 
@@ -56,6 +60,8 @@
                 $state.go('account.me.doctor.answer');
             } else if (subState === 'blog') {
                 $state.go('account.me.doctor.article');
+            } else if (subState === 'setting') {
+                $state.go('account.me.doctor.setting');
             } else {
                 $state.go('account.me.doctor.detail');
             }
