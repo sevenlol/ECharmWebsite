@@ -1,3 +1,9 @@
+/* account setting */
+.account-setting-panel {
+  margin-top: 50px;
+  margin-bottom: 35px;
+}
+
 .doctor-profile .tab-content .table {
 	font-size:1.1em;
 	margin:0px 0;
