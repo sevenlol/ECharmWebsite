@@ -1,7 +1,26 @@
 /* account setting */
 .account-setting-panel {
   margin-top: 50px;
-  margin-bottom: 35px;
+  margin-bottom: 60px;
+}
+.account-setting-panel h3 {
+  font-weight: 550;
+  margin-bottom: 30px;
+}
+.account-setting-panel .row {
+  margin-bottom: 25px;
+}
+.cropArea {
+  background: #E4E4E4;
+  overflow: hidden;
+  width:400px;
+  height:280px;
+}
+@media (max-width: 767px) {
+  .cropArea {
+    width: 300px;
+    height: 210px;
+  }
 }
 
 .doctor-profile .tab-content .table {
