@@ -10,6 +10,10 @@
 .account-setting-panel .row {
   margin-bottom: 25px;
 }
+.sticker-preview {
+  height: 150px;
+  width: 150px;
+}
 .cropArea {
   background: #E4E4E4;
   overflow: hidden;
