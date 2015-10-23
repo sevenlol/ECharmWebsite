@@ -225,6 +225,24 @@
             controllerAs : 'vm'
         };
 
+        var accountPasswordResetState = {
+            name : 'account.passwordReset',
+            url : '/passwordReset',
+            parent : accountState,
+            templateUrl : 'app/account/account-password-reset.html',
+            controller : 'accountPasswordResetController',
+            controllerAs : 'vm'
+        };
+
+        var accountPasswordResetSuccessState = {
+            name : 'account.passwordResetSuccess',
+            url : '/passwordReset/success',
+            parent : accountState,
+            templateUrl : 'app/account/account-password-reset-success.html',
+            controller : function() {},
+            controllerAs : 'vm'
+        };
+
         /* Account System Routing */
 
         // my account information
@@ -257,6 +275,10 @@
             .state(accountSignInState)
             .state(accountSignInUserState)
             .state(accountSignInDoctorState);
+
+        $stateProvider
+            .state(accountPasswordResetState)
+            .state(accountPasswordResetSuccessState);
 
         /* resolve functions */
 
