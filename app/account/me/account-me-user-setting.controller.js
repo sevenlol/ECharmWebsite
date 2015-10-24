@@ -20,6 +20,11 @@
 
         var vm = this;
 
+        vm.passwordChangeMsg = {
+            show : false,
+            type : 'success',
+            message : 'message'
+        };
         vm.changePassword = changePassword;
 
         /* public functions */

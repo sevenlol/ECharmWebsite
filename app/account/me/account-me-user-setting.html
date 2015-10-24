@@ -31,7 +31,18 @@
         </div>
       </div>
       <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
+        <div class="col-sm-offset-2 col-sm-4">
+          <p
+            ng-show="vm.passwordChangeMsg && vm.passwordChangeMsg.show"
+            class="action-notification-message"
+            ng-class="{
+              true : 'blue-style-1',
+              false : 'pink-style' }
+              [ vm.passwordChangeMsg && vm.passwordChangeMsg.type === 'success' ]">
+            {{ vm.passwordChangeMsg.message }}
+          </p>
+        </div>
+        <div class="col-sm-offset-2 col-sm-4">
           <div class="pull-right edit"><a class="btn round-btn" ng-click="vm.changePassword()">變更</a></div>
         </div>
       </div>
