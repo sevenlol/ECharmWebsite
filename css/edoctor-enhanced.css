@@ -36,81 +36,81 @@
 }
 
 .doctor-profile .tab-content .table {
-	font-size:1.1em;
-	margin:0px 0;
+  font-size:1.1em;
+  margin:0px 0;
 }
 .doctor-profile .tab-content .table th {
-	color:#959595;
-	text-align:right;
-	padding:10px 15px;
-	font-weight:normal;
-	border:none;
+  color:#959595;
+  text-align:right;
+  padding:10px 15px;
+  font-weight:normal;
+  border:none;
 }
 .doctor-profile .tab-content .table td {
-	padding:10px 15px;
-	border:none;
+  padding:10px 15px;
+  border:none;
 }
 
 /* doctor.list state */
 .doctor-row {
-	margin: 100px 15px;
+  margin: 100px 15px;
 }
 
 ul.doctor-list {
-	margin-left:0;
-	padding-left:0;
+  margin-left:0;
+  padding-left:0;
 }
 ul.doctor-list li {
-	list-style:none;
-	float:left;
-	margin:0 10px;
-	text-align:center;
+  list-style:none;
+  float:left;
+  margin:0 10px;
+  text-align:center;
 }
 ul.doctor-list li img {
-	width:150px;
-	height:150px;
-	margin-bottom:15px;
+  width:150px;
+  height:150px;
+  margin-bottom:15px;
 }
 ul.doctor-list li p {
-	font-size:0.9em;
+  font-size:0.9em;
 }
 
 .validation-form-group {
-	display: inline;
-	position: relative;
+  display: inline;
+  position: relative;
 }
 .invalid-input-sign {
-	position: absolute;
-	right:0px;
-	top: 10px;
-	color : #c62828;
-	font-size : 18px;
+  position: absolute;
+  right:0px;
+  top: 10px;
+  color : #c62828;
+  font-size : 18px;
   z-index: 10;
 }
 
 /* parallax */
 
 .parallax-background {
-	background-attachment: fixed;
+  background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-  	-moz-background-size: cover;  /* Firefox 3.6 */
-  	background-position: center;  /* Internet Explorer 7/8 */
+    -moz-background-size: cover;  /* Firefox 3.6 */
+    background-position: center;  /* Internet Explorer 7/8 */
 }
 .public-login-background {
-	background-image: url(../images/login-public-bg.jpg);
+  background-image: url(../images/login-public-bg.jpg);
 }
 .doctor-login-background {
-	background-image: url(../images/login-doctor-bg.jpg);
+  background-image: url(../images/login-doctor-bg.jpg);
 }
 .blog-detail-background {
-	background-image: url(../images/article-detail-bg.jpg);
+  background-image: url(../images/article-detail-bg.jpg);
 }
 .main-kv-background {
-	background-image: url(../images/mainKV.jpg);
+  background-image: url(../images/mainKV.jpg);
 }
 .sub-kv-background {
-	background-image: url(../images/subKV.jpg);
+  background-image: url(../images/subKV.jpg);
 }
 .ask-kv-background {
   background-image: url(../images/askKV.jpg);
@@ -176,34 +176,34 @@ ul.doctor-list li p {
 
 /* askdoctor */
 .ask-btn {
-	margin-top: 15px;
+  margin-top: 15px;
 }
 .ask-form-category {
-	margin: 0px 15px;
-	padding: 0px;
+  margin: 0px 15px;
+  padding: 0px;
 }
 
 .comment-error {
-	margin-top: 15px;
-	margin-left:15px;
-	font-size:16px;
+  margin-top: 15px;
+  margin-left:15px;
+  font-size:16px;
 }
 
 .comment-badge {
-	background-color:#616161;
+  background-color:#616161;
 }
 
 .question-content-tag {
-	margin-top: 20px;
+  margin-top: 20px;
 }
 
 .my-rating-bar {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 .my-rating-bar i {
-	margin:0 2px;
-	color:#faa500;
-	padding-top:10px;
+  margin:0 2px;
+  color:#faa500;
+  padding-top:10px;
 }
 
 .filter-option-bar label {
@@ -211,16 +211,16 @@ ul.doctor-list li p {
 }
 
 .search-title {
-	font-size:1.3em;
-	margin-bottom:20px;
+  font-size:1.3em;
+  margin-bottom:20px;
 }
 
 .cursor-pointer {
-	cursor : pointer;
+  cursor : pointer;
 }
 
 .cl-effect-4 a {
-	padding: 0 0 10px;
+  padding: 0 0 10px;
 }
 
 .comment-caption {
@@ -272,34 +272,34 @@ ul.doctor-list li p {
 /* home */
 
 .cl-effect-15 a {
-	color: rgba(66,66,66,0.8);
-	font-weight: 700;
-	text-shadow: none;
+  color: rgba(66,66,66,0.8);
+  font-weight: 700;
+  text-shadow: none;
 }
 
 .cl-effect-15 a::before {
-	color: #fff;
-	content: attr(data-hover);
-	position: absolute;
-	transition: transform 0.3s, opacity 0.3s;
+  color: #fff;
+  content: attr(data-hover);
+  position: absolute;
+  transition: transform 0.3s, opacity 0.3s;
 }
 
 .cl-effect-15 a:hover::before,
 .cl-effect-15 a:focus::before {
-	transform: scale(0.9);
-	opacity: 0;
+  transform: scale(0.9);
+  opacity: 0;
 
 }
 
 .cl-effect-15 a:hover {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 .instruction-text {
-	font-weight: 700;
-	color:#ffffff;
-	font-size:1.6em;
-	text-align:center;
+  font-weight: 700;
+  color:#ffffff;
+  font-size:1.6em;
+  text-align:center;
 }
 
 /* doctor */
