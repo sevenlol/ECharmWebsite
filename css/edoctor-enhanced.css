@@ -81,10 +81,11 @@ ul.doctor-list li p {
 }
 .invalid-input-sign {
 	position: absolute;
-	right:10px;
+	right:0px;
 	top: 10px;
 	color : #c62828;
 	font-size : 18px;
+  z-index: 10;
 }
 
 /* parallax */
