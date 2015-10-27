@@ -48,5 +48,22 @@
     </form>
 
     <p class="history-top">變更大頭貼</p>
+
+    <div class="account-setting-panel">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <h3 class="text-center">上傳新照片</h3>
+          <div class="cropArea center-block"></div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <h3 class="text-center">新頭貼預覽</h3>
+          <div>
+            <img ng-src="images/default-user-sticker.png" alt="" class="img-circle center-block sticker-preview" />
+          </div>
+        </div>
+      </div>
+      <div class="pull-right edit"><a class="btn round-btn" ng-click="vm.uploadNewSticker()">確定上傳</a></div>
+    </div>
   </div>
 </div>
